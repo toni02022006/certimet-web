@@ -1,0 +1,61 @@
+/* ==========================================================================
+   VARIABLES GLOBALES DE COLOR
+   ========================================================================== */
+:root {
+  --color-blue: #003b7a;       
+  --color-green-dark: #00d639; 
+  --color-green-light: #1cff57;
+  --color-gray: #59575a;       
+  --color-white: #ffffff;
+}
+
+/* ==========================================================================
+   RESETEO BASE Y TIPOGRAFÍA
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Eliminamos Montserrat de aquí para que herede correctamente */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-white);
+  color: var(--color-gray);
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   ESQUELETO MAESTRO Y SOLUCIÓN DEL FOOTER
+   ========================================================================== */
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content-area {
+  flex: 1; /* Obliga al contenido a expandirse y empujar el Footer al fondo */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.home-master-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.home-body-flow {
+  position: relative;
+  display: block;
+  width: 100%;
+  clear: both; 
+  background-color: #ffffff; 
+  z-index: 10; 
+}

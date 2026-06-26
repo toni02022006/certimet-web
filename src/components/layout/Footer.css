@@ -1,0 +1,221 @@
+.footer-container {
+  background-image: url('/src/image/fondo01.jpg.jpeg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 0 40px 30px 40px; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 150px; 
+}
+
+/* ----- Tarjeta Flotante (CTA) ----- */
+.footer-cta-card {
+  background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
+  max-width: 950px;
+  margin: -120px auto 60px auto; 
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.cta-text-content {
+  flex: 1;
+}
+
+.footer-cta-card h2 {
+  color: #0056b3;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+}
+
+.footer-cta-card p {
+  color: #0056b3;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cta-button:hover {
+  background-color: #004494;
+}
+
+.cta-arrow {
+  width: 14px; 
+  object-fit: contain;
+}
+
+.cta-image-content {
+  flex: 0.8;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cta-image-content img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ----- Grilla de Columnas ----- */
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr; 
+  max-width: 1050px;
+  margin: 0 auto;
+  gap: 20px;
+  align-items: start; 
+}
+
+/* Reseteo base */
+.footer-container p, .footer-container ul, .footer-container h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-col h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 20px; 
+  padding-bottom: 5px;
+  display: inline-block;
+  border-bottom: 1px solid #ffffff;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  font-size: 14px;
+  margin-bottom: 12px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.footer-col li:hover {
+  opacity: 0.7;
+}
+
+.location-text {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ----- Columna de Marca (Izquierda) ----- */
+.brand-col {
+  padding-right: 20px;
+}
+
+.footer-logo {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+/* FUNDAMENTAL: Aumentamos la especificidad (.footer-col .brand-tagline) para que el reset de arriba no lo anule */
+.footer-col .brand-tagline {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 35px !important; /* Añadimos un !important extra de seguridad para asegurar la separación */
+}
+
+/* FUNDAMENTAL: Lo mismo para los títulos de bloque, así se separan correctamente de los iconos */
+.footer-col .block-title {
+  font-size: 15px;
+  margin-bottom: 10px !important; 
+  font-weight: 400;
+}
+
+.contact-block {
+  margin-bottom: 20px; 
+}
+
+.contact-icons, .social-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center; 
+}
+
+.contact-icons img, .social-icons img {
+  height: 20px; 
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.social-icons img {
+  height: 18px; 
+}
+
+.contact-icons img:hover, .social-icons img:hover {
+  transform: translateY(-3px);
+}
+
+/* ----- Barra Inferior ----- */
+.footer-bottom {
+  max-width: 1050px;
+  margin: 50px auto 0 auto;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  font-weight: 300;
+}
+
+/* ----- Diseño Responsivo ----- */
+@media (max-width: 992px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+  .footer-cta-card {
+    flex-direction: column;
+    text-align: center;
+    margin: -80px 20px 40px 20px;
+    padding: 30px;
+  }
+  .cta-image-content {
+    justify-content: center;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  .brand-col {
+    padding-right: 0;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+}

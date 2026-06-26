@@ -1,0 +1,161 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL Y FONDO
+   ========================================================================== */
+.solutions-section {
+  background: linear-gradient(rgba(0, 59, 122, 0.85), rgba(0, 97, 188, 0.85)), url('../../image/fondo01.jpg.jpeg');
+  background-size: cover;
+  background-position: center;
+  padding: 80px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   ENCABEZADO (TÍTULOS)
+   ========================================================================== */
+.solutions-header {
+  text-align: center;
+  margin-bottom: 50px;
+  line-height: 1.1;
+}
+
+.title-light {
+  font-size: 36px;
+  font-weight: 300; 
+  margin: 0;
+}
+
+.title-bold {
+  font-size: 42px;
+  font-weight: 700; 
+  margin: 0;
+}
+
+/* ==========================================================================
+   GRILLA DE 4 COLUMNAS
+   ========================================================================== */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+/* ==========================================================================
+   TARJETAS (CARDS) CON EFECTO HOVER
+   ========================================================================== */
+.solution-card {
+  border-radius: 20px;
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  
+  /* ESTADO POR DEFECTO (Translúcida con borde verde) */
+  background-color: rgba(255, 255, 255, 0.05); 
+  border: 1px solid rgba(28, 255, 87, 0.5); 
+  
+  /* Transición suave para todos los cambios */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.solution-card:hover {
+  /* ESTADO AL PASAR EL MOUSE (Fondo oscuro sólido y levitación) */
+  transform: translateY(-5px);
+  background-color: #001f42; 
+  border-color: #001f42;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Círculo verde superior */
+.solution-icon-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: var(--color-green-light, #1cff57);
+  margin-bottom: 25px;
+}
+
+/* Textos internos */
+.solution-title {
+  color: var(--color-green-light, #1cff57);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.solution-subtitle {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.solution-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: auto; /* Empuja el botón siempre hacia abajo */
+}
+
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
+.solution-btn {
+  background-color: var(--color-green-light, #1cff57);
+  color: var(--color-blue, #003b7a); 
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 25px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.solution-btn:hover {
+  background-color: #14de4a;
+  transform: scale(1.05);
+}
+
+/* Botón CTA Final (Agenda una visita) */
+.solutions-main-cta {
+  background-color: var(--color-green-light, #1cff57);
+  color: var(--color-blue, #003b7a);
+  border: none;
+  border-radius: 30px;
+  padding: 15px 35px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(28, 255, 87, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.solutions-main-cta:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .solutions-grid {
+    grid-template-columns: repeat(2, 1fr); 
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 600px) {
+  .solutions-grid {
+    grid-template-columns: 1fr; 
+  }
+  .title-light { font-size: 30px; }
+  .title-bold { font-size: 36px; }
+}

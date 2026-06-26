@@ -1,0 +1,139 @@
+.methodology-section {
+  background-color: #ffffff; 
+  padding: 80px 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.methodology-container {
+  /* Reducimos el max-width de 1200px a 1050px para hacer las tarjetas más delgadas */
+  max-width: 1050px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   ENCABEZADO
+   ========================================================================== */
+.methodology-header {
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.methodology-tag {
+  color: var(--color-green-dark, #00d639);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.methodology-tag::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-green-dark, #00d639);
+}
+
+.methodology-title {
+  color: var(--color-blue, #003b7a);
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   GRILLA Y TARJETAS
+   ========================================================================== */
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* ESTADO POR DEFECTO (Blanco) */
+.methodology-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  /* Aumentamos el padding superior/inferior y la altura mínima a 480px para estirarlas */
+  padding: 50px 25px;
+  min-height: 480px; 
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  cursor: default;
+}
+
+.methodology-number {
+  color: var(--color-blue, #003b7a);
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  transition: color 0.4s ease;
+}
+
+.methodology-card-title {
+  color: var(--color-blue, #003b7a);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 25px; /* Un poco más de separación debajo del título */
+  transition: color 0.4s ease;
+}
+
+.methodology-card-text {
+  color: var(--color-gray, #59575a);
+  font-size: 13px;
+  line-height: 1.6;
+  transition: color 0.4s ease;
+}
+
+/* ==========================================================================
+   ESTADO HOVER (Interacción al pasar el mouse)
+   ========================================================================== */
+.methodology-card:hover {
+  background: linear-gradient(180deg, #004b9a 0%, #002d5e 100%);
+  border-color: #002d5e;
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 59, 122, 0.2);
+}
+
+.methodology-card:hover .methodology-number {
+  color: var(--color-green-light, #1cff57);
+}
+
+.methodology-card:hover .methodology-card-title,
+.methodology-card:hover .methodology-card-text {
+  color: #ffffff;
+}
+
+.methodology-card:hover .methodology-card-text {
+  opacity: 0.8; 
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .methodology-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .methodology-card {
+    min-height: 400px; /* En tablets no necesitan ser tan largas */
+  }
+}
+
+@media (max-width: 600px) {
+  .methodology-grid {
+    grid-template-columns: 1fr;
+  }
+  .methodology-title {
+    font-size: 32px;
+  }
+}

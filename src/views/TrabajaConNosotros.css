@@ -1,0 +1,336 @@
+/* ==========================================================================
+   1. CONTENEDOR GENERAL Y HERO
+   ========================================================================== */
+.work-page-wrapper {
+  background-color: #f4f7fa; /* Fondo gris ultra claro para que resalte la tarjeta blanca */
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.work-hero-section {
+  /* Imagen industrial de fondo con el degradado azul oscuro corporativo de Certimet */
+  background: linear-gradient(rgba(0, 59, 122, 0.85), rgba(0, 59, 122, 0.95)), 
+              url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  height: 380px; /* Suficiente altura para que la tarjeta flote encima */
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  position: relative;
+}
+
+.work-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 50px; /* Compensa el tamaño del header fijo */
+}
+
+.work-hero-content h1 {
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+
+.work-hero-content p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   2. CONTENEDOR PRINCIPAL FLOTANTE (OVERLAP)
+   ========================================================================== */
+.work-main-container {
+  max-width: 1100px;
+  margin: -80px auto 0; /* MAGIA: El -80px hace que flote sobre el fondo azul */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 59, 122, 0.1);
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.work-card-header {
+  background-color: var(--color-blue, #003b7a);
+  padding: 30px 40px;
+  color: #ffffff;
+}
+
+.work-card-header h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.work-card-header p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ==========================================================================
+   3. PESTAÑAS (TABS)
+   ========================================================================== */
+.work-tabs-container {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+}
+
+.work-tab {
+  flex: 1;
+  padding: 20px 15px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.work-tab:hover {
+  color: var(--color-blue, #003b7a);
+  background-color: #ffffff;
+}
+
+.work-tab.active {
+  color: var(--color-blue, #003b7a);
+  background-color: #ffffff;
+}
+
+/* Línea verde inferior animada para el Tab activo */
+.work-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-green-dark, #00d639);
+}
+
+.work-tab-content {
+  padding: 40px;
+  min-height: 400px;
+}
+
+/* ==========================================================================
+   4. TARJETA DE EMPLEO (JOB CARD)
+   ========================================================================== */
+.job-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 30px;
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  margin-bottom: 25px;
+}
+
+.job-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+
+/* --- Fila Superior (Fechas y Botón) --- */
+.job-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.job-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.badge-new {
+  background-color: #123cb0; 
+  color: #ffffff;            
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.job-published, .job-category {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.job-meta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.btn-postular {
+  background-color: transparent;
+  color: var(--color-green-dark, #00d639);
+  border: 2px solid var(--color-green-dark, #00d639);
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-postular:hover {
+  background-color: var(--color-green-dark, #00d639);
+  color: #ffffff;
+}
+
+.job-deadline {
+  font-size: 11px;
+  color: var(--color-green-dark, #00d639); 
+  font-weight: 700;
+}
+
+/* --- Título y Tags --- */
+.job-title {
+  color: var(--color-blue, #003b7a);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.job-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.job-tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 4px;
+}
+
+.tag-gray { background-color: #f1f5f9; color: #475569; }
+.tag-blue { background-color: rgba(0, 59, 122, 0.1); color: var(--color-blue, #003b7a); }
+.tag-green { background-color: rgba(28, 255, 87, 0.15); color: #059669; }
+
+/* --- Detalles --- */
+.job-quick-details {
+  font-size: 13px;
+  color: #334155;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.separator {
+  color: #cbd5e1;
+  margin: 0 8px;
+}
+
+/* --- Caja de Requisitos --- */
+.job-requirements-box {
+  background-color: #f8fafc;
+  border-left: 4px solid var(--color-blue, #003b7a);
+  padding: 20px;
+  border-radius: 0 8px 8px 0;
+}
+
+.job-requirements-box h4 {
+  font-size: 14px;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.job-requirements-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.job-requirements-box li {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   5. ESTADOS VACÍOS (OTRAS PESTAÑAS)
+   ========================================================================== */
+.empty-tab-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-tab-state h3 {
+  color: var(--color-blue, #003b7a);
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.empty-tab-state p {
+  color: #64748b;
+  font-size: 15px;
+  margin-bottom: 25px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-solid-blue {
+  background-color: var(--color-blue, #003b7a);
+  color: #ffffff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-solid-blue:hover { background-color: #002d5e; }
+
+.btn-outline-blue {
+  background-color: transparent;
+  color: var(--color-blue, #003b7a);
+  border: 2px solid var(--color-blue, #003b7a);
+  padding: 10px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-outline-blue:hover {
+  background-color: var(--color-blue, #003b7a);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   6. RESPONSIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+  .work-main-container { margin: -50px 15px 0; }
+  .work-tabs-container { flex-direction: column; }
+  .work-tab { border-bottom: 1px solid #e2e8f0; }
+  .work-tab.active::after { bottom: 0; top: 0; width: 4px; height: 100%; left: 0; }
+  
+  .job-header-row { flex-direction: column; gap: 15px; }
+  .job-meta-right { align-items: flex-start; }
+  .job-quick-details { flex-direction: column; gap: 10px; }
+  .separator { display: none; }
+}

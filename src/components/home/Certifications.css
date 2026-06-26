@@ -1,0 +1,175 @@
+.certifications-section {
+  padding: 80px 5%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.certifications-title {
+  color: var(--color-blue, #003b7a);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.certifications-divider {
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-green-dark, #00d639);
+  margin-bottom: 50px;
+  border-radius: 2px;
+}
+
+/* Grilla principal ajustada para estirar las tarjetas verticalmente */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 950px; /* Cuadros menos anchos */
+  width: 100%;
+  align-items: stretch; /* Misma altura para todas */
+}
+
+/* ==========================================================================
+   ESTILOS BASE DE LAS TARJETAS (Todas nacen blancas, largas y estilizadas)
+   ========================================================================== */
+.cert-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-blue, #003b7a); /* Borde azul inicial */
+  border-radius: 30px; 
+  padding: 50px 35px;   
+  min-height: 480px;    /* Cuadros más largos */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Tipografías e hijos en estado REPOSO (Base blanca) */
+.cert-card h3 {
+  color: var(--color-blue, #003b7a);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  transition: color 0.3s ease;
+}
+
+.cert-card .card-subtitle {
+  color: var(--color-blue, #003b7a);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.cert-card .card-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: auto;
+  color: var(--color-blue, #003b7a); /* Letras azules al inicio */
+  transition: color 0.3s ease;
+}
+
+/* Círculos de iconos superiores */
+.card-icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 35px;
+  transition: background-color 0.3s ease;
+}
+
+.blue-circle { background-color: var(--color-blue, #003b7a); }
+.green-circle { background-color: var(--color-green-light, #1cff57); }
+
+
+/* ==========================================================================
+   EL GRAN CAMBIO: HOVER GENERAL (Aplica a las 3 tarjetas por igual)
+   ========================================================================== */
+.cert-card:hover {
+  background: linear-gradient(180deg, #002447 0%, #003b7a 100%); /* Fondo oscuro premium */
+  border-color: transparent;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 36, 71, 0.25);
+}
+
+/* Transición de textos a BLANCO al hacer Hover */
+.cert-card:hover h3,
+.cert-card:hover .card-subtitle,
+.cert-card:hover .card-text {
+  color: #ffffff !important;
+}
+
+/* El círculo azul cambia a verde claro o resalta en el fondo oscuro */
+.cert-card:hover .blue-circle {
+  background-color: var(--color-green-light, #1cff57); /* Opcional: cambia a verde para contrastar */
+}
+
+
+/* ==========================================================================
+   COMPONENTES INTERNOS (Botones y Logos)
+   ========================================================================== */
+.cert-button {
+  background-color: var(--color-green-dark, #00d639);
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 30px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cert-button:hover {
+  background-color: #00b531;
+  transform: scale(1.05);
+}
+
+/* Grilla e imágenes de Homologaciones (Tarjeta 3) */
+.homologations-logos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.homo-logo {
+  width: 100%;
+  max-height: 40px;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.6);
+  transition: all 0.3s ease;
+}
+
+/* Cuando la tarjeta de homologaciones tiene hover, los logos toman color/brillo */
+.cert-card:hover .homo-logo {
+  filter: grayscale(0%) brightness(0) invert(1) opacity(1); /* Se vuelven blancos para contrastar con el fondo azul oscuro */
+}
+
+.homo-logo:hover {
+  transform: scale(1.1);
+}
+
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO
+   ========================================================================== */
+@media (max-width: 992px) {
+  .certifications-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px; /* Proporción alargada en móviles */
+  }
+  
+  .cert-card {
+    min-height: 440px;
+    padding: 40px 30px;
+  }
+}

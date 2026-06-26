@@ -1,0 +1,94 @@
+.alianzas-section {
+  background-color: #ffffff; 
+  padding: 80px 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   TARJETA CONTENEDORA AZUL
+   ========================================================================== */
+.alianzas-card-container {
+  background: linear-gradient(135deg, #005bb5 0%, #003b7a 100%);
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 25px;
+  padding: 50px 70px;
+  box-shadow: 0 20px 40px rgba(0, 59, 122, 0.25);
+}
+
+.alianzas-title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+/* ==========================================================================
+   ENVOLTORIO DEL CARRUSEL ANIMADO
+   ========================================================================== */
+.alianzas-carousel-wrapper {
+  min-height: 100px; 
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* ==========================================================================
+   GRILLA DINÁMICA (Flexbox centra todo automáticamente)
+   ========================================================================== */
+.alianzas-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite que bajen de fila si no caben en pantalla chica */
+  justify-content: center; /* ¡Esto hace la magia de centrar los 2 sobrantes! */
+  align-items: center;
+  gap: 30px 45px; /* Separación vertical y horizontal */
+  width: 100%;
+}
+
+/* ==========================================================================
+   LOGOS Y EFECTOS HOVER
+   ========================================================================== */
+.alianza-item {
+  width: 140px; /* Ancho base para que actúen como columnas ordenadas */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.alianza-img {
+  max-width: 100%;
+  max-height: 45px; 
+  object-fit: contain;
+  opacity: 0.8; 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.alianza-item:hover .alianza-img {
+  opacity: 1; 
+  transform: scale(1.15) translateY(-5px); 
+  filter: drop-shadow(0px 10px 15px rgba(255, 255, 255, 0.4)); 
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO (Tablets y Celulares)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .alianzas-card-container { padding: 50px 40px; }
+}
+
+@media (max-width: 768px) {
+  .alianzas-title { font-size: 26px; text-align: center; }
+  .alianzas-carousel-wrapper { min-height: 150px; }
+  /* En tablet flex-wrap se encarga de bajar los logos centraditos */
+}
+
+@media (max-width: 480px) {
+  .alianzas-card-container { padding: 40px 20px; border-radius: 20px; }
+  .alianza-item { width: 110px; } /* Un poco más pequeños para que entren mejor */
+  .alianza-img { max-height: 35px; }
+  .alianzas-carousel-wrapper { min-height: 180px; }
+}

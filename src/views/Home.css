@@ -1,0 +1,116 @@
+.home-container { width: 100%; }
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  z-index: 1; 
+}
+
+.hero-bg-wrapper {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+  background-color: var(--color-blue);
+}
+
+.hero-bg-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--color-white);
+  font-size: 26px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.left-arrow { left: 30px; }
+.right-arrow { right: 30px; }
+
+.hero-text-container-absolute {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(90deg, rgba(0,59,122,1) 0%, rgba(0,59,122,0.75) 40%, rgba(0,59,122,0) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: absolute;
+  top: 55%; left: 0;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 100%;
+  padding: 0 8%; 
+}
+
+.hero-text-box { max-width: 600px; }
+
+.hero-title {
+  font-size: 56px;
+  color: var(--color-white);
+  line-height: 1.15;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.text-green-light {
+  color: var(--color-green-light);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  color: var(--color-white);
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 480px;
+}
+
+.hero-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2); 
+  z-index: 10;
+}
+
+.hero-progress-fill {
+  height: 100%;
+  background-color: var(--color-green-dark); 
+  box-shadow: 0 0 10px rgba(0, 214, 57, 0.6); 
+}
