@@ -6,12 +6,12 @@ import Layout from './components/layout/Layout';
 // Importa tus vistas
 import Home from './views/Home';
 import Contacto from './views/Contacto';
-import Playground from './views/Playground'; // ⬅️ Tu nueva vista
-import TrabajaConNosotros from './views/TrabajaConNosotros'; // ⬅️ Tu nueva vista
+import Playground from './views/Playground'; 
+import TrabajaConNosotros from './views/TrabajaConNosotros'; 
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/certimet-web/">
       <Routes>
         
         {/* =======================================================
@@ -23,7 +23,6 @@ function App() {
           <Route path="/nosotros" element={<div>Página Nosotros</div>} />
           <Route path="/laboratorio" element={<div>Página Laboratorio</div>} />
           <Route path="/contacto" element={<Contacto />} />
-          {/* Añade aquí las demás rutas normales de tu web */}
         </Route>
 
         {/* =======================================================
