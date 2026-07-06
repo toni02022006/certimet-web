@@ -1,0 +1,73 @@
+.quienes-somos-section {
+  width: 100%;
+  padding: 80px 8%;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.quienes-somos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.quienes-somos-titulo {
+  font-size: 38px;
+  color: #0066b3;
+  font-weight: 700;
+  margin: 0 0 30px 0;
+}
+
+.quienes-somos-parrafo {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #555a60;
+  margin: 0 0 20px 0;
+}
+
+.texto-resaltado {
+  color: #0268bc;
+  font-weight: 500;
+}
+
+/* AQUÍ ESTÁ LA CLAVE PARA QUE SE VEA */
+.quienes-somos-imagen {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  perspective: 1000px; /* Profundidad 3D */
+  transform-style: preserve-3d;
+  cursor: default;
+}
+
+.quienes-somos-imagen img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: translateZ(30px); /* Eleva la imagen para que se note */
+  filter: drop-shadow(0 15px 30px rgba(0, 80, 150, 0.25));
+  backface-visibility: hidden;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .quienes-somos-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .quienes-somos-imagen {
+    order: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .quienes-somos-titulo {
+    font-size: 28px;
+  }
+  .quienes-somos-parrafo {
+    font-size: 16px;
+  }
+}

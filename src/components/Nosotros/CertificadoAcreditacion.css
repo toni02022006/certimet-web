@@ -1,0 +1,159 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.acreditacion-section {
+  background-color: #eef7ff; /* Celeste suave */
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center; /* Centra todo el bloque en la pantalla */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.acreditacion-container {
+  max-width: 1050px; /* Ancho máximo enmarcado para agrupar todo */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el bloque de arriba y el párrafo de abajo */
+  gap: 40px;
+}
+
+/* ==========================================================================
+   BLOQUE SUPERIOR (TEXTO + IMAGEN BLOQUEADOS)
+   ========================================================================== */
+.acreditacion-top-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Empuja ambos elementos hacia el centro, pegándolos */
+  align-items: center;
+  
+  /* 👇 ESTA ES LA DISTANCIA EXACTA. Ya no se separarán. 👇 */
+  gap: 35px; 
+  width: 100%;
+}
+
+/* COLUMNA DEL TEXTO */
+.acreditacion-text-col {
+  width: 320px; /* Tamaño congelado para que no se estire a la izquierda */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.acreditacion-title {
+  font-size: 44px;
+  line-height: 1.15;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+}
+
+/* Letras Azul Claro - Delgadas */
+.title-light-blue {
+  color: #1062b9; 
+  font-weight: 400; 
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Letras Azul Oscuro - Gruesas */
+.title-dark-blue {
+  color: #166ac3; 
+  font-weight: 500; 
+  display: block;
+}
+
+/* Botón Outline */
+.btn-outline-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0056b3;
+  border: 1px solid #0056b3;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-blue:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(2, 99, 202, 0.2);
+}
+
+/* COLUMNA DE LA IMAGEN */
+.acreditacion-img-col {
+  width: 660px; /* Tamaño congelado de la imagen */
+  flex-shrink: 0;
+}
+
+.certificado-img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+/* ==========================================================================
+   PÁRRAFO INFERIOR
+   ========================================================================== */
+.acreditacion-bottom-text {
+  width: 100%;
+  max-width: 1015px; /* Para que alinee con los bordes del bloque de arriba */
+}
+
+.acreditacion-bottom-text p {
+  color: #555555; 
+  font-size: 15.5px;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
+}
+
+.text-highlight-blue {
+  color: #0056b3; 
+  font-weight: 600; 
+}
+
+/* ==========================================================================
+   RESPONSIVO (Móviles y Tablets)
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .acreditacion-top-grid {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .acreditacion-text-col {
+    width: 100%;
+    align-items: center;
+  }
+
+  .acreditacion-title {
+    font-size: 40px;
+  }
+
+  .acreditacion-img-col {
+    width: 100%;
+    max-width: 660px;
+  }
+}
+
+@media (max-width: 600px) {
+  .acreditacion-section {
+    padding: 50px 20px;
+  }
+  
+  .acreditacion-title {
+    font-size: 32px;
+  }
+  
+  .acreditacion-bottom-text p {
+    text-align: justify;
+  }
+}

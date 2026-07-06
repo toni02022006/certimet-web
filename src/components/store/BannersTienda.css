@@ -1,0 +1,281 @@
+/*==================================================
+CONTENEDOR
+==================================================*/
+.banners-tienda {
+    width: 90%;
+    max-width: 1400px;
+    margin: 30px auto 60px;
+    display: flex;
+    gap: 28px;
+    align-items: stretch;
+}
+
+/*==================================================
+ESTILOS BASE
+==================================================*/
+.banner {
+    border-radius: 38px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: all 0.35s ease;
+}
+
+.banner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+}
+
+/*==================================================
+BANNER CATÁLOGO AZUL
+==================================================*/
+.banner-catalogo {
+    flex: 2;
+    background: linear-gradient(90deg, #002B5C 0%, #0072CE 100%);
+    height: 235px;
+    display: flex;
+    align-items: center;
+}
+
+.banner-content {
+    padding: 32px 45px;
+    width: 75%;
+}
+
+.banner-title {
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 16px 0;
+}
+
+.banner-content p {
+    color: #ffffff;
+    opacity: 0.94;
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 0 0 26px 0;
+    max-width: 380px;
+}
+
+.btn-vermas {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.btn-vermas:hover {
+    transform: translateX(5px);
+}
+
+.btn-vermas span {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/*==================================================
+BANNER WHATSAPP
+==================================================*/
+.banner-whatsapp {
+    flex: 1;
+    background: linear-gradient(90deg, #009121 0%, #00E638 100%);
+    height: 235px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 45px;
+    text-decoration: none;
+}
+
+.whatsapp-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.banner-title-green {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+}
+
+.numero {
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    margin: 0 0 14px 0;
+}
+
+.whatsapp-info p {
+    color: #ffffff;
+    font-size: 15px;
+    margin: 0;
+    opacity: 0.96;
+}
+
+.whatsapp-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-icon img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    /* Animación continua de oscilación */
+    animation: swing 2.5s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+/*==================================================
+ANIMACIÓN DE LETRAS EN BUCLE
+==================================================*/
+.wave-text {
+    display: block;
+    line-height: 1.1;
+}
+
+.wave-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(14px);
+    /* Repite la animación infinitamente */
+    animation: waveLoop 6s ease-in-out infinite;
+}
+
+/* Retraso progresivo para que aparezcan letra por letra */
+.wave-text span:nth-child(1)  { animation-delay: 0s; }
+.wave-text span:nth-child(2)  { animation-delay: 0.08s; }
+.wave-text span:nth-child(3)  { animation-delay: 0.16s; }
+.wave-text span:nth-child(4)  { animation-delay: 0.24s; }
+.wave-text span:nth-child(5)  { animation-delay: 0.32s; }
+.wave-text span:nth-child(6)  { animation-delay: 0.40s; }
+.wave-text span:nth-child(7)  { animation-delay: 0.48s; }
+.wave-text span:nth-child(8)  { animation-delay: 0.56s; }
+.wave-text span:nth-child(9)  { animation-delay: 0.64s; }
+.wave-text span:nth-child(10) { animation-delay: 0.72s; }
+.wave-text span:nth-child(11) { animation-delay: 0.80s; }
+.wave-text span:nth-child(12) { animation-delay: 0.88s; }
+.wave-text span:nth-child(13) { animation-delay: 0.96s; }
+.wave-text span:nth-child(14) { animation-delay: 1.04s; }
+.wave-text span:nth-child(15) { animation-delay: 1.12s; }
+.wave-text span:nth-child(16) { animation-delay: 1.20s; }
+.wave-text span:nth-child(17) { animation-delay: 1.28s; }
+.wave-text span:nth-child(18) { animation-delay: 1.36s; }
+.wave-text span:nth-child(19) { animation-delay: 1.44s; }
+.wave-text span:nth-child(20) { animation-delay: 1.52s; }
+.wave-text span:nth-child(21) { animation-delay: 1.60s; }
+.wave-text span:nth-child(22) { animation-delay: 1.68s; }
+.wave-text span:nth-child(23) { animation-delay: 1.76s; }
+.wave-text span:nth-child(24) { animation-delay: 1.84s; }
+.wave-text span:nth-child(25) { animation-delay: 1.92s; }
+.wave-text span:nth-child(26) { animation-delay: 2.00s; }
+.wave-text span:nth-child(27) { animation-delay: 2.08s; }
+.wave-text span:nth-child(28) { animation-delay: 2.16s; }
+.wave-text span:nth-child(29) { animation-delay: 2.24s; }
+.wave-text span:nth-child(30) { animation-delay: 2.32s; }
+
+/* Animación de entrada y salida de letras */
+@keyframes waveLoop {
+    0% {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    15% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    75% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    90% {
+        opacity: 0;
+        transform: translateY(-14px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+}
+
+/* Animación de oscilación del ícono WhatsApp */
+@keyframes swing {
+    0% {
+        transform: rotate(-8deg);
+    }
+    50% {
+        transform: rotate(8deg);
+    }
+    100% {
+        transform: rotate(-8deg);
+    }
+}
+
+/*==================================================
+RESPONSIVE
+==================================================*/
+@media (max-width: 992px) {
+    .banners-tienda {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .banner-catalogo,
+    .banner-whatsapp {
+        height: auto;
+        min-height: 210px;
+    }
+    .banner-content,
+    .banner-whatsapp {
+        padding: 28px 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-title {
+        font-size: 28px;
+    }
+    .banner-content p {
+        font-size: 15px;
+    }
+    .banner-whatsapp {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .banner-title-green {
+        font-size: 26px;
+    }
+    .numero {
+        font-size: 34px;
+    }
+    .whatsapp-icon img {
+        width: 62px;
+        height: 62px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-whatsapp {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .whatsapp-icon {
+        align-self: flex-end;
+    }
+}

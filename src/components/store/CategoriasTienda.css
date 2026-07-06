@@ -1,0 +1,183 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+.tienda-categorias-section {
+  padding: 80px 5%;
+  background-color: #ffffff;
+  max-width: 1400px; /* Un poco más ancho para que quepan bien las imágenes grandes */
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================================================
+   CABECERA (Título y Botones)
+   ========================================================================== */
+.cat-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  border-bottom: 1px solid #e2e8f0; 
+  padding-bottom: 20px;
+}
+
+.cat-title {
+  color: #0056b3; 
+  font-size: 34px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-ver-todas {
+  display: inline-block;
+  padding: 8px 22px;
+  color: #0056b3;
+  border: 1px solid #0056b3;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-ver-todas:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
+
+/* Flechas del Carrusel */
+.cat-slider-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.cat-slider-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0056b3;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cat-slider-btn:hover {
+  border-color: #0056b3;
+  color: #ffffff;
+  background-color: #0056b3;
+}
+
+/* ==========================================================================
+   CONTENEDOR DEL CARRUSEL (SLIDER CONTINUO)
+   ========================================================================== */
+.categorias-slider-container {
+  display: flex;
+  gap: 40px; /* Más espacio entre imágenes */
+  overflow-x: auto;
+  scroll-behavior: auto; /* Debe ser auto para que el setInterval no tiemble */
+  padding-bottom: 30px; 
+  padding-top: 20px;
+  
+  /* Ocultar barra de scroll */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+.categorias-slider-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   ÍTEMS DE CATEGORÍA (Diseño Limpio Sin Fondo Gris)
+   ========================================================================== */
+.categoria-item {
+  flex: 0 0 auto; 
+  width: 220px; /* Ancho fijo grande para que dominen la pantalla */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* La caja ya no tiene fondo gris, es transparente para dejar ver el equipo */
+.categoria-img-box {
+  width: 100%;
+  height: 220px; /* Alto grande */
+  background-color: transparent; /* Adiós al fondo gris */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* La imagen pura y grande */
+.categoria-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  transition: transform 0.4s ease, filter 0.4s ease;
+  /* Sombra sutil directamente al equipo para que resalte del fondo blanco */
+  filter: drop-shadow(0 15px 15px rgba(0,0,0,0.08)); 
+}
+
+/* Efecto al pasar el mouse por el equipo */
+.categoria-item:hover .categoria-img {
+  transform: translateY(-10px) scale(1.05); /* El equipo se levanta y se acerca */
+  filter: drop-shadow(0 25px 20px rgba(0, 86, 179, 0.15)); /* Sombra más fuerte y azulada */
+}
+
+/* Nombre de la categoría */
+.categoria-name {
+  color: #334155;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.categoria-item:hover .categoria-name {
+  color: #0056b3; /* Se vuelve azul */
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO
+   ========================================================================== */
+@media (max-width: 992px) {
+  .categoria-item {
+    width: 180px; 
+  }
+  .categoria-img-box {
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cat-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .cat-title {
+    font-size: 28px;
+  }
+
+  .categoria-item {
+    width: 160px; 
+  }
+  .categoria-img-box {
+    height: 160px;
+  }
+}

@@ -1,0 +1,157 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.hero-tienda-section {
+  position: relative;
+  width: 100%;
+  height: 550px; /* Altura del banner, puedes ajustarla */
+  background-color: #001f42; /* Fondo de respaldo oscuro */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   IMAGEN DE FONDO
+   ========================================================================== */
+.hero-tienda-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-tienda-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ==========================================================================
+   CONTENEDOR DEL TEXTO (Lado Izquierdo)
+   ========================================================================== */
+.hero-tienda-content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 0 8%; /* Margen a los costados */
+}
+
+.hero-tienda-text-box {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el texto y botón internamente */
+  text-align: center;
+}
+
+.hero-tienda-titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Letras animadas */
+.hero-tienda-line {
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.2;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   BOTÓN VERDE
+   ========================================================================== */
+.hero-tienda-btn {
+  background-color: #00ff3c; /* Verde luminoso Certimet */
+  color: #ffffff;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 255, 60, 0.2);
+  transition: all 0.3s ease;
+}
+
+.hero-tienda-btn:hover {
+  background-color: #14de4a;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 25px rgba(0, 255, 60, 0.4);
+}
+
+/* ==========================================================================
+   FLECHAS DEL CARRUSEL
+   ========================================================================== */
+.tienda-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 24px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.tienda-arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.left-arrow { left: 20px; }
+.right-arrow { right: 20px; }
+
+/* ==========================================================================
+   BARRA DE PROGRESO AZUL CLARA
+   ========================================================================== */
+.hero-tienda-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.1); 
+  z-index: 10;
+}
+
+.hero-tienda-progress-fill {
+  height: 100%;
+  background-color: #00bfff; /* Azul claro / Cyan */
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.6); 
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO
+   ========================================================================== */
+@media (max-width: 992px) {
+  .hero-tienda-line { font-size: 34px; }
+}
+
+@media (max-width: 768px) {
+  .hero-tienda-text-box { align-items: flex-start; text-align: left; }
+  .hero-tienda-titles { align-items: flex-start; }
+  .hero-tienda-line { font-size: 28px; }
+}

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Importa tus Layouts
 import Layout from './components/layout/Layout';
-import LayoutTienda from './components/layout/LayoutTienda'; // <-- NUEVO
+import LayoutTienda from './components/layout/LayoutTienda';
 
 // Importa tus vistas
 import Home from './views/Home';
@@ -13,6 +13,7 @@ import Blog from './views/Blog';
 import Denuncias from './views/Denuncias';
 import Tienda from './views/Tienda'; 
 import ArticuloDetalle from './views/ArticuloDetalle';
+import Nosotros from './views/Nosotros'; 
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
             ======================================================= */}
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/nosotros" element={<div>Página Nosotros</div>} />
+          {/* ✅ Aquí va la ruta correcta de Nosotros */}
+          <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/laboratorio" element={<div>Página Laboratorio</div>} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/blog" element={<Blog />} />
@@ -37,10 +39,6 @@ function App() {
             ======================================================= */}
         <Route element={<LayoutTienda />}>
           <Route path="/tienda" element={<Tienda />} />
-          {/* En el futuro aquí agregarás: 
-          <Route path="/tienda/carrito" element={<Carrito />} />
-          <Route path="/tienda/login" element={<LoginTienda />} /> 
-          */}
         </Route>
 
         {/* =======================================================
@@ -48,7 +46,8 @@ function App() {
             ======================================================= */}
         <Route path="/playground" element={<Playground />} />
         <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
-        
+        {/* ❌ Eliminamos la ruta duplicada de aquí */}
+
       </Routes>
     </BrowserRouter>
   );

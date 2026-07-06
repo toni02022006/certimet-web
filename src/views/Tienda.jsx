@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Importaciones actualizadas apuntando a la nueva carpeta "store"
-import HeroTienda from '../components/store/HeroTienda';
+import HeroTienda from '../components/store/HeroTienda'; 
 import CategoriasTienda from '../components/store/CategoriasTienda';
 import BannersTienda from '../components/store/BannersTienda';
 import ProductosDestacados from '../components/store/ProductosDestacados';
