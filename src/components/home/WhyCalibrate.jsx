@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './WhyCalibrate.css';
 
+// Importación de tu nueva imagen
+import calibracionImg from '../../image/calibracioninicio.jpeg';
+
 // 1. ANIMACIÓN PARA LA IMAGEN (Entra desde la izquierda)
 const imageReveal = {
   hidden: { opacity: 0, x: -40, scale: 0.95, rotateY: -10, filter: "blur(8px)" },
@@ -31,24 +34,23 @@ const WhyCalibrate = () => {
     <section className="why-calibrate-section">
       <div className="why-calibrate-container">
         
-        {/* Lado Izquierdo: Imagen con marco desplazado */}
+        {/* Lado Izquierdo: Imagen limpia con bordes redondeados */}
         <motion.div 
           className="why-calibrate-image-wrapper"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.4 }} // Se repite al hacer scroll
+          viewport={{ once: false, amount: 0.4 }}
           variants={imageReveal}
           style={{ perspective: 1000 }}
         >
           <img 
-            /* 👇 Nueva imagen: Técnico de automatización trabajando en campo */
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" 
-            alt="Ingeniería y Mantenimiento Industrial" 
+            src={calibracionImg} 
+            alt="Calibración Certimet" 
             className="why-calibrate-image"
           />
         </motion.div>
 
-        {/* Lado Derecho: Contenido de Texto */}
+        {/* Lado Derecho: Contenido de Texto Actualizado */}
         <motion.div 
           className="why-calibrate-content"
           initial="hidden"
@@ -61,14 +63,14 @@ const WhyCalibrate = () => {
           </motion.span>
           
           <motion.h2 variants={textReveal} className="why-calibrate-title">
-            ¿Cuándo vence tu<br />próxima calibración?
+            ¿Cuándo vence<br />tu próxima<br />calibración?
           </motion.h2>
           
           <motion.p variants={textReveal} className="why-calibrate-description">
-            CERTIMET es un laboratorio especializado en calibración y reparación de 
-            instrumentación de prueba, medición y control, respaldado por técnicos 
-            altamente calificados y el cumplimiento de la Norma Técnica ISO/IEC 
-            17025:2017 bajo triple estándar ISO.
+            Mantener tus instrumentos calibrados a tiempo es clave para garantizar la precisión de tus 
+            procesos y el cumplimiento normativo. En CERTIMET te ayudamos a gestionar y cumplir 
+            con tus periodos de calibración, respaldados por nuestra acreditación INACAL y técnicos 
+            altamente calificados.
           </motion.p>
         </motion.div>
 

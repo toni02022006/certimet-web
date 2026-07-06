@@ -1,0 +1,123 @@
+/* Contenedor principal con margen para que la imagen pueda desbordar */
+.descargas-section {
+  padding: 120px 20px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e9f5ff;
+}
+
+/* El Banner Azul con el degradado correcto */
+.descargas-banner {
+  background: linear-gradient(90deg, #0056b3 0%, #002855 100%);
+  width: 100%;
+  max-width: 1050px;
+  height: 130px; 
+  border-radius: 35px; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px 0 70px;
+  position: relative;
+  box-shadow: 0 15px 25px rgba(0, 40, 85, 0.3);
+}
+
+/* Estilos del texto idénticos a la maqueta */
+.descargas-text {
+  flex: 1;
+  z-index: 10;
+  padding-left: 50px
+}
+
+.descargas-text h2 {
+  color: #ffffff;
+  font-size: 2.3rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.descargas-text .text-green {
+  color: #1cff57; 
+  font-weight: 700;
+}
+
+/* 
+==================================================
+CONTENEDOR DE LA IMAGEN ÚNICA (descarga3.png)
+==================================================
+*/
+
+.descargas-images {
+  position: absolute;
+  right: 50px; /* Distancia desde el borde derecho del banner azul */
+  top: -04%; /* Centrado vertical exacto */
+  transform: translateY(-50%); /* Ajuste fino del centro vertical */
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* La imagen combinada */
+.img-combined {
+  /* ESTA ES LA CLAVE: Ajusta este valor si la quieres más grande o más pequeña */
+  width: 520px; 
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  
+  /* Le agregamos una sombrita extra suave por si el PNG la necesita para resaltar más */
+  filter: drop-shadow(0px 15px 20px rgba(0,0,0,0.25)); 
+}
+
+/* Efecto hover suave de elevación (sin rotar, porque ya viene rotada) */
+.img-combined:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 992px) {
+  .descargas-banner {
+    flex-direction: column;
+    height: auto;
+    border-radius: 40px;
+    padding: 40px 30px;
+    text-align: center;
+  }
+  
+  .descargas-text {
+    margin-bottom: 30px; 
+  }
+
+  .descargas-images {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-top: -80px; /* Sube la imagen para que se monte un poco sobre el banner */
+    margin-bottom: -60px; /* Deja que cuelgue hacia abajo */
+  }
+
+  .img-combined {
+    width: 350px; /* Un poco más pequeña en tablets */
+  }
+}
+
+@media (max-width: 576px) {
+  .descargas-text h2 {
+    font-size: 1.8rem;
+  }
+  .descargas-text {
+    margin-bottom: 20px;
+  }
+  .descargas-images {
+    margin-top: -60px;
+    margin-bottom: -50px;
+  }
+  .img-combined { 
+    width: 280px; /* Tamaño para celulares */
+  }
+}

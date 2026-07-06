@@ -1,34 +1,44 @@
 import React from 'react';
 import './Solutions.css';
 
+// Importación de los iconos
+import iconMa from '../../image/icons/Ma.webp';
+import iconIa from '../../image/icons/Ia.webp';
+import iconSa from '../../image/icons/Sa.webp';
+import iconTa from '../../image/icons/Ta.webp';
+
 const solutionsData = [
   {
     id: 1,
     title: "Metrología",
     subtitle: "Mantenimiento y Calibración",
-    text: "CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.",
-    btnText: "Ver especialidades \u2192"
+    text: "Laboratorio acreditado por INACAL bajo la norma ISO/IEC 17025:2017. Calibramos instrumentos de medición con la mayor precisión y trazabilidad.",
+    btnText: "Ver especialidades \u2192",
+    icon: iconMa
   },
   {
     id: 2,
     title: "Ingeniería",
     subtitle: "Automatización y Proyectos",
-    text: "sectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit.",
-    btnText: "Ver especialidades \u2192"
+    text: "Soluciones de control y automatización industrial a medida. Optimizamos tus procesos con tecnología y respaldo técnico especializado.",
+    btnText: "Ver especialidades \u2192",
+    icon: iconIa
   },
   {
     id: 3,
     title: "Servicios",
     subtitle: "Instrumentos de Precisión",
-    text: "a calidad Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
-    btnText: "Ver especialidades \u2192"
+    text: "Mantenimiento preventivo y correctivo, consultoría técnica y capacitaciones. Atención personalizada para mantener tus equipos en óptimas condiciones.",
+    btnText: "Ver especialidades \u2192",
+    icon: iconSa
   },
   {
     id: 4,
     title: "Suministro de Equipos",
     subtitle: "Instrumentos de Precisión",
-    text: "a calidad Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
-    btnText: "Encuentra tu equipo \u2192"
+    text: "Comercializamos instrumentación y equipos de medición de marcas líderes. Encuentra lo que necesitas para tu operación industrial en un solo lugar.",
+    btnText: "Encuentra tu equipo \u2192",
+    icon: iconTa
   }
 ];
 
@@ -46,7 +56,11 @@ const Solutions = () => {
       <div className="solutions-grid">
         {solutionsData.map((item) => (
           <div key={item.id} className="solution-card">
-            <div className="solution-icon-circle"></div>
+            
+            {/* Círculo con el icono */}
+            <div className="solution-icon-circle">
+              <img src={item.icon} alt={item.title} />
+            </div>
             
             <h3 className="solution-title">{item.title}</h3>
             <h4 className="solution-subtitle">{item.subtitle}</h4>

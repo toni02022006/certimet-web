@@ -1,0 +1,333 @@
+/* ================= HEADER TIENDA FIJO ================= */
+.header-tienda-container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.4s ease;
+}
+
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ================= 1. FILA SUPERIOR (Azul Clarito) ================= */
+.ht-top-bar {
+  background-color: var(--certimet-blue, #1c74d4); 
+  position: relative;
+  z-index: 3000; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.4s ease;
+}
+
+.ht-top-bar .ht-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* CLAVE: este es el ancla real para los desplegables (equivalente a
+     .main-navigation en el Header original), NO .ht-top-bar completo,
+     porque el contenido va centrado en un wrapper de 1400px, no a
+     ancho completo de pantalla */
+  position: relative;
+}
+
+.ht-sub-left {
+  display: flex;
+  gap: 20px;
+  color: white;
+  font-size: 12.5px;
+  padding: 10px 0;
+}
+
+.ht-top-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+/* Magia: Convierte PNG a blanco */
+.ht-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  transition: filter 0.4s;
+  filter: brightness(0) invert(1);
+}
+
+.ht-top-link:hover {
+  color: var(--certimet-green, #1cff57);
+}
+
+/* Navegación Superior */
+.ht-top-nav-menu {
+  display: flex;
+}
+
+.ht-nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 25px;
+  align-items: center;
+}
+
+.ht-nav-links > li {
+  padding: 10px 0; /* Área de hover amplia para que no se cierre el menú al bajar el mouse */
+}
+
+.ht-nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.ht-nav-links a:hover,
+.ht-nav-links a.active {
+  color: var(--certimet-green, #1cff57);
+}
+
+/* ==========================================================================
+   CORRECCIÓN DE MENÚS DESPLEGABLES (NIVELADOS SEGÚN LA LÓGICA DEL HEADER ORIGINAL)
+   ========================================================================== */
+
+/* Igual que en Header.css: el LI del mega menú se queda static, 
+   porque el ancla de posicionamiento ahora es .ht-top-bar .ht-content */
+.ht-top-nav-menu .nav-item-dropdown-mega {
+  position: static; 
+}
+
+.ht-top-nav-menu .lab-dropdown-box {
+  top: 100%; 
+  margin-top: 0;
+}
+
+.ht-top-nav-menu .lab-dropdown-box.is-compact {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 310px;
+}
+
+/* Expandido: ocupa el ancho completo del wrapper (edge-to-edge del contenido
+   centrado de 1400px), igual que el "96% centrado" del header original pero
+   adaptado a tu estructura con max-width */
+.ht-top-nav-menu .lab-dropdown-box.is-expanded {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+/* Los menús simples (Ingeniería, Servicios) sí usan su propio LI como ancla */
+.ht-top-nav-menu .nav-item-dropdown-simple {
+  position: relative;
+}
+
+.ht-top-nav-menu .simple-dropdown-box {
+  top: 100%;
+  right: 0; /* Alineado al borde derecho de su propio link, no se sale de pantalla */
+  left: auto !important;
+}
+
+/* ================= 2. FILA PRINCIPAL (Azul Oscuro) ================= */
+.ht-main-bar {
+  background-color: var(--certimet-blue-dark, #00234a); 
+  padding: 18px 0;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1000; /* Menor que la barra superior, para que los desplegables la tapen */
+}
+
+.ht-main-bar .ht-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.ht-logo {
+  height: 50px;
+  object-fit: contain;
+  transition: all 0.4s;
+}
+
+.ht-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.ht-search-form {
+  display: flex;
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  padding: 2px;
+  border: 2px solid transparent;
+}
+
+.ht-btn-productos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--certimet-blue-dark, #00234a);
+  padding: 8px 18px;
+  border-radius: 25px 0 0 25px;
+  font-weight: 700;
+  font-size: 14.5px;
+  cursor: pointer;
+  border-right: 1px solid #ddd;
+}
+
+.ht-hamburguer {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.ht-search-input {
+  flex: 1;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14.5px;
+  outline: none;
+  color: #333;
+}
+
+.ht-search-btn {
+  background: transparent;
+  border: none;
+  padding: 0 15px;
+  color: #666;
+  cursor: pointer;
+}
+
+.ht-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  color: white;
+}
+
+.ht-asesor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding-right: 25px;
+  transition: border-color 0.4s;
+}
+
+.ht-asesor-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ht-asesor-title {
+  font-size: 12px;
+  color: #ccc;
+  transition: color 0.4s;
+}
+
+.ht-asesor-wsp {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--certimet-green, #1cff57);
+}
+
+.ht-icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.3s;
+}
+
+.ht-icon-link:hover {
+  color: var(--certimet-green, #1cff57);
+}
+
+.ht-carrito-icon-wrapper {
+  position: relative;
+}
+
+.ht-cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--certimet-green, #1cff57);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--certimet-blue-dark, #00234a);
+  transition: border-color 0.4s;
+}
+
+/* =======================================================
+   ESTADOS AL HACER SCROLL (SE VUELVE BLANCO)
+   ======================================================= */
+.header-tienda-container.scrolled .ht-top-bar {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #eaeaea;
+}
+
+.header-tienda-container.scrolled .ht-main-bar {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Textos a Azul Fuerte */
+.header-tienda-container.scrolled .ht-top-link,
+.header-tienda-container.scrolled .ht-nav-links a,
+.header-tienda-container.scrolled .ht-asesor-title,
+.header-tienda-container.scrolled .ht-icon-link {
+  color: var(--certimet-blue-dark, #00234a);
+}
+
+/* Hover de Textos en Scroll */
+.header-tienda-container.scrolled .ht-nav-links a:hover,
+.header-tienda-container.scrolled .ht-nav-links a.active,
+.header-tienda-container.scrolled .ht-icon-link:hover,
+.header-tienda-container.scrolled .ht-top-link:hover {
+  color: var(--certimet-blue, #1c74d4);
+}
+
+/* Bordes en Scroll */
+.header-tienda-container.scrolled .ht-asesor {
+  border-right-color: #ddd;
+}
+
+.header-tienda-container.scrolled .ht-search-form {
+  border: 2px solid var(--certimet-blue-dark, #00234a);
+}
+
+.header-tienda-container.scrolled .ht-cart-badge {
+  border-color: white;
+}
+
+/* Efecto Mágico: SVG y PNG iconos a Azul */
+.header-tienda-container.scrolled .ht-icon,
+.header-tienda-container.scrolled .ht-icon-svg {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(50%) saturate(3025%) hue-rotate(195deg) brightness(90%) contrast(105%);
+}

@@ -55,34 +55,46 @@
   flex-direction: column;
   min-height: 400px;
   
-  /* ESTADO POR DEFECTO (Translúcida con borde verde) */
+  /* ESTADO POR DEFECTO (Translúcida con borde verde sutil) */
   background-color: rgba(255, 255, 255, 0.05); 
-  border: 1px solid rgba(28, 255, 87, 0.5); 
+  border: 1px solid rgba(28, 255, 87, 0.4); 
   
-  /* Transición suave para todos los cambios */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .solution-card:hover {
-  /* ESTADO AL PASAR EL MOUSE (Fondo oscuro sólido y levitación) */
+  /* ESTADO AL PASAR EL MOUSE (Fondo oscuro sólido y borde oculto) */
   transform: translateY(-5px);
   background-color: #001f42; 
-  border-color: #001f42;
+  border-color: rgba(28, 255, 87, 0.6);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Círculo verde superior */
+/* ==========================================================================
+   CÍRCULO VERDE E ICONOS
+   ========================================================================== */
 .solution-icon-circle {
-  width: 35px;
-  height: 35px;
+  width: 45px; /* Un poco más grande para que quepa bien el icono */
+  height: 45px;
   border-radius: 50%;
-  background-color: var(--color-green-light, #1cff57);
+  background-color: #1cff57;
   margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Textos internos */
+.solution-icon-circle img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   TEXTOS INTERNOS
+   ========================================================================== */
 .solution-title {
-  color: var(--color-green-light, #1cff57);
+  color: #1cff57;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
@@ -96,7 +108,7 @@
 }
 
 .solution-text {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 13px;
   line-height: 1.6;
   margin-bottom: auto; /* Empuja el botón siempre hacia abajo */
@@ -105,29 +117,34 @@
 /* ==========================================================================
    BOTONES
    ========================================================================== */
+   
+/* Botón de la tarjeta (Borde y letra blanca) */
 .solution-btn {
-  background-color: var(--color-green-light, #1cff57);
-  color: var(--color-blue, #003b7a); 
-  border: none;
+  background-color: transparent;
+  color: #ffffff; 
+  border: 1px solid #ffffff;
   border-radius: 20px;
   padding: 8px 18px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600; /* Reduje el peso para que se vea más fino como en la imagen */
   cursor: pointer;
   align-self: flex-start;
   margin-top: 25px;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
+/* Hover: Se vuelve sólido verde */
 .solution-btn:hover {
-  background-color: #14de4a;
+  background-color: #1cff57;
+  border-color: #1cff57;
+  color: #003b7a; /* Letra oscura para contrastar con el fondo verde */
   transform: scale(1.05);
 }
 
 /* Botón CTA Final (Agenda una visita) */
 .solutions-main-cta {
-  background-color: var(--color-green-light, #1cff57);
-  color: var(--color-blue, #003b7a);
+  background-color: #1cff57;
+  color: #003b7a;
   border: none;
   border-radius: 30px;
   padding: 15px 35px;
@@ -140,6 +157,7 @@
 
 .solutions-main-cta:hover {
   transform: scale(1.05);
+  background-color: #14de4a;
 }
 
 /* ==========================================================================

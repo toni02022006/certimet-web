@@ -1,0 +1,442 @@
+/* Variables del Sistema de Diseño */
+:root {
+  --certimet-blue: #003b7a;
+  --certimet-blue-dark: #00234a;
+  --certimet-green: #00d639;
+  --certimet-green-hover: #1cff57;
+  --bg-light: #f8fafc;
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --border-color: #e2e8f0;
+}
+
+.contacto-page {
+  background-color: var(--bg-light);
+  min-height: 100vh;
+}
+
+/* ================= HERO SECTION (SOLO TÍTULO CENTRAL) ================= */
+.contacto-hero {
+  background: linear-gradient(135deg, var(--certimet-blue-dark) 0%, var(--certimet-blue) 100%);
+  color: white;
+  padding: 110px 20px 100px; /* Incrementado para dar más aire vertical */
+  text-align: center;
+}
+
+.contacto-hero-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contacto-hero h1 {
+  font-size: 3rem; /* Ligeramente más imponente al estar solo */
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.contacto-hero h1 span {
+  color: var(--certimet-green);
+}
+
+/* ================= NUEVO: INTRO EN LA ZONA BLANCA ================= */
+.servicios-intro-container {
+  max-width: 1200px;
+  margin: 50px auto 25px; /* Separación del hero y de las tarjetas */
+  padding: 0 20px;
+  text-align: center;
+}
+
+.servicios-intro-container h2 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--certimet-blue);
+  margin: 0 0 10px 0;
+}
+
+.servicios-intro-container h2 span {
+  color: var(--certimet-green);
+}
+
+.servicios-intro-container p {
+  font-size: 1.15rem;
+  color: var(--text-gray);
+  margin: 0;
+}
+
+/* ================= TARJETAS DE SERVICIOS ================= */
+.servicios-cards-section {
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px; /* Mayor separación entre tarjetas */
+}
+
+.servicio-card {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  min-height: 190px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-color);
+}
+
+.servicio-card.full-width {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  min-height: auto;
+  padding: 32px 40px;
+}
+
+.servicio-card h3 {
+  color: var(--certimet-blue);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  line-height: 1.35;
+  transition: color 0.4s ease;
+}
+
+.servicio-card.full-width h3 {
+  margin: 0;
+}
+
+.servicio-link {
+  color: var(--text-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--certimet-green);
+  padding-bottom: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Hover a Azul */
+.servicio-card:hover {
+  background-color: var(--certimet-blue);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 59, 122, 0.18);
+  border-color: var(--certimet-blue);
+}
+
+.servicio-card:hover h3 {
+  color: #ffffff;
+}
+
+.servicio-card:hover .servicio-link {
+  color: var(--certimet-green);
+  border-bottom-color: transparent;
+}
+
+/* ================= TÍTULO DÉJANOS UN MENSAJE ================= */
+.form-section-title {
+  text-align: center;
+  margin: 70px 0 35px;
+}
+
+.form-section-title h2 {
+  color: var(--certimet-green);
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.form-section-title h2 span {
+  color: var(--certimet-blue);
+}
+
+.form-section-title p {
+  color: var(--text-gray);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* ================= CONTENEDOR SPLIT: FORMULARIO + MAPA ================= */
+.contacto-main-container {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 0;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: 1px solid rgba(0, 59, 122, 0.15); 
+}
+
+.contacto-form-section {
+  padding: 45px 50px;
+  background: white;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 18px;
+}
+
+.form-header h3 {
+  color: var(--certimet-blue);
+  font-size: 1.45rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.form-tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-gray);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  color: var(--certimet-blue);
+}
+
+.tab-btn.active {
+  color: var(--certimet-green);
+  border-bottom-color: var(--certimet-green);
+}
+
+/* Formulario Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--certimet-blue);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 59, 122, 0.08);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.form-checkbox input {
+  margin-top: 4px;
+  accent-color: var(--certimet-blue);
+}
+
+.form-checkbox label {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  line-height: 1.4;
+}
+
+.btn-submit {
+  background-color: var(--certimet-blue);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
+  letter-spacing: 0.5px;
+}
+
+.btn-submit:hover {
+  background-color: var(--certimet-blue-dark);
+  transform: translateY(-1px);
+}
+
+/* Mapa */
+.contacto-map-section {
+  background: #f1f5f9;
+}
+
+.contacto-map-section iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ================= TARJETAS INFERIORES DE CONTACTO ================= */
+.contacto-info-bottom {
+  max-width: 1200px;
+  margin: 30px auto 80px;
+  padding: 0 20px;
+}
+
+.info-bottom-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.info-icon {
+  background: rgba(0, 214, 57, 0.08);
+  padding: 14px;
+  border-radius: 50%;
+  color: var(--certimet-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.info-text h4 {
+  color: var(--certimet-green);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px 0;
+}
+
+.info-text p {
+  color: var(--certimet-blue);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.info-text span {
+  color: var(--text-gray);
+  font-size: 0.85rem;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ================= MEDIA QUERIES (RESPONSIVE) ================= */
+@media (max-width: 1024px) {
+  .servicios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .contacto-hero h1 {
+    font-size: 2.3rem;
+  }
+  .servicios-intro-container h2 {
+    font-size: 1.8rem;
+  }
+  .contacto-main-container {
+    grid-template-columns: 1fr;
+    margin: 0 20px 50px;
+  }
+  .contacto-map-section {
+    height: 400px;
+  }
+  .info-bottom-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .contacto-form-section {
+    padding: 30px 20px;
+  }
+  .form-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .servicio-card.full-width {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .servicio-card.full-width h3 {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+}

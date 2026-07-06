@@ -1,7 +1,12 @@
 import React from 'react';
 import './Certifications.css';
 
-// Importación de las homologaciones usando tus rutas relativas
+// Importación de los iconos
+import icon1 from '../../image/icons/1b.webp';
+import icon2 from '../../image/icons/2b.webp';
+import icon3 from '../../image/icons/3b.webp';
+
+// Importación de las homologaciones
 import logoHodelpe from '../../image/homologations/HODELPE.webp';
 import logoSgs from '../../image/homologations/SGS.webp';
 import logoEin from '../../image/homologations/EIN-gris.png';
@@ -10,17 +15,19 @@ import logoBureau from '../../image/homologations/BUREAU.webp';
 const Certifications = () => {
   return (
     <section className="certifications-section">
-      {/* El título que faltaba en el diseño */}
-      <h2 className="certifications-title">Nuestras Credenciales</h2>
-      <div className="certifications-divider"></div>
+      <h2 className="certifications-title">
+        Nuestros Estándares<br/>de Calidad
+      </h2>
 
       <div className="certifications-grid">
         
         {/* TARJETA 1: Acreditaciones */}
-        <div className="cert-card light-card">
-          <div className="card-icon-circle blue-circle"></div>
+        <div className="cert-card">
+          <div className="card-icon-circle">
+            <img src={icon1} alt="Icono Acreditaciones" />
+          </div>
           <h3>Acreditaciones</h3>
-          <p className="card-text blue-text">
+          <p className="card-text">
             Laboratorio de Metrología y<br/>
             Calibración Acreditado por INACAL<br/>
             Norma Técnica ISO/IEC 17025:2017
@@ -28,12 +35,14 @@ const Certifications = () => {
           <button className="cert-button">Nuestro alcance &rarr;</button>
         </div>
 
-        {/* TARJETA 2: Certificaciones (Oscura) */}
-        <div className="cert-card dark-card">
-          <div className="card-icon-circle green-circle"></div>
+        {/* TARJETA 2: Certificaciones */}
+        <div className="cert-card">
+          <div className="card-icon-circle">
+            <img src={icon2} alt="Icono Certificaciones" />
+          </div>
           <h3>Certificaciones</h3>
           <p className="card-subtitle">Triple certificación ISO</p>
-          <p className="card-text white-text">
+          <p className="card-text">
             CERTIMET cuenta con triple certificación<br/>
             ISO, resultado de su compromiso con la<br/>
             mejora continua y la calidad
@@ -42,8 +51,10 @@ const Certifications = () => {
         </div>
 
         {/* TARJETA 3: Homologaciones */}
-        <div className="cert-card light-card">
-          <div className="card-icon-circle blue-circle"></div>
+        <div className="cert-card">
+          <div className="card-icon-circle">
+            <img src={icon3} alt="Icono Homologaciones" />
+          </div>
           <h3>Homologaciones</h3>
           
           <div className="homologations-logos-grid">

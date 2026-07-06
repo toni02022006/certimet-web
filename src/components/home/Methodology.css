@@ -6,8 +6,7 @@
 }
 
 .methodology-container {
-  /* Reducimos el max-width de 1200px a 1050px para hacer las tarjetas más delgadas */
-  max-width: 1050px;
+  max-width: 850px;
   width: 100%;
 }
 
@@ -20,7 +19,7 @@
 }
 
 .methodology-tag {
-  color: var(--color-green-dark, #00d639);
+  color: #00d639; /* Verde Certimet */
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
@@ -36,11 +35,11 @@
   display: inline-block;
   width: 20px;
   height: 2px;
-  background-color: var(--color-green-dark, #00d639);
+  background-color: #00d639;
 }
 
 .methodology-title {
-  color: var(--color-blue, #003b7a);
+  color: #0056b3;
   font-size: 38px;
   font-weight: 600;
   line-height: 1.2;
@@ -61,17 +60,20 @@
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 20px;
-  /* Aumentamos el padding superior/inferior y la altura mínima a 480px para estirarlas */
-  padding: 50px 25px;
-  min-height: 480px; 
+  
+  /* Tarjetas más cortas y proporcionadas */
+  padding: 60px 15px; 
+  min-height: 180px;  
+  
   display: flex;
   flex-direction: column;
   transition: all 0.4s ease;
   cursor: default;
 }
 
+/* Los números ahora tienen un azul más claro y brillante */
 .methodology-number {
-  color: var(--color-blue, #003b7a);
+  color: #0056b3; 
   font-size: 52px;
   font-weight: 700;
   margin-bottom: 15px;
@@ -79,33 +81,35 @@
 }
 
 .methodology-card-title {
-  color: var(--color-blue, #003b7a);
+  color: #003b7a;
   font-size: 18px;
   font-weight: 600;
   line-height: 1.3;
-  margin-bottom: 25px; /* Un poco más de separación debajo del título */
+  margin-bottom: 20px; 
   transition: color 0.4s ease;
 }
 
 .methodology-card-text {
-  color: var(--color-gray, #59575a);
-  font-size: 13px;
+  color: #59575a;
+  font-size: 13.5px;
   line-height: 1.6;
   transition: color 0.4s ease;
 }
 
 /* ==========================================================================
-   ESTADO HOVER (Interacción al pasar el mouse)
+   ESTADO HOVER (Sombra añadida y colores invertidos)
    ========================================================================== */
 .methodology-card:hover {
   background: linear-gradient(180deg, #004b9a 0%, #002d5e 100%);
-  border-color: #002d5e;
+  border-color: transparent;
   transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0, 59, 122, 0.2);
+  
+  /* Sombra amplia y pronunciada para dar el efecto de levitación */
+  box-shadow: 15px 25px 45px rgba(0, 45, 94, 0.35); 
 }
 
 .methodology-card:hover .methodology-number {
-  color: var(--color-green-light, #1cff57);
+  color: #1cff57; /* Se pinta de verde vibrante */
 }
 
 .methodology-card:hover .methodology-card-title,
@@ -114,7 +118,7 @@
 }
 
 .methodology-card:hover .methodology-card-text {
-  opacity: 0.8; 
+  opacity: 0.85; 
 }
 
 /* ==========================================================================
@@ -125,7 +129,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
   .methodology-card {
-    min-height: 400px; /* En tablets no necesitan ser tan largas */
+    min-height: auto; 
   }
 }
 

@@ -1,0 +1,44 @@
+.floating-socials-container {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Separación entre los botones */
+  z-index: 9999; /* Máxima prioridad para estar sobre todo */
+}
+
+.social-btn {
+  background-color: #ffffff;
+  color: #003b7a; /* Azul Certimet base para los íconos */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 12px 12px 0; /* Bordes redondeados solo a la derecha */
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(0, 59, 122, 0.05);
+  border-left: none; /* Quitamos el borde pegado a la pantalla */
+  transition: box-shadow 0.3s ease;
+}
+
+/* Sombra extra al interactuar */
+.social-btn:hover {
+  box-shadow: 6px 6px 20px rgba(0, 214, 57, 0.3);
+}
+
+/* Responsive: Reducimos un poco el tamaño en celulares para que no estorben */
+@media (max-width: 768px) {
+  .social-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .social-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}

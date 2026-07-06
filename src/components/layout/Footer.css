@@ -1,16 +1,24 @@
+/* ----- NUEVO CONTENEDOR PARA PINTAR EL HUECO BLANCO ----- */
+.footer-bg-wrapper {
+  background-color: #e9f5ff; /* Tu celeste exacto */
+  padding-top: 150px; 
+}
+
 .footer-container {
-  background-image: url('/src/image/fondo01.jpg.jpeg');
+  background-image: url('../../image/fondo01.jpg.jpeg');
   background-size: cover;
   background-position: center;
   color: white;
   padding: 0 40px 30px 40px; 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-top: 150px; 
+  
+  /* 🔥 ESTA ES LA LÍNEA MÁGICA QUE EVITA QUE EL FONDO OSCURO SE SUBA 🔥 */
+  border-top: 1px solid transparent; 
 }
 
 /* ----- Tarjeta Flotante (CTA) ----- */
 .footer-cta-card {
-  background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
   max-width: 950px;
   margin: -120px auto 60px auto; 
   padding: 40px 50px;
@@ -23,7 +31,7 @@
 }
 
 .cta-text-content {
-  flex: 1;
+  flex: 1.2;
 }
 
 .footer-cta-card h2 {
@@ -39,45 +47,84 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 1.5;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
-.cta-button {
-  background-color: #0056b3;
-  color: white;
+/* ----- Formulario de Suscripción ----- */
+.cta-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 420px;
+}
+
+.cta-input {
+  width: 100%;
+  background: transparent;
   border: none;
-  padding: 10px 25px;
-  border-radius: 25px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
+  border-bottom: 1.5px solid #0056b3;
+  padding: 8px 0;
+  font-size: 13px;
+  color: #0056b3;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.cta-input::placeholder {
+  color: #7a9cc2;
+}
+
+.cta-checkbox-label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  font-size: 11px;
+  color: #555;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
-.cta-button:hover {
-  background-color: #004494;
+.cta-checkbox-label a {
+  color: #555;
+  text-decoration: underline;
+  font-weight: 600;
 }
 
-.cta-arrow {
-  width: 14px; 
-  object-fit: contain;
+/* Botón Outline */
+.cta-button.outline {
+  background-color: transparent;
+  color: #0056b3;
+  border: 1px solid #0056b3;
+  padding: 8px 25px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+.cta-button.outline:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* ----- Imagen CTA (Balanza PNG) ----- */
 .cta-image-content {
   flex: 0.8;
   display: flex;
   justify-content: flex-end;
 }
 
-.cta-image-content img {
+.balance-img {
   width: 100%;
-  max-width: 280px;
-  border-radius: 15px;
-  object-fit: cover;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  max-width: 800px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
+  transform: scale(1.90) translateY(-10px); 
 }
 
 /* ----- Grilla de Columnas ----- */
@@ -137,15 +184,21 @@
   margin-bottom: 15px;
 }
 
-/* FUNDAMENTAL: Aumentamos la especificidad (.footer-col .brand-tagline) para que el reset de arriba no lo anule */
 .footer-col .brand-tagline {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.3;
-  margin-bottom: 35px !important; /* Añadimos un !important extra de seguridad para asegurar la separación */
+  margin-bottom: 5px !important; 
 }
 
-/* FUNDAMENTAL: Lo mismo para los títulos de bloque, así se separan correctamente de los iconos */
+/* Nuevo estilo para el R.U.C. */
+.footer-col .brand-ruc {
+  font-size: 13px;
+  font-weight: 300;
+  margin-bottom: 30px !important;
+  opacity: 0.9;
+}
+
 .footer-col .block-title {
   font-size: 15px;
   margin-bottom: 10px !important; 
@@ -199,6 +252,10 @@
     text-align: center;
     margin: -80px 20px 40px 20px;
     padding: 30px;
+  }
+  .cta-form {
+    align-items: center;
+    margin: 0 auto;
   }
   .cta-image-content {
     justify-content: center;

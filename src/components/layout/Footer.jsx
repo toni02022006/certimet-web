@@ -10,102 +10,122 @@ import iconYt from "../../image/icons/Recurso 8.webp";
 import iconTk from "../../image/icons/Recurso 11.webp";
 import iconWp from "../../image/icons/whatsapp.webp";
 import iconMail from "../../image/icons/correo.webp";
-import flechaVerde from "../../image/icons/FLECHA VERDE.webp"; // Nueva importación
+
+// Nueva importación de la balanza
+import balanceImg from "../../image/balance.png"; 
 
 const Footer = () => {
   return (
-    <footer className="footer-container">
-      
-      {/* Tarjeta flotante superior ("Da el siguiente paso") */}
-      <div className="footer-cta-card">
-        <div className="cta-text-content">
-          <h2>Da el siguiente paso<br/>hacia la precisión y la calidad.</h2>
-          <p>
-            quat. Duis autem vel eum iriure dolor in hendrerit in<br/>
-            vulputate velit esse molestie consequat, vel illum<br/>
-            dolore eu feugiat nulla facilisis at vero eros et<br/>
-            accum
-          </p>
-          <button className="cta-button">
-            Nuestro alcance <img src={flechaVerde} alt="Flecha" className="cta-arrow" />
-          </button>
-        </div>
+    /* ESTE ES EL DIV QUE FALTABA PARA PINTAR EL FONDO CELESTE */
+    <div className="footer-bg-wrapper">
+      <footer className="footer-container">
         
-        {/* Nueva sección para la imagen de internet de prueba */}
-        <div className="cta-image-content">
-          <img 
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80" 
-            alt="Ingeniería y Precisión" 
-          />
-        </div>
-      </div>
-
-      <div className="footer-content">
-        
-        {/* Columna 1: Marca y Redes */}
-        <div className="footer-col brand-col">
-          <img src={logo} alt="Certimet Logo" className="footer-logo" />
-          <p className="brand-tagline">Presición que certifica,<br />Ingeniería que transforma</p>
+        {/* Tarjeta flotante superior ("Mantente al día") */}
+        <div className="footer-cta-card">
+          <div className="cta-text-content">
+            <h2>¡Mantente al día<br/>con CERTIMET!</h2>
+            <p>
+              Suscríbete y recibe nuestras últimas novedades, ofertas en<br/>
+              servicios de calibración y actualizaciones del sector industrial<br/>
+              directamente en tu correo.
+            </p>
+            
+            <div className="cta-form">
+              <input 
+                type="email" 
+                placeholder="Ingresa tu correo electrónico aquí" 
+                className="cta-input"
+              />
+              
+              <label className="cta-checkbox-label">
+                <input type="checkbox" />
+                <span>Acepto los <a href="#terminos">Términos y Condiciones</a> y la <a href="#privacidad">Política de privacidad</a></span>
+              </label>
+              
+              <button className="cta-button outline">
+                Suscríbete &rarr;
+              </button>
+            </div>
+          </div>
           
-          <div className="contact-block">
-            <p className="block-title">Contáctanos</p>
-            <div className="contact-icons">
-              <img src={iconWp} alt="WhatsApp" />
-              <img src={iconMail} alt="Email" />
-            </div>
-          </div>
-
-          <div className="social-block">
-            <p className="block-title">Síguenos</p>
-            <div className="social-icons">
-              <img src={iconFb} alt="Facebook" />
-              <img src={iconIg} alt="Instagram" />
-              <img src={iconLi} alt="LinkedIn" />
-              <img src={iconYt} alt="YouTube" />
-              <img src={iconTk} alt="TikTok" />
-            </div>
+          {/* Sección de la imagen (Balanza PNG) */}
+          <div className="cta-image-content">
+            <img 
+              src={balanceImg} 
+              alt="Balanza de precisión Certimet" 
+              className="balance-img"
+            />
           </div>
         </div>
 
-        {/* Columna 2: Navegación */}
-        <div className="footer-col">
-          <h3>Navegación</h3>
-          <ul>
-            <li>Política de privacidad</li>
-            <li>Blog</li>
-            <li>Acreditación</li>
-            <li>Descargas</li>
-            <li>Canal de denuncias</li>
-            <li>Contáctanos</li>
-            <li>Trabaja con nosotros</li>
-          </ul>
-        </div>
+        <div className="footer-content">
+          
+          {/* Columna 1: Marca y Redes */}
+          <div className="footer-col brand-col">
+            <img src={logo} alt="Certimet Logo" className="footer-logo" />
+            <p className="brand-tagline">Presición que certifica,<br />Ingeniería que transforma</p>
+            <p className="brand-ruc">R.U.C.: 20605732861</p>
+            
+            <div className="contact-block">
+              <p className="block-title">Contáctanos</p>
+              <div className="contact-icons">
+                <img src={iconWp} alt="WhatsApp" />
+                <img src={iconMail} alt="Email" />
+              </div>
+            </div>
 
-        {/* Columna 3: Soluciones */}
-        <div className="footer-col">
-          <h3>Soluciones</h3>
-          <ul>
-            <li>Metrología</li>
-            <li>Ingeniería</li>
-            <li>Servicios</li>
-            <li>Tienda</li>
-          </ul>
-        </div>
+            <div className="social-block">
+              <p className="block-title">Síguenos</p>
+              <div className="social-icons">
+                <img src={iconFb} alt="Facebook" />
+                <img src={iconIg} alt="Instagram" />
+                <img src={iconLi} alt="LinkedIn" />
+                <img src={iconYt} alt="YouTube" />
+                <img src={iconTk} alt="TikTok" />
+              </div>
+            </div>
+          </div>
 
-        {/* Columna 4: Ubícanos */}
-        <div className="footer-col">
-          <h3>Ubícanos</h3>
-          <p className="location-text">Lima: Av. Canadá Nro.<br/>3263, Ofic. 301 - San Luis</p>
-        </div>
+          {/* Columna 2: Navegación */}
+          <div className="footer-col">
+            <h3>Navegación</h3>
+            <ul>
+              <li>Política de privacidad</li>
+              <li>Blog</li>
+              <li>Acreditación</li>
+              <li>Descargas</li>
+              <li>Canal de denuncias</li>
+              <li>Contáctanos</li>
+              <li>Trabaja con nosotros</li>
+            </ul>
+          </div>
 
-      </div>
-      
-      {/* Footer Inferior */}
-      <div className="footer-bottom">
-        <p>MSF Creative Agencia de marketing digital © 2026. Todos los Derechos Reservados.</p>
-        <p>Libro de reclamaciones</p>
-      </div>
-    </footer>
+          {/* Columna 3: Soluciones */}
+          <div className="footer-col">
+            <h3>Soluciones</h3>
+            <ul>
+              <li>Metrología</li>
+              <li>Ingeniería</li>
+              <li>Servicios</li>
+              <li>Tienda</li>
+            </ul>
+          </div>
+
+          {/* Columna 4: Ubícanos */}
+          <div className="footer-col">
+            <h3>Ubícanos</h3>
+            <p className="location-text"><strong>Lima:</strong> Av. Canadá Nro.<br/>3263, Ofic. 301 - San Luis</p>
+          </div>
+
+        </div>
+        
+        {/* Footer Inferior */}
+        <div className="footer-bottom">
+          <p>MSF Creative Agencia de marketing digital © 2026. Todos los Derechos Reservados.</p>
+          <p>Libro de reclamaciones</p>
+        </div>
+      </footer>
+    </div>
   );
 };
 

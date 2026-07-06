@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import FloatingSocials from './FloatingSocials';
 
 const Layout = () => {
   return (
@@ -15,6 +16,9 @@ const Layout = () => {
 
       {/* 3. El pie de página va al final */}
       <Footer />
+      {/* 4. Los botones sociales flotantes */}
+      <FloatingSocials />
+
     </div>
   );
 };

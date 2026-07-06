@@ -1,197 +1,120 @@
 /* ==========================================================================
-   SECCIÓN: QUIÉNES SOMOS
+   SECCIÓN: QUIÉNES SOMOS (Fondo Verde)
    ========================================================================== */
 .about-section {
-  background-color: var(--color-white);
-  padding: 80px 5%;
+  /* Usamos tu imagen de fondo verde */
+  background-image: url('../../image/fondo_verde.webp');
+  background-size: cover;
+  background-position: center;
+  background-color: #00b33c; /* Color de respaldo por si tarda en cargar */
+  padding: 100px 5%;
   position: relative;
   overflow: hidden;
 }
 
 .about-container {
-  max-width: 1150px;
+  max-width: 1100px; /* Ancho máximo para mantenerlo centrado y elegante */
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 50px;
+  justify-content: center;
+  gap: 70px; /* Separación entre la imagen y el texto */
 }
 
 /* ==========================================================================
-   COLUMNA DE TEXTO Y EFECTO ILUMINACIÓN (HOVER)
-   ========================================================================== */
-.about-text-content {
-  flex: 1;
-  max-width: 50%;
-  padding: 20px; /* Padding interno para que el hover respire */
-  border-radius: 12px;
-  transition: all 0.5s ease;
-}
-
-/* Efecto aura general disimulado en la caja */
-.about-text-content:hover {
-  background-color: rgba(248, 250, 252, 0.5); /* Gris ultra transparente */
-  box-shadow: 0 0 50px rgba(0, 97, 188, 0.03);
-}
-
-.about-subtitle {
-  display: block;
-  color: var(--color-green-dark);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  position: relative;
-  padding-left: 45px;
-}
-
-.about-subtitle::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 2px;
-  background-color: var(--color-green-dark);
-}
-
-.about-title {
-  color: var(--color-blue);
-  font-size: 30px;
-  line-height: 1.3;
-  font-weight: 800;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  transition: text-shadow 0.4s ease; /* Preparamos la animación del brillo */
-}
-
-.text-green-highlight {
-  color: var(--color-green-dark);
-  transition: text-shadow 0.4s ease;
-}
-
-
-.about-description {
-  color: var(--color-gray);
-  font-size: 15px;
-  line-height: 1.7;
-  margin-bottom: 15px;
-  font-weight: 400;
-  text-align: justify;
-  transition: color 0.4s ease;
-}
-
-.about-text-content:hover .about-description {
-  color: #334155; /* El texto se oscurece un micro-tono para más nitidez */
-}
-
-.about-description strong {
-  color: var(--color-blue);
-  font-weight: 700;
-}
-
-/* Botones */
-.about-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-.btn-solid-green, .btn-outline-blue {
-  padding: 12px 28px;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.btn-solid-green {
-  background-color: var(--color-green-dark);
-  color: var(--color-white);
-  box-shadow: 0 10px 20px rgba(0, 214, 57, 0.25);
-}
-
-.btn-solid-green:hover {
-  background-color: var(--color-blue);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(0, 97, 188, 0.3);
-}
-
-.btn-outline-blue {
-  background-color: transparent;
-  color: var(--color-blue);
-  border: 2px solid var(--color-blue);
-}
-
-.btn-outline-blue:hover {
-  background-color: var(--color-blue);
-  color: var(--color-white);
-  transform: translateY(-3px);
-}
-
-/* ==========================================================================
-   COLUMNA DE IMAGEN REAL
+   COLUMNA IZQUIERDA: IMAGEN DEL CIENTÍFICO
    ========================================================================== */
 .about-image-wrapper {
-  flex: 1;
-  position: relative;
+  flex: 0.8; /* Ocupa un poco menos de la mitad */
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding-right: 20px;
 }
 
 .about-real-image {
   width: 100%;
+  max-width: 400px; /* Tamaño máximo para que no se vea gigante */
   height: auto;
-  max-height: 450px;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  position: relative;
+  
+  /* Bordes fuertemente redondeados según diseño */
+  border-radius: 30px; 
+  
+  /* Sombra sutil oscura para despegarla del fondo verde */
+  box-shadow: 15px 25px 40px rgba(0, 0, 0, 0.2); 
   z-index: 2;
 }
 
-/* Cuadro verde decorativo detrás de la imagen */
-.about-image-decoration {
-  position: absolute;
-  top: -20px;
-  right: 0;
-  width: 90%;
-  height: 90%;
-  border: 3px solid var(--color-green-dark);
-  border-radius: 12px;
-  z-index: 1;
+/* ==========================================================================
+   COLUMNA DERECHA: TEXTO BLANCO
+   ========================================================================== */
+.about-text-content {
+  flex: 1.2; /* Ocupa el resto del espacio */
+  color: #ffffff; /* Todo el texto es blanco */
 }
 
-/* Responsive */
+.about-subtitle {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.about-title {
+  color: #ffffff;
+  font-size: 38px;
+  line-height: 1.2;
+  font-weight: 600; /* Letra un poco más gruesa */
+  margin-bottom: 30px;
+}
+
+.about-description {
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 300; /* Letra ligera para la descripción */
+  text-align: justify;
+  opacity: 0.95; /* Le da un toque suave */
+}
+
+.about-description strong {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO
+   ========================================================================== */
 @media (max-width: 1024px) {
   .about-container {
-    flex-direction: column;
+    flex-direction: column-reverse; /* Pone la imagen arriba en móviles */
+    text-align: center;
+    gap: 40px;
   }
-  .about-text-content, .about-image-wrapper {
+  
+  .about-text-content {
     max-width: 100%;
   }
-  .about-text-content {
-    text-align: center;
-  }
+
   .about-description {
     text-align: center;
   }
-  .about-subtitle::before {
-    display: none;
+
+  .about-title {
+    font-size: 32px;
   }
-  .about-subtitle {
-    padding-left: 0;
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 60px 5%;
   }
-  .about-buttons {
-    justify-content: center;
+  .about-title {
+    font-size: 26px;
   }
-  .about-image-decoration {
-    display: none;
+  .about-real-image {
+    max-width: 320px;
   }
 }

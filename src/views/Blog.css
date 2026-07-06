@@ -1,0 +1,304 @@
+/* ================= VARIABLES GLOBALES ================= */
+:root {
+  --certimet-blue: #003b7a;
+  --certimet-blue-dark: #00234a;
+  --certimet-green: #00d639;
+  --bg-light: #f8fafc;
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --border-color: #e2e8f0;
+}
+
+.blog-page {
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* ================= HERO SECTION ================= */
+.blog-hero {
+  background: linear-gradient(135deg, var(--certimet-blue-dark) 0%, var(--certimet-blue) 100%);
+  color: white;
+  padding: 140px 20px 80px;
+  text-align: center;
+}
+
+.blog-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.blog-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 15px 0;
+  letter-spacing: -1px;
+}
+
+.blog-hero h1 span {
+  color: var(--certimet-green);
+}
+
+.blog-hero p {
+  font-size: 1.2rem;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+/* ================= FILTROS DE CATEGORÍAS ================= */
+.blog-filters-container {
+  max-width: 1200px;
+  margin: -25px auto 40px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.blog-filters {
+  background: white;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  color: var(--certimet-blue);
+  background: #f1f5f9;
+}
+
+.filter-btn.active {
+  background: var(--certimet-green);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 214, 57, 0.3);
+}
+
+/* ================= GRILLA DE ARTÍCULOS ================= */
+.blog-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* ================= DISEÑO DE LAS TARJETAS (CARDS) ================= */
+.blog-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-color);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 59, 122, 0.1);
+  border-color: rgba(0, 59, 122, 0.2);
+}
+
+/* Imagen del Post con efecto de Zoom al Hover */
+.blog-card-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.08); /* Zoom sutil */
+}
+
+.blog-card-category {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--certimet-blue);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Contenido de texto */
+.blog-card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.blog-card-meta {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.blog-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  font-weight: 500;
+}
+
+.blog-card-meta svg {
+  width: 14px;
+  height: 14px;
+}
+
+.blog-card-title {
+  font-size: 1.25rem;
+  color: var(--certimet-blue);
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  line-height: 1.4;
+  transition: color 0.3s;
+}
+
+.blog-card:hover .blog-card-title {
+  color: var(--certimet-green);
+}
+
+.blog-card-excerpt {
+  font-size: 0.95rem;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin: 0 0 25px 0;
+  flex-grow: 1; /* Empuja el botón hacia abajo */
+}
+
+.blog-card-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+  padding-top: 15px;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--certimet-blue);
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.read-more-btn:hover {
+  color: var(--certimet-green);
+}
+
+.read-more-btn:hover svg {
+  transform: translateX(5px); /* Flechita se mueve a la derecha */
+}
+
+/* ================= TARJETA DESTACADA (FEATURED) ================= */
+/* Si queremos que el último post ocupe todo el ancho en la primera fila */
+.featured-card {
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
+  flex-direction: row; /* Imagen a la izquierda, texto a la derecha */
+}
+
+.featured-card .blog-card-image {
+  width: 50%;
+  height: auto;
+  min-height: 350px;
+}
+
+.featured-card .blog-card-content {
+  width: 50%;
+  padding: 40px;
+  justify-content: center;
+}
+
+.featured-card .blog-card-title {
+  font-size: 1.8rem;
+}
+
+/* Mensaje Vacío */
+.no-posts-message {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--text-gray);
+  font-size: 1.1rem;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .featured-card {
+    flex-direction: column;
+  }
+  .featured-card .blog-card-image,
+  .featured-card .blog-card-content {
+    width: 100%;
+  }
+  .featured-card .blog-card-image {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-hero h1 {
+    font-size: 2.5rem;
+  }
+  .blog-filters {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .filter-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}

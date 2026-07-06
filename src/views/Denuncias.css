@@ -1,0 +1,389 @@
+/* ================= VARIABLES ================= */
+:root {
+  --certimet-blue: #003b7a;
+  --certimet-blue-dark: #00234a;
+  --certimet-green: #00d639;
+  --bg-light: #f8fafc;
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --border-color: #e2e8f0;
+}
+
+.denuncias-page {
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* ================= HERO SECTION ================= */
+.denuncias-hero {
+  background: linear-gradient(135deg, var(--certimet-blue-dark) 0%, var(--certimet-blue) 100%);
+  color: white;
+  padding: 120px 20px 60px;
+  text-align: center;
+}
+
+.denuncias-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.denuncias-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.denuncias-hero h1 span {
+  color: var(--certimet-green);
+}
+
+.denuncias-hero p {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+/* ================= CONTENEDOR PRINCIPAL ================= */
+.denuncias-main-container {
+  max-width: 1000px; 
+  margin: -30px auto 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 10;
+  padding: 50px;
+  border: 1px solid rgba(0, 59, 122, 0.1);
+  box-sizing: border-box; /* EVITA QUE EL PADDING DESBORDE EL CONTENEDOR */
+  width: 95%; /* Asegura márgenes laterales en pantallas pequeñas */
+}
+
+/* ================= CABECERA DEL DOCUMENTO ================= */
+.document-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--certimet-blue);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.doc-title h2 {
+  color: var(--certimet-blue);
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.doc-company-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+
+.doc-company-info strong {
+  color: var(--certimet-blue);
+  font-size: 1rem;
+}
+
+/* ================= SECCIONES DEL FORMULARIO ================= */
+.form-section {
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--certimet-blue-dark);
+  margin: 0 0 20px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ================= GRID Y CAMPOS (CORRECCIÓN DE DESBORDE) ================= */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%; /* Fuerza al grid a respetar el contenedor */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0; /* MAGIA CSS: Evita que el contenido interno rompa el Grid */
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Corrección de inputs */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; /* Obligatorio */
+  box-sizing: border-box; /* Obligatorio: incluye padding y bordes en el ancho total */
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--certimet-blue);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 59, 122, 0.08);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Campos de Fecha divididos en 3 */
+.date-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.date-inputs input.read-only-input {
+  background-color: #f1f5f9;
+  color: var(--text-gray);
+  text-align: center;
+  font-weight: 600;
+  cursor: not-allowed;
+  pointer-events: none;
+  width: 100%; /* Asegura que cada input no rompa su columna */
+}
+
+/* Definiciones Legales */
+.legal-definitions {
+  background-color: #f8fafc;
+  border-left: 4px solid var(--certimet-blue);
+  padding: 15px 20px;
+  margin: 5px 0 25px 0;
+  border-radius: 0 8px 8px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.legal-definitions ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.legal-definitions li {
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.legal-definitions li:last-child {
+  margin-bottom: 0;
+}
+
+.legal-definitions li.highlight {
+  color: var(--certimet-blue);
+  font-weight: 700;
+}
+
+/* ================= ARCHIVOS ADJUNTOS ================= */
+.file-upload-section {
+  margin-top: 25px;
+  width: 100%;
+}
+
+.file-note {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.file-inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group-file label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.custom-file-input {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap; /* Evita desborde en móviles */
+}
+
+.custom-file-input input[type="file"] {
+  display: none;
+}
+
+.btn-file {
+  background-color: #e2e8f0;
+  color: var(--text-dark);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #cbd5e1;
+  white-space: nowrap;
+}
+
+.btn-file:hover {
+  background-color: var(--certimet-blue);
+  color: white;
+  border-color: var(--certimet-blue);
+}
+
+.file-name {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  font-style: italic;
+  word-break: break-all; /* Si el nombre del archivo es muy largo */
+}
+
+/* ================= FOOTER Y BOTONES ================= */
+.form-footer-legal {
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+.form-footer-legal p {
+  font-size: 0.8rem;
+  color: var(--text-gray);
+  margin: 0 0 5px 0;
+  line-height: 1.5;
+}
+
+.form-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.btn-submit-denuncia {
+  background-color: #475569; 
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-submit-denuncia:hover {
+  background-color: var(--certimet-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 59, 122, 0.2);
+}
+
+.recaptcha-placeholder {
+  background: #f9f9f9;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 300px;
+  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.08);
+  box-sizing: border-box;
+}
+
+.checkbox-box {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #c1c1c1;
+  background: white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.recaptcha-placeholder span {
+  font-size: 14px;
+  color: #333;
+  flex-grow: 1;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .denuncias-main-container {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .document-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+  }
+  .doc-company-info {
+    text-align: left;
+  }
+  .form-grid {
+    grid-template-columns: 1fr; /* Una sola columna en móviles */
+  }
+  .form-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .recaptcha-placeholder {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .denuncias-hero h1 {
+    font-size: 2rem;
+  }
+  .custom-file-input {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .date-inputs {
+    grid-template-columns: 1fr; /* Fechas apiladas si la pantalla es minúscula */
+  }
+}

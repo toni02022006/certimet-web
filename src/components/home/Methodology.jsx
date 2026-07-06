@@ -1,26 +1,27 @@
 import React from 'react';
 import './Methodology.css';
 
+// Textos actualizados según el nuevo diseño
 const stepsData = [
   {
     id: "01",
-    title: "Mantenimiento y Calibración",
-    text: "quat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accum"
+    title: "Recepción y verificación",
+    text: "Registro de tu instrumento con número de serie, condición inicial y alcance de calibración requerido."
   },
   {
     id: "02",
-    title: "Mantenimiento y Calibración",
-    text: "quat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accum"
+    title: "Calibración en laboratorio",
+    text: "Ejecución por personal técnico competente usando patrones trazables al SI con incertidumbre documentada."
   },
   {
     id: "03",
-    title: "Mantenimiento y Calibración",
-    text: "quat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accum"
+    title: "Revisión metrológica",
+    text: "El certificado es revisado por el metrólogo responsable antes de ser emitido con firma y sello acreditado."
   },
   {
     id: "04",
-    title: "Mantenimiento y Calibración",
-    text: "quat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accum"
+    title: "Entrega y seguimiento",
+    text: "Recibes el certificado digital y físico, con acceso al historial de calibraciones de tu equipo."
   }
 ];
 

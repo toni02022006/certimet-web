@@ -19,8 +19,10 @@
     "lucide-react": "^1.21.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-google-recaptcha": "^3.1.0",
     "react-parallax-tilt": "^1.7.333",
     "react-router-dom": "^7.18.0",
+    "sweetalert2": "^11.26.25",
     "three": "^0.184.0"
   },
   "devDependencies": {

@@ -1,0 +1,41 @@
+/* Contenedor invisible inyectado en el Body */
+.ufo-bouncing-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  pointer-events: none; /* CRUCIAL: El contenedor ignora los clics */
+  z-index: 2147483647; 
+  overflow: hidden;
+}
+
+/* Imagen del platillo */
+.ufo-bouncing-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 15px 20px rgba(0, 214, 57, 0.6)); 
+  will-change: transform; 
+  
+  /* NUEVO: Hacemos que la imagen SÍ atrape los clics */
+  pointer-events: auto;
+  cursor: grab; /* Muestra una manito abierta */
+  
+  /* CRUCIAL PARA MÓVILES: Evita que la pantalla haga scroll al intentar arrastrar el OVNI */
+  touch-action: none; 
+}
+
+/* Cuando el usuario lo tiene presionado, mostramos una manito cerrada */
+.ufo-bouncing-img.grabbing {
+  cursor: grabbing;
+}
+
+@media (max-width: 768px) {
+  .ufo-bouncing-img {
+    width: 80px;
+  }
+}

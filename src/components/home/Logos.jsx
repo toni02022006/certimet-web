@@ -26,6 +26,9 @@ import rec302 from '../../image/brands/Recurso 302.webp';
 import rec303 from '../../image/brands/Recurso 303.webp';
 import rec304 from '../../image/brands/Recurso 304.webp';
 
+// Importación de las manos
+import manosImg from '../../image/manos.png';
+
 const brandsData = [
   { id: 283, src: rec283 }, { id: 284, src: rec284 }, { id: 285, src: rec285 },
   { id: 286, src: rec286 }, { id: 287, src: rec287 }, { id: 288, src: rec288 },
@@ -37,7 +40,6 @@ const brandsData = [
   { id: 304, src: rec304 },
 ];
 
-// Función mágica para dividir los 22 logos en grupos de 5
 const chunkArray = (arr, size) => {
   const chunked = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -46,7 +48,8 @@ const chunkArray = (arr, size) => {
   return chunked;
 };
 
-const logoChunks = chunkArray(brandsData, 5);
+// Como ahora hay manos a la derecha, agrupamos de a 4 para que encajen a la izquierda
+const logoChunks = chunkArray(brandsData, 4);
 
 // 2. CONFIGURACIÓN DE ANIMACIONES
 const containerScrollVariants = {
@@ -61,13 +64,13 @@ const gridVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(8px)" }, // Vienen de abajo
+  hidden: { opacity: 0, y: 40, filter: "blur(8px)" }, 
   visible: { 
     opacity: 1, y: 0, filter: "blur(0px)", 
     transition: { type: "spring", stiffness: 100, damping: 12 } 
   },
   exit: { 
-    opacity: 0, y: -40, filter: "blur(8px)", // SUBEN al desaparecer
+    opacity: 0, y: -40, filter: "blur(8px)", 
     transition: { duration: 0.3 } 
   }
 };
@@ -75,7 +78,6 @@ const itemVariants = {
 const Logos = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Temporizador para cambiar la fila de logos automáticamente cada 4 segundos
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % logoChunks.length);
@@ -90,11 +92,13 @@ const Logos = () => {
         variants={containerScrollVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }} // "once: false" = ¡Se anima cada vez que haces scroll!
+        viewport={{ once: false, amount: 0.3 }}
       >
         <h2 className="alianzas-title">Alianzas Estratégicas</h2>
 
-        {/* Contenedor estricto para evitar que la caja cambie de tamaño */}
+        {/* Las manos con posición absoluta */}
+        <img src={manosImg} alt="Manos Alianza" className="alianzas-hands" />
+
         <div className="alianzas-carousel-wrapper">
           <AnimatePresence mode="wait">
             <motion.div

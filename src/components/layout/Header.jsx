@@ -4,15 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Importaciones de imágenes estáticas y logos
 import logo from '../../image/Imagotipo-blanco-V2.png';
-import logoColor from '../../image/LOGO2026.png'; // ⬅️ NUEVO LOGO A COLOR
+import logoColor from '../../image/LOGO2026.png';
 import iconWhatsapp from '../../image/icons/whatsapp.webp';
 import iconCorreo from '../../image/icons/correo.webp';
 import iconTelefono from '../../image/icons/telefono.webp';
 import './Header.css';
 
-// ---------------------------------------------------------------------
-// IMPORTACIÓN DE ÍCONOS DEL MENÚ (ESTADO BASE GRIS/BLANCO)
-// ---------------------------------------------------------------------
+// ÍCONOS DEL MENÚ (ESTADO BASE GRIS/BLANCO)
 import icElec from '../../image/header_icons/elec.webp';
 import icFisico from '../../image/header_icons/fisico.webp';
 import icFlujo from '../../image/header_icons/flujo.webp';
@@ -24,9 +22,7 @@ import icMasa from '../../image/header_icons/masa.webp';
 import icTemp from '../../image/header_icons/temperatura.webp';
 import icTempo from '../../image/header_icons/tempo.webp';
 
-// ---------------------------------------------------------------------
-// IMPORTACIÓN DE ÍCONOS DEL MENÚ (ESTADO HOVER VERDE)
-// ---------------------------------------------------------------------
+// ÍCONOS DEL MENÚ (ESTADO HOVER VERDE)
 import icElecV from '../../image/header_icons/header_iconsverde/elec.webp';
 import icFisicoV from '../../image/header_icons/header_iconsverde/fisico.webp';
 import icFlujoV from '../../image/header_icons/header_iconsverde/flujo.webp';
@@ -38,9 +34,7 @@ import icMasaV from '../../image/header_icons/header_iconsverde/masa.webp';
 import icTempV from '../../image/header_icons/header_iconsverde/temperatura.webp';
 import icTempoV from '../../image/header_icons/header_iconsverde/tempo.webp';
 
-// =====================================================================
-// DATOS ESTRUCTURADOS (Laboratorios, Ingeniería, Servicios)
-// =====================================================================
+// DATOS ESTRUCTURADOS
 const laboratoriosData = {
   metrologia: {
     titulo: "ÁREAS DE METROLOGÍA",
@@ -89,12 +83,10 @@ const serviciosData = [
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const [isIngenieriaOpen, setIsIngenieriaOpen] = useState(false);
   const [isServiciosOpen, setIsServiciosOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false); 
-  
   const [activeLab, setActiveLab] = useState(null); 
   const location = useLocation();
 
@@ -110,48 +102,57 @@ const Header = () => {
       {/* BARRA SUPERIOR */}
       <div className="top-contact-bar">
         <div className="top-bar-content">
-          <a href="#" className="top-link">
-            <img src={iconWhatsapp} alt="WhatsApp" className="top-icon" /> Cotiza con nosotros
-          </a>
-          <a href="mailto:ventas@certimet.pe" className="top-link">
-            <img src={iconCorreo} alt="Correo" className="top-icon" /> ventas@certimet.pe
-          </a>
-          <span className="top-text">
-            <img src={iconTelefono} alt="Teléfono" className="top-icon" /> (01) 380-3727 / (+51) 941 101 546
-          </span>
-          <Link to="/denuncias" className="top-link">Canal de denuncias</Link>
           
-          {/* DESPLEGABLE DE AUTENTIFICACIÓN */}
-          <div 
-            className="top-dropdown-container"
-            onMouseEnter={() => setIsAuthOpen(true)}
-            onMouseLeave={() => setIsAuthOpen(false)}
-          >
-            <span className="top-link auth-trigger">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="top-icon">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              Autentificación <span className="arrow-down" style={{fontSize: '10px', marginLeft: '4px'}}>▾</span>
-            </span>
-            
-            <AnimatePresence>
-              {isAuthOpen && (
-                <motion.div 
-                  className="top-dropdown-menu"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Link to="/autentificacion/informes">Autentificación de informes</Link>
-                  <Link to="/autentificacion/calibracion">Autentificación de calibración</Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          {/* LADO IZQUIERDO: Blog */}
+          <div className="top-bar-left">
+            <Link to="/blog" className="btn-outline-top">Blog</Link>
           </div>
 
-          <Link to="/trabaja-con-nosotros" className="btn-outline-top">Trabaja con nosotros</Link>
+          {/* LADO DERECHO: Contactos y Trabaja con nosotros */}
+          <div className="top-bar-right">
+            <a href="#" className="top-link">
+              <img src={iconWhatsapp} alt="WhatsApp" className="top-icon" /> Cotiza con nosotros
+            </a>
+            <a href="mailto:ventas@certimet.pe" className="top-link">
+              <img src={iconCorreo} alt="Correo" className="top-icon" /> ventas@certimet.pe
+            </a>
+            <span className="top-text">
+              <img src={iconTelefono} alt="Teléfono" className="top-icon" /> (01) 380-3727 / (+51) 941 101 546
+            </span>
+            <Link to="/denuncias" className="top-link">Canal de denuncias</Link>
+            
+            {/* DESPLEGABLE DE AUTENTIFICACIÓN */}
+            <div 
+              className="top-dropdown-container"
+              onMouseEnter={() => setIsAuthOpen(true)}
+              onMouseLeave={() => setIsAuthOpen(false)}
+            >
+              <span className="top-link auth-trigger">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="top-icon">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                Autentificación <span className="arrow-down" style={{fontSize: '10px', marginLeft: '4px'}}>▾</span>
+              </span>
+              
+              <AnimatePresence>
+                {isAuthOpen && (
+                  <motion.div 
+                    className="top-dropdown-menu"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Link to="/autentificacion/informes">Autentificación de informes</Link>
+                    <Link to="/autentificacion/calibracion">Autentificación de calibración</Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link to="/trabaja-con-nosotros" className="btn-outline-top">Trabaja con nosotros</Link>
+          </div>
         </div>
       </div>
 
@@ -159,7 +160,6 @@ const Header = () => {
       <nav className="main-navigation">
         <div className="logo-box">
           <Link to="/">
-            {/* 👇 CAMBIO DE LOGO DINÁMICO (Blanco arriba / Color al bajar) */}
             <img src={isScrolled ? logoColor : logo} alt="Certimet Logo" className="logo-img" />
           </Link>
         </div>
@@ -194,7 +194,7 @@ const Header = () => {
                     </li>
                     <li className={activeLab === 'ensayo' ? 'active-row' : ''} onMouseEnter={() => setActiveLab('ensayo')}>
                       <span>Laboratorio de Ensayo</span><span className="arrow-right">▸</span>
-                    </li>                                                                            
+                    </li>                                                                     
                   </ul>
                   <AnimatePresence>
                     {activeLab && (

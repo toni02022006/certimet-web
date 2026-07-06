@@ -1,0 +1,230 @@
+.blog-section {
+  padding: 80px 20px;
+  background-color: #e9f5ff; 
+  /* Cambiado de hidden a visible para que ningún efecto de sombra o zoom se corte al salir del borde */
+  overflow: visible; 
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.blog-section-title {
+  color: #0056b3;
+  font-size: 2.8rem;
+  font-weight: 400;
+}
+
+.blog-section-title strong {
+  font-weight: 700;
+}
+
+/* =========================================
+   CONTENEDOR DEL CARRUSEL 3D
+========================================= */
+.blog-carousel-container {
+  position: relative;
+  /* Altura aumentada de 560px a 620px para darle espacio extra a las animaciones hover */
+  height: 620px; 
+  width: 100%;
+  max-width: 1300px; 
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Base de la tarjeta (Inactiva por defecto) */
+.blog-card {
+  position: absolute;
+  top: 50%;
+  width: 480px; 
+  padding: 25px; 
+  background-color: #ffffff;
+  border: 1px solid #d1e3f8;
+  border-radius: 25px; 
+  opacity: 0;
+  z-index: 0;
+  
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              background-color 0.6s ease, 
+              border-color 0.6s ease;
+              
+  /* Usamos !important para proteger el centrado base */
+  transform: translate(-50%, -50%) scale(0.6) !important;
+  visibility: hidden;
+}
+
+/* Imagen de la tarjeta */
+.blog-card-img-wrapper {
+  width: 100%;
+  height: 240px;
+  border-radius: 12px; 
+  overflow: hidden;
+  margin-bottom: 20px; 
+}
+
+.blog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-card-content {
+  padding: 0;
+}
+
+/* Textos */
+.blog-category {
+  color: #1cff57;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.blog-line {
+  margin-right: 5px;
+  font-weight: 800;
+}
+
+.blog-title {
+  color: #0056b3;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  transition: color 0.6s ease; 
+}
+
+.blog-desc {
+  color: #666666;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  transition: color 0.6s ease;
+}
+
+.blog-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #999999;
+  font-size: 0.75rem;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  padding-top: 15px;
+  transition: color 0.6s ease, border-color 0.6s ease;
+}
+
+.blog-author-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.blog-share {
+  cursor: pointer;
+}
+
+/* =========================================
+   ESTADOS DE LAS TARJETAS (MAGIA VISUAL)
+========================================= */
+
+/* TARJETA CENTRAL ACTIVA */
+.blog-card.active {
+  left: 50%; 
+  /* Blindamos el centro exacto */
+  transform: translate(-50%, -50%) scale(1.05) !important; 
+  background-color: #00234a;
+  border-color: #00234a;
+  box-shadow: 0 25px 50px rgba(0, 35, 74, 0.4);
+  opacity: 1;
+  z-index: 3;
+  visibility: visible;
+  filter: grayscale(0%) blur(0px);
+}
+
+/* 🔥 SOLUCIÓN AL BUG: HOVER EXPLÍCITO PROTEGIDO 🔥 */
+.blog-card.active:hover {
+  /* Forzamos a que NO pierda su anclaje en X, y le damos un efecto suave hacia arriba en Y */
+  transform: translate(-50%, -52%) scale(1.08) !important; 
+  box-shadow: 0 35px 60px rgba(0, 35, 74, 0.6);
+}
+
+/* Textos en tarjeta activa */
+.blog-card.active .blog-title {
+  color: #1cff57; 
+}
+
+.blog-card.active .blog-desc {
+  color: #d1e3f8; 
+}
+
+.blog-card.active .blog-footer {
+  color: #ffffff;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* TARJETAS LATERALES (Más separadas) */
+.blog-card.prev, 
+.blog-card.next {
+  opacity: 0.7;
+  z-index: 2;
+  visibility: visible;
+  filter: grayscale(80%) blur(1px); 
+}
+
+.blog-card.prev {
+  left: 15%; 
+  transform: translate(-50%, -50%) scale(0.85) !important; 
+}
+.blog-card.prev:hover {
+  transform: translate(-50%, -50%) scale(0.88) !important; 
+}
+
+.blog-card.next {
+  left: 85%; 
+  transform: translate(-50%, -50%) scale(0.85) !important;
+}
+.blog-card.next:hover {
+  transform: translate(-50%, -50%) scale(0.88) !important; 
+}
+
+/* =========================================
+   PAGINACIÓN (Puntitos)
+========================================= */
+.blog-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.blog-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.blog-dot.active {
+  background-color: #555555;
+  transform: scale(1.2);
+}
+
+/* Responsivo para móviles */
+@media (max-width: 1100px) {
+  .blog-card.prev { left: 10%; transform: translate(-50%, -50%) scale(0.75) !important; }
+  .blog-card.next { left: 90%; transform: translate(-50%, -50%) scale(0.75) !important; }
+}
+
+@media (max-width: 768px) {
+  .blog-card { width: 340px; padding: 20px; }
+  .blog-card.prev { opacity: 0; visibility: hidden; } 
+  .blog-card.next { opacity: 0; visibility: hidden; }
+  .blog-card.active { transform: translate(-50%, -50%) scale(1) !important; }
+  .blog-card.active:hover { transform: translate(-50%, -50%) scale(1.02) !important; }
+}

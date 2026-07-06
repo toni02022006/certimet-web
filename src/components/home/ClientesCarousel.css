@@ -1,0 +1,95 @@
+/* Contenedor principal de la sección */
+.clientes-section {
+  background-color: #ffffff;
+  padding: 10px 0 0 0; /* Casi sin separación para acoplarse con la sección inferior */
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+/* Área escroleable/arrastrable */
+.clientes-slider-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow-x: auto;
+  cursor: grab;
+  /* Máscara de gradiente para suavizar los bordes laterales */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  
+  /* Oculta la barra de scroll nativa del navegador */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE y Edge */
+}
+
+.clientes-slider-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
+/* Cambia el cursor cuando el usuario está arrastrando */
+.clientes-slider-container.grabbing {
+  cursor: grabbing;
+}
+
+/* La pista infinita */
+.clientes-drag-track {
+  display: flex;
+  align-items: center;
+  gap: 70px; /* Separación entre cada logo */
+  width: max-content;
+  padding: 15px 40px;
+}
+
+/* Envoltura individual de cada logo */
+.cliente-logo-wrapper {
+  position: relative;
+  width: 140px; 
+  height: 60px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* user-select: none evita que el usuario seleccione la imagen al arrastrar */
+  -webkit-user-select: none;
+  user-select: none; 
+}
+
+/* Ajustes compartidos para ambas imágenes */
+.cliente-logo-wrapper img {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; /* Crucial para que el drag funcione sobre la imagen */
+}
+
+/* ESTADO BASE */
+.logo-plomo {
+  opacity: 1;
+}
+
+.logo-color {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* ESTADO HOVER (Al pasar el mouse) */
+.cliente-logo-wrapper:hover .logo-plomo {
+  opacity: 0;
+}
+
+.cliente-logo-wrapper:hover .logo-color {
+  opacity: 1;
+  transform: scale(1.05); /* Efecto pop up */
+}
+
+/* Responsive para celulares y tablets */
+@media (max-width: 768px) {
+  .cliente-logo-wrapper {
+    width: 110px;
+    height: 50px;
+  }
+  .clientes-drag-track {
+    gap: 40px;
+  }
+}
