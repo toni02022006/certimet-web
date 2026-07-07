@@ -1,0 +1,216 @@
+/* ==========================================================================
+   SECCIÓN: TRIPLE CERTIFICACIÓN (Contenedor Principal)
+   ========================================================================== */
+.triple-cert-section {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff; /* Fondo blanco según el diseño */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.triple-cert-container {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 60px; /* Separación entre el video y el texto */
+}
+
+/* ==========================================================================
+   COLUMNA IZQUIERDA: VIDEO RESPONSIVE
+   ========================================================================== */
+.triple-cert-video-col {
+  flex: 1.2; /* Toma un poco más de espacio que el texto */
+  width: 100%;
+}
+
+/* El truco del padding-bottom al 56.25% mantiene la proporción exacta de 16:9 (YouTube) */
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%; 
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Sombra elegante para el video */
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA: TEXTOS
+   ========================================================================== */
+.triple-cert-text-col {
+  flex: 1; /* Toma el espacio restante */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.triple-cert-text-col h2 {
+  color: #0056b3; /* Azul Certimet */
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 1.15;
+  margin-top: 0;
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+}
+
+.triple-cert-text-col p {
+  color: #555555;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-top: 0;
+  margin-bottom: 35px;
+}
+
+.triple-cert-text-col .highlight-blue {
+  color: #0056b3;
+  font-weight: 600;
+}
+
+/* Botón Outline (Puedes omitirlo aquí si ya lo tienes como clase global en otro CSS) */
+.btn-outline-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0056b3;
+  border: 1px solid #0056b3;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-blue:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(2, 99, 202, 0.2);
+}
+
+/* ==========================================================================
+   RESPONSIVO (Móviles y Tablets)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .triple-cert-container {
+    flex-direction: column; /* Apila el video arriba y el texto abajo */
+    gap: 40px;
+    text-align: center;
+  }
+
+  .triple-cert-text-col {
+    align-items: center; /* Centra el botón y textos en celular */
+  }
+
+  .triple-cert-text-col h2 {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 600px) {
+  .triple-cert-section {
+    padding: 50px 20px;
+  }
+
+  .triple-cert-text-col h2 {
+    font-size: 32px;
+  }
+  
+  .triple-cert-text-col p {
+    text-align: justify;
+  }
+}
+/* ==========================================================================
+   CORRECCIÓN: TEXTO AZUL CERTIMET
+   ========================================================================== */
+.text-blue-certimet {
+  color: #0056b3; /* Azul corporativo */
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   NUEVA SECCIÓN: HOMOLOGACIONES
+   ========================================================================== */
+.homologaciones-section {
+  padding: 20px 20px 80px 20px; /* Menos espacio arriba para pegarlo al video */
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.homologaciones-container {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* Separación entre el título y las imágenes */
+}
+
+.homologaciones-title {
+  color: #0056b3; /* El mismo azul de los títulos */
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+/* Grilla que pone todo en una fila */
+.homologaciones-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 80px; /* Espacio grande entre los logos */
+  width: 100%;
+  flex-wrap: wrap; /* Permite que bajen si la pantalla es muy pequeña */
+}
+
+/* Ajuste de tamaño de los logos */
+.homologacion-logo {
+  height: 70px; /* Estandariza la altura para que todos se vean alineados */
+  width: auto;
+  max-width: 200px; 
+  object-fit: contain;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05)); /* Sombra muy sutil */
+}
+
+/* ==========================================================================
+   RESPONSIVO PARA HOMOLOGACIONES
+   ========================================================================== */
+@media (max-width: 992px) {
+  .homologaciones-grid {
+    gap: 50px;
+  }
+  .homologacion-logo {
+    height: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .homologaciones-section {
+    padding-bottom: 50px;
+  }
+  .homologaciones-title {
+    font-size: 24px;
+  }
+  .homologaciones-grid {
+    gap: 35px;
+  }
+  .homologacion-logo {
+    height: 50px; /* Más pequeños en celular para que entren bien */
+  }
+}

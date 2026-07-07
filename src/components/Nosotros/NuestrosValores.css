@@ -1,0 +1,209 @@
+/* ==========================================================================
+   SECCIÓN DE VALORES
+   ========================================================================== */
+.valores-section {
+  background-color: #eef7ff; /* Mismo fondo celeste de tus otras secciones */
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.valores-header {
+  width: 100%;
+  max-width: 1050px;
+  margin-bottom: 40px;
+}
+
+.valores-header h2 {
+  color: #0056b3;
+  font-size: 42px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.valores-header p {
+  color: #555555;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   CONTENEDOR DEL CARRUSEL
+   ========================================================================== */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 400px; /* Altura fija para la pista */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* La pista donde viven las tarjetas. 
+   ¡EL SECRETO DEL DESVANECIDO ESTÁ AQUÍ! */
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 950px;
+  /* Esta máscara hace que los bordes izquierdo y derecho se vuelvan transparentes */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+/* ==========================================================================
+   DISEÑO BASE DE LAS TARJETAS
+   ========================================================================== */
+.valor-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 340px;
+  margin-top: -170px; /* Mitad de la altura para centrar verticalmente */
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  /* Transición súper suave para TODO (movimiento, color de fondo, texto) */
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.valor-card h3 {
+  font-size: 26px;
+  font-weight: 700;
+  font-style: italic; /* Cursiva como en tu diseño */
+  margin-top: 0;
+  margin-bottom: 20px;
+  line-height: 1.1;
+  transition: color 0.6s ease;
+}
+
+.valor-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+  transition: color 0.6s ease;
+}
+
+/* ==========================================================================
+   ESTADOS DE POSICIÓN (Magia 3D y Cambio de Color)
+   ========================================================================== */
+
+/* 1. TARJETA EN EL CENTRO (Fondo Azul) */
+.card-center {
+  transform: translateX(-50%) scale(1.05); /* En el centro exacto y un poco más grande */
+  background: linear-gradient(180deg, #004b93 0%, #002855 100%);
+  z-index: 3;
+  opacity: 1;
+}
+.card-center h3 {
+  color: #00d859; /* Verde fluorescente */
+}
+.card-center p {
+  color: #ffffff; /* Texto blanco */
+}
+
+/* 2. TARJETAS LATERALES (Fondo Blanco) */
+.card-left {
+  transform: translateX(-155%) scale(0.9); /* Desplazada a la izquierda y más pequeña */
+  background: #ffffff;
+  z-index: 2;
+  opacity: 0.8; /* Ligeramente transparente */
+}
+.card-right {
+  transform: translateX(55%) scale(0.9); /* Desplazada a la derecha y más pequeña */
+  background: #ffffff;
+  z-index: 2;
+  opacity: 0.8;
+}
+
+/* Estilo de texto para tarjetas laterales */
+.card-left h3, .card-right h3 {
+  color: #0056b3;
+}
+.card-left p, .card-right p {
+  color: #666666;
+}
+
+/* 3. TARJETAS OCULTAS (Detrás del carrusel) */
+.card-hidden {
+  transform: translateX(-50%) scale(0.5); /* Escondidas al centro y pequeñas */
+  background: #ffffff;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none; /* No se pueden clickear */
+}
+
+/* ==========================================================================
+   FLECHAS DE NAVEGACIÓN
+   ========================================================================== */
+.carousel-arrow {
+  background: transparent;
+  border: none;
+  color: #0056b3; /* Azul Certimet */
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: all 0.2s ease;
+  padding: 5px;
+}
+
+.carousel-arrow:hover {
+  color: #002855;
+  transform: translateY(-50%) scale(1.2); /* Crece un poquito al pasar el mouse */
+}
+
+.left-arrow {
+  left: 10px;
+}
+.right-arrow {
+  right: 10px;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 900px) {
+  /* En tablets acercamos más las tarjetas */
+  .card-left { transform: translateX(-130%) scale(0.85); }
+  .card-right { transform: translateX(30%) scale(0.85); }
+}
+
+@media (max-width: 650px) {
+  .valores-header { text-align: center; }
+  .valores-header h2 { font-size: 34px; }
+  
+  .carousel-container { height: 350px; }
+  
+  .valor-card {
+    width: 260px;
+    height: 300px;
+    margin-top: -150px;
+    padding: 30px 20px;
+  }
+  
+  .valor-card h3 { font-size: 22px; }
+  .valor-card p { font-size: 13.5px; }
+
+  /* En celulares escondemos las tarjetas laterales casi por completo */
+  .card-left { transform: translateX(-110%) scale(0.8); opacity: 0.3; }
+  .card-right { transform: translateX(10%) scale(0.8); opacity: 0.3; }
+  
+  .carousel-arrow { width: 40px; height: 40px; }
+  .left-arrow { left: -5px; }
+  .right-arrow { right: -5px; }
+}

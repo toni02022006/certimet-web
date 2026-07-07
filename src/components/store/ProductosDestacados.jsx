@@ -65,7 +65,6 @@ const ProductosDestacados = () => {
             {productosInfinitos.length > 0 ? (
               productosInfinitos.map((prod, index) => (
                 <div key={`${prod.id}-${index}`} className="producto-card slide-item">
-                  <button className="btn-fav">♡</button>
                   
                   <img 
                     src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : 'https://via.placeholder.com/300x200?text=Sin+Imagen'} 

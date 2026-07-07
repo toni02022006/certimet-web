@@ -7,6 +7,9 @@ import fondoNosotros from '../image/nosotros/nosotrosfondo.jpeg';
 // ✅ Importación del componente separado ¿Quiénes somos?
 import QuienesSomos from '../components/Nosotros/QuienesSomos';
 import CertificadoAcreditacion from '../components/nosotros/CertificadoAcreditacion';
+import TripleCertificacion from '../components/nosotros/TripleCertificacion';
+import MisionVision from '../components/nosotros/MisionVision';
+import NuestrosValores from '../components/nosotros/NuestrosValores';
 // Estilos
 import './Nosotros.css';
 
@@ -131,6 +134,9 @@ const Nosotros = () => {
       {/* ✅ Se agrega el componente separado al final */}
       <QuienesSomos />
       <CertificadoAcreditacion />
+      <TripleCertificacion />
+      <MisionVision />
+      <NuestrosValores />
     </div>
   );
 };

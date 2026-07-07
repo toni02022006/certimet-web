@@ -1,0 +1,135 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.mision-vision-section {
+  padding: 80px 20px;
+  background-color: #ffffff; /* Fondo blanco limpio */
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Evita scroll horizontal por las animaciones */
+}
+
+.mision-vision-container {
+  max-width: 1050px; /* Alineado con tus otras secciones */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 100px; /* Separación grande entre Misión y Visión */
+}
+
+/* ==========================================================================
+   FILAS (ZIG-ZAG LAYOUT)
+   ========================================================================== */
+.mv-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+/* Para invertir el orden en la Visión (Imagen izquierda, texto derecha) */
+.reverse-row {
+  flex-direction: row; /* En escritorio lo mantenemos igual porque en el JSX ya pusimos la imagen primero */
+}
+
+/* ==========================================================================
+   TEXTOS
+   ========================================================================== */
+.mv-text-col {
+  flex: 1;
+  max-width: 500px;
+}
+
+.mv-title {
+  color: #0056b3; /* Azul Certimet */
+  font-size: 42px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.mv-desc {
+  color: #555555; /* Gris oscuro para lectura cómoda */
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ==========================================================================
+   IMÁGENES Y EFECTOS 3D
+   ========================================================================== */
+.mv-image-col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mv-img {
+  width: 100%;
+  max-width: 380px; /* Ajusta este valor si las imágenes son muy grandes o pequeñas */
+  height: auto;
+  /* Sombra para resaltar el efecto 3D del PNG transparente */
+  filter: drop-shadow(0 20px 30px rgba(0, 86, 179, 0.15)); 
+}
+
+/* Animación de flotación suave */
+@keyframes float3D {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-3d-delay-1 {
+  animation: float3D 5s ease-in-out infinite;
+}
+
+.float-3d-delay-2 {
+  animation: float3D 6s ease-in-out infinite;
+  animation-delay: 1s; /* Empieza un poco después para que no suban y bajen al mismo tiempo */
+}
+
+/* ==========================================================================
+   RESPONSIVO (Móviles y Tablets)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .mv-row, 
+  .reverse-row {
+    flex-direction: column; /* Apila todo en columna en tablets/celulares */
+    text-align: center;
+    gap: 40px;
+  }
+
+  /* Forzamos a que en celular siempre salga la imagen arriba y el texto abajo */
+  .mv-text-col {
+    order: 2; 
+  }
+  .mv-image-col {
+    order: 1;
+  }
+
+  .mision-vision-container {
+    gap: 70px; /* Menos espacio entre bloques en móvil */
+  }
+
+  .mv-img {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mision-vision-section {
+    padding: 50px 20px;
+  }
+
+  .mv-title {
+    font-size: 34px;
+  }
+
+  .mv-desc {
+    text-align: justify;
+    font-size: 15px;
+  }
+}

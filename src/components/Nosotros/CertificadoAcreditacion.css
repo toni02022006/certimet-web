@@ -121,39 +121,165 @@
 }
 
 /* ==========================================================================
-   RESPONSIVO (Móviles y Tablets)
+   SECCIÓN: PROPÓSITO (Actualizada)
+   ========================================================================== */
+.proposito-section {
+  /* Fondo mitad celeste suave y mitad blanco */
+  background: linear-gradient(to bottom, #eef7ff 50%, #ffffff 50%);
+  padding: 60px 20px; 
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.proposito-banner {
+  /* APLICADO: Degradado de azul medio a azul oscuro */
+  background: linear-gradient(90deg, #004b93 0%, #002855 100%);
+  max-width: 1015px; 
+  width: 100%;
+  border-radius: 40px; 
+  padding: 55px 70px;
+  position: relative; 
+  display: flex;
+  align-items: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.proposito-content {
+  max-width: 60%; /* Ajustado para dejarle más espacio al cohete grande */
+  color: #ffffff;
+  position: relative;
+  z-index: 2; /* Asegura que el texto esté por encima si hay cruces */
+}
+
+.proposito-content h3 {
+  /* APLICADO: Título más grande */
+  font-size: 48px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.proposito-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.text-highlight-green {
+  color: #00d859; 
+  font-weight: 600;
+}
+
+/* APLICADO: Tamaño y Posición del Cohete */
+.cohete-img {
+  position: absolute;
+  right: -10px; /* Lo empuja un poco más a la derecha */
+  top: -100px; /* Lo sube bastante para que cruce el borde superior */
+  width: 400px; /* Tamaño mucho mayor */
+  height: auto;
+  filter: drop-shadow(-10px 15px 20px rgba(0,0,0,0.4)); /* Sombra ajustada al nuevo tamaño */
+  z-index: 10;
+  pointer-events: none; /* Evita que el área transparente del PNG bloquee clics accidentales */
+}
+
+/* ==========================================================================
+   RESPONSIVO PARA EL BANNER (Móviles y Tablets)
    ========================================================================== */
 @media (max-width: 1080px) {
-  .acreditacion-top-grid {
-    flex-direction: column;
-    text-align: center;
+  .proposito-banner {
+    padding: 50px 40px;
   }
-  
-  .acreditacion-text-col {
-    width: 100%;
-    align-items: center;
+  .proposito-content {
+    max-width: 55%;
   }
-
-  .acreditacion-title {
+  .proposito-content h3 {
     font-size: 40px;
   }
-
-  .acreditacion-img-col {
-    width: 100%;
-    max-width: 660px;
+  .cohete-img {
+    width: 350px;
+    top: -60px;
+    right: -20px;
   }
 }
 
-@media (max-width: 600px) {
-  .acreditacion-section {
-    padding: 50px 20px;
+@media (max-width: 768px) {
+  .proposito-section {
+    padding: 30px 20px;
   }
-  
-  .acreditacion-title {
+  .proposito-banner {
+    flex-direction: column;
+    padding: 40px 25px;
+    text-align: center;
+  }
+  .proposito-content {
+    max-width: 100%;
+  }
+  .proposito-content h3 {
     font-size: 32px;
   }
-  
-  .acreditacion-bottom-text p {
-    text-align: justify;
+  .cohete-img {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-top: 30px;
+    width: 280px;
+  }
+}
+/* ==========================================================================
+   ANIMACIONES ADICIONALES (Framer Motion + CSS)
+   ========================================================================== */
+
+/* Contenedor del cohete para no cruzar propiedades de animación */
+/* ==========================================================================
+   ANIMACIONES ADICIONALES (Framer Motion + CSS)
+   ========================================================================== */
+
+.cohete-wrapper {
+  position: absolute;
+  right: -20px;  /* Lo movemos un poco más a la derecha */
+  top: -10px;    /* 👇 ANTES ESTABA EN -100px. Ahora bajará considerablemente */
+  width: 380px;  /* Ajuste de tamaño para que encaje mejor */
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* El cohete hereda el 100% del contenedor y le aplicamos el filtro aquí */
+.cohete-wrapper .cohete-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(-10px 15px 20px rgba(0,0,0,0.4));
+  position: relative; /* Para que funcione la animación CSS */
+}
+
+/* Animación infinita de flotación */
+@keyframes flotarEspacio {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.float-animation {
+  animation: flotarEspacio 4s ease-in-out infinite;
+}
+
+/* Ajustes responsivos para el nuevo wrapper del cohete */
+@media (max-width: 1080px) {
+  .cohete-wrapper {
+    width: 350px;
+    top: -60px;
+    right: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cohete-wrapper {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-top: 30px;
+    width: 280px;
   }
 }
