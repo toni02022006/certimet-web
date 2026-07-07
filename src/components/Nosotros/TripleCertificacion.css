@@ -214,3 +214,97 @@
     height: 50px; /* Más pequeños en celular para que entren bien */
   }
 }
+/* ==========================================================================
+   COLUMNA DERECHA: TEXTOS Y SELLOS ISO
+   ========================================================================== */
+.triple-cert-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Contenedor total del título de 2 líneas */
+.triple-cert-header-wrapper {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* LÍNEA SUPERIOR: "Triple" + Imágenes */
+.title-top-line {
+  display: flex;
+  align-items: center; 
+  gap: 15px; /* Espacio entre la palabra "Triple" y las medallas */
+  margin-bottom: 5px; /* Espacito pequeño antes de la palabra de abajo */
+}
+
+/* Estilos compartidos para los textos del título */
+.title-top-line h2, 
+.title-bottom-line {
+  color: #0056b3;
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0; 
+  letter-spacing: -0.5px;
+}
+
+/* Contenedor de los sellos */
+.iso-small-container {
+  display: flex;
+  gap: 10px; /* Separación entre cada sello pequeño */
+  perspective: 800px; 
+}
+
+.inline-sello-wrapper {
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.inline-sello-img {
+  height: 45px; /* Ajustado al tamaño de tu imagen de referencia */
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15)); 
+}
+
+.triple-cert-text-col p {
+  color: #555555;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-top: 0;
+  margin-bottom: 35px;
+}
+
+.text-blue-certimet {
+  color: #0056b3; 
+  font-weight: 700;
+}
+
+.highlight-blue {
+  color: #0056b3;
+  font-weight: 600;
+}
+
+/* Responsivo para el nuevo título */
+@media (max-width: 992px) {
+  .triple-cert-header-wrapper {
+    align-items: center; /* Centra el bloque entero en tablets */
+  }
+  .title-top-line h2, 
+  .title-bottom-line {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 600px) {
+  .title-top-line h2, 
+  .title-bottom-line {
+    font-size: 32px;
+  }
+  .inline-sello-img {
+    height: 35px; /* Un poco más chicos en móviles para que entren en una sola línea */
+  }
+}

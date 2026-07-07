@@ -2,30 +2,53 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './TripleCertificacion.css';
 
-// Importación de las nuevas imágenes de homologaciones
+// Importación de las homologaciones inferiores
 import imgBureau from '../../image/homologations/BUREAU.webp';
 import imgEin from '../../image/homologations/EIN-gris.png';
 import imgHodelpe from '../../image/homologations/HODELPE.webp';
 import imgSgs from '../../image/homologations/SGS.webp';
 
+// Importación de los sellos ISO
+import imgIso9001 from '../../image/homologations/ISO 9001.png';
+import imgIso14001 from '../../image/homologations/ISO 14001.png';
+import imgIso45001 from '../../image/homologations/ISO 45001.png'; 
+
 const TripleCertificacion = () => {
-  // Variantes para la animación en cascada de los logos
   const logoVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
+      transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" }
+    })
+  };
+
+  // NUEVO: Animación infinita tipo moneda/casino
+  const casinoVariants = {
+    hidden: { opacity: 0, x: 30 }, 
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      rotateY: [0, 360], // Hace que dé una vuelta completa de 360 grados
       transition: {
-        delay: i * 0.15, // Cada logo entra un poco después del anterior
-        duration: 0.6,
-        ease: "easeOut"
+        // La aparición inicial (opacidad y posición)
+        opacity: { duration: 0.8, delay: i * 0.2 },
+        x: { duration: 0.8, delay: i * 0.2 },
+        
+        // El bucle infinito del giro
+        rotateY: {
+          delay: 1 + (i * 0.3), // Empieza a girar en cascada después de aparecer
+          duration: 1.5,        // Tarda 1.5 segundos en dar la vuelta
+          repeat: Infinity,     // INFINITO
+          repeatDelay: 4,       // Se detiene 4 segundos (para que se pueda leer) y vuelve a girar
+          ease: "easeInOut"     // Hace que el giro acelere y desacelere suavemente
+        }
       }
     })
   };
 
   return (
     <>
-      {/* SECCIÓN 1: TRIPLE CERTIFICACIÓN */}
       <section className="triple-cert-section">
         <div className="triple-cert-container">
           
@@ -56,12 +79,35 @@ const TripleCertificacion = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            <h2>
-              Triple<br />
-              Certificación ISO
-            </h2>
+            
+            <div className="triple-cert-header-wrapper">
+              
+              {/* LÍNEA 1: "Triple" + Medallas ISO en bucle infinito */}
+              <div className="title-top-line">
+                <h2>Triple</h2>
+                <div className="iso-small-container">
+                  {[imgIso9001, imgIso14001, imgIso45001].map((src, index) => (
+                    <motion.div
+                      key={index}
+                      className="inline-sello-wrapper"
+                      custom={index}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false, amount: 0.5 }}
+                      variants={casinoVariants}
+                      whileHover={{ scale: 1.15 }} // Al pasar el mouse crece un poquito
+                    >
+                      <img src={src} alt={`Sello ISO ${index}`} className="inline-sello-img" />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* LÍNEA 2: "Certificación ISO" */}
+              <h2 className="title-bottom-line">Certificación ISO</h2>
+            </div>
+
             <p>
-              {/* CORRECCIÓN: Palabra CERTIMET en azul */}
               La calidad en <strong className="text-blue-certimet">CERTIMET</strong> no es una promesa, es un sistema. Gracias al cofinanciamiento del Concurso Mypyme de Calidad de ProInnóvate y a nuestro compromiso con la mejora continua, <span className="highlight-blue">hemos alcanzado la triple certificación ISO</span> que respalda cada uno de nuestros procesos:
             </p>
             <a href="#" className="btn-outline-blue">
@@ -72,7 +118,7 @@ const TripleCertificacion = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 2: HOMOLOGACIONES */}
+      {/* SECCIÓN HOMOLOGACIONES */}
       <section className="homologaciones-section">
         <div className="homologaciones-container">
           <motion.h3 
@@ -92,11 +138,12 @@ const TripleCertificacion = () => {
                 src={src} 
                 alt={`Homologación ${index + 1}`} 
                 className="homologacion-logo"
-                custom={index} // Se usa para calcular el delay de la cascada
+                custom={index}
+                variants={logoVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.5 }}
-                whileHover={{ scale: 1.1, y: -5 }} // Efecto al pasar el mouse
+                whileHover={{ scale: 1.1, y: -5 }} 
               />
             ))}
           </div>
