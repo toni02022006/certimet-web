@@ -12,6 +12,7 @@ import TrabajaConNosotros from './views/TrabajaConNosotros';
 import Blog from './views/Blog'; 
 import Denuncias from './views/Denuncias';
 import Tienda from './views/Tienda'; 
+import ProductoDetalle from './views/ProductoDetalle';
 import ArticuloDetalle from './views/ArticuloDetalle';
 import Nosotros from './views/Nosotros'; 
 
@@ -39,6 +40,7 @@ function App() {
             ======================================================= */}
         <Route element={<LayoutTienda />}>
           <Route path="/tienda" element={<Tienda />} />
+          <Route path="/producto/:id" element={<ProductoDetalle />} />
         </Route>
 
         {/* =======================================================

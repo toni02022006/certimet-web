@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductosDestacados = () => {
   const [productos, setProductos] = useState([]);
@@ -66,20 +67,27 @@ const ProductosDestacados = () => {
               productosInfinitos.map((prod, index) => (
                 <div key={`${prod.id}-${index}`} className="producto-card slide-item">
                   
-                  <img 
-                    src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : 'https://via.placeholder.com/300x200?text=Sin+Imagen'} 
-                    alt={prod.nombre} 
-                    className="prod-img" 
-                    style={{ borderRadius: '8px', objectFit: 'cover', height: '180px', width: '100%' }}
-                  />
-                  
-                  <p className="prod-marca">{prod.categoria?.nombre || 'CERTIMET'}</p>
-                  <h4 className="prod-titulo">{prod.nombre}</h4>
-                  <p className="prod-sku">SKU: {prod.sku}</p>
-                  
-                  <p className="prod-precio">
-                    S/ {Number(prod.precio_regular).toFixed(2)} <span>Inc. IGV</span>
-                  </p>
+                  {/* AQUÍ INICIA EL ENLACE AL DETALLE DEL PRODUCTO */}
+                  <Link 
+                    to={`/producto/${prod.id}`} 
+                    style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                  >
+                    <img 
+                      src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : 'https://via.placeholder.com/300x200?text=Sin+Imagen'} 
+                      alt={prod.nombre} 
+                      className="prod-img" 
+                      style={{ borderRadius: '8px', objectFit: 'cover', height: '180px', width: '100%' }}
+                    />
+                    
+                    <p className="prod-marca">{prod.categoria?.nombre || 'CERTIMET'}</p>
+                    <h4 className="prod-titulo">{prod.nombre}</h4>
+                    <p className="prod-sku">SKU: {prod.sku}</p>
+                    
+                    <p className="prod-precio">
+                      S/ {Number(prod.precio_regular).toFixed(2)} <span>Inc. IGV</span>
+                    </p>
+                  </Link>
+                  {/* AQUÍ TERMINA EL ENLACE */}
                   
                   <button className="btn-carrito">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
