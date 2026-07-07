@@ -15,10 +15,15 @@ import Tienda from './views/Tienda';
 import ProductoDetalle from './views/ProductoDetalle';
 import ArticuloDetalle from './views/ArticuloDetalle';
 import Nosotros from './views/Nosotros'; 
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <BrowserRouter basename="/certimet-web/">
+      
+      {/* ✅ AQUÍ VA EL COMPONENTE: Escucha los cambios de ruta y sube el scroll */}
+      <ScrollToTop />
+
       <Routes>
         
         {/* =======================================================
@@ -26,7 +31,6 @@ function App() {
             ======================================================= */}
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          {/* ✅ Aquí va la ruta correcta de Nosotros */}
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/laboratorio" element={<div>Página Laboratorio</div>} />
           <Route path="/contacto" element={<Contacto />} />
@@ -48,8 +52,7 @@ function App() {
             ======================================================= */}
         <Route path="/playground" element={<Playground />} />
         <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
-        {/* ❌ Eliminamos la ruta duplicada de aquí */}
-
+        
       </Routes>
     </BrowserRouter>
   );

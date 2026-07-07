@@ -45,7 +45,7 @@ const QuienesSomos = () => {
           <img src={cientificoImg} alt="Laboratorio CERTIMET" className="about-real-image" />
         </motion.div>
 
-        {/* COLUMNA DERECHA (Texto) */}
+        {/* COLUMNA DERECHA (Texto y Botón) */}
         <motion.div 
           className="about-text-content"
           initial="hidden"
@@ -71,6 +71,13 @@ const QuienesSomos = () => {
             la norma ISO/IEC 17025:2017 y triple certificación ISO. Nos distingue el trato cercano y 
             personalizado con cada cliente.
           </motion.p>
+          
+          {/* NUEVO: Botón hacia la página de Nosotros */}
+          <motion.div variants={modernReveal} className="about-btn-container">
+            <Link to="/nosotros" className="btn-outline-white">
+              Saber más sobre nosotros &rarr;
+            </Link>
+          </motion.div>
           
         </motion.div>
 

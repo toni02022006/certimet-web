@@ -45,7 +45,7 @@
 }
 
 /* ==========================================================================
-   COLUMNA DERECHA: TEXTO BLANCO
+   COLUMNA DERECHA: TEXTO BLANCO Y BOTÓN
    ========================================================================== */
 .about-text-content {
   flex: 1.2; /* Ocupa el resto del espacio */
@@ -77,11 +77,38 @@
   font-weight: 300; /* Letra ligera para la descripción */
   text-align: justify;
   opacity: 0.95; /* Le da un toque suave */
+  margin-bottom: 0; /* Quitamos el margen por defecto para controlarlo con el contenedor del botón */
 }
 
 .about-description strong {
   font-weight: 700;
   color: #ffffff;
+}
+
+/* === ESTILOS DEL NUEVO BOTÓN === */
+.about-btn-container {
+  margin-top: 35px; /* Espaciado entre la descripción y el botón */
+}
+
+.btn-outline-white {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1px solid #ffffff;
+  border-radius: 50px; /* Borde redondeado estilo píldora */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.btn-outline-white:hover {
+  background-color: #ffffff;
+  color: #00b33c; /* El texto se vuelve verde para contrastar con el fondo blanco */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* ==========================================================================

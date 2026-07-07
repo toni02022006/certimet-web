@@ -31,7 +31,7 @@
 
 .descargas-text h2 {
   color: #ffffff;
-  font-size: 2.3rem;
+  font-size: 2.2rem;
   font-weight: 500;
   line-height: 1.25;
   margin: 0;
@@ -52,7 +52,7 @@ CONTENEDOR DE LA IMAGEN ÚNICA (descarga3.png)
 .descargas-images {
   position: absolute;
   right: 50px; /* Distancia desde el borde derecho del banner azul */
-  top: -04%; /* Centrado vertical exacto */
+  top: 02%; /* Centrado vertical exacto */
   transform: translateY(-50%); /* Ajuste fino del centro vertical */
   z-index: 5;
   display: flex;
@@ -63,7 +63,7 @@ CONTENEDOR DE LA IMAGEN ÚNICA (descarga3.png)
 /* La imagen combinada */
 .img-combined {
   /* ESTA ES LA CLAVE: Ajusta este valor si la quieres más grande o más pequeña */
-  width: 520px; 
+  width: 490px; 
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 // Rutas de imágenes
@@ -15,6 +16,9 @@ import iconMail from "../../image/icons/correo.webp";
 import balanceImg from "../../image/balance.png"; 
 
 const Footer = () => {
+  // Estilo en línea para mantener los enlaces blancos y sin subrayado
+  const linkStyle = { color: 'white', textDecoration: 'none' };
+
   return (
     /* ESTE ES EL DIV QUE FALTABA PARA PINTAR EL FONDO CELESTE */
     <div className="footer-bg-wrapper">
@@ -39,7 +43,7 @@ const Footer = () => {
               
               <label className="cta-checkbox-label">
                 <input type="checkbox" />
-                <span>Acepto los <a href="#terminos">Términos y Condiciones</a> y la <a href="#privacidad">Política de privacidad</a></span>
+                <span>Acepto los <Link to="/terminos" style={{ color: '#004085', textDecoration: 'none', fontWeight: 'bold' }}>Términos y Condiciones</Link> y la <Link to="/privacidad" style={{ color: '#004085', textDecoration: 'none', fontWeight: 'bold' }}>Política de privacidad</Link></span>
               </label>
               
               <button className="cta-button outline">
@@ -69,19 +73,19 @@ const Footer = () => {
             <div className="contact-block">
               <p className="block-title">Contáctanos</p>
               <div className="contact-icons">
-                <img src={iconWp} alt="WhatsApp" />
-                <img src={iconMail} alt="Email" />
+                <a href="#"><img src={iconWp} alt="WhatsApp" /></a>
+                <a href="mailto:ventas@certimet.pe"><img src={iconMail} alt="Email" /></a>
               </div>
             </div>
 
             <div className="social-block">
               <p className="block-title">Síguenos</p>
               <div className="social-icons">
-                <img src={iconFb} alt="Facebook" />
-                <img src={iconIg} alt="Instagram" />
-                <img src={iconLi} alt="LinkedIn" />
-                <img src={iconYt} alt="YouTube" />
-                <img src={iconTk} alt="TikTok" />
+                <a href="#"><img src={iconFb} alt="Facebook" /></a>
+                <a href="#"><img src={iconIg} alt="Instagram" /></a>
+                <a href="#"><img src={iconLi} alt="LinkedIn" /></a>
+                <a href="#"><img src={iconYt} alt="YouTube" /></a>
+                <a href="#"><img src={iconTk} alt="TikTok" /></a>
               </div>
             </div>
           </div>
@@ -90,13 +94,13 @@ const Footer = () => {
           <div className="footer-col">
             <h3>Navegación</h3>
             <ul>
-              <li>Política de privacidad</li>
-              <li>Blog</li>
-              <li>Acreditación</li>
-              <li>Descargas</li>
-              <li>Canal de denuncias</li>
-              <li>Contáctanos</li>
-              <li>Trabaja con nosotros</li>
+              <li><Link to="/privacidad" style={linkStyle}>Política de privacidad</Link></li>
+              <li><Link to="/blog" style={linkStyle}>Blog</Link></li>
+              <li><Link to="/acreditacion" style={linkStyle}>Acreditación</Link></li>
+              <li><Link to="/descargas" style={linkStyle}>Descargas</Link></li>
+              <li><Link to="/denuncias" style={linkStyle}>Canal de denuncias</Link></li>
+              <li><Link to="/contacto" style={linkStyle}>Contáctanos</Link></li>
+              <li><Link to="/trabaja-con-nosotros" style={linkStyle}>Trabaja con nosotros</Link></li>
             </ul>
           </div>
 
@@ -104,10 +108,10 @@ const Footer = () => {
           <div className="footer-col">
             <h3>Soluciones</h3>
             <ul>
-              <li>Metrología</li>
-              <li>Ingeniería</li>
-              <li>Servicios</li>
-              <li>Tienda</li>
+              <li><Link to="/laboratorio" style={linkStyle}>Metrología</Link></li>
+              <li><Link to="/ingenieria" style={linkStyle}>Ingeniería</Link></li>
+              <li><Link to="/servicios" style={linkStyle}>Servicios</Link></li>
+              <li><Link to="/tienda" style={linkStyle}>Tienda</Link></li>
             </ul>
           </div>
 
@@ -122,7 +126,9 @@ const Footer = () => {
         {/* Footer Inferior */}
         <div className="footer-bottom">
           <p>MSF Creative Agencia de marketing digital © 2026. Todos los Derechos Reservados.</p>
-          <p>Libro de reclamaciones</p>
+          <Link to="/denuncias" style={linkStyle}>
+            <p style={{ cursor: 'pointer', margin: 0 }}>Libro de reclamaciones</p>
+          </Link>
         </div>
       </footer>
     </div>
