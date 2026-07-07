@@ -1,15 +1,16 @@
 /* Contenedor principal de la sección */
 .clientes-section {
   background-color: #ffffff;
-  padding: 10px 0 0 0; /* Casi sin separación para acoplarse con la sección inferior */
+  padding: 30px 0; /* Espacio para que respiren los logos más grandes */
   width: 100%;
   position: relative;
   z-index: 10;
+  overflow: hidden; /* ✨ SEGURO 1: Evita que el carrusel rompa el ancho de tu página web */
 }
 
 /* Área escroleable/arrastrable */
 .clientes-slider-container {
-  max-width: 1400px;
+  max-width: 100%; 
   margin: 0 auto;
   overflow-x: auto;
   cursor: grab;
@@ -18,15 +19,14 @@
   mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   
   /* Oculta la barra de scroll nativa del navegador */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
 }
 
 .clientes-slider-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari y Opera */
+  display: none;
 }
 
-/* Cambia el cursor cuando el usuario está arrastrando */
 .clientes-slider-container.grabbing {
   cursor: grabbing;
 }
@@ -35,7 +35,7 @@
 .clientes-drag-track {
   display: flex;
   align-items: center;
-  gap: 70px; /* Separación entre cada logo */
+  gap: 80px; /* Separación segura */
   width: max-content;
   padding: 15px 40px;
 }
@@ -43,12 +43,12 @@
 /* Envoltura individual de cada logo */
 .cliente-logo-wrapper {
   position: relative;
-  width: 140px; 
-  height: 60px; 
+  width: 180px; /* Tamaño intermedio perfecto y más grande que el original */
+  height: 75px; 
   display: flex;
   justify-content: center;
   align-items: center;
-  /* user-select: none evita que el usuario seleccione la imagen al arrastrar */
+  flex-shrink: 0; /* ✨ SEGURO 2: Obliga a respetar el ancho y evita que se aplasten */
   -webkit-user-select: none;
   user-select: none; 
 }
@@ -60,7 +60,7 @@
   max-height: 100%;
   object-fit: contain;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none; /* Crucial para que el drag funcione sobre la imagen */
+  pointer-events: none; 
 }
 
 /* ESTADO BASE */
@@ -86,10 +86,10 @@
 /* Responsive para celulares y tablets */
 @media (max-width: 768px) {
   .cliente-logo-wrapper {
-    width: 110px;
-    height: 50px;
+    width: 130px; 
+    height: 55px;
   }
   .clientes-drag-track {
-    gap: 40px;
+    gap: 40px; 
   }
 }
