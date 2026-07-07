@@ -9,7 +9,7 @@
   
   /* EL ARREGLO PARA EL HEADER: 
      Usamos padding separado para obligar al contenido a bajar */
-  padding-top: 150px; /* Dale unos 180px o 190px para salvar tu menú doble */
+  padding-top: 150px; /* Dale unos 150px o 190px para salvar tu menú doble */
   padding-bottom: 60px;
   padding-left: 4%;
   padding-right: 4%;
@@ -297,4 +297,37 @@
   .col-imagenes { position: static; grid-template-columns: 1fr; }
   .galeria-miniaturas { flex-direction: row; justify-content: center; }
   .miniatura { width: 60px; height: 60px; }
+}
+/* =========================================
+   BREADCRUMBS (MIGAS DE PAN)
+   ========================================= */
+.breadcrumb-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+  font-size: 13px;
+  color: #565959; /* Color gris clásico estilo Amazon */
+}
+
+.breadcrumb-link {
+  color: #565959;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: #0056b3; /* Azul Certimet al pasar el mouse */
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: #565959;
+  font-size: 14px;
+}
+
+.breadcrumb-current {
+  color: #0f1111; /* Color más oscuro para el producto actual */
+  font-weight: 500;
 }

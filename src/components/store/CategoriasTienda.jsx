@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // 1. IMPORTANTE: Importamos Link
 import './CategoriasTienda.css';
 
 // Importamos las imágenes
@@ -9,7 +10,7 @@ import cat4 from '../../image/categoriasespeciales/categoria4.png';
 import cat5 from '../../image/categoriasespeciales/categoria5.png';
 import cat6 from '../../image/categoriasespeciales/categoria6.png';
 
-// Lista base de categorías
+// Lista base de categorías (Asegúrate de que los IDs coincidan con tu base de datos)
 const categoriasBase = [
   { id: 1, name: 'Automatización y Control', img: cat1 },
   { id: 2, name: 'Analítica', img: cat2 },
@@ -25,7 +26,7 @@ const categorias = [...categoriasBase, ...categoriasBase, ...categoriasBase];
 const CategoriasTienda = () => {
   const sliderRef = useRef(null);
   const scrollIntervalRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false); // Estado para saber si el mouse está encima
+  const [isHovered, setIsHovered] = useState(false); 
 
   // Función que enciende el motor del carrusel
   const startScroll = () => {
@@ -33,9 +34,8 @@ const CategoriasTienda = () => {
     scrollIntervalRef.current = setInterval(() => {
       const slider = sliderRef.current;
       if (slider) {
-        slider.scrollLeft += 1.5; // Velocidad
+        slider.scrollLeft += 1.5; 
         
-        // Bucle infinito: si llega a la mitad (porque lo triplicamos), vuelve al inicio sin que se note
         if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth) / 2) {
           slider.scrollLeft = 0;
         }
@@ -55,7 +55,6 @@ const CategoriasTienda = () => {
     } else {
       stopScroll();
     }
-    // Limpieza al desmontar
     return () => stopScroll();
   }, [isHovered]);
 
@@ -63,14 +62,11 @@ const CategoriasTienda = () => {
   const handleManualScroll = (direction) => {
     const slider = sliderRef.current;
     if (slider) {
-      // 1. Apagamos el motor para que no pelee con el clic
       stopScroll(); 
       
-      // 2. Hacemos el movimiento suave
-      const scrollAmount = direction === 'left' ? -220 : 220; // Cantidad a deslizar
+      const scrollAmount = direction === 'left' ? -220 : 220; 
       slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 
-      // 3. Volvemos a prender el motor después de 600ms (lo que tarda la animación)
       setTimeout(() => {
         if (!isHovered) startScroll();
       }, 600);
@@ -85,11 +81,11 @@ const CategoriasTienda = () => {
         <h2 className="cat-title">Categorías destacadas</h2>
         
         <div className="cat-header-actions">
-          <a href="/tienda/categorias" className="btn-ver-todas">
+          {/* 2. REEMPLAZAMOS <a href> por <Link to> */}
+          <Link to="/tienda/catalogo" className="btn-ver-todas">
             Ver todas las categorías &rarr;
-          </a>
+          </Link>
           <div className="cat-slider-controls">
-            {/* Botones conectados a la nueva función */}
             <button className="cat-slider-btn" onClick={() => handleManualScroll('left')}>&#10094;</button>
             <button className="cat-slider-btn" onClick={() => handleManualScroll('right')}>&#10095;</button>
           </div>
@@ -100,16 +96,22 @@ const CategoriasTienda = () => {
       <div 
         className="categorias-slider-container" 
         ref={sliderRef}
-        onMouseEnter={() => setIsHovered(true)}  // Pausa al pasar el mouse
-        onMouseLeave={() => setIsHovered(false)} // Reanuda al quitar el mouse
+        onMouseEnter={() => setIsHovered(true)}  
+        onMouseLeave={() => setIsHovered(false)} 
       >
         {categorias.map((cat, index) => (
-          <div key={`${cat.id}-${index}`} className="categoria-item">
+          /* 3. ENVOLVEMOS EL ITEM EN UN <Link> PARA QUE SEA CLIQUEABLE */
+          <Link 
+            to={`/tienda/categoria/${cat.id}`} 
+            key={`${cat.id}-${index}`} 
+            className="categoria-item"
+            style={{ textDecoration: 'none' }} // Para que no se subraye el texto
+          >
             <div className="categoria-img-box">
               <img src={cat.img} alt={cat.name} className="categoria-img" />
             </div>
             <p className="categoria-name">{cat.name}</p>
-          </div>
+          </Link>
         ))}
       </div>
       

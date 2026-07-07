@@ -1,0 +1,210 @@
+/* src/views/Catalogo.css */
+
+.catalogo-page-container {
+  /* Truco para pantalla completa */
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  
+  padding-top: 180px; /* Salvamos el header */
+  padding-bottom: 60px;
+  padding-left: 3%;
+  padding-right: 3%;
+  
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #0f1111;
+}
+
+/* LAYOUT PRINCIPAL: 2 COLUMNAS */
+.catalogo-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* =========================================
+   SIDEBAR (FILTROS IZQUIERDA)
+   ========================================= */
+.sidebar-filtros {
+  width: 260px;
+  flex-shrink: 0;
+  /* position: sticky hace que los filtros te sigan al bajar */
+  position: sticky;
+  top: 180px; 
+}
+
+.grupo-filtro {
+  margin-bottom: 25px;
+}
+
+.grupo-filtro h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.lista-filtros {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-filtros li {
+  margin-bottom: 8px;
+}
+
+.lista-filtros label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+}
+
+.lista-filtros input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #0056b3; /* Azul Certimet para los checks */
+}
+
+/* =========================================
+   CONTENIDO PRINCIPAL (DERECHA)
+   ========================================= */
+.contenido-resultados {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra superior: Resultados y Ordenar */
+.cabecera-resultados {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 25px;
+}
+
+.texto-resultados {
+  font-size: 14px;
+  color: #565959;
+}
+
+.texto-resultados strong {
+  color: #0f1111;
+  font-weight: 700;
+}
+
+.caja-ordenar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.caja-ordenar select {
+  padding: 6px 30px 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #d5d9d9;
+  background-color: #f0f2f2;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(15,17,17,.15);
+}
+
+.caja-ordenar select:focus {
+  border-color: #0056b3;
+}
+
+/* =========================================
+   GRILLA DE PRODUCTOS TIPO AMAZON
+   ========================================= */
+.grilla-catalogo {
+  display: grid;
+  /* Se adapta automáticamente al ancho de la pantalla */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Tarjeta individual */
+.tarjeta-catalogo {
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+  background: #fff;
+  text-decoration: none;
+}
+
+.tarjeta-catalogo:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tarjeta-img-box {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  background-color: #fcfcfc;
+  border-radius: 6px;
+}
+
+.tarjeta-img-box img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.tarjeta-marca {
+  font-size: 12px;
+  color: #0056b3;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tarjeta-titulo {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #0f1111;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Corta el texto a 3 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tarjeta-titulo:hover {
+  color: #c45500;
+}
+
+.tarjeta-precio {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f1111;
+  margin-top: auto; /* Empuja el precio al fondo */
+}
+
+.tarjeta-precio span {
+  font-size: 12px;
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .sidebar-filtros { display: none; } /* En móvil ocultaremos el sidebar por ahora */
+  .catalogo-page-container { padding-top: 220px; }
+}

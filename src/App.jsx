@@ -15,6 +15,7 @@ import Tienda from './views/Tienda';
 import ProductoDetalle from './views/ProductoDetalle';
 import ArticuloDetalle from './views/ArticuloDetalle';
 import Nosotros from './views/Nosotros'; 
+import Catalogo from './views/Catalogo'; // ✅ NUEVO IMPORT AQUÍ
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -45,6 +46,11 @@ function App() {
         <Route element={<LayoutTienda />}>
           <Route path="/tienda" element={<Tienda />} />
           <Route path="/producto/:id" element={<ProductoDetalle />} />
+          
+          {/* ✅ NUEVAS RUTAS DEL CATÁLOGO */}
+          <Route path="/tienda/catalogo" element={<Catalogo />} />
+          <Route path="/tienda/categoria/:idCategoria" element={<Catalogo />} />
+          
         </Route>
 
         {/* =======================================================

@@ -39,9 +39,27 @@ const ProductoDetalle = () => {
 
   return (
     <div className="detalle-container">
-      <Link to="/tienda" className="btn-volver">
-        ‹ Volver a la tienda
-      </Link>
+      
+      {/* BREADCRUMBS (Ruta de navegación) */}
+      <nav className="breadcrumb-container">
+        <Link to="/tienda" className="breadcrumb-link">Tienda</Link>
+        <span className="breadcrumb-separator">›</span>
+        
+        <Link to="/tienda/catalogo" className="breadcrumb-link">Catálogo</Link>
+        <span className="breadcrumb-separator">›</span>
+
+        {/* Validamos si el producto tiene categoría para mostrarla */}
+        {producto.categoria && (
+          <>
+            <Link to={`/tienda/categoria/${producto.categoria.id}`} className="breadcrumb-link">
+              {producto.categoria.nombre}
+            </Link>
+            <span className="breadcrumb-separator">›</span>
+          </>
+        )}
+        
+        <span className="breadcrumb-current">{producto.nombre}</span>
+      </nav>
 
       <div className="amazon-grid">
         
