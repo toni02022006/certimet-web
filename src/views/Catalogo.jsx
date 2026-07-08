@@ -1,23 +1,22 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import './Catalogo.css';
 
 const Catalogo = () => {
-  // Si la ruta es /tienda/categoria/2, idCategoria valdrá 2. Si es /tienda, será undefined.
   const { idCategoria } = useParams(); 
+  const navigate = useNavigate(); // Para poder redireccionar al limpiar filtros
   
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
-  
-  // Estado para el combo de Amazon "Ordenar por"
   const [orden, setOrden] = useState('destacados');
 
   useEffect(() => {
     const fetchProductos = async () => {
       setCargando(true);
       try {
-        // Aquí armas la URL dependiendo de si estás viendo una categoría o todo
         let url = 'http://localhost:3000/api/productos';
+        
+        // Si hay una categoría en la URL, se la mandamos al backend
         if (idCategoria) {
           url += `?categoria_id=${idCategoria}`;
         }
@@ -35,36 +34,67 @@ const Catalogo = () => {
     };
 
     fetchProductos();
-  }, [idCategoria]); // Se vuelve a ejecutar si cambias de categoría
+  }, [idCategoria]); 
+
+  // Obtenemos el nombre de la categoría actual usando el primer producto (si existe)
+  const nombreCategoriaActual = (idCategoria && productos.length > 0) 
+    ? productos[0].categoria?.nombre 
+    : null;
 
   return (
     <div className="catalogo-page-container">
       <div className="catalogo-layout">
         
         {/* =========================================
-            SIDEBAR (FILTROS) 
+            SIDEBAR (FILTROS Y SUBCATEGORÍAS) 
             ========================================= */}
         <aside className="sidebar-filtros">
+          
+          {/* BOTÓN PARA LIMPIAR FILTROS (Solo aparece si estás dentro de una categoría) */}
+          {idCategoria && (
+            <div className="grupo-filtro" style={{ marginBottom: '30px' }}>
+              <button 
+                onClick={() => navigate('/tienda/catalogo')}
+                style={{
+                  width: '100%', padding: '10px', backgroundColor: '#e6f0fa',
+                  color: '#0056b3', border: '1px solid #0056b3', borderRadius: '6px',
+                  cursor: 'pointer', fontWeight: 'bold'
+                }}
+              >
+                ← Ver todos los productos
+              </button>
+            </div>
+          )}
+
+          {/* SUBCATEGORÍAS DINÁMICAS */}
+          {idCategoria ? (
+            <div className="grupo-filtro">
+              <h4>Subcategorías de {nombreCategoriaActual || 'esta sección'}</h4>
+              <ul className="lista-filtros">
+                {/* Aquí en el futuro mapearás las subcategorías reales desde tu BD */}
+                <li><label><input type="checkbox" /> Equipos Portátiles</label></li>
+                <li><label><input type="checkbox" /> Equipos de Banco</label></li>
+                <li><label><input type="checkbox" /> Sensores Industriales</label></li>
+                <li><label><input type="checkbox" /> Accesorios</label></li>
+              </ul>
+            </div>
+          ) : (
+            <div className="grupo-filtro">
+              <h4>Todas las Categorías</h4>
+              <ul className="lista-filtros">
+                <li><label><input type="checkbox" /> Analítica</label></li>
+                <li><label><input type="checkbox" /> Variables de Procesos</label></li>
+                <li><label><input type="checkbox" /> Laboratorio</label></li>
+                <li><label><input type="checkbox" /> SSOMA</label></li>
+              </ul>
+            </div>
+          )}
+
           <div className="grupo-filtro">
             <h4>Disponibilidad</h4>
             <ul className="lista-filtros">
-              <li>
-                <label><input type="checkbox" /> En Stock (Envío inmediato)</label>
-              </li>
-              <li>
-                <label><input type="checkbox" /> Bajo pedido</label>
-              </li>
-            </ul>
-          </div>
-
-          <div className="grupo-filtro">
-            <h4>Categorías</h4>
-            <ul className="lista-filtros">
-              <li><label><input type="checkbox" /> Analítica</label></li>
-              <li><label><input type="checkbox" /> Variables de Procesos</label></li>
-              <li><label><input type="checkbox" /> Laboratorio</label></li>
-              <li><label><input type="checkbox" /> SSOMA</label></li>
-              <li><label><input type="checkbox" /> Calidad de Ambiente</label></li>
+              <li><label><input type="checkbox" /> En Stock (Envío inmediato)</label></li>
+              <li><label><input type="checkbox" /> Bajo pedido</label></li>
             </ul>
           </div>
           
@@ -83,10 +113,13 @@ const Catalogo = () => {
             ========================================= */}
         <main className="contenido-resultados">
           
-          {/* Cabecera Amazon-style */}
           <header className="cabecera-resultados">
             <div className="texto-resultados">
-              1 - {productos.length} de más de {productos.length} resultados <strong>{idCategoria ? 'en esta categoría' : 'en toda la tienda'}</strong>
+              {/* Título dinámico: Muestra la categoría si existe, o "toda la tienda" */}
+              <h1 style={{ fontSize: '24px', color: '#1a1a1a', marginBottom: '8px' }}>
+                {idCategoria ? nombreCategoriaActual : 'Catálogo Completo'}
+              </h1>
+              1 - {productos.length} resultados encontrados
             </div>
             
             <div className="caja-ordenar">
@@ -100,9 +133,13 @@ const Catalogo = () => {
             </div>
           </header>
 
-          {/* Grilla de Productos */}
           {cargando ? (
             <p>Cargando catálogo...</p>
+          ) : productos.length === 0 ? (
+            <div style={{ padding: '50px', textAlign: 'center', backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+              <h3>No hay productos en esta categoría aún.</h3>
+              <p>Estamos trabajando para traer los mejores equipos pronto.</p>
+            </div>
           ) : (
             <div className="grilla-catalogo">
               {productos.map(prod => (

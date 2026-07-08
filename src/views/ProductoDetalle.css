@@ -331,3 +331,87 @@
   color: #0f1111; /* Color más oscuro para el producto actual */
   font-weight: 500;
 }
+/* =========================================
+   ESTILOS PARA LA DESCRIPCIÓN TÉCNICA (HTML)
+   ========================================= */
+.descripcion-larga h1,
+.descripcion-larga h2,
+.descripcion-larga h3,
+.descripcion-larga h4 {
+  color: #0056b3;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.descripcion-larga h1 {
+  font-size: 24px;
+}
+
+.descripcion-larga h2 {
+  font-size: 22px;
+}
+
+.descripcion-larga h3 {
+  font-size: 20px;
+}
+
+.descripcion-larga ul,
+.descripcion-larga ol {
+  padding-left: 25px;
+  margin-bottom: 20px;
+}
+
+.descripcion-larga ul li,
+.descripcion-larga ol li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+.descripcion-larga table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.descripcion-larga table td,
+.descripcion-larga table th {
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.descripcion-larga table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.descripcion-larga table tr:hover {
+  background-color: #f1f3f5;
+}
+
+.descripcion-larga table td:first-child {
+  font-weight: 600;
+  color: #1a1a1a;
+  width: 40%;
+}
+
+.descripcion-larga p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+.descripcion-larga strong {
+  color: #1a1a1a;
+}
+
+.descripcion-larga .ql-align-center {
+  text-align: center;
+}
+
+.descripcion-larga .ql-align-right {
+  text-align: right;
+}
+
+.descripcion-larga .ql-align-justify {
+  text-align: justify;
+}
