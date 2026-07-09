@@ -1,52 +1,109 @@
 .acreditaciones {
   padding: 60px 8%;
-  background-color: #f8f9fa;
-}
-
-.acreditaciones-container {
+  background-color: #ffffff; /* Fondo exterior blanco */
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
-  gap: 40px;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
-.acreditaciones-badge {
-  background-color: #003b7a;
-  color: white;
-  padding: 30px 40px;
-  border-radius: 12px;
-  text-align: center;
-  min-width: 200px;
+/* La tarjeta principal contenedora */
+.acreditaciones-card {
+  background: linear-gradient(90deg, #f0f1f4 0%, #e7eaed 100%); /* Degradado gris muy suave */
+  border-radius: 40px; /* Bordes bien redondeados */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px;
+  max-width: 1050px;
+  width: 100%;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.277); /* Sombra elegante para dar profundidad */
+  position: relative;
 }
 
-.acreditaciones-badge h3 {
-  font-size: 28px;
-  margin-bottom: 5px;
-  font-weight: 700;
+/* Configuración de las 3 columnas */
+.acreditaciones-col {
+  display: flex;
+  align-items: center;
 }
 
-.acreditaciones-badge p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.acreditaciones-text {
+/* Izquierda (Logo) */
+.acreditaciones-col.left {
   flex: 1;
-  min-width: 250px;
+  justify-content: flex-start;
+}
+
+.img-inacal {
+  max-width: 260px;
+  height: auto;
+}
+
+/* Centro (Texto) */
+.acreditaciones-col.center {
+  flex: 2;
+  flex-direction: column;
+  text-align: center;
+}
+
+.acreditaciones-title {
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+}
+
+.title-blue {
+  color: #005ab4; /* Azul del diseño */
+  font-size: 52px;
+  font-weight: 500;
+}
+
+.title-green {
+  color: #00c552; /* Verde vibrante */
+  font-size: 42px;
+  font-weight: 600;
 }
 
 .acreditaciones-desc {
-  font-size: 18px;
-  color: #003b7a;
-  font-weight: 500;
-  margin-bottom: 10px;
+  color: #00509e; /* El texto inferior también es azul */
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 400;
 }
 
-.acreditaciones-registro {
-  font-size: 16px;
-  color: #333;
-  font-weight: 300;
+/* Derecha (Escarapela) */
+.acreditaciones-col.right {
+  flex: -01;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.img-escarapela {
+  max-width: 250px;
+  height: auto;
+  /* Margen negativo para que la imagen sobresalga de la tarjeta como en el diseño original */
+  margin-top: -100px;
+  margin-bottom: -20px;
+  margin-right: -20px;
+  filter: drop-shadow(0 55px 20px rgba(0, 0, 0, 0.364)); /* Sombra propia de la imagen */
+}
+
+/* Responsive para celulares y tablets */
+@media (max-width: 850px) {
+  .acreditaciones-card {
+    flex-direction: column;
+    padding: 40px 30px;
+    border-radius: 25px;
+    gap: 30px;
+  }
+  
+  .acreditaciones-col.left, 
+  .acreditaciones-col.right {
+    justify-content: center;
+  }
+
+  .img-escarapela {
+    margin: 0; /* Quitamos el margen negativo en móviles para que no se corte */
+    max-width: 180px;
+  }
+
+  .title-blue { font-size: 26px; }
+  .title-green { font-size: 34px; }
 }

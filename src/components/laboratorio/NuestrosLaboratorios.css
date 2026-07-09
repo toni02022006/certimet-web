@@ -1,53 +1,164 @@
 .nuestros-laboratorios {
-  padding: 60px 8%;
+  padding: 80px 8%;
   background-color: #ffffff;
+  overflow: hidden; /* Evita scrolls raros si el elemento viene desde muy abajo */
 }
 
 .nl-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
+/* --- Títulos --- */
 .nl-title {
-  font-size: 32px;
-  color: #003b7a;
   text-align: center;
-  margin-bottom: 40px;
+  font-size: 38px;
+  margin-bottom: 60px;
 }
 
+.title-blue {
+  color: #00509e;
+  font-weight: 300;
+}
+
+.title-green {
+  color: #00e676;
+  font-weight: 700;
+}
+
+/* --- Cuadrícula (Grid) --- */
 .nl-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px 25px;
 }
 
+/* Centra el último elemento (Flujo) automáticamente */
+.nl-grid .nl-item:last-child:nth-child(3n + 1) {
+  grid-column: 2 / 3;
+}
+
+/* --- Tarjeta Individual --- */
 .nl-item {
-  background-color: #f0f4f8;
-  padding: 25px 20px;
-  border-radius: 12px;
-  text-align: center;
-  transition: all 0.3s ease;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  will-change: transform, opacity; /* Optimiza el rendimiento del navegador en el scroll */
 }
 
-.nl-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+/* --- Contenedor de Imágenes Internas --- */
+.nl-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.nl-item h3 {
-  font-size: 18px;
-  color: #003b7a;
-  margin-bottom: 12px;
+.nl-img-default,
+.nl-img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease-in-out;
 }
 
-.nl-link {
-  color: #00a859;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 14px;
+.nl-img-hover {
+  opacity: 0;
+}
+
+/* Efecto Hover Imagen */
+.nl-item:hover .nl-img-hover {
+  opacity: 1;
+}
+
+.nl-item:hover .nl-img-default {
+  opacity: 0;
+}
+
+/* --- Contenido (Textos y Botón) --- */
+.nl-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 25px;
+  text-align: left;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nl-card-title {
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  font-size: 24px;
+  line-height: 1.2;
   transition: color 0.3s ease;
 }
 
-.nl-link:hover {
-  color: #003b7a;
+.nl-card-subtitle {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.nl-card-title strong {
+  font-weight: 600;
+}
+
+/* Botón transparente */
+.nl-link {
+  display: inline-block;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nl-item:hover .nl-link {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Excepción Tema Verde (Masa) --- */
+.nl-item:hover .theme-green .nl-card-title {
+  color: #00e676;
+}
+
+.nl-item:hover .theme-green .nl-link {
+  background-color: #00e676;
+  border-color: #00e676;
+  color: #001a33;
+  font-weight: 600;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .nl-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  .nl-grid .nl-item:last-child:nth-child(3n + 1) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .nl-grid {
+    grid-template-columns: 1fr;
+  }
+  .nl-title {
+    font-size: 30px;
+  }
 }
