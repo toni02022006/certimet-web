@@ -1,0 +1,71 @@
+.hero-laboratorio {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-laboratorio-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-laboratorio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-laboratorio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,59,122,0.8) 0%, rgba(0,59,122,0.4) 60%, rgba(0,59,122,0) 100%);
+  z-index: 1;
+}
+
+.hero-laboratorio-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 0 8%;
+  text-align: left;
+  width: 100%;
+}
+
+.hero-laboratorio-title {
+  font-size: 56px;
+  color: #ffffff;
+  line-height: 1.15;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.text-green-light {
+  color: #00ff3c;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.hero-laboratorio-subtitle {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .hero-laboratorio-title {
+    font-size: 36px;
+  }
+}

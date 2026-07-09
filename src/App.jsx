@@ -15,8 +15,9 @@ import Tienda from './views/Tienda';
 import ProductoDetalle from './views/ProductoDetalle';
 import ArticuloDetalle from './views/ArticuloDetalle';
 import Nosotros from './views/Nosotros'; 
-import Catalogo from './views/Catalogo'; // ✅ NUEVO IMPORT AQUÍ
+import Catalogo from './views/Catalogo'; 
 import ScrollToTop from './components/ScrollToTop';
+import Laboratorio from './views/Laboratorio'; // Importa la vista del laboratorio
 
 function App() {
   return (
@@ -33,11 +34,11 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/laboratorio" element={<div>Página Laboratorio</div>} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/denuncias" element={<Denuncias />} />
           <Route path="/blog/:id" element={<ArticuloDetalle />} />
+          <Route path="/laboratorio" element={<Laboratorio />} />
         </Route>
 
         {/* =======================================================

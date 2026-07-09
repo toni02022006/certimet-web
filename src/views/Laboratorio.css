@@ -1,0 +1,142 @@
+/* Laboratorio.css */
+
+/* Soluciones */
+.soluciones-section {
+  padding: 80px 0;
+  background-color: #f8fafc;
+  text-align: center;
+}
+
+.soluciones-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #003b7a;
+  margin-bottom: 20px;
+}
+
+.soluciones-title .highlight {
+  color: #00ff3c;
+}
+
+.soluciones-text {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.soluciones-btn {
+  background-color: #00ff3c;
+  color: #003b7a;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.soluciones-btn:hover {
+  background-color: #14de4a;
+}
+
+/* Acreditaciones */
+.acreditaciones-section {
+  padding: 60px 0;
+  background: #fff;
+}
+
+.acreditaciones-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.acreditacion-item {
+  max-width: 400px;
+  padding: 30px;
+  background: #f0f4f8;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.acreditacion-logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003b7a;
+  margin-bottom: 10px;
+}
+
+.registro {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #003b7a;
+}
+
+/* Laboratorios */
+.laboratorios-section {
+  padding: 80px 0;
+  background: #f8fafc;
+}
+
+.laboratorios-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #003b7a;
+  margin-bottom: 50px;
+}
+
+.laboratorios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.laboratorio-card {
+  background: #fff;
+  padding: 24px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.laboratorio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.laboratorio-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #003b7a;
+}
+
+.laboratorio-link {
+  color: #00ff3c;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.laboratorio-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .soluciones-title {
+    font-size: 1.8rem;
+  }
+  .laboratorios-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}

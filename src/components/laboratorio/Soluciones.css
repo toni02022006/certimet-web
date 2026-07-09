@@ -1,0 +1,46 @@
+.soluciones {
+  padding: 60px 8%;
+  background-color: #ffffff;
+}
+
+.soluciones-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.soluciones-title {
+  font-size: 32px;
+  color: #003b7a;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.soluciones-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.soluciones-btn {
+  background-color: #00ff3c;
+  color: #003b7a;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.soluciones-btn:hover {
+  background-color: #14de4a;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .soluciones-title {
+    font-size: 26px;
+  }
+}

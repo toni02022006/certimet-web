@@ -1,0 +1,75 @@
+.gestion {
+  padding: 60px 8%;
+  background-color: #f8f9fa;
+}
+
+.gestion-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.gestion-title {
+  font-size: 32px;
+  color: #003b7a;
+  margin-bottom: 15px;
+}
+
+.gestion-sub {
+  font-size: 18px;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.gestion-btn {
+  background-color: #00ff3c;
+  color: #003b7a;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 50px;
+}
+
+.gestion-btn:hover {
+  background-color: #14de4a;
+  transform: scale(1.05);
+}
+
+.gestion-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.gestion-feature {
+  flex: 1 1 250px;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.gestion-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.gestion-feature h3 {
+  font-size: 20px;
+  color: #003b7a;
+  margin-bottom: 10px;
+}
+
+.gestion-feature p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+}

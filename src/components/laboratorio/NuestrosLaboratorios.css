@@ -1,0 +1,53 @@
+.nuestros-laboratorios {
+  padding: 60px 8%;
+  background-color: #ffffff;
+}
+
+.nl-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nl-title {
+  font-size: 32px;
+  color: #003b7a;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.nl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.nl-item {
+  background-color: #f0f4f8;
+  padding: 25px 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.nl-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.nl-item h3 {
+  font-size: 18px;
+  color: #003b7a;
+  margin-bottom: 12px;
+}
+
+.nl-link {
+  color: #00a859;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.nl-link:hover {
+  color: #003b7a;
+}
