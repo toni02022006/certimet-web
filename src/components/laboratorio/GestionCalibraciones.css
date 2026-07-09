@@ -1,75 +1,185 @@
+/* Contenedor principal con fondo celeste muy claro */
 .gestion {
-  padding: 60px 8%;
-  background-color: #f8f9fa;
+  padding: 80px 8%;
+  background-color: #f2f7fc; /* Color de fondo idéntico a la imagen */
+  display: flex;
+  justify-content: center;
 }
 
+/* Layout de dos columnas */
 .gestion-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  gap: 60px;
+}
+
+/* --- COLUMNA IZQUIERDA --- */
+.gestion-left {
+  flex: 1;
+  text-align: left;
 }
 
 .gestion-title {
-  font-size: 32px;
-  color: #003b7a;
-  margin-bottom: 15px;
+  margin: 0 0 20px 0;
+  line-height: 1.15;
+}
+
+.title-blue-light {
+  font-size: 42px;
+  color: #0058b0;
+  font-weight: 400;
+}
+
+.title-green-bold {
+  font-size: 48px;
+  color: #00e676; /* Verde Certimet */
+  font-weight: 600;
+  display: block;
+  margin-top: 10px;
 }
 
 .gestion-sub {
-  font-size: 18px;
-  color: #555;
-  max-width: 700px;
-  margin: 0 auto 30px;
+  font-size: 16px;
+  color: #00509e; /* El texto descriptivo también es azul en tu imagen */
+  max-width: 450px;
+  margin: 0 0 40px 0;
   line-height: 1.6;
 }
 
+/* Botón estilo transparente con borde */
 .gestion-btn {
-  background-color: #00ff3c;
-  color: #003b7a;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 16px;
+  background-color: transparent;
+  color: #00509e;
+  padding: 12px 28px;
+  border: 1px solid #00509e;
+  border-radius: 80px;
+  font-weight: 500;
+  font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gestion-btn .arrow {
+  transition: transform 0.3s ease;
 }
 
 .gestion-btn:hover {
-  background-color: #14de4a;
-  transform: scale(1.05);
+  background-color: #00509e;
+  color: #ffffff;
 }
 
-.gestion-features {
+.gestion-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* --- COLUMNA DERECHA (Tarjeta Azul) --- */
+.gestion-right {
+  flex: 1.1;
+}
+
+.gestion-card {
+  background-color: #00458a; /* Azul oscuro corporativo */
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* Sombra elegante */
+}
+
+/* Elementos de la lista */
+.feature-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea divisoria semi-transparente */
+  padding: 25px 0;
+}
+
+.feature-item:first-child {
+  padding-top: 0;
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Cabecera del ítem (Icono + Título + Flecha) */
+.feature-header {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  cursor: pointer;
 }
 
-.gestion-feature {
-  flex: 1 1 250px;
-  background: white;
-  padding: 30px 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  text-align: center;
+.feature-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.gestion-icon {
-  font-size: 40px;
-  margin-bottom: 15px;
+/* Iconos de las imágenes .webp */
+.feature-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain; /* Asegura que la imagen no se deforme */
 }
 
-.gestion-feature h3 {
-  font-size: 20px;
-  color: #003b7a;
-  margin-bottom: 10px;
+.feature-title {
+  color: #00e676;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
 }
 
-.gestion-feature p {
-  font-size: 15px;
-  color: #555;
+/* Flecha blanca de la derecha (dejamos el SVG para esto porque es solo un adorno simple) */
+.feature-arrow {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+/* Texto de descripción blanco/grisáceo */
+.feature-desc {
+  color: #e0e8f0;
+  font-size: 13.5px;
   line-height: 1.6;
+  margin: 0;
+  padding-left: 37px; /* Alineado para que empiece justo debajo del título, no del icono */
+}
+
+/* --- RESPONSIVE (Móviles y Tablets) --- */
+@media (max-width: 950px) {
+  .gestion-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .gestion-left {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gestion-sub {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .title-blue-light {
+    font-size: 34px;
+  }
+  
+  .title-green-bold {
+    font-size: 40px;
+  }
+
+  .feature-desc {
+    text-align: left; /* Mantener el texto interno de la tarjeta alineado a la izquierda */
+  }
 }
