@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const ProductosDestacados = () => {
   const [productos, setProductos] = useState([]);
   
-  // Estado para el desplazamiento manual de las flechas
-  const [desplazamientoManual, setDesplazamientoManual] = useState(0);
+  // Usamos un índice para saber en qué producto estamos
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const fetchProductos = async () => {
     try {
@@ -23,51 +23,60 @@ const ProductosDestacados = () => {
     fetchProductos();
   }, []);
 
-  // Cada tarjeta mide 225px + 15px de gap = 240px de desplazamiento por clic
+  // --- LÓGICA DEL CARRUSEL ---
   const anchoTarjetaConGap = 240; 
 
   const moverIzquierda = () => {
-    setDesplazamientoManual((prev) => prev + anchoTarjetaConGap);
+    setCurrentIndex((prev) => (prev === 0 ? productos.length - 1 : prev - 1));
   };
 
   const moverDerecha = () => {
-    setDesplazamientoManual((prev) => prev - anchoTarjetaConGap);
+    setCurrentIndex((prev) => (prev >= productos.length - 1 ? 0 : prev + 1));
   };
 
-  // Duplicamos el arreglo para asegurar el bucle continuo del CSS
-  const productosInfinitos = [...productos, ...productos];
+  // Carrusel automático: Gira cada 3 segundos
+  useEffect(() => {
+    // Si hay 1 o 0 productos, no tiene sentido que gire
+    if (productos.length <= 1) return;
+
+    const intervalo = setInterval(() => {
+      moverDerecha();
+    }, 3000); // 3000ms = 3 segundos
+
+    // Limpiamos el temporizador si el usuario hace clic para evitar saltos raros
+    return () => clearInterval(intervalo);
+  }, [productos.length, currentIndex]); 
 
   return (
     <section className="tienda-section">
       <div className="section-header">
         <h2>Productos Destacados</h2>
         
-        {/* Controles de flechas manuales restaurados */}
+        {/* Controles de flechas manuales */}
         <div className="slider-controls">
           <button className="slider-btn" onClick={moverIzquierda}>‹</button>
           <button className="slider-btn" onClick={moverDerecha}>›</button>
         </div>
       </div>
 
-      <div className="slider-infinito-container">
-        {/* CAPA DE DESPLAZAMIENTO MANUAL: Controlada por las flechas */}
+      <div className="slider-infinito-container" style={{ overflow: 'hidden' }}>
+        {/* CAPA DE DESPLAZAMIENTO: Se mueve según el índice actual */}
         <div 
           className="slider-manual-wrapper"
           style={{ 
-            transform: `translateX(${desplazamientoManual}px)`,
-            transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)',
+            transform: `translateX(-${currentIndex * anchoTarjetaConGap}px)`, // Nota el signo negativo
+            transition: 'transform 0.5s ease-in-out',
             display: 'flex',
             width: 'max-content'
           }}
         >
-          {/* CAPA DE ANIMACIÓN CONTINUA: Controlada por el CSS */}
-          <div className="slider-infinito-track">
+          <div className="slider-infinito-track" style={{ display: 'flex', gap: '15px' }}>
             
-            {productosInfinitos.length > 0 ? (
-              productosInfinitos.map((prod, index) => (
-                <div key={`${prod.id}-${index}`} className="producto-card slide-item">
+            {productos.length > 0 ? (
+              productos.map((prod, index) => (
+                <div key={`${prod.id}-${index}`} className="producto-card slide-item" style={{ width: '225px' }}>
                   
-                  {/* AQUÍ INICIA EL ENLACE AL DETALLE DEL PRODUCTO */}
+                  {/* ENLACE AL DETALLE DEL PRODUCTO */}
                   <Link 
                     to={`/producto/${prod.id}`} 
                     style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
@@ -87,7 +96,6 @@ const ProductosDestacados = () => {
                       S/ {Number(prod.precio_regular).toFixed(2)} <span>Inc. IGV</span>
                     </p>
                   </Link>
-                  {/* AQUÍ TERMINA EL ENLACE */}
                   
                   <button className="btn-carrito">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
