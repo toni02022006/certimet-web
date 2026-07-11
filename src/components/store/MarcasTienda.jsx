@@ -18,7 +18,42 @@ const MarcasTienda = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  
+  const [count, setCount] = useState(1);
 
+  // --- EFECTO DE CONTEO INFINITO ---
+  useEffect(() => {
+    let timer;
+    let timeout;
+
+    const startCounting = () => {
+      let currentNumber = 1;
+      setCount(currentNumber);
+      
+      timer = setInterval(() => {
+        currentNumber += 1;
+        setCount(currentNumber);
+        
+        if (currentNumber >= 30) {
+          clearInterval(timer);
+          // Cuando llega a 30, se queda pausado 3 segundos (3000ms) y vuelve a empezar
+          timeout = setTimeout(() => {
+            startCounting();
+          }, 3000); 
+        }
+      }, 50); // Velocidad a la que suben los números (50ms)
+    };
+
+    startCounting();
+
+    // Limpieza al desmontar el componente para evitar fugas de memoria
+    return () => {
+      clearInterval(timer);
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  // --- EFECTO DEL CARRUSEL INFINITO ---
   useEffect(() => {
     let animationId;
     const scroll = () => {
@@ -60,7 +95,7 @@ const MarcasTienda = () => {
   return (
     <section className="tienda-section marcas-section">
       <h2 className="marcas-title">
-        <span className="plus">+</span>30 <span className="text">Marcas</span>
+        <span className="plus">+</span>{count} <span className="text">Marcas</span>
       </h2>
       
       <div 

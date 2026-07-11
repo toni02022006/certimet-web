@@ -5,8 +5,12 @@
   width: 100%;
 }
 
+/* =========================================================
+  1. AQUÍ CAMBIAS EL TAMAÑO DEL NÚMERO "30" 
+=========================================================
+*/
 .marcas-title {
-  font-size: 5rem;
+  font-size: 5rem; /* <--- MODIFICA ESTE VALOR (Ej: 6rem, 80px) */
   font-weight: 800;
   color: #003b7a;
   margin: 0 0 30px 0;
@@ -14,16 +18,41 @@
   justify-content: center;
   align-items: baseline;
   line-height: 1;
+  font-variant-numeric: tabular-nums; 
 }
 
+/* =========================================================
+  2. AQUÍ CAMBIAS EL TAMAÑO Y COLOR DEL SIGNO "+" 
+=========================================================
+*/
 .marcas-title .plus {
   color: #00d639;
+  font-size: 5rem; /* <--- MODIFICA ESTE VALOR SI QUIERES QUE EL MÁS SEA DE OTRO TAMAÑO */
 }
 
+/* =========================================================
+  3. AQUÍ CAMBIAS EL TAMAÑO DE LA PALABRA "Marcas" 
+=========================================================
+*/
 .marcas-title .text {
-  font-size: 1.8rem;
+  font-size: 1.8rem; /* <--- MODIFICA ESTE VALOR (Ej: 2.5rem, 40px) */
   font-style: italic;
   margin-left: 10px;
+  
+  /* Gradiente animado infinito */
+  background: linear-gradient(90deg, #003b7a 0%, #00d639 50%, #003b7a 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3.5s linear infinite; /* El "infinite" hace que nunca se detenga */
+}
+
+/* Animación del brillo pasando por el texto */
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 /* Contenedor del slider limitado al ancho de la tienda */
@@ -35,11 +64,9 @@
   background-color: #003b7a;
   box-shadow: 0 10px 35px rgba(0, 59, 122, 0.12);
   
-  /* CORRECCIÓN: Eliminamos la máscara de degradado que creaba los extremos blancos fatales */
   -webkit-mask-image: none;
   mask-image: none;
   
-  /* Borde perimetral ultra fino para acabado técnico premium */
   border: 1px solid rgba(255, 255, 255, 0.08);
   
   scrollbar-width: none;
@@ -51,10 +78,9 @@
   display: none;
 }
 
-/* Efecto de enfoque cuando el usuario interactúa con la barra */
 .marcas-slider-container:hover {
   box-shadow: 0 15px 40px rgba(0, 59, 122, 0.2);
-  border-color: rgba(0, 214, 57, 0.3); /* Brillo verde sutil en el borde general */
+  border-color: rgba(0, 214, 57, 0.3); 
 }
 
 .marcas-slider-container.grabbing {
@@ -65,7 +91,7 @@
 .marcas-drag-track {
   display: flex;
   align-items: center;
-  gap: 80px; /* Separación balanceada entre logotipos */
+  gap: 80px; 
   width: max-content;
   padding: 30px 50px; 
 }
@@ -90,7 +116,6 @@
   pointer-events: none;
 }
 
-/* EFECTO HOVER ACTUALIZADO: Sin neblinas, realce directo */
 .marca-logo-wrapper:hover img {
   opacity: 1;
   transform: scale(1.08);
@@ -99,12 +124,17 @@
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
+  /* Si necesitas cambiar el tamaño en celulares, hazlo aquí también */
   .marcas-title {
-    font-size: 3.5rem;
+    font-size: 3.5rem; /* Tamaño del 30 en celular */
+  }
+  .marcas-title .plus {
+    font-size: 3.5rem; /* Tamaño del + en celular */
   }
   .marcas-title .text {
-    font-size: 1.4rem;
+    font-size: 1.4rem; /* Tamaño de 'Marcas' en celular */
   }
+  
   .marca-logo-wrapper {
     width: 110px;
     height: 50px;

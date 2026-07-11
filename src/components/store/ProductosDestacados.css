@@ -1,0 +1,222 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+.productos-destacados-section {
+  padding: 60px 5%;
+  background-color: #fafbfc; /* Fondo muy claro */
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================================================
+   CABECERA
+   ========================================================================== */
+.prod-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.prod-title {
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.prod-slider-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.prod-slider-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0056b3;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.prod-slider-btn:hover {
+  border-color: #0056b3;
+  color: #ffffff;
+  background-color: #0056b3;
+}
+
+/* ==========================================================================
+   CONTENEDOR DEL CARRUSEL
+   ========================================================================== */
+.productos-slider-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: auto; 
+  padding: 10px 5px 30px 5px; 
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+.productos-slider-container::-webkit-scrollbar {
+  display: none;
+}
+
+.loading-text {
+  text-align: center;
+  width: 100%;
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* ==========================================================================
+   TARJETA DE PRODUCTO (Diseño Imagen 2)
+   ========================================================================== */
+.producto-card {
+  flex: 0 0 auto;
+  width: 250px; /* Tarjeta un poco más ancha/alta como en la imagen */
+  background-color: #ffffff;
+  border-radius: 16px; /* Bordes bien redondeados */
+  border: 1px solid #b2c0cd; /* Borde sutil gris/azulado */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.producto-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1); /* Sombra suave al hacer hover */
+  border-color: #8da4b9;
+}
+
+.prod-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Área de la Imagen */
+.prod-img-box {
+  width: 100%;
+  height: 220px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prod-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  transition: transform 0.4s ease;
+}
+
+.producto-card:hover .prod-img {
+  transform: scale(1.03); /* Efecto zoom suave */
+}
+
+/* Área de Textos */
+.prod-info {
+  padding: 0 20px 10px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.prod-marca {
+  font-size: 14px;
+  color: #64748b;
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.prod-titulo {
+  font-size: 14px;
+  color: #475569;
+  margin: 0 0 12px 0;
+  font-weight: 400;
+  line-height: 1.5;
+  /* Truncar texto si es muy largo */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.prod-sku {
+  font-size: 10px;
+  color: #a0aec0;
+  margin: 0 0 15px 0;
+}
+
+.prod-precio {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: auto 0 10px 0; /* Empuja el precio hacia abajo si el título es corto */
+}
+
+.prod-precio span {
+  font-size: 12px;
+  color: #cbd5e1;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* ==========================================================================
+   BOTÓN DEL CARRITO TIPO PÍLDORA (Diseño Imagen 2)
+   ========================================================================== */
+.btn-carrito-wrapper {
+  padding: 0 20px 20px 20px; /* Espaciado a los lados y abajo */
+}
+
+.btn-carrito-pill {
+  width: 100%;
+  background-color: #0056b3; /* Azul original */
+  color: #ffffff;
+  border: none;
+  border-radius: 25px; /* Hace el botón ovalado/píldora */
+  padding: 10px 0; /* Altura del botón */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* AZUL MÁS CLARITO AL PASAR EL MOUSE */
+.btn-carrito-pill:hover {
+  background-color: #009dff; /* Azul celeste claro */
+  transform: translateY(-2px); /* Pequeño saltito al hacer hover */
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+  .prod-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .prod-title {
+    font-size: 24px;
+  }
+
+  .producto-card {
+    width: 230px;
+  }
+}
