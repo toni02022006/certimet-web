@@ -26,6 +26,45 @@
 }
 
 /* =========================================
+   BREADCRUMBS (Ruta Superior)
+   ========================================= */
+.breadcrumb-wrapper {
+  max-width: 1500px;
+  margin: 0 auto 20px auto; /* 20px de espacio abajo para separarlo de los filtros/layout */
+  width: 100%;
+}
+
+.breadcrumb-catalogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #0056b3; /* Mismo azul corporativo que los títulos de filtros */
+}
+
+.breadcrumb-link {
+  color: #0056b3;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.breadcrumb-separator {
+  color: #0056b3;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.breadcrumb-current {
+  color: #0056b3;
+}
+
+
+/* =========================================
    SIDEBAR (FILTROS IZQUIERDA)
    ========================================= */
 .sidebar-filtros {
@@ -471,4 +510,5 @@
   } 
   .catalogo-page-container { padding-top: 220px; }
   .cabecera-resultados { flex-direction: column; align-items: flex-start; gap: 15px; }
+  .breadcrumb-wrapper { margin-bottom: 10px; }
 }

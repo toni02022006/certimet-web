@@ -2,6 +2,17 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import './Catalogo.css';
 
+// ================= DICCIONARIO GLOBAL =================
+// Relaciona el ID con el nombre de tus 6 categorías principales
+const nombresCategoriasPrincipales = {
+  2: "Automatización y Control",
+  3: "Analítica",
+  4: "Variables de Procesos",
+  5: "Laboratorio",
+  6: "SSOMA",
+  7: "Calidad de ambiente"
+};
+
 const Catalogo = () => {
   const { idCategoria } = useParams(); 
   const navigate = useNavigate();
@@ -27,7 +38,7 @@ const Catalogo = () => {
     disponibilidad: true
   });
 
-  // Estado para expandir/contraer las subcategorías dentro del filtro de categorías
+  // Estado para expandir/contraer las subcategorías
   const [catExpandidas, setCatExpandidas] = useState({}); 
 
   // ================= CARGA DE DATOS =================
@@ -61,22 +72,32 @@ const Catalogo = () => {
     return [...new Set(marcas)].filter(m => m !== 'Sin Marca'); 
   }, [productosBase]);
 
-  // 2. Extraer Categorías y Subcategorías estructuradas
+  // 2. Extraer Categorías y Subcategorías 
   const categoriasEstructura = useMemo(() => {
-    const estructura = {};
+    // Forzamos la base con las 6 categorías para que siempre aparezcan
+    const estructura = {
+      "Automatización y Control": new Set(),
+      "Analítica": new Set(),
+      "Variables de Procesos": new Set(),
+      "Laboratorio": new Set(),
+      "SSOMA": new Set(),
+      "Calidad de ambiente": new Set()
+    };
+
     productosBase.forEach(p => {
-      const cat = p.categoria?.nombre || p.categoria || 'Sin Categoría';
-      const subcat = p.subcategoria?.nombre || p.subcategoria || null;
+      if (!p.categoria) return;
       
-      if (cat !== 'Sin Categoría') {
-        if (!estructura[cat]) {
-          estructura[cat] = new Set();
+      const catData = p.categoria;
+      
+      // Si tiene parent_id, es una subcategoría
+      if (catData.parent_id) {
+        const nombrePadre = nombresCategoriasPrincipales[catData.parent_id];
+        if (nombrePadre && estructura[nombrePadre]) {
+          estructura[nombrePadre].add(catData.nombre);
         }
-        if (subcat) {
-          estructura[cat].add(subcat);
-        }
-      }
+      } 
     });
+
     return estructura;
   }, [productosBase]);
 
@@ -84,7 +105,7 @@ const Catalogo = () => {
   const productosProcesados = useMemo(() => {
     let resultado = [...productosBase];
 
-    // Filtro por Marca
+    // 1. Filtro por Marca
     if (filtros.marcas.length > 0) {
       resultado = resultado.filter(p => {
         const marcaProd = p.marca?.nombre || p.marca;
@@ -92,23 +113,29 @@ const Catalogo = () => {
       });
     }
 
-    // Filtro por Categoría Principal
-    if (filtros.categorias.length > 0) {
+    // 2. Filtro UNIFICADO por Categoría Principal y/o Subcategoría (Lógica OR)
+    if (filtros.categorias.length > 0 || filtros.subcategorias.length > 0) {
       resultado = resultado.filter(p => {
-        const catProd = p.categoria?.nombre || p.categoria;
-        return filtros.categorias.includes(catProd);
+        const catData = p.categoria;
+        if (!catData) return false;
+
+        const catNombre = catData.nombre; // Ej: "xd3"
+        const mainCatName = catData.parent_id 
+          ? nombresCategoriasPrincipales[catData.parent_id] 
+          : catData.nombre; // Ej: "Analítica"
+
+        // ¿Se seleccionó la categoría padre de este producto?
+        const pasaPorPrincipal = filtros.categorias.includes(mainCatName);
+        
+        // ¿Se seleccionó la subcategoría específica de este producto?
+        const pasaPorSub = filtros.subcategorias.includes(catNombre);
+
+        // Si cumple cualquiera de las dos condiciones, se muestra.
+        return pasaPorPrincipal || pasaPorSub;
       });
     }
 
-    // Filtro por Subcategoría
-    if (filtros.subcategorias.length > 0) {
-      resultado = resultado.filter(p => {
-        const subCatProd = p.subcategoria?.nombre || p.subcategoria;
-        return filtros.subcategorias.includes(subCatProd);
-      });
-    }
-
-    // Filtro por Precio
+    // 3. Filtro por Precio
     if (filtros.precio !== 'todos') {
       resultado = resultado.filter(p => {
         const precio = Number(p.precio_regular);
@@ -119,7 +146,7 @@ const Catalogo = () => {
       });
     }
 
-    // Ordenamiento
+    // 4. Ordenamiento
     switch (orden) {
       case 'precio-bajo':
         resultado.sort((a, b) => Number(a.precio_regular) - Number(b.precio_regular));
@@ -131,7 +158,7 @@ const Catalogo = () => {
         resultado.sort((a, b) => b.id - a.id);
         break;
       default:
-        // 'destacados' (Mantiene el orden original o lógica de 'is_destacado')
+        // 'destacados' 
         break;
     }
 
@@ -155,12 +182,30 @@ const Catalogo = () => {
     });
   };
 
-  const nombreCategoriaActual = (idCategoria && productosBase.length > 0) 
-    ? (productosBase[0].categoria?.nombre || productosBase[0].categoria)
+  const nombreCategoriaActual = idCategoria 
+    ? nombresCategoriasPrincipales[idCategoria] 
     : null;
 
   return (
     <div className="catalogo-page-container">
+      
+      {/* =========================================
+          BREADCRUMBS (Ruta de navegación)
+          ========================================= */}
+      <div className="breadcrumb-wrapper">
+        <nav className="breadcrumb-catalogo">
+          <Link to="/tienda" className="breadcrumb-link">Tienda</Link>
+          <span className="breadcrumb-separator">›</span>
+          <Link to="/tienda/catalogo" className="breadcrumb-link">Catálogo</Link>
+          {idCategoria && nombreCategoriaActual && (
+            <>
+              <span className="breadcrumb-separator">›</span>
+              <span className="breadcrumb-current">{nombreCategoriaActual}</span>
+            </>
+          )}
+        </nav>
+      </div>
+
       <div className="catalogo-layout">
         
         {/* =========================================
@@ -373,7 +418,8 @@ const Catalogo = () => {
                   </div>
                   
                   <div className="tarjeta-info">
-                    <div className="tarjeta-marca">{prod.categoria?.nombre || prod.marca?.nombre || 'CERTIMET'}</div>
+                    {/* Imprimimos el nombre de la categoría del producto */}
+                    <div className="tarjeta-marca">{prod.categoria?.nombre || 'CERTIMET'}</div>
                     <h3 className="tarjeta-titulo">{prod.nombre}</h3>
                     <p className="tarjeta-sku">SKU: {prod.sku || 'N/A'}</p>
                     

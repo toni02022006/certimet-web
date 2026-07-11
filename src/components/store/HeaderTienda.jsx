@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Imágenes y Logos
@@ -75,17 +75,34 @@ const serviciosData = [
   { name: "Análisis Termográfico", path: "/servicios" }
 ];
 
+// =======================================================
+// CORRECCIÓN: Rutas de Categorías de Productos
+// Reemplaza los números (1, 2, 3...) por los ID reales de tu BD
+// =======================================================
+const categoriasProductos = [
+  { name: "Laboratorio", path: "/tienda/categoria/1" },
+  { name: "SSOMA", path: "/tienda/categoria/2" },
+  { name: "Calidad de ambiente", path: "/tienda/categoria/3" },
+  { name: "Automatización y Control", path: "/tienda/categoria/4" },
+  { name: "Analítica", path: "/tienda/categoria/5" }
+];
+
 const HeaderTienda = () => {
   const [busqueda, setBusqueda] = useState('');
+  const [sugerencias, setSugerencias] = useState([]);
+  const [mostrarSugerencias, setMostrarSugerencias] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   
-  // Estados para los menús desplegables
+  const searchRef = useRef(null);
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const [isIngenieriaOpen, setIsIngenieriaOpen] = useState(false);
   const [isServiciosOpen, setIsServiciosOpen] = useState(false);
+  const [isProductosOpen, setIsProductosOpen] = useState(false); 
   const [activeLab, setActiveLab] = useState(null); 
   
   const location = useLocation();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -93,21 +110,61 @@ const HeaderTienda = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setMostrarSugerencias(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const fetchSugerencias = async () => {
+      if (busqueda.trim().length < 2) {
+        setSugerencias([]);
+        return;
+      }
+      try {
+        const response = await fetch(`http://localhost:3000/api/productos/buscar/sugerencias?q=${encodeURIComponent(busqueda.trim())}`);
+        if (response.ok) {
+          const data = await response.json();
+          setSugerencias(data);
+        }
+      } catch (error) {
+        console.error("Error buscando sugerencias:", error);
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      fetchSugerencias();
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [busqueda]);
+
   const handleBuscar = (e) => {
     e.preventDefault();
-    console.log("Buscando en tienda:", busqueda);
+    setMostrarSugerencias(false); 
+    if (busqueda.trim() !== '') {
+      navigate(`/tienda/catalogo?buscar=${encodeURIComponent(busqueda.trim())}`);
+    } else {
+      navigate(`/tienda/catalogo`);
+    }
+  };
+
+  // Función para forzar el cierre del menú de productos al hacer click
+  const handleCategoriaClick = () => {
+    setIsProductosOpen(false);
   };
 
   return (
     <header className={`header-tienda-container ${isScrolled ? 'scrolled' : ''}`}>
       
-      {/* ========================================================
-          1. FILA SUPERIOR (Azul Clarito -> Menú Integrado)
-          ======================================================== */}
       <div className="ht-top-bar">
         <div className="ht-content wrapper">
           
-          {/* Ubicación y Correo */}
           <div className="ht-sub-left">
             <span className="ht-top-link">
               <img src={iconUbicacion} alt="Ubicación" className="ht-icon" /> 
@@ -119,13 +176,11 @@ const HeaderTienda = () => {
             </a>
           </div>
 
-          {/* MENÚ DE NAVEGACIÓN UNIFICADO (Sin Botón de Registro) */}
           <nav className="ht-top-nav-menu">
             <ul className="ht-nav-links">
               <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Inicio</Link></li>
               <li><Link to="/nosotros" className={location.pathname === '/nosotros' ? 'active' : ''}>Nosotros</Link></li>
               
-              {/* Desplegable: Laboratorio */}
               <li className="nav-item-dropdown-mega" onMouseEnter={() => setIsMenuOpen(true)} onMouseLeave={() => { setIsMenuOpen(false); setActiveLab(null); }}>
                 <Link to="/laboratorio" className={location.pathname.startsWith('/laboratorio') ? 'active' : ''}>Laboratorio ▾</Link>
                 <AnimatePresence>
@@ -137,7 +192,7 @@ const HeaderTienda = () => {
                         </li>
                         <li className={activeLab === 'ensayo' ? 'active-row' : ''} onMouseEnter={() => setActiveLab('ensayo')}>
                           <span>Ensayo</span><span className="arrow-right">▸</span>
-                        </li>                                                                     
+                        </li>                                                  
                       </ul>
                       <AnimatePresence>
                         {activeLab && (
@@ -164,7 +219,6 @@ const HeaderTienda = () => {
                 </AnimatePresence>
               </li>
 
-              {/* Desplegable: Ingeniería */}
               <li className="nav-item-dropdown-simple" onMouseEnter={() => setIsIngenieriaOpen(true)} onMouseLeave={() => setIsIngenieriaOpen(false)}>
                 <Link to="/ingenieria" className={location.pathname.startsWith('/ingenieria') ? 'active' : ''}>Ingeniería y Automatización ▾</Link>
                 <AnimatePresence>
@@ -178,7 +232,6 @@ const HeaderTienda = () => {
                 </AnimatePresence>
               </li>
 
-              {/* Desplegable: Servicios */}
               <li className="nav-item-dropdown-simple" onMouseEnter={() => setIsServiciosOpen(true)} onMouseLeave={() => setIsServiciosOpen(false)}>
                 <Link to="/servicios" className={location.pathname.startsWith('/servicios') ? 'active' : ''}>Servicios ▾</Link>
                 <AnimatePresence>
@@ -201,32 +254,98 @@ const HeaderTienda = () => {
         </div>
       </div>
 
-      {/* ========================================================
-          2. FILA PRINCIPAL (Azul Oscuro -> Buscador y Carrito)
-          ======================================================== */}
       <div className="ht-main-bar">
         <div className="ht-content wrapper">
           
-          {/* Logo CERTIMET */}
           <div className="ht-left">
             <Link to="/">
               <img src={isScrolled ? logoColor : logoBlanco} alt="CERTIMET" className="ht-logo" />
             </Link>
           </div>
 
-          {/* Buscador Central */}
-          <div className="ht-center">
+          <div className="ht-center" ref={searchRef}>
             <form onSubmit={handleBuscar} className="ht-search-form">
-              <div className="ht-btn-productos">
-                <span className="ht-hamburguer">≡</span> Productos
+              
+              <div 
+                className="ht-btn-productos-wrapper"
+                onMouseEnter={() => setIsProductosOpen(true)}
+                onMouseLeave={() => setIsProductosOpen(false)}
+              >
+                <div className="ht-btn-productos">
+                  <span className="ht-hamburguer">≡</span> Productos
+                </div>
+                
+                <AnimatePresence>
+                  {isProductosOpen && (
+                    <motion.div 
+                      className="ht-productos-dropdown"
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      exit={{ opacity: 0, y: 10 }}
+                    >
+                      <ul className="ht-productos-list">
+                        {categoriasProductos.map((cat, idx) => (
+                          <li key={idx}>
+                            <Link to={cat.path} onClick={handleCategoriaClick}>
+                              {cat.name}
+                            </Link>
+                          </li>
+                        ))}
+                        <li className="ht-ver-todo">
+                          <Link to="/tienda/catalogo" onClick={handleCategoriaClick}>
+                            Ver todo el catálogo →
+                          </Link>
+                        </li>
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              <input 
-                type="text" 
-                placeholder="Busca equipo, modelo, calibración..." 
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-                className="ht-search-input"
-              />
+
+              <div className="ht-input-container">
+                <input 
+                  type="text" 
+                  placeholder="Busca equipo, modelo, calibración..." 
+                  value={busqueda}
+                  onChange={(e) => {
+                    setBusqueda(e.target.value);
+                    setMostrarSugerencias(true);
+                  }}
+                  onFocus={() => setMostrarSugerencias(true)}
+                  className="ht-search-input"
+                />
+
+                <AnimatePresence>
+                  {mostrarSugerencias && sugerencias.length > 0 && (
+                    <motion.div 
+                      className="ht-search-suggestions"
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ul>
+                        {sugerencias.map(prod => (
+                          <li key={prod.id}>
+                            <Link 
+                              to={`/producto/${prod.id}`} 
+                              onClick={() => setMostrarSugerencias(false)}
+                            >
+                              <img 
+                                src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : 'https://via.placeholder.com/50'} 
+                                alt={prod.nombre} 
+                              />
+                              <span className="sug-text">{prod.nombre}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+              </div>
+
               <button type="submit" className="ht-search-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
                   <circle cx="11" cy="11" r="8"></circle>
@@ -236,7 +355,6 @@ const HeaderTienda = () => {
             </form>
           </div>
 
-          {/* Asesores y Carrito */}
           <div className="ht-right">
             <div className="ht-asesor">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="30" height="30" className="ht-icon-svg">

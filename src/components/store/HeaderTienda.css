@@ -28,10 +28,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* CLAVE: este es el ancla real para los desplegables (equivalente a
-     .main-navigation en el Header original), NO .ht-top-bar completo,
-     porque el contenido va centrado en un wrapper de 1400px, no a
-     ancho completo de pantalla */
   position: relative;
 }
 
@@ -53,7 +49,6 @@
   transition: color 0.3s;
 }
 
-/* Magia: Convierte PNG a blanco */
 .ht-icon {
   width: 16px;
   height: 16px;
@@ -66,7 +61,6 @@
   color: var(--certimet-green, #1cff57);
 }
 
-/* Navegación Superior */
 .ht-top-nav-menu {
   display: flex;
 }
@@ -81,7 +75,7 @@
 }
 
 .ht-nav-links > li {
-  padding: 10px 0; /* Área de hover amplia para que no se cierre el menú al bajar el mouse */
+  padding: 10px 0;
 }
 
 .ht-nav-links a {
@@ -97,12 +91,7 @@
   color: var(--certimet-green, #1cff57);
 }
 
-/* ==========================================================================
-   CORRECCIÓN DE MENÚS DESPLEGABLES (NIVELADOS SEGÚN LA LÓGICA DEL HEADER ORIGINAL)
-   ========================================================================== */
-
-/* Igual que en Header.css: el LI del mega menú se queda static, 
-   porque el ancla de posicionamiento ahora es .ht-top-bar .ht-content */
+/* Menús desplegables de la parte superior */
 .ht-top-nav-menu .nav-item-dropdown-mega {
   position: static; 
 }
@@ -119,23 +108,19 @@
   width: 310px;
 }
 
-/* Expandido: ocupa el ancho completo del wrapper (edge-to-edge del contenido
-   centrado de 1400px), igual que el "96% centrado" del header original pero
-   adaptado a tu estructura con max-width */
 .ht-top-nav-menu .lab-dropdown-box.is-expanded {
   left: 0;
   right: 0;
   width: 100%;
 }
 
-/* Los menús simples (Ingeniería, Servicios) sí usan su propio LI como ancla */
 .ht-top-nav-menu .nav-item-dropdown-simple {
   position: relative;
 }
 
 .ht-top-nav-menu .simple-dropdown-box {
   top: 100%;
-  right: 0; /* Alineado al borde derecho de su propio link, no se sale de pantalla */
+  right: 0;
   left: auto !important;
 }
 
@@ -145,7 +130,7 @@
   padding: 18px 0;
   transition: all 0.4s ease;
   position: relative;
-  z-index: 1000; /* Menor que la barra superior, para que los desplegables la tapen */
+  z-index: 1000;
 }
 
 .ht-main-bar .ht-content {
@@ -167,15 +152,23 @@
   justify-content: center;
 }
 
+/* FORMULARIO DE BÚSQUEDA */
 .ht-search-form {
   display: flex;
   background: white;
   border-radius: 30px;
-  overflow: hidden;
   width: 100%;
   max-width: 800px;
   padding: 2px;
   border: 2px solid transparent;
+  position: relative;
+}
+
+/* Botón Productos con Desplegable */
+.ht-btn-productos-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .ht-btn-productos {
@@ -188,30 +181,155 @@
   border-radius: 25px 0 0 25px;
   font-weight: 700;
   font-size: 14.5px;
-  cursor: pointer;
+  cursor: default; /* No es un link clickeable, reacciona al hover del padre */
   border-right: 1px solid #ddd;
+  height: 100%;
+  transition: background-color 0.2s;
 }
 
-.ht-hamburguer {
-  font-size: 18px;
-  line-height: 1;
+.ht-btn-productos-wrapper:hover .ht-btn-productos {
+  background-color: #f4f6f8;
+}
+
+.ht-productos-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  min-width: 260px;
+  z-index: 4000;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+.ht-productos-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ht-productos-list li a {
+  display: block;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.ht-productos-list li a:hover {
+  background-color: #f0f7ff;
+  color: var(--certimet-blue, #1c74d4);
+  padding-left: 25px; 
+}
+
+.ht-productos-list li.ht-ver-todo a {
+  background-color: #f8f9fa;
+  color: var(--certimet-blue-dark, #00234a);
+  font-weight: 700;
+  text-align: center;
+  border-bottom: none;
+}
+
+.ht-productos-list li.ht-ver-todo a:hover {
+  background-color: #e2e8f0;
+  padding-left: 20px; 
+}
+
+/* Área central de input y sugerencias */
+.ht-input-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .ht-search-input {
-  flex: 1;
+  width: 100%;
   border: none;
   padding: 10px 20px;
   font-size: 14.5px;
   outline: none;
   color: #333;
+  background: transparent;
+}
+
+/* SUGERENCIAS DEL BUSCADOR (Estilo Amazon) */
+.ht-search-suggestions {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 5000;
+  overflow: hidden;
+}
+
+.ht-search-suggestions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ht-search-suggestions li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s;
+}
+
+.ht-search-suggestions li:last-child a {
+  border-bottom: none;
+}
+
+.ht-search-suggestions li a:hover {
+  background-color: #f8fbff;
+}
+
+.ht-search-suggestions img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  margin-right: 15px;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  padding: 2px;
+  background-color: #fff;
+  flex-shrink: 0; /* Evita que la imagen se aplaste */
+}
+
+.ht-search-suggestions .sug-text {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #111;
 }
 
 .ht-search-btn {
   background: transparent;
   border: none;
-  padding: 0 15px;
+  padding: 0 20px;
   color: #666;
   cursor: pointer;
+  border-radius: 0 25px 25px 0; 
+  transition: background-color 0.2s;
+}
+
+.ht-search-btn:hover {
+  background-color: #f4f6f8;
+  color: var(--certimet-blue, #1c74d4);
 }
 
 .ht-right {
@@ -297,7 +415,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Textos a Azul Fuerte */
 .header-tienda-container.scrolled .ht-top-link,
 .header-tienda-container.scrolled .ht-nav-links a,
 .header-tienda-container.scrolled .ht-asesor-title,
@@ -305,7 +422,6 @@
   color: var(--certimet-blue-dark, #00234a);
 }
 
-/* Hover de Textos en Scroll */
 .header-tienda-container.scrolled .ht-nav-links a:hover,
 .header-tienda-container.scrolled .ht-nav-links a.active,
 .header-tienda-container.scrolled .ht-icon-link:hover,
@@ -313,7 +429,6 @@
   color: var(--certimet-blue, #1c74d4);
 }
 
-/* Bordes en Scroll */
 .header-tienda-container.scrolled .ht-asesor {
   border-right-color: #ddd;
 }
@@ -326,7 +441,6 @@
   border-color: white;
 }
 
-/* Efecto Mágico: SVG y PNG iconos a Azul */
 .header-tienda-container.scrolled .ht-icon,
 .header-tienda-container.scrolled .ht-icon-svg {
   filter: brightness(0) saturate(100%) invert(14%) sepia(50%) saturate(3025%) hue-rotate(195deg) brightness(90%) contrast(105%);
