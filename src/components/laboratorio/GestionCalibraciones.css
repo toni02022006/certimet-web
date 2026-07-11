@@ -94,6 +94,7 @@
 .feature-item {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea divisoria semi-transparente */
   padding: 25px 0;
+  overflow: hidden; /* Importante para el acordeón */
 }
 
 .feature-item:first-child {
@@ -110,8 +111,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
   cursor: pointer;
+  user-select: none;
+  padding: 5px 0; /* Un poco de respiro al hacer clic */
 }
 
 .feature-title-wrapper {
@@ -124,7 +126,7 @@
 .feature-icon {
   width: 22px;
   height: 22px;
-  object-fit: contain; /* Asegura que la imagen no se deforme */
+  object-fit: contain;
 }
 
 .feature-title {
@@ -134,21 +136,45 @@
   margin: 0;
 }
 
-/* Flecha blanca de la derecha (dejamos el SVG para esto porque es solo un adorno simple) */
+/* Flecha: Animación de rotación */
 .feature-arrow {
   width: 20px;
   height: 20px;
   color: #ffffff;
   opacity: 0.8;
+  transition: transform 0.3s ease; /* Suavidad al girar */
 }
 
-/* Texto de descripción blanco/grisáceo */
+/* Rota la flecha 180 grados si el ítem está abierto */
+.feature-item.abierto .feature-arrow {
+  transform: rotate(180deg);
+}
+
+/* --- ANIMACIÓN DEL CONTENIDO DESPLEGABLE --- */
+.feature-desc-wrapper {
+  display: grid;
+  grid-template-rows: 0fr; /* Empieza oculto */
+  transition: grid-template-rows 0.3s ease; /* Anima la altura suavemente */
+}
+
+.feature-item.abierto .feature-desc-wrapper {
+  grid-template-rows: 1fr; /* Muestra el contenido */
+}
+
 .feature-desc {
+  overflow: hidden; /* Asegura que el texto desaparezca al achicarse */
   color: #e0e8f0;
   font-size: 13.5px;
   line-height: 1.6;
   margin: 0;
-  padding-left: 37px; /* Alineado para que empiece justo debajo del título, no del icono */
+  padding-left: 37px; /* Alineado al texto superior */
+  opacity: 0; /* Invisible por defecto */
+  transition: opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.feature-item.abierto .feature-desc {
+  opacity: 1; /* Se hace visible cuando se abre */
+  margin-top: 12px; /* Añade espaciado superior solo cuando está abierto */
 }
 
 /* --- RESPONSIVE (Móviles y Tablets) --- */
@@ -180,6 +206,6 @@
   }
 
   .feature-desc {
-    text-align: left; /* Mantener el texto interno de la tarjeta alineado a la izquierda */
+    text-align: left; /* Mantener el texto interno alineado a la izquierda */
   }
 }
