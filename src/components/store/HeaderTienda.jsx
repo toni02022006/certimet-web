@@ -77,14 +77,15 @@ const serviciosData = [
 
 // =======================================================
 // CORRECCIÓN: Rutas de Categorías de Productos
-// Reemplaza los números (1, 2, 3...) por los ID reales de tu BD
+// Ahora apuntan a los IDs exactos de la BD (2 al 7)
 // =======================================================
 const categoriasProductos = [
-  { name: "Laboratorio", path: "/tienda/categoria/1" },
-  { name: "SSOMA", path: "/tienda/categoria/2" },
-  { name: "Calidad de ambiente", path: "/tienda/categoria/3" },
-  { name: "Automatización y Control", path: "/tienda/categoria/4" },
-  { name: "Analítica", path: "/tienda/categoria/5" }
+  { name: "Automatización y Control", path: "/tienda/categoria/2" },
+  { name: "Analítica", path: "/tienda/categoria/3" },
+  { name: "Variables de Procesos", path: "/tienda/categoria/4" },
+  { name: "Laboratorio", path: "/tienda/categoria/5" },
+  { name: "SSOMA", path: "/tienda/categoria/6" },
+  { name: "Calidad de ambiente", path: "/tienda/categoria/7" }
 ];
 
 const HeaderTienda = () => {
@@ -192,7 +193,7 @@ const HeaderTienda = () => {
                         </li>
                         <li className={activeLab === 'ensayo' ? 'active-row' : ''} onMouseEnter={() => setActiveLab('ensayo')}>
                           <span>Ensayo</span><span className="arrow-right">▸</span>
-                        </li>                                                  
+                        </li>                                                
                       </ul>
                       <AnimatePresence>
                         {activeLab && (

@@ -10,6 +10,16 @@ import logoPlin from '../image/tienda/plin-logo.png';
 import logoVisa from '../image/tienda/Visalogo.svg';
 import logoYape from '../image/tienda/yape-logo.png';
 
+// ================= DICCIONARIO GLOBAL =================
+const nombresCategoriasPrincipales = {
+  2: "Automatización y Control",
+  3: "Analítica",
+  4: "Variables de Procesos",
+  5: "Laboratorio",
+  6: "SSOMA",
+  7: "Calidad de ambiente"
+};
+
 // Icono personalizado de WhatsApp
 const WhatsappIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -90,14 +100,27 @@ const ProductoDetalle = () => {
             <span className="breadcrumb-separator">›</span>
             <Link to="/tienda/catalogo" className="breadcrumb-link">Catálogo</Link>
             <span className="breadcrumb-separator">›</span>
+            
             {producto.categoria && typeof producto.categoria === 'object' && producto.categoria.nombre && (
               <>
+                {/* 1. Si la categoría tiene un padre (es una subcategoría), mostramos el padre primero */}
+                {producto.categoria.parent_id && nombresCategoriasPrincipales[producto.categoria.parent_id] && (
+                  <>
+                    <Link to={`/tienda/categoria/${producto.categoria.parent_id}`} className="breadcrumb-link">
+                      {nombresCategoriasPrincipales[producto.categoria.parent_id]}
+                    </Link>
+                    <span className="breadcrumb-separator">›</span>
+                  </>
+                )}
+                
+                {/* 2. Luego mostramos la categoría a la que pertenece (ya sea principal o subcategoría) */}
                 <Link to={`/tienda/categoria/${producto.categoria.id}`} className="breadcrumb-link">
                   {producto.categoria.nombre}
                 </Link>
                 <span className="breadcrumb-separator">›</span>
               </>
             )}
+            
             <span className="breadcrumb-current">{producto.nombre}</span>
           </nav>
 
