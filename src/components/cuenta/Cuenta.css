@@ -1,0 +1,533 @@
+/* src/components/cuenta/Cuenta.css */
+
+/* Contenedor principal que soluciona el solapamiento con el Header */
+.cuenta-page-wrapper {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  /* IMPORTANTE: Ajusta este padding-top al alto de tu header si es mayor */
+  padding-top: 165px; 
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.cuenta-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==============================
+   ESTILOS DEL SIDEBAR
+   ============================== */
+.cuenta-sidebar {
+  background: #ffffff;
+  padding: 40px 24px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  height: fit-content;
+  border: 1px solid #e2e8f0;
+  position: sticky;
+  top: 130px; /* Se queda pegado elegantemente al hacer scroll */
+}
+
+.cuenta-avatar svg {
+  width: 90px;
+  height: 90px;
+  color: #1b5e20;
+  background: #e8f5e9;
+  padding: 20px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.1);
+}
+
+.cuenta-sidebar h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #0f172a;
+}
+
+.cuenta-email {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0 0 24px;
+}
+
+.cuenta-sidebar-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 24px 0;
+}
+
+.btn-cerrar-sesion {
+  background: #fee2e2;
+  color: #ef4444;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-cerrar-sesion:hover {
+  background: #fecaca;
+  color: #dc2626;
+  transform: translateY(-1px);
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==============================
+   CONTENIDO PRINCIPAL
+   ============================== */
+.cuenta-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cuenta-section {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+}
+
+.cuenta-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.section-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-icon {
+  width: 24px;
+  height: 24px;
+  color: #2e7d32;
+}
+
+.cuenta-section h3 {
+  font-size: 19px;
+  color: #0f172a;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ==============================
+   PERFIL Y DATOS DE USUARIO
+   ============================== */
+.cuenta-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: #f8fafc;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 15px;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* ==============================
+   BOTONES E INPUTS DEL FORMULARIO
+   ============================== */
+.btn-editar {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid rgba(46, 125, 50, 0.2);
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-editar:hover {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+.cuenta-form .form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.cuenta-form .form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.cuenta-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.cuenta-form label {
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #334155;
+}
+
+.cuenta-form input {
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #ffffff;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cuenta-form input:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.12);
+  background-color: #ffffff;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-guardar {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-guardar:hover {
+  background: #1b5e20;
+  transform: translateY(-1px);
+}
+
+.btn-guardar.btn-full {
+  width: 100%;
+}
+
+.btn-cancelar {
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-cancelar:hover {
+  background: #e2e8f0;
+}
+
+/* ==============================
+   DIRECCIONES
+   ============================== */
+.btn-toggle-direccion {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid rgba(46, 125, 50, 0.2);
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-toggle-direccion:hover,
+.btn-toggle-direccion.btn-active {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+.direcciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.direccion-card {
+  background: #f8fafc;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.direccion-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.dir-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1b5e20;
+}
+
+.dir-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.direccion-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  color: #0f172a;
+}
+
+.dir-body {
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.dir-sub {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+.dir-ref {
+  font-size: 12.5px;
+  color: #475569;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin: 4px 0 0;
+}
+
+.dir-ref span {
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+/* ==============================
+   PEDIDOS (TABLA ESTILIZADA)
+   ============================== */
+.btn-ir-tienda {
+  display: inline-block;
+  background: #2e7d32;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-ir-tienda:hover {
+  background: #1b5e20;
+}
+
+.pedidos-tabla-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.pedidos-tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pedidos-tabla th {
+  text-align: left;
+  padding: 16px 20px;
+  background: #f8fafc;
+  font-weight: 700;
+  font-size: 13px;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.pedidos-tabla td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14.5px;
+  color: #334155;
+}
+
+.pedidos-tabla tr:last-child td {
+  border-bottom: none;
+}
+
+.ped-id {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ped-total {
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+/* Estados del pedido */
+.estado-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Clases dinámicas según estado */
+.estado-badge.completado,
+.estado-badge.entregado,
+.estado-badge.finalizado {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.estado-badge.pendiente,
+.estado-badge.proceso {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.estado-badge.cancelado {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ==============================
+   OTROS COMPONENTES DE INTERFAZ
+   ============================== */
+.cuenta-vacio {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px dashed #cbd5e1;
+}
+
+.btn-comprar-primero {
+  display: inline-block;
+  margin-top: 14px;
+  background: #2e7d32;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.cuenta-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+  color: #475569;
+}
+
+.cuenta-spinner {
+  width: 45px;
+  height: 45px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #2e7d32;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animated-fade {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .cuenta-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .cuenta-sidebar {
+    position: relative;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

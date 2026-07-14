@@ -445,3 +445,112 @@
 .header-tienda-container.scrolled .ht-icon-svg {
   filter: brightness(0) saturate(100%) invert(14%) sepia(50%) saturate(3025%) hue-rotate(195deg) brightness(90%) contrast(105%);
 }
+.ht-usuario-dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.ht-usuario-nombre {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  transition: background 0.2s;
+}
+
+.ht-usuario-nombre:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.scrolled .ht-usuario-nombre {
+  color: #1a2b3c;
+}
+
+.scrolled .ht-usuario-nombre:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ht-dropdown-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 160px;
+  padding: 8px 0;
+  z-index: 100;
+}
+
+.ht-dropdown-menu a,
+.ht-dropdown-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  color: #1a2b3c;
+  cursor: pointer;
+  transition: background 0.1s;
+  text-decoration: none;
+}
+
+.ht-dropdown-menu a:hover,
+.ht-dropdown-menu button:hover {
+  background: #f0f0f0;
+}
+
+.ht-dropdown-menu button {
+  color: #d32f2f;
+  font-weight: 500;
+}
+/* =======================================================
+   ESTILOS ADICIONALES PARA EL MENÚ DE USUARIO Y CERRAR SESIÓN
+   ======================================================= */
+
+/* Contenedor del menú de usuario (Nombre + Botón) */
+.ht-user-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Botón de Cerrar Sesión (Estado Base - Header Oscuro) */
+.ht-logout-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ff6b6b; /* Un rojo suave para que destaque sin ser estridente */
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.ht-logout-btn:hover {
+  background-color: #ff4d4d;
+  color: white;
+  border-color: #ff4d4d;
+  box-shadow: 0 2px 8px rgba(255, 77, 77, 0.3);
+}
+
+/* Ajustes cuando el Header tiene Scroll (Fondo Blanco) */
+.header-tienda-container.scrolled .ht-logout-btn {
+  border-color: rgba(211, 47, 47, 0.4);
+  color: #d32f2f; /* Rojo más oscuro para mejor contraste en fondo claro */
+}
+
+.header-tienda-container.scrolled .ht-logout-btn:hover {
+  background-color: #d32f2f;
+  color: white;
+  border-color: #d32f2f;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+}

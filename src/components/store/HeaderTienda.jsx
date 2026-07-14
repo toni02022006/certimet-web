@@ -33,7 +33,7 @@ import icTempV from '../../image/header_icons/header_iconsverde/temperatura.webp
 import icTempoV from '../../image/header_icons/header_iconsverde/tempo.webp';
 
 import '../layout/Header.css'; 
-import './HeaderTienda.css'; 
+import './HeaderTienda.css';
 
 // ================= DATOS DEL MENÚ =================
 const laboratoriosData = {
@@ -75,10 +75,7 @@ const serviciosData = [
   { name: "Análisis Termográfico", path: "/servicios" }
 ];
 
-// =======================================================
-// CORRECCIÓN: Rutas de Categorías de Productos
-// Ahora apuntan a los IDs exactos de la BD (2 al 7)
-// =======================================================
+// Rutas de Categorías de Productos
 const categoriasProductos = [
   { name: "Automatización y Control", path: "/tienda/categoria/2" },
   { name: "Analítica", path: "/tienda/categoria/3" },
@@ -94,23 +91,76 @@ const HeaderTienda = () => {
   const [mostrarSugerencias, setMostrarSugerencias] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   
+  // Estado de autenticación
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [usuario, setUsuario] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
+
   const searchRef = useRef(null);
   
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isIngenieriaOpen, setIsIngenieriaOpen] = useState(false);
   const [isServiciosOpen, setIsServiciosOpen] = useState(false);
   const [isProductosOpen, setIsProductosOpen] = useState(false); 
-  const [activeLab, setActiveLab] = useState(null); 
-  
+  const [activeLab, setActiveLab] = useState(null);
   const location = useLocation();
   const navigate = useNavigate(); 
 
+  // SOLUCIÓN: Detectar inicio de sesión pendiente de actualización
+  useEffect(() => {
+    const necesitaActualizar = sessionStorage.getItem('necesita_actualizar');
+    if (necesitaActualizar === 'true') {
+      sessionStorage.removeItem('necesita_actualizar');
+      window.location.reload();
+    }
+  }, [location]);
+
+  // Efecto para verificar autenticación al cargar y al cambiar el storage
+  useEffect(() => {
+    const checkAuth = () => {
+      const token = localStorage.getItem('token');
+      const userData = localStorage.getItem('usuario');
+      if (token && userData) {
+        try {
+          const parsedUser = JSON.parse(userData);
+          setIsAuthenticated(true);
+          setUsuario(parsedUser);
+        } catch (e) {
+          setIsAuthenticated(false);
+          setUsuario(null);
+        }
+      } else {
+        setIsAuthenticated(false);
+        setUsuario(null);
+      }
+    };
+
+    checkAuth();
+
+    // Escuchar cambios en localStorage (por si se abre en otra pestaña)
+    const handleStorageChange = (e) => {
+      if (e.key === 'token' || e.key === 'usuario') {
+        checkAuth();
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  // Efecto para obtener conteo del carrito (simulado, luego se conectará con API)
+  useEffect(() => {
+    const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    setCartCount(carrito.length);
+  }, [isAuthenticated]);
+
+  // Efecto para scroll
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Efecto para cerrar sugerencias al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -121,6 +171,7 @@ const HeaderTienda = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Efecto para sugerencias de búsqueda
   useEffect(() => {
     const fetchSugerencias = async () => {
       if (busqueda.trim().length < 2) {
@@ -147,7 +198,7 @@ const HeaderTienda = () => {
 
   const handleBuscar = (e) => {
     e.preventDefault();
-    setMostrarSugerencias(false); 
+    setMostrarSugerencias(false);
     if (busqueda.trim() !== '') {
       navigate(`/tienda/catalogo?buscar=${encodeURIComponent(busqueda.trim())}`);
     } else {
@@ -158,6 +209,15 @@ const HeaderTienda = () => {
   // Función para forzar el cierre del menú de productos al hacer click
   const handleCategoriaClick = () => {
     setIsProductosOpen(false);
+  };
+
+  // Cerrar sesión
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    setIsAuthenticated(false);
+    setUsuario(null);
+    navigate('/tienda');
   };
 
   return (
@@ -193,7 +253,7 @@ const HeaderTienda = () => {
                         </li>
                         <li className={activeLab === 'ensayo' ? 'active-row' : ''} onMouseEnter={() => setActiveLab('ensayo')}>
                           <span>Ensayo</span><span className="arrow-right">▸</span>
-                        </li>                                                
+                        </li>                    
                       </ul>
                       <AnimatePresence>
                         {activeLab && (
@@ -368,13 +428,29 @@ const HeaderTienda = () => {
               </div>
             </div>
 
-            <Link className="ht-icon-link" to="/tienda/login">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              <span>Iniciar sesión</span>
-            </Link>
+            {/* ENLACE DE LOGIN / MI CUENTA */}
+            {!isAuthenticated ? (
+              <Link className="ht-icon-link" to="/tienda/login">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Iniciar sesión</span>
+              </Link>
+            ) : (
+              <div className="ht-user-menu">
+                <Link to="/tienda/cuenta" className="ht-icon-link">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>{usuario?.nombre || 'Mi cuenta'}</span>
+                </Link>
+                <button onClick={handleLogout} className="ht-logout-btn">
+                  Cerrar sesión
+                </button>
+              </div>
+            )}
 
             <Link className="ht-icon-link ht-carrito" to="/tienda/carrito">
               <div className="ht-carrito-icon-wrapper">
@@ -383,7 +459,7 @@ const HeaderTienda = () => {
                   <circle cx="20" cy="21" r="1"></circle>
                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
-                <span className="ht-cart-badge">0</span>
+                <span className="ht-cart-badge">{cartCount}</span>
               </div>
               <span>Compras</span>
             </Link>

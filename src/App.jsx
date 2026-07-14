@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { AuthProvider } from './context/AuthContext'
 // Importa tus Layouts
 import Layout from './components/layout/Layout';
 import LayoutTienda from './components/layout/LayoutTienda';
@@ -12,6 +12,11 @@ import TrabajaConNosotros from './views/TrabajaConNosotros';
 import Blog from './views/Blog'; 
 import Denuncias from './views/Denuncias';
 import Tienda from './views/Tienda'; 
+import Login from './views/Login';
+import Registro from './components/cuenta/Registro';
+import Cuenta from './components/cuenta/Cuenta';
+import RecuperarPassword from './components/cuenta/RecuperarPassword';
+import VerificarCodigo from './components/cuenta/VerificarCodigo';
 import ProductoDetalle from './views/ProductoDetalle';
 import ArticuloDetalle from './views/ArticuloDetalle';
 import Nosotros from './views/Nosotros'; 
@@ -46,11 +51,17 @@ function App() {
             ======================================================= */}
         <Route element={<LayoutTienda />}>
           <Route path="/tienda" element={<Tienda />} />
+          <Route path="/tienda/login" element={<Login />} />
+          <Route path="/tienda/registro" element={<Registro />} />
+          <Route path="/tienda/cuenta" element={<Cuenta />} />
+          <Route path="/tienda/recuperar" element={<RecuperarPassword />} />
+          <Route path="/tienda/verificar-codigo" element={<VerificarCodigo />} />
           <Route path="/producto/:id" element={<ProductoDetalle />} />
           
           {/* ✅ NUEVAS RUTAS DEL CATÁLOGO */}
           <Route path="/tienda/catalogo" element={<Catalogo />} />
           <Route path="/tienda/categoria/:idCategoria" element={<Catalogo />} />
+
           
         </Route>
 
