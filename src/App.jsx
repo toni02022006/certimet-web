@@ -17,12 +17,14 @@ import Registro from './components/cuenta/Registro';
 import Cuenta from './components/cuenta/Cuenta';
 import RecuperarPassword from './components/cuenta/RecuperarPassword';
 import VerificarCodigo from './components/cuenta/VerificarCodigo';
-import ProductoDetalle from './views/ProductoDetalle';
+import Carrito from './components/store/Carrito';
+import ProductoDetalle from './components/store/ProductoDetalle';
 import ArticuloDetalle from './views/ArticuloDetalle';
+import Checkout from './components/store/Checkout';
 import Nosotros from './views/Nosotros'; 
 import Catalogo from './views/Catalogo'; 
 import ScrollToTop from './components/ScrollToTop';
-import Laboratorio from './views/Laboratorio'; // Importa la vista del laboratorio
+import Laboratorio from './views/Laboratorio';
 
 function App() {
   return (
@@ -56,6 +58,8 @@ function App() {
           <Route path="/tienda/cuenta" element={<Cuenta />} />
           <Route path="/tienda/recuperar" element={<RecuperarPassword />} />
           <Route path="/tienda/verificar-codigo" element={<VerificarCodigo />} />
+          <Route path="/tienda/carrito" element={<Carrito />} />
+          <Route path="/tienda/checkout" element={<Checkout />} />
           <Route path="/producto/:id" element={<ProductoDetalle />} />
           
           {/* ✅ NUEVAS RUTAS DEL CATÁLOGO */}

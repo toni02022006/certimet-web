@@ -6,7 +6,7 @@
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   
-  padding-top: 150px;
+  padding-top: 165px;
   padding-bottom: 60px;
   padding-left: 12%;
   padding-right: 17%;
@@ -622,4 +622,11 @@
   .acciones-fila-1 .btn-certimet-cart { flex: none; }
   .info-logistica-grid { flex-direction: column; }
   .metodos-pago-container { justify-content: center; padding: 0 2%; }
+}
+/* =========================================
+   FORZADO DE CAPA PARA SWEETALERT2 TOAST
+   ========================================= */
+/* Asegurar que el modal de SweetAlert2 centrado siempre flote sobre el Header */
+.swal2-container.swal2-modal-centrado {
+  z-index: 999999 !important;
 }

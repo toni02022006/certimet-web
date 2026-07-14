@@ -149,9 +149,13 @@ const HeaderTienda = () => {
 
   // Efecto para obtener conteo del carrito (simulado, luego se conectará con API)
   useEffect(() => {
-    const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-    setCartCount(carrito.length);
-  }, [isAuthenticated]);
+    const handleCarritoUpdate = () => {
+      const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+      setCartCount(carrito.length);
+    };
+    window.addEventListener('carritoActualizado', handleCarritoUpdate);
+    return () => window.removeEventListener('carritoActualizado', handleCarritoUpdate);
+  }, []);
 
   // Efecto para scroll
   useEffect(() => {
