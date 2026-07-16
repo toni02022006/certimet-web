@@ -111,7 +111,7 @@ const TripleCertificacion = () => {
               La calidad en <strong className="text-blue-certimet">CERTIMET</strong> no es una promesa, es un sistema. Gracias al cofinanciamiento del Concurso Mypyme de Calidad de ProInnóvate y a nuestro compromiso con la mejora continua, <span className="highlight-blue">hemos alcanzado la triple certificación ISO</span> que respalda cada uno de nuestros procesos:
             </p>
             <a href="#" className="btn-outline-blue">
-              Nuestro alcance &rarr;
+              Nuestras ISOS &rarr;
             </a>
           </motion.div>
 

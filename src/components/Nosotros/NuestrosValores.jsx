@@ -3,18 +3,25 @@ import './NuestrosValores.css';
 
 const valoresData = [
   {
-    title: "Vocación de servicio",
-    text: "En todos nuestros servicios plasmamos nuestra experiencia y conocimiento con la dedicación y empeño para conseguir la continuación de las actividades de todos nuestros clientes internos como externos."
+    title: "Calidad e innovación",
+    text: "Entendemos la calidad como una manera de trabajar y de crecer como empresa. A través de una constante innovación en nuestros procesos, cumplimos con las expectativas de nuestros clientes y nos ajustamos a sus necesidades."
   },
   {
     title: "Orientación al cliente",
     text: "Nuestra experiencia en el mundo de la Metrología, nos permite acompañar y asesorar al cliente en su toma de decisiones."
   },
   {
-    title: "Calidad e innovación",
-    text: "Entendemos la calidad como una manera de trabajar y de crecer como empresa. A través de una constante innovación en nuestros procesos, cumplimos con las expectativas de nuestros clientes y nos ajustamos a sus necesidades."
+    title: "Valor Humano",
+    text: "Reconocemos el talento y la dignidad de cada persona, promoviendo un entorno de respeto, empatía y desarrollo integral, tanto para nuestro equipo como para quienes confían en nosotros."
   },
-  // Agregamos 2 más para que el bucle infinito del carrusel sea visualmente fluido
+  {
+    title: "Vocación de servicio",
+    text: "En todos nuestros servicios plasmamos nuestra experiencia y conocimiento con la dedicación y empeño para conseguir la continuación de las actividades de todos nuestros clientes internos como externos."
+  },
+  {
+    title: "Integridad",
+    text: "Actuamos con honestidad y transparencia, basando nuestras decisiones en la ética y el cumplimiento normativo, generando confianza en cada medición y en cada relación."
+  },
   {
     title: "Trabajo en equipo",
     text: "Fomentamos un ambiente colaborativo donde el respeto y la comunicación abierta nos permiten alcanzar nuestras metas y superar los desafíos diarios del sector."

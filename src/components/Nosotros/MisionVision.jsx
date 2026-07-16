@@ -23,7 +23,7 @@ const MisionVision = () => {
           >
             <h2 className="mv-title">Misión</h2>
             <p className="mv-desc">
-              Ser una empresa sólida, con capacidades técnicas y un excelente grupo de trabajo que brinda servicios integrales de calidad en calibración, mantenimiento y capacitación, adaptados a las exigencias de un mercado creciente y competitivo.
+              Brindamos soluciones tecnológicas en medición e ingeniería que impulsan la confiabilidad y competitividad de nuestros clientes mediante metrología, instrumentación y soporte técnico especializado. 
             </p>
           </motion.div>
 
@@ -70,7 +70,7 @@ const MisionVision = () => {
           >
             <h2 className="mv-title">Visión</h2>
             <p className="mv-desc">
-              Consolidarnos como un laboratorio de calibración y verificación de equipos de medición con amplio alcance, que demuestre competencia técnica, mantenga la excelencia y genere resultados confiables, cumpliendo los requisitos normativos vigentes con enfoque en la satisfacción del cliente.
+              Ser el socio estratégico de confianza en soluciones tecnológicas industriales, metrología e ingeniería, impulsando la innovación, la productividad y la competitividad en Latinoamérica.
             </p>
           </motion.div>
         </div>

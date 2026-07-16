@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './BlogCarousel.css';
 
 // Importamos la imagen de prueba que me pasaste
@@ -91,6 +92,12 @@ const BlogCarousel = () => {
             aria-label={`Ir a la diapositiva ${index + 1}`}
           />
         ))}
+      </div>
+      {/* NUEVO BOTÓN CENTRADO */}
+      <div className="blog-button-wrapper">
+        <Link to="/blog" className="blog-btn">
+          Ver todos los artículos
+        </Link>
       </div>
     </section>
   );

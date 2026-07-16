@@ -55,7 +55,6 @@
   flex-direction: column;
   min-height: 400px;
   
-  /* ESTADO POR DEFECTO (Translúcida con borde verde sutil) */
   background-color: rgba(255, 255, 255, 0.05); 
   border: 1px solid rgba(28, 255, 87, 0.4); 
   
@@ -63,7 +62,6 @@
 }
 
 .solution-card:hover {
-  /* ESTADO AL PASAR EL MOUSE (Fondo oscuro sólido y borde oculto) */
   transform: translateY(-5px);
   background-color: #001f42; 
   border-color: rgba(28, 255, 87, 0.6);
@@ -74,7 +72,7 @@
    CÍRCULO VERDE E ICONOS
    ========================================================================== */
 .solution-icon-circle {
-  width: 45px; /* Un poco más grande para que quepa bien el icono */
+  width: 45px;
   height: 45px;
   border-radius: 50%;
   background-color: #1cff57;
@@ -111,7 +109,7 @@
   color: rgba(255, 255, 255, 0.85);
   font-size: 13px;
   line-height: 1.6;
-  margin-bottom: auto; /* Empuja el botón siempre hacia abajo */
+  margin-bottom: auto;
 }
 
 /* ==========================================================================
@@ -126,18 +124,18 @@
   border-radius: 20px;
   padding: 8px 18px;
   font-size: 13px;
-  font-weight: 600; /* Reduje el peso para que se vea más fino como en la imagen */
+  font-weight: 600;
   cursor: pointer;
   align-self: flex-start;
   margin-top: 25px;
   transition: all 0.3s ease;
+  text-decoration: none; /* ← ¡QUITA LA LÍNEA DEBAJO DEL TEXTO! */
 }
 
-/* Hover: Se vuelve sólido verde */
 .solution-btn:hover {
   background-color: #1cff57;
   border-color: #1cff57;
-  color: #003b7a; /* Letra oscura para contrastar con el fondo verde */
+  color: #003b7a;
   transform: scale(1.05);
 }
 
@@ -153,6 +151,8 @@
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(28, 255, 87, 0.2);
   transition: transform 0.2s ease;
+  text-decoration: none; /* Por si acaso, también lo quito aquí */
+  display: inline-block;
 }
 
 .solutions-main-cta:hover {

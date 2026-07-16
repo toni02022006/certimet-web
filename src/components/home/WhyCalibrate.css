@@ -77,7 +77,40 @@
   font-size: 15px;
   line-height: 1.6;
 }
+/* ==========================================================================
+   BOTÓN TRANSPARENTE CON BORDE AZUL
+   ========================================================================== */
+.why-calibrate-button-wrapper {
+  margin-top: 30px; /* Separación del párrafo */
+}
 
+.why-calibrate-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: transparent;
+  color: #0056b3;          /* Azul Certimet */
+  border: 2px solid #0056b3;
+  border-radius: 30px;     /* Bordes redondeados */
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.why-calibrate-btn:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+  transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+/* En responsive, si el contenido está centrado, el botón también */
+@media (max-width: 600px) {
+  .why-calibrate-button-wrapper {
+    text-align: center;
+  }
+}
 /* ==========================================================================
    RESPONSIVO
    ========================================================================== */

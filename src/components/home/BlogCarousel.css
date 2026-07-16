@@ -215,6 +215,36 @@
   transform: scale(1.2);
 }
 
+/* =========================================
+   BOTÓN CENTRADO DE BLOG
+========================================= */
+.blog-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px; /* Separación de los puntitos */
+}
+
+.blog-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: transparent;
+  color: #0056b3;
+  border: 2px solid #0056b3;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.blog-btn:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+  transform: translateY(-2px);
+}
+
 /* Responsivo para móviles */
 @media (max-width: 1100px) {
   .blog-card.prev { left: 10%; transform: translate(-50%, -50%) scale(0.75) !important; }

@@ -7,8 +7,6 @@ import './Contacto.css';
 const Contacto = () => {
   const [tipoPersona, setTipoPersona] = useState('natural');
   const [isLoading, setIsLoading] = useState(false);
-  
-  // Estado para el ReCAPTCHA
   const [recaptchaToken, setRecaptchaToken] = useState(null);
   const recaptchaRef = useRef(null);
 
@@ -35,7 +33,6 @@ const Contacto = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación del ReCAPTCHA antes de enviar
     if (!recaptchaToken) {
       Swal.fire({
         icon: 'warning',
@@ -51,22 +48,19 @@ const Contacto = () => {
     const payload = {
       ...formData,
       tipo_contacto: tipoPersona === 'empresa' ? 'EMPRESA' : 'NATURAL',
-      recaptchaToken // Enviamos el token por si luego quieres validarlo en el backend
+      recaptchaToken
     };
 
     try {
       const response = await fetch('http://localhost:3000/api/contacto', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
       const resultado = await response.json();
 
       if (response.ok) {
-        // Alerta de éxito con SweetAlert2
         Swal.fire({
           icon: 'success',
           title: '¡Éxito!',
@@ -74,8 +68,6 @@ const Contacto = () => {
           confirmButtonColor: '#0061bc',
           confirmButtonText: 'OK'
         });
-
-        // Limpiamos el formulario
         setFormData({
           nombres_apellidos: '',
           dni: '',
@@ -87,15 +79,11 @@ const Contacto = () => {
           mensaje: '',
           acepta_politicas: false
         });
-        
-        // Reiniciamos el widget de ReCAPTCHA
         if (recaptchaRef.current) {
           recaptchaRef.current.reset();
           setRecaptchaToken(null);
         }
-
       } else {
-        // Alerta de error controlada
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -105,7 +93,6 @@ const Contacto = () => {
       }
     } catch (error) {
       console.error('Error al conectar con el servidor:', error);
-      // Alerta de error de conexión
       Swal.fire({
         icon: 'error',
         title: 'Error de conexión',
@@ -123,22 +110,68 @@ const Contacto = () => {
     exit: { opacity: 0, x: 15, transition: { duration: 0.2 } }
   };
 
+  // Número de WhatsApp (formato internacional sin el +)
+  const whatsappNumber = '51992056019';
+
+  // Tarjetas de servicios con mensaje personalizado para WhatsApp
   const serviciosCards = [
-    { id: 1, titulo: 'Laboratorio de Calibración', accion: 'CONTACTAR', fullWidth: false },
-    { id: 2, titulo: 'Automatización, Analítica y Control Industrial', accion: 'COTIZAR', fullWidth: false },
-    { id: 3, titulo: 'Mantenimiento Industrial', accion: 'COTIZAR', fullWidth: false },
-    { id: 4, titulo: 'Consultoría y Capacitaciones', accion: 'COTIZAR', fullWidth: false },
-    { id: 5, titulo: 'Contratos de mantenimiento Integral', accion: 'COTIZAR', fullWidth: false },
-    { id: 6, titulo: 'Análisis de Espuma Contra Incendios', accion: 'COTIZAR', fullWidth: false },
-    { id: 7, titulo: 'Tienda de equipos de medición Industrial', accion: 'COTIZAR', fullWidth: true }
+    {
+      id: 1,
+      titulo: 'Laboratorio de Calibración',
+      accion: 'CONTACTAR',
+      fullWidth: false,
+      mensajeWA: 'Hola, estoy interesado en el servicio de *Laboratorio de Calibración*. ¿Podrían brindarme más información?'
+    },
+    {
+      id: 2,
+      titulo: 'Automatización, Analítica y Control Industrial',
+      accion: 'COTIZAR',
+      fullWidth: false,
+      mensajeWA: 'Hola, deseo cotizar el servicio de *Automatización, Analítica y Control Industrial*.'
+    },
+    {
+      id: 3,
+      titulo: 'Mantenimiento Industrial',
+      accion: 'COTIZAR',
+      fullWidth: false,
+      mensajeWA: 'Hola, necesito información sobre *Mantenimiento Industrial* para mis equipos.'
+    },
+    {
+      id: 4,
+      titulo: 'Consultoría y Capacitaciones',
+      accion: 'COTIZAR',
+      fullWidth: false,
+      mensajeWA: 'Hola, me gustaría cotizar sus servicios de *Consultoría y Capacitaciones*.'
+    },
+    {
+      id: 5,
+      titulo: 'Contratos de mantenimiento Integral',
+      accion: 'COTIZAR',
+      fullWidth: false,
+      mensajeWA: 'Hola, estoy interesado en *Contratos de mantenimiento Integral*. ¿Podrían asesorarme?'
+    },
+    {
+      id: 6,
+      titulo: 'Análisis de Espuma Contra Incendios',
+      accion: 'COTIZAR',
+      fullWidth: false,
+      mensajeWA: 'Hola, requiero cotización para *Análisis de Espuma Contra Incendios*.'
+    },
+    {
+      id: 7,
+      titulo: 'Tienda de equipos de medición Industrial',
+      accion: 'COTIZAR',
+      fullWidth: true,
+      mensajeWA: 'Hola, quiero cotizar equipos de medición de su *Tienda Industrial*.'
+    }
   ];
 
   const tarjetasContacto = [
     {
       id: 1,
-      titulo: 'Llámanos',
-      linea1: '+51 941 101 546',
-      linea2: '(01) 380 3727',
+      titulo: 'Escribenos al WhatsApp',
+      linea1: '+51 992 056 019',
+      linea2: 'Llamadas: +51 941 101 546',
       icono: <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
     },
     {
@@ -177,15 +210,26 @@ const Contacto = () => {
 
       <div className="servicios-cards-section">
         <div className="servicios-grid">
-          {serviciosCards.map((servicio) => (
-            <div 
-              key={servicio.id} 
-              className={`servicio-card ${servicio.fullWidth ? 'full-width' : ''}`}
-            >
-              <h3>{servicio.titulo}</h3>
-              <span className="servicio-link">{servicio.accion}</span>
-            </div>
-          ))}
+          {serviciosCards.map((servicio) => {
+            // Construir el enlace de WhatsApp con el mensaje codificado
+            const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(servicio.mensajeWA)}`;
+            return (
+              <div 
+                key={servicio.id} 
+                className={`servicio-card ${servicio.fullWidth ? 'full-width' : ''}`}
+              >
+                <h3>{servicio.titulo}</h3>
+                <a 
+                  href={waLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="servicio-link"
+                >
+                  {servicio.accion}
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -369,7 +413,6 @@ const Contacto = () => {
               </label>
             </div>
 
-            {/* Aquí agregamos el widget de ReCAPTCHA */}
             <div style={{ marginTop: '15px', marginBottom: '15px' }}>
               <ReCAPTCHA
                 ref={recaptchaRef}

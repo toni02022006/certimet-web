@@ -1,12 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Certifications.css';
 
-// Importación de los iconos
 import icon1 from '../../image/icons/1b.webp';
 import icon2 from '../../image/icons/2b.webp';
 import icon3 from '../../image/icons/3b.webp';
 
-// Importación de las homologaciones
 import logoHodelpe from '../../image/homologations/HODELPE.webp';
 import logoSgs from '../../image/homologations/SGS.webp';
 import logoEin from '../../image/homologations/EIN-gris.png';
@@ -32,7 +31,9 @@ const Certifications = () => {
             Calibración Acreditado por INACAL<br/>
             Norma Técnica ISO/IEC 17025:2017
           </p>
-          <button className="cert-button">Nuestro alcance &rarr;</button>
+          <Link to="/nosotros#acreditacion" className="cert-button">
+            Nuestro alcance &rarr;
+          </Link>
         </div>
 
         {/* TARJETA 2: Certificaciones */}
@@ -47,10 +48,12 @@ const Certifications = () => {
             ISO, resultado de su compromiso con la<br/>
             mejora continua y la calidad
           </p>
-          <button className="cert-button">Ver especialidades</button>
+          <Link to="/nosotros#triple" className="cert-button">
+            Ver especialidades
+          </Link>
         </div>
 
-        {/* TARJETA 3: Homologaciones */}
+        {/* TARJETA 3: Homologaciones (sin botón) */}
         <div className="cert-card">
           <div className="card-icon-circle">
             <img src={icon3} alt="Icono Homologaciones" />

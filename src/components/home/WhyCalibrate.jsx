@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';  // ← Importa Link
 import './WhyCalibrate.css';
 
-// Importación de tu nueva imagen
 import calibracionImg from '../../image/calibracioninicio.jpeg';
 
-// 1. ANIMACIÓN PARA LA IMAGEN (Entra desde la izquierda)
+// Animaciones (igual que antes)
 const imageReveal = {
   hidden: { opacity: 0, x: -40, scale: 0.95, rotateY: -10, filter: "blur(8px)" },
   visible: { 
@@ -18,7 +18,6 @@ const imageReveal = {
   }
 };
 
-// 2. ANIMACIÓN PARA LOS TEXTOS (Entran desde la derecha en cascada)
 const textReveal = {
   hidden: { opacity: 0, x: 40, filter: "blur(8px)" },
   visible: { 
@@ -34,7 +33,7 @@ const WhyCalibrate = () => {
     <section className="why-calibrate-section">
       <div className="why-calibrate-container">
         
-        {/* Lado Izquierdo: Imagen limpia con bordes redondeados */}
+        {/* Imagen */}
         <motion.div 
           className="why-calibrate-image-wrapper"
           initial="hidden"
@@ -50,7 +49,7 @@ const WhyCalibrate = () => {
           />
         </motion.div>
 
-        {/* Lado Derecho: Contenido de Texto Actualizado */}
+        {/* Contenido de texto */}
         <motion.div 
           className="why-calibrate-content"
           initial="hidden"
@@ -72,6 +71,14 @@ const WhyCalibrate = () => {
             con tus periodos de calibración, respaldados por nuestra acreditación INACAL y técnicos 
             altamente calificados.
           </motion.p>
+
+          {/* NUEVO BOTÓN */}
+          <motion.div variants={textReveal} className="why-calibrate-button-wrapper">
+            <Link to="/laboratorio" className="why-calibrate-btn">
+              Explora nuestro laboratorio
+            </Link>
+          </motion.div>
+
         </motion.div>
 
       </div>

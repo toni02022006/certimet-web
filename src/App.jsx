@@ -25,6 +25,8 @@ import Nosotros from './views/Nosotros';
 import Catalogo from './views/Catalogo'; 
 import ScrollToTop from './components/ScrollToTop';
 import Laboratorio from './views/Laboratorio';
+import AutentificacionCalibracion from './components/autentificacion/AutentificacionCalibracion';
+import AutentificacionInformes from './components/autentificacion/AutentificacionInformes';
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
           <Route path="/denuncias" element={<Denuncias />} />
           <Route path="/blog/:id" element={<ArticuloDetalle />} />
           <Route path="/laboratorio" element={<Laboratorio />} />
+          <Route path="/autentificacion/calibracion" element={<AutentificacionCalibracion />} />
+          <Route path="/autentificacion/informes" element={<AutentificacionInformes />} />
         </Route>
 
         {/* =======================================================

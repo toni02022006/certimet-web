@@ -118,3 +118,88 @@
     font-size: 32px;
   }
 }
+/* ============================================================
+   ESTILOS PARA EL HERO (original y nuevo)
+   ============================================================ */
+.nosotros-hero-title {
+  font-size: 56px;
+  line-height: 1.2; /* Fijo para todas las líneas */
+  font-weight: 500;
+  margin: 0;
+  color: #ffffff;
+  text-align: left;
+}
+
+/* Líneas de texto (cada línea ocupa todo el ancho) */
+.line-block {
+  display: block;
+  text-align: left;
+  line-height: 1.2;
+  white-space: nowrap; /* Evita que se rompa dentro de la línea */
+}
+
+/* Para las letras individuales (dentro de AnimatedWord) */
+.nosotros-hero-title .text-green,
+.nosotros-hero-title .text-white {
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1.2;
+}
+
+/* Verde usado en ambos slides */
+.text-green {
+  color: #00ff3c;
+  font-weight: 600;
+  font-style: italic; /* Se mantiene la cursiva */
+}
+
+.text-white {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Subtítulo y QR */
+.nosotros-hero-subtitle {
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 480px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.nosotros-hero-qr-container {
+  margin-top: 20px;
+  display: inline-block;
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  max-width: 140px;
+}
+
+.nosotros-hero-qr-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .nosotros-hero-title {
+    font-size: 40px;
+  }
+  .nosotros-hero-subtitle {
+    font-size: 14px;
+  }
+  .nosotros-hero-qr-container {
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nosotros-hero-title {
+    font-size: 32px;
+  }
+}

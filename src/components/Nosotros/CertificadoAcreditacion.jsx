@@ -34,7 +34,7 @@ const CertificadoAcreditacion = () => {
                 </span>
               </h2>
               <a href="#" className="btn-outline-blue">
-                Conócenos &rarr;
+                Nuestro alcance &rarr;
               </a>
             </motion.div>
 
