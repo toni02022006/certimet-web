@@ -1,53 +1,130 @@
-.registro-page {
-  min-height: 100vh;
+/* =========================================
+   WRAPPER FULLSCREEN
+========================================= */
+.registro-fullscreen-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: #f5f7fa;
-  padding: 20px;
+  justify-content: flex-end; /* Tarjeta a la derecha */
+  padding: 40px 10%; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
 }
 
-.registro-container {
-  max-width: 520px;
+/* =========================================
+   BOTÓN VOLVER
+========================================= */
+.btn-volver {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateX(-5px);
+}
+
+/* =========================================
+   TARJETA TRANSPARENTE (Glassmorphism Puro)
+========================================= */
+.registro-glass-container {
+  /* Más ancha que el login para acomodar las 2 columnas */
+  max-width: 520px; 
   width: 100%;
-  background: white;
-  padding: 40px 32px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.35); 
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px);
+  padding: 40px 45px; /* Ligeramente menos padding vertical para que quepa bien */
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  max-height: 90vh; /* Previene que se salga de la pantalla en laptops pequeñas */
+  overflow-y: auto; /* Permite scroll interno si la pantalla es muy bajita */
 }
 
-.registro-container h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1a2b3c;
-  margin-bottom: 4px;
+/* Ocultar barra de scroll interna para un look más limpio */
+.registro-glass-container::-webkit-scrollbar {
+  width: 6px;
+}
+.registro-glass-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   HEADER DE LA TARJETA
+========================================= */
+.registro-header-box {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.registro-logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+
+.registro-glass-container h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px 0;
 }
 
 .registro-sub {
-  color: #6b7a8a;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
-  margin-bottom: 24px;
+  margin: 0;
 }
 
+/* =========================================
+   ALERTAS
+========================================= */
 .registro-error {
-  background: #fee2e2;
-  color: #b91c1c;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  margin-bottom: 16px;
+  background: rgba(220, 38, 38, 0.3);
+  color: #fca5a5;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  text-align: center;
 }
 
+/* =========================================
+   FORMULARIO E INPUTS CRISTALINOS
+========================================= */
 .registro-form .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-}
-
-@media (max-width: 480px) {
-  .registro-form .form-row {
-    grid-template-columns: 1fr;
-  }
 }
 
 .registro-form .form-group {
@@ -56,65 +133,132 @@
 
 .registro-form label {
   display: block;
-  font-weight: 500;
-  font-size: 14px;
-  color: #2d3748;
-  margin-bottom: 4px;
-}
-
-.registro-form input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d1d9e6;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: border 0.2s;
-}
-
-.registro-form input:focus {
-  outline: none;
-  border-color: #2e7d32;
-  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
-}
-
-.btn-registro {
-  width: 100%;
-  padding: 14px;
-  background: #2e7d32;
-  color: white;
   font-weight: 600;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 13px 15px; /* Un poco más compacto que el login */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 14.5px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3); 
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #05d64c;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 3px rgba(5, 214, 76, 0.2);
+}
+
+/* =========================================
+   BOTÓN REGISTRAR (Vibrante)
+========================================= */
+.btn-registro-glass {
+  width: 100%;
+  padding: 15px;
+  background: #05d64c;
+  color: #ffffff;
+  font-weight: 800;
   font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s;
-  margin-top: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(5, 214, 76, 0.3);
+  margin-top: 10px;
 }
 
-.btn-registro:hover {
-  background: #1b5e20;
+.btn-registro-glass:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(5, 214, 76, 0.5);
+  background: #00ea52;
 }
 
+.btn-registro-glass:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   FOOTER (IR A LOGIN)
+========================================= */
 .registro-footer {
-  margin-top: 24px;
+  margin-top: 25px;
   text-align: center;
-  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 20px;
 }
 
-.registro-footer a {
-  color: #2e7d32;
-  font-weight: 500;
+.registro-footer p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13.5px;
+  margin: 0 0 12px 0;
+}
+
+.btn-login-link {
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14.5px;
   text-decoration: none;
+  padding: 10px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  transition: all 0.3s ease;
 }
 
-.registro-footer a:hover {
-  text-decoration: underline;
+.btn-login-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: #05d64c;
+  color: #05d64c;
 }
 
-.registro-exito {
+/* =========================================
+   ESTILOS DE ÉXITO
+========================================= */
+.exito-container {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
 }
 
-.registro-exito h2 {
-  color: #2e7d32;
+.texto-verde {
+  color: #05d64c !important;
+  margin-top: 10px !important;
+}
+
+/* =========================================
+   RESPONSIVO (MÓVILES)
+========================================= */
+@media (max-width: 900px) {
+  .registro-fullscreen-wrapper {
+    justify-content: center; 
+    padding: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .registro-form .form-row {
+    grid-template-columns: 1fr; /* Pasa a 1 columna en celulares */
+    gap: 0;
+  }
+  
+  .registro-glass-container {
+    padding: 30px 25px;
+  }
 }

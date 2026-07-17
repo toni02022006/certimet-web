@@ -35,7 +35,6 @@ const Cuenta = () => {
 
     const fetchData = async () => {
       try {
-        // Obtener perfil
         const perfilRes = await fetch('http://localhost:3000/api/usuario/perfil', {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -49,7 +48,6 @@ const Cuenta = () => {
           });
         }
 
-        // Obtener direcciones
         const dirRes = await fetch('http://localhost:3000/api/usuario/direcciones', {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -58,7 +56,6 @@ const Cuenta = () => {
           setDirecciones(dirs);
         }
 
-        // Obtener pedidos
         const pedRes = await fetch('http://localhost:3000/api/usuario/pedidos', {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -138,6 +135,13 @@ const Cuenta = () => {
     navigate('/tienda');
   };
 
+  const obtenerIniciales = () => {
+    if (!usuario?.nombre) return 'U';
+    const inicialNombre = usuario.nombre.charAt(0);
+    const inicialApellido = usuario.apellidos ? usuario.apellidos.charAt(0) : '';
+    return `${inicialNombre}${inicialApellido}`.toUpperCase();
+  };
+
   if (loading) {
     return (
       <div className="cuenta-loading-container">
@@ -151,20 +155,21 @@ const Cuenta = () => {
     <div className="cuenta-page-wrapper">
       <div className="cuenta-container">
         
-        {/* SIDEBAR DE USUARIO */}
-        <div className="cuenta-sidebar">
-          <div className="cuenta-avatar">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
+        {/* =======================================
+            HERO BANNER SUPERIOR (Reemplaza al sidebar)
+        ======================================= */}
+        <div className="cuenta-hero-banner">
+          <div className="hero-user-info">
+            <div className="cuenta-avatar-premium">
+              {obtenerIniciales()}
+            </div>
+            <div className="hero-text-content">
+              <h2>{usuario?.nombre} {usuario?.apellidos}</h2>
+              <p className="cuenta-email">{usuario?.correo}</p>
+            </div>
           </div>
-          <h2>{usuario?.nombre} {usuario?.apellidos}</h2>
-          <p className="cuenta-email">{usuario?.correo}</p>
           
-          <div className="cuenta-sidebar-divider"></div>
-          
-          <button className="btn-cerrar-sesion" onClick={handleLogout}>
+          <button className="btn-cerrar-sesion-premium" onClick={handleLogout}>
             <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
               <polyline points="16 17 21 12 16 7" />
@@ -174,126 +179,122 @@ const Cuenta = () => {
           </button>
         </div>
 
-        {/* CONTENIDO PRINCIPAL */}
-        <div className="cuenta-main">
+        {/* =======================================
+            GRILLA DE 3 COLUMNAS
+        ======================================= */}
+        <div className="cuenta-grid-3">
           
-          {/* SECCIÓN PERFIL */}
+          {/* COLUMNA 1: PERFIL */}
           <div className="cuenta-section">
             <div className="cuenta-section-header">
               <div className="section-title-group">
-                <svg className="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <h3>Información de Perfil</h3>
+                <div className="icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <h3>Perfil</h3>
               </div>
               {!editando && (
-                <button className="btn-editar" onClick={() => setEditando(true)}>
-                  Editar perfil
+                <button className="btn-editar-premium" onClick={() => setEditando(true)}>
+                  Editar
                 </button>
               )}
             </div>
 
             {!editando ? (
-              <div className="cuenta-info-grid">
-                <div className="info-card">
+              <div className="cuenta-info-list">
+                <div className="info-card-premium">
                   <span className="info-label">Nombre completo</span>
                   <span className="info-value">{usuario?.nombre} {usuario?.apellidos}</span>
                 </div>
-                <div className="info-card">
+                <div className="info-card-premium">
                   <span className="info-label">Correo electrónico</span>
                   <span className="info-value">{usuario?.correo}</span>
                 </div>
-                <div className="info-card">
+                <div className="info-card-premium">
                   <span className="info-label">Número de teléfono</span>
                   <span className="info-value">{usuario?.telefono || 'No registrado'}</span>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleActualizar} className="cuenta-form animated-fade">
-                <div className="form-grid-3">
-                  <div className="form-group">
-                    <label>Nombre(s)</label>
-                    <input
-                      type="text"
-                      value={formData.nombre}
-                      onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                      required
-                      placeholder="Tu nombre"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Apellidos</label>
-                    <input
-                      type="text"
-                      value={formData.apellidos}
-                      onChange={(e) => setFormData({...formData, apellidos: e.target.value})}
-                      required
-                      placeholder="Tus apellidos"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Teléfono</label>
-                    <input
-                      type="tel"
-                      value={formData.telefono}
-                      onChange={(e) => setFormData({...formData, telefono: e.target.value})}
-                      placeholder="Ej. +51 987654321"
-                    />
-                  </div>
+                <div className="form-group">
+                  <label>Nombre(s)</label>
+                  <input
+                    type="text"
+                    value={formData.nombre}
+                    onChange={(e) => setFormData({...formData, nombre: e.target.value})}
+                    required
+                  />
                 </div>
-                <div className="form-actions">
-                  <button type="submit" className="btn-guardar">Guardar cambios</button>
-                  <button type="button" className="btn-cancelar" onClick={() => setEditando(false)}>Cancelar</button>
+                <div className="form-group">
+                  <label>Apellidos</label>
+                  <input
+                    type="text"
+                    value={formData.apellidos}
+                    onChange={(e) => setFormData({...formData, apellidos: e.target.value})}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Teléfono</label>
+                  <input
+                    type="tel"
+                    value={formData.telefono}
+                    onChange={(e) => setFormData({...formData, telefono: e.target.value})}
+                  />
+                </div>
+                <div className="form-actions-col">
+                  <button type="submit" className="btn-guardar-premium btn-full">Guardar</button>
+                  <button type="button" className="btn-cancelar-premium btn-full" onClick={() => setEditando(false)}>Cancelar</button>
                 </div>
               </form>
             )}
           </div>
 
-          {/* SECCIÓN DIRECCIONES */}
+          {/* COLUMNA 2: DIRECCIONES */}
           <div className="cuenta-section">
             <div className="cuenta-section-header">
               <div className="section-title-group">
-                <svg className="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <h3>Mis Direcciones de Envío</h3>
+                <div className="icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <h3>Direcciones</h3>
               </div>
               <button 
                 className={`btn-toggle-direccion ${mostrarFormDireccion ? 'btn-active' : ''}`} 
                 onClick={() => setMostrarFormDireccion(!mostrarFormDireccion)}
               >
-                {mostrarFormDireccion ? 'Cancelar' : '+ Agregar dirección'}
+                {mostrarFormDireccion ? 'Cancelar' : '+ Nueva'}
               </button>
             </div>
 
             {mostrarFormDireccion && (
               <form onSubmit={handleAgregarDireccion} className="cuenta-form direccion-form animated-fade">
-                <div className="form-grid-2">
-                  <div className="form-group">
-                    <label>Nombre o Título (ej: Casa, Oficina)</label>
-                    <input
-                      type="text"
-                      value={nuevaDireccion.titulo}
-                      onChange={(e) => setNuevaDireccion({...nuevaDireccion, titulo: e.target.value})}
-                      required
-                      placeholder="Ej. Mi Casa"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Dirección completa</label>
-                    <input
-                      type="text"
-                      value={nuevaDireccion.direccion}
-                      onChange={(e) => setNuevaDireccion({...nuevaDireccion, direccion: e.target.value})}
-                      required
-                      placeholder="Calle, avenida o jirón y nro."
-                    />
-                  </div>
+                <div className="form-group">
+                  <label>Título (Ej. Casa)</label>
+                  <input
+                    type="text"
+                    value={nuevaDireccion.titulo}
+                    onChange={(e) => setNuevaDireccion({...nuevaDireccion, titulo: e.target.value})}
+                    required
+                  />
                 </div>
-                
-                <div className="form-grid-3">
+                <div className="form-group">
+                  <label>Dirección completa</label>
+                  <input
+                    type="text"
+                    value={nuevaDireccion.direccion}
+                    onChange={(e) => setNuevaDireccion({...nuevaDireccion, direccion: e.target.value})}
+                    required
+                  />
+                </div>
+                <div className="form-row-2">
                   <div className="form-group">
                     <label>Distrito</label>
                     <input
@@ -301,7 +302,6 @@ const Cuenta = () => {
                       value={nuevaDireccion.distrito}
                       onChange={(e) => setNuevaDireccion({...nuevaDireccion, distrito: e.target.value})}
                       required
-                      placeholder="Ej. Miraflores"
                     />
                   </div>
                   <div className="form-group">
@@ -311,105 +311,96 @@ const Cuenta = () => {
                       value={nuevaDireccion.provincia}
                       onChange={(e) => setNuevaDireccion({...nuevaDireccion, provincia: e.target.value})}
                       required
-                      placeholder="Ej. Lima"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Código postal (Opcional)</label>
-                    <input
-                      type="text"
-                      value={nuevaDireccion.codigo_postal}
-                      onChange={(e) => setNuevaDireccion({...nuevaDireccion, codigo_postal: e.target.value})}
-                      placeholder="Ej. 15046"
                     />
                   </div>
                 </div>
-
                 <div className="form-group">
                   <label>Referencia (Opcional)</label>
                   <input
                     type="text"
                     value={nuevaDireccion.referencia}
                     onChange={(e) => setNuevaDireccion({...nuevaDireccion, referencia: e.target.value})}
-                    placeholder="Ej. Frente al parque principal, portón verde"
                   />
                 </div>
-                
-                <button type="submit" className="btn-guardar btn-full">Guardar dirección</button>
+                <button type="submit" className="btn-guardar-premium btn-full">Guardar</button>
               </form>
             )}
 
             {direcciones.length === 0 ? (
               <div className="cuenta-vacio">
-                <p>Aún no tienes direcciones registradas para tus envíos.</p>
+                <div className="vacio-icon">📍</div>
+                <p>No tienes direcciones.</p>
               </div>
             ) : (
-              <div className="direcciones-grid">
+              <div className="direcciones-list">
                 {direcciones.map(dir => (
-                  <div className="direccion-card" key={dir.id}>
+                  <div className="direccion-card-premium" key={dir.id}>
                     <div className="dir-header">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="dir-icon">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
                       </svg>
                       <h4>{dir.titulo}</h4>
                     </div>
-                    <p className="dir-body">{dir.direccion}</p>
-                    <p className="dir-sub">{dir.distrito}, {dir.provincia} {dir.codigo_postal ? `- ${dir.codigo_postal}` : ''}</p>
-                    {dir.referencia && <p className="dir-ref"><span>Ref:</span> {dir.referencia}</p>}
+                    <div className="dir-content">
+                      <p className="dir-body">{dir.direccion}</p>
+                      <p className="dir-sub">{dir.distrito}, {dir.provincia}</p>
+                      {dir.referencia && <p className="dir-ref">Ref: {dir.referencia}</p>}
+                    </div>
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          {/* SECCIÓN PEDIDOS */}
+          {/* COLUMNA 3: PEDIDOS */}
           <div className="cuenta-section">
             <div className="cuenta-section-header">
               <div className="section-title-group">
-                <svg className="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <h3>Mis Pedidos Recientes</h3>
+                <div className="icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg>
+                </div>
+                <h3>Pedidos Recientes</h3>
               </div>
-              <Link to="/tienda" className="btn-ir-tienda">
-                Comprar más
-              </Link>
             </div>
 
             {pedidos.length === 0 ? (
               <div className="cuenta-vacio">
-                <p>No tienes pedidos registrados todavía.</p>
-                <Link to="/tienda" className="btn-comprar-primero">Explorar la tienda</Link>
+                <div className="vacio-icon">🛍️</div>
+                <p>No tienes pedidos todavía.</p>
+                <Link to="/tienda" className="btn-guardar-premium" style={{ display: 'inline-block', marginTop: '15px', textDecoration: 'none' }}>
+                  Ir a la tienda
+                </Link>
               </div>
             ) : (
-              <div className="pedidos-tabla-wrapper">
-                <table className="pedidos-tabla">
-                  <thead>
-                    <tr>
-                      <th>N° Pedido</th>
-                      <th>Fecha</th>
-                      <th>Total</th>
-                      <th>Estado</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pedidos.map(ped => (
-                      <tr key={ped.id}>
-                        <td className="ped-id">#{ped.id}</td>
-                        <td>{new Date(ped.fecha_pedido).toLocaleDateString()}</td>
-                        <td className="ped-total">S/ {parseFloat(ped.total).toFixed(2)}</td>
-                        <td>
-                          <span className={`estado-badge ${ped.estado_pedido?.toLowerCase()}`}>
-                            {ped.estado_pedido}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <div className="pedidos-list">
+                {pedidos.map(ped => (
+                  <div className="pedido-card-item" key={ped.id}>
+                    <div className="pedido-card-header">
+                      <span className="ped-id">Pedido #{ped.id}</span>
+                      <span className={`estado-badge ${ped.estado_pedido?.toLowerCase()}`}>
+                        {ped.estado_pedido}
+                      </span>
+                    </div>
+                    <div className="pedido-card-body">
+                      <div className="ped-info">
+                        <span className="ped-label">Fecha</span>
+                        <span className="ped-fecha">{new Date(ped.fecha_pedido).toLocaleDateString()}</span>
+                      </div>
+                      <div className="ped-info ped-monto">
+                        <span className="ped-label">Total</span>
+                        <span className="ped-total">S/ {parseFloat(ped.total).toFixed(2)}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                
+                <Link to="/tienda" className="btn-editar-premium btn-full" style={{ textAlign: 'center', marginTop: '15px', display: 'block', textDecoration: 'none' }}>
+                  Seguir Comprando
+                </Link>
               </div>
             )}
           </div>

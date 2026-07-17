@@ -1,106 +1,276 @@
-.login-page {
-  min-height: 100vh;
+/* =========================================
+   WRAPPER FULLSCREEN (Fondo Crudo sin Zoom)
+========================================= */
+.login-fullscreen-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: #f5f7fa;
-  padding: 20px;
+  justify-content: flex-end; /* Tarjeta a la derecha */
+  padding: 40px 10%; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
 }
 
-.login-container {
-  max-width: 420px;
+/* =========================================
+   BOTÓN VOLVER
+========================================= */
+.btn-volver {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateX(-5px);
+}
+
+/* =========================================
+   TARJETA TRANSPARENTE (Glassmorphism Puro)
+========================================= */
+.login-glass-container {
+  max-width: 440px;
   width: 100%;
-  background: white;
-  padding: 40px 32px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  /* Totalmente transparente, apenas oscurecida para leer texto blanco */
+  background: rgba(0, 0, 0, 0.35); 
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px);
+  padding: 45px 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  
+  /* Solo animación de entrada, sin flotar */
+  animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
 }
 
-.login-container h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1a2b3c;
-  margin-bottom: 6px;
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   HEADER DE LA TARJETA
+========================================= */
+.login-header-box {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Mantiene la base blanca para proteger tu logo */
+.logo-pill {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0);
+  padding: 10px 20px;
+  border-radius: 144px;
+  margin-bottom: 20px;
+}
+
+.login-logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+}
+
+.login-glass-container h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px 0;
 }
 
 .login-sub {
-  color: #6b7a8a;
-  font-size: 14px;
-  margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14.5px;
+  margin: 0;
 }
 
+/* =========================================
+   ALERTAS
+========================================= */
 .login-error {
-  background: #fee2e2;
-  color: #b91c1c;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  margin-bottom: 16px;
+  background: rgba(220, 38, 38, 0.3);
+  color: #fca5a5;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  text-align: center;
 }
 
+/* =========================================
+   FORMULARIO E INPUTS CRISTALINOS
+========================================= */
 .login-form .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .login-form label {
   display: block;
-  font-weight: 500;
-  font-size: 14px;
-  color: #2d3748;
-  margin-bottom: 4px;
-}
-
-.login-form input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d1d9e6;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: border 0.2s;
-}
-
-.login-form input:focus {
-  outline: none;
-  border-color: #2e7d32;
-  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
-}
-
-.btn-login {
-  width: 100%;
-  padding: 14px;
-  background: #2e7d32;
-  color: white;
   font-weight: 600;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3); /* Transparente oscuro */
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #05d64c;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 3px rgba(5, 214, 76, 0.2);
+}
+
+/* =========================================
+   OPCIONES (Recordarme / Olvidé)
+========================================= */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 13px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
-  transition: background 0.2s;
 }
 
-.btn-login:hover {
-  background: #1b5e20;
-}
-
-.login-footer {
-  margin-top: 24px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.login-footer a {
-  color: #2e7d32;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.login-footer a:hover {
-  text-decoration: underline;
+input[type="checkbox"] {
+  accent-color: #05d64c;
 }
 
 .forgot-link {
-  display: block;
-  margin-top: 8px;
-  color: #6b7a8a !important;
-  font-weight: 400 !important;
+  color: #05d64c;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.forgot-link:hover {
+  color: #ffffff;
+}
+
+/* =========================================
+   BOTÓN INGRESAR (Vibrante)
+========================================= */
+.btn-login-glass {
+  width: 100%;
+  padding: 16px;
+  background: #05d64c;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(5, 214, 76, 0.3);
+}
+
+.btn-login-glass:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(5, 214, 76, 0.5);
+  background: #00ea52;
+}
+
+.btn-login-glass:active {
+  transform: translateY(0);
+}
+
+.btn-login-glass:disabled {
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.5);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   FOOTER (REGISTRO)
+========================================= */
+.login-footer {
+  margin-top: 30px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 25px;
+}
+
+.login-footer p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin: 0 0 12px 0;
+}
+
+.btn-registro-link {
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14.5px;
+  text-decoration: none;
+  padding: 10px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.btn-registro-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: #05d64c;
+  color: #05d64c;
+}
+
+/* =========================================
+   RESPONSIVO (MÓVILES)
+========================================= */
+@media (max-width: 900px) {
+  .login-fullscreen-wrapper {
+    justify-content: center; 
+    padding: 20px;
+  }
+
+  .btn-volver {
+    top: 20px;
+    left: 20px;
+    font-size: 13px;
+    padding: 8px 15px;
+  }
 }
