@@ -1,0 +1,166 @@
+.faq-section {
+  background-color: #f0f7ff; /* Azul claro de fondo */
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.faq-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+.faq-title {
+  color: #0069d9;
+  font-size: 42px;
+  font-weight: 400;
+  margin-bottom: 50px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Item contenedor con transición en la línea inferior */
+.faq-item {
+  position: relative;
+  border-bottom: 1px solid #c7d2de;
+  padding-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+/* Efecto de línea decorativa expandible al activarse */
+.faq-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #0069d9;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.active::after {
+  transform: scaleX(1);
+}
+
+/* Botón de la pregunta */
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #2b2b2b;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  padding: 15px 0;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #0069d9;
+}
+
+.faq-item.active .faq-question {
+  color: #0069d9;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   ANIMACIÓN DEL ICONO INTERACTIVO (+ / - CSS Puro)
+   ========================================================================== */
+.faq-icon-wrapper {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 20px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-line {
+  position: absolute;
+  background-color: currentColor; /* Usa el color del texto del botón */
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.icon-line.horizontal {
+  width: 100%;
+  height: 2px;
+}
+
+.icon-line.vertical {
+  width: 2px;
+  height: 100%;
+}
+
+/* Al estar activo, la línea vertical se desvanece y el contenedor gira */
+.faq-icon-wrapper.rotated {
+  transform: rotate(180deg);
+}
+
+.faq-icon-wrapper.rotated .icon-line.vertical {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   CONTENEDOR DE RESPUESTA (Colapso animado ultra fluido)
+   ========================================================================== */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr; /* Truco CSS moderno usando Grid en lugar de max-height fijo */
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.faq-item.active .faq-answer {
+  grid-template-rows: 1fr;
+}
+
+/* Este wrapper interno asegura que el padding no rompa la animación de colapso */
+.faq-answer-content {
+  min-height: 0;
+}
+
+.faq-answer-content p {
+  color: #59575a;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 10px 0 15px 0;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.faq-item.active .faq-answer-content p {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s; /* Retraso sutil para esperar a que abra el contenedor */
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .faq-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  .faq-question {
+    font-size: 15px;
+  }
+}

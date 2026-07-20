@@ -91,38 +91,12 @@
   color: var(--certimet-green, #1cff57);
 }
 
-/* Menús desplegables de la parte superior */
-.ht-top-nav-menu .nav-item-dropdown-mega {
-  position: static; 
-}
-
-.ht-top-nav-menu .lab-dropdown-box {
-  top: 100%; 
-  margin-top: 0;
-}
-
-.ht-top-nav-menu .lab-dropdown-box.is-compact {
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 310px;
-}
-
-.ht-top-nav-menu .lab-dropdown-box.is-expanded {
-  left: 0;
-  right: 0;
-  width: 100%;
-}
-
-.ht-top-nav-menu .nav-item-dropdown-simple {
-  position: relative;
-}
-
-.ht-top-nav-menu .simple-dropdown-box {
-  top: 100%;
-  right: 0;
-  left: auto !important;
-}
+.ht-top-nav-menu .nav-item-dropdown-mega { position: static; }
+.ht-top-nav-menu .lab-dropdown-box { top: 100%; margin-top: 0; }
+.ht-top-nav-menu .lab-dropdown-box.is-compact { right: auto; left: 50%; transform: translateX(-50%); width: 310px; }
+.ht-top-nav-menu .lab-dropdown-box.is-expanded { left: 0; right: 0; width: 100%; }
+.ht-top-nav-menu .nav-item-dropdown-simple { position: relative; }
+.ht-top-nav-menu .simple-dropdown-box { top: 100%; right: 0; left: auto !important; }
 
 /* ================= 2. FILA PRINCIPAL (Azul Oscuro) ================= */
 .ht-main-bar {
@@ -164,7 +138,7 @@
   position: relative;
 }
 
-/* Botón Productos con Desplegable */
+/* ================= MEGA MENÚ DE PRODUCTOS (Estilo Falabella) ================= */
 .ht-btn-productos-wrapper {
   position: relative;
   display: flex;
@@ -181,7 +155,7 @@
   border-radius: 25px 0 0 25px;
   font-weight: 700;
   font-size: 14.5px;
-  cursor: default; /* No es un link clickeable, reacciona al hover del padre */
+  cursor: default;
   border-right: 1px solid #ddd;
   height: 100%;
   transition: background-color 0.2s;
@@ -191,54 +165,168 @@
   background-color: #f4f6f8;
 }
 
-.ht-productos-dropdown {
+/* CONTENEDOR PRINCIPAL DEL MEGA MENÚ */
+.ht-mega-productos {
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
+  width: 800px; /* Mismo ancho máximo del buscador para alinear perfectamente */
+  height: 480px; /* Altura fija para que no salte al cambiar de categoría */
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  min-width: 260px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+  display: flex;
   z-index: 4000;
-  border: 1px solid #eee;
+  border: 1px solid #eaeaea;
   overflow: hidden;
 }
 
-.ht-productos-list {
+/* --- COLUMNA IZQUIERDA (Categorías) --- */
+.ht-mega-prod-left {
+  width: 250px;
+  background: #ffffff;
+  border-right: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ht-mega-prod-left ul {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.ht-mega-prod-left li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  color: #444;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-left: 4px solid transparent; /* Preparar borde para estado activo */
+  transition: all 0.2s ease;
+}
+
+.ht-mega-prod-left li .arrow {
+  color: #ccc;
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+/* ESTADO ACTIVO Y HOVER TIPO FALABELLA */
+.ht-mega-prod-left li:hover a,
+.ht-mega-prod-left li.active a {
+  color: var(--certimet-blue, #1c74d4);
+  background-color: #f8fbff;
+  border-left-color: var(--certimet-green, #1cff57);
+}
+
+.ht-mega-prod-left li.active .arrow {
+  color: var(--certimet-green, #1cff57);
+  transform: translateX(3px);
+}
+
+.ht-ver-todo-mega a {
+  display: block;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  color: var(--certimet-blue-dark, #00234a);
+  text-align: center;
+  font-weight: 700;
+  text-decoration: none;
+  border-top: 1px solid #eaeaea;
+  transition: background-color 0.2s;
+}
+
+.ht-ver-todo-mega a:hover {
+  background-color: #e2e8f0;
+}
+
+/* --- COLUMNA DERECHA (Subcategorías) --- */
+.ht-mega-prod-right {
+  flex: 1;
+  padding: 25px;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+/* BANNER HEADER (El que en tu foto dice "Tecnología" en verde) */
+.ht-mega-prod-header {
+  background-color: var(--certimet-green, #1cff57); /* Banner Verde */
+  border-radius: 30px 30px 30px 0; /* Estilo de recorte curvo similar a la foto */
+  padding: 12px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(28, 255, 87, 0.2);
+}
+
+.ht-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ht-mega-prod-header h3 {
+  margin: 0;
+  color: var(--certimet-blue-dark, #00234a); /* Texto oscuro para contrastar con verde claro */
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.ht-mega-prod-header a {
+  color: var(--certimet-blue-dark, #00234a);
+  text-decoration: underline;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ht-mega-prod-header a:hover {
+  color: #000;
+}
+
+/* GRILLA DE SUBCATEGORÍAS */
+.ht-mega-prod-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 20px 15px;
+}
+
+.ht-mega-prod-column h4 {
+  margin: 0 0 12px 0;
+  color: var(--certimet-blue-dark, #00234a);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ht-mega-prod-column ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.ht-productos-list li a {
-  display: block;
-  padding: 12px 20px;
-  color: #333;
+.ht-mega-prod-column li {
+  margin-bottom: 8px;
+}
+
+.ht-mega-prod-column li a {
+  color: #555;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s;
-  border-bottom: 1px solid #f5f5f5;
+  font-size: 13.5px;
+  transition: color 0.2s;
 }
 
-.ht-productos-list li a:hover {
-  background-color: #f0f7ff;
+.ht-mega-prod-column li a:hover {
   color: var(--certimet-blue, #1c74d4);
-  padding-left: 25px; 
+  text-decoration: underline;
 }
 
-.ht-productos-list li.ht-ver-todo a {
-  background-color: #f8f9fa;
-  color: var(--certimet-blue-dark, #00234a);
-  font-weight: 700;
-  text-align: center;
-  border-bottom: none;
-}
-
-.ht-productos-list li.ht-ver-todo a:hover {
-  background-color: #e2e8f0;
-  padding-left: 20px; 
-}
+/* ========================================================================= */
 
 /* Área central de input y sugerencias */
 .ht-input-container {
@@ -258,7 +346,7 @@
   background: transparent;
 }
 
-/* SUGERENCIAS DEL BUSCADOR (Estilo Amazon) */
+/* SUGERENCIAS DEL BUSCADOR */
 .ht-search-suggestions {
   position: absolute;
   top: calc(100% + 10px);
@@ -288,14 +376,8 @@
   transition: background 0.2s;
 }
 
-.ht-search-suggestions li:last-child a {
-  border-bottom: none;
-}
-
-.ht-search-suggestions li a:hover {
-  background-color: #f8fbff;
-}
-
+.ht-search-suggestions li:last-child a { border-bottom: none; }
+.ht-search-suggestions li a:hover { background-color: #f8fbff; }
 .ht-search-suggestions img {
   width: 45px;
   height: 45px;
@@ -305,7 +387,7 @@
   border-radius: 4px;
   padding: 2px;
   background-color: #fff;
-  flex-shrink: 0; /* Evita que la imagen se aplaste */
+  flex-shrink: 0;
 }
 
 .ht-search-suggestions .sug-text {
@@ -348,22 +430,9 @@
   transition: border-color 0.4s;
 }
 
-.ht-asesor-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.ht-asesor-title {
-  font-size: 12px;
-  color: #ccc;
-  transition: color 0.4s;
-}
-
-.ht-asesor-wsp {
-  font-size: 15px;
-  font-weight: bold;
-  color: var(--certimet-green, #1cff57);
-}
+.ht-asesor-text { display: flex; flex-direction: column; }
+.ht-asesor-title { font-size: 12px; color: #ccc; transition: color 0.4s; }
+.ht-asesor-wsp { font-size: 15px; font-weight: bold; color: var(--certimet-green, #1cff57); }
 
 .ht-icon-link {
   display: flex;
@@ -380,10 +449,7 @@
   color: var(--certimet-green, #1cff57);
 }
 
-.ht-carrito-icon-wrapper {
-  position: relative;
-}
-
+.ht-carrito-icon-wrapper { position: relative; }
 .ht-cart-badge {
   position: absolute;
   top: -8px;
@@ -429,28 +495,16 @@
   color: var(--certimet-blue, #1c74d4);
 }
 
-.header-tienda-container.scrolled .ht-asesor {
-  border-right-color: #ddd;
-}
-
-.header-tienda-container.scrolled .ht-search-form {
-  border: 2px solid var(--certimet-blue-dark, #00234a);
-}
-
-.header-tienda-container.scrolled .ht-cart-badge {
-  border-color: white;
-}
+.header-tienda-container.scrolled .ht-asesor { border-right-color: #ddd; }
+.header-tienda-container.scrolled .ht-search-form { border: 2px solid var(--certimet-blue-dark, #00234a); }
+.header-tienda-container.scrolled .ht-cart-badge { border-color: white; }
 
 .header-tienda-container.scrolled .ht-icon,
 .header-tienda-container.scrolled .ht-icon-svg {
   filter: brightness(0) saturate(100%) invert(14%) sepia(50%) saturate(3025%) hue-rotate(195deg) brightness(90%) contrast(105%);
 }
-.ht-usuario-dropdown {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
 
+.ht-usuario-dropdown { position: relative; display: inline-block; cursor: pointer; }
 .ht-usuario-nombre {
   display: flex;
   align-items: center;
@@ -461,71 +515,15 @@
   transition: background 0.2s;
 }
 
-.ht-usuario-nombre:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
+.ht-usuario-nombre:hover { background: rgba(255, 255, 255, 0.15); }
+.scrolled .ht-usuario-nombre { color: #1a2b3c; }
+.scrolled .ht-usuario-nombre:hover { background: rgba(0, 0, 0, 0.05); }
 
-.scrolled .ht-usuario-nombre {
-  color: #1a2b3c;
-}
-
-.scrolled .ht-usuario-nombre:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.ht-dropdown-menu {
-  position: absolute;
-  top: 110%;
-  right: 0;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  min-width: 160px;
-  padding: 8px 0;
-  z-index: 100;
-}
-
-.ht-dropdown-menu a,
-.ht-dropdown-menu button {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 10px 20px;
-  border: none;
-  background: none;
-  font-size: 14px;
-  color: #1a2b3c;
-  cursor: pointer;
-  transition: background 0.1s;
-  text-decoration: none;
-}
-
-.ht-dropdown-menu a:hover,
-.ht-dropdown-menu button:hover {
-  background: #f0f0f0;
-}
-
-.ht-dropdown-menu button {
-  color: #d32f2f;
-  font-weight: 500;
-}
-/* =======================================================
-   ESTILOS ADICIONALES PARA EL MENÚ DE USUARIO Y CERRAR SESIÓN
-   ======================================================= */
-
-/* Contenedor del menú de usuario (Nombre + Botón) */
-.ht-user-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-/* Botón de Cerrar Sesión (Estado Base - Header Oscuro) */
+.ht-user-menu { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .ht-logout-btn {
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #ff6b6b; /* Un rojo suave para que destaque sin ser estridente */
+  color: #ff6b6b;
   padding: 4px 12px;
   border-radius: 15px;
   font-size: 11px;
@@ -542,10 +540,9 @@
   box-shadow: 0 2px 8px rgba(255, 77, 77, 0.3);
 }
 
-/* Ajustes cuando el Header tiene Scroll (Fondo Blanco) */
 .header-tienda-container.scrolled .ht-logout-btn {
   border-color: rgba(211, 47, 47, 0.4);
-  color: #d32f2f; /* Rojo más oscuro para mejor contraste en fondo claro */
+  color: #d32f2f;
 }
 
 .header-tienda-container.scrolled .ht-logout-btn:hover {

@@ -101,6 +101,17 @@ const NuestrosValores = () => {
           </svg>
         </button>
       </div>
+
+      {/* BANNER INFERIOR CON FONDO DIVIDIDO */}
+      <div className="precision-banner-wrapper">
+        <div className="precision-banner">
+          <p className="precision-quote">"La precisión no es un detalle, es nuestro estándar."</p>
+          <p className="precision-subtext">
+            Cada medición que realizamos <span className="text-green">refleja nuestro compromiso</span><br />
+            <span className="text-green">con la exactitud y la calidad técnica.</span>
+          </p>
+        </div>
+      </div>
     </section>
   );
 };

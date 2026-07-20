@@ -1,0 +1,200 @@
+/* ==========================================================================
+   SECCIÓN: EQUIPOS E INSTRUMENTOS
+   ========================================================================== */
+.inst-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.inst-container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   TÍTULO PRINCIPAL
+   ========================================================================== */
+.inst-main-title {
+  color: #0056b3;
+  font-size: 38px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 60px;
+  letter-spacing: -0.5px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.inst-main-title .text-green {
+  color: #00d859; /* Verde brillante */
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   ACORDEÓN GENERAL
+   ========================================================================== */
+.inst-accordion-group {
+  margin-bottom: 40px;
+}
+
+.inst-accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #c7d2de; /* Línea separadora gris azulada */
+  padding-bottom: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.inst-accordion-header:hover {
+  opacity: 0.7;
+}
+
+.inst-accordion-header h3 {
+  color: #0056b3;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.inst-toggle-icon {
+  color: #0056b3;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Animación con CSS Grid para el despliegue */
+.inst-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-in-out;
+}
+
+.inst-collapse.open {
+  grid-template-rows: 1fr;
+}
+
+.inst-inner {
+  overflow: hidden;
+  padding-top: 30px; /* Espacio interno cuando se abre */
+}
+
+/* ==========================================================================
+   TARJETAS (Servicios Acreditados)
+   ========================================================================== */
+.inst-cards-container {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.inst-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
+  padding: 30px 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inst-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #0056b3;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+  text-align: center;
+}
+
+.card-info {
+  flex-grow: 1;
+  color: #4b5563;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.card-info p {
+  margin: 0 0 15px 0;
+}
+
+.card-info strong {
+  color: #374151;
+  font-weight: 500;
+}
+
+.card-footer {
+  margin-top: 10px;
+  color: #0056b3;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   LISTA (Servicios de Calibración)
+   ========================================================================== */
+.inst-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inst-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #555e6c;
+  font-size: 15px;
+  transition: color 0.2s ease;
+  cursor: default;
+}
+
+.inst-list-item:hover {
+  color: #0056b3; /* Se vuelve azul al pasar el mouse por encima (como en la foto) */
+}
+
+.list-bullet-icon {
+  flex-shrink: 0; /* Evita que el ícono se encoja si el texto es muy largo */
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+  .inst-main-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+  
+  .inst-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .inst-card {
+    max-width: 100%;
+  }
+  
+  .inst-accordion-header h3 {
+    font-size: 16px;
+  }
+}

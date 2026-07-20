@@ -1,0 +1,213 @@
+/* ==========================================================================
+   SECCIÓN CONOCE LABORATORIOS
+   ========================================================================== */
+.conoce-lab-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================================================
+   BANNER CON FONDO DIVIDIDO (Blanco arriba, Celeste abajo)
+   ========================================================================== */
+.banner-split-bg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* MAGIA CSS: Mitad blanco (#fff) y mitad celeste (#eef7ff) exactos */
+  background: linear-gradient(to bottom, #ffffff 50%, #eef7ff 50%);
+  padding: 0 20px;
+}
+
+.precision-banner-2 {
+  background: linear-gradient(135deg, #0069cb 0%, #00315f 100%, #002855 100%);
+  border-radius: 40px;
+  padding: 45px 30px;
+  width: 100%;
+  max-width: 950px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 40, 85, 0.2);
+  /* Genera un margen superior e inferior para separar el banner del resto */
+  margin: 30px 0 40px 0; 
+}
+
+.banner-quote {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 600;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  letter-spacing: 0.5px;
+}
+
+.banner-subtext {
+  color: #ffffff;
+  font-size: 30px; /* Tamaño aumentado para que destaque más */
+  font-weight: 380 !important; /* Peso 300 para asegurar que se vea muy delgado */
+  font-style: normal;
+  margin: 0;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-green-banner {
+  color: #00ff55; /* Verde mucho más fosforescente y brillante */
+  font-weight: 300 !important; /* Mismo grosor delgado que el resto del texto */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   CONTENIDO PRINCIPAL (Fondo Celeste Completo)
+   ========================================================================== */
+.conoce-lab-content {
+  background-color: #eef7ff; /* Continúa el color celeste de la división */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 20px 80px 20px;
+}
+
+.conoce-lab-container {
+  width: 100%;
+  max-width: 1050px;
+  display: flex;
+  align-items: center; /* Alinea verticalmente imagen y texto */
+  gap: 60px;
+}
+
+/* COLUMNA IZQUIERDA (Imagen) */
+.conoce-lab-image-col {
+  flex: 0 0 35%; /* Ancho aproximado del 35% */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.conoce-lab-img {
+  width: 100%;
+  max-width: 380px;
+  height: 520px;
+  object-fit: cover; /* Evita que la foto se aplaste o deforme */
+  border-radius: 25px; 
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* COLUMNA DERECHA (Texto y Botón) */
+.conoce-lab-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.conoce-lab-text-col h2 {
+  color: #0056b3; 
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.conoce-lab-text-col p {
+  color: #4b5563; 
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: justify; /* Justificado como en tu imagen */
+  -webkit-font-smoothing: antialiased;
+}
+
+.conoce-lab-text-col p:last-of-type {
+  margin-bottom: 35px;
+}
+
+/* ==========================================================================
+   BOTÓN CONOCE LABORATORIOS
+   ========================================================================== */
+.btn-conoce-lab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 25px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #0056b3; /* Letras azules inicialmente */
+  text-decoration: none;
+  background-color: transparent;
+  border: 1.5px solid #0056b3;
+  border-radius: 30px; /* Bordes totalmente redondeados (píldora) */
+  align-self: flex-start; /* Evita que el botón ocupe todo el ancho */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover: Fondo azul y letras blancas */
+.btn-conoce-lab:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 86, 179, 0.25);
+  transform: translateY(-2px); /* Pequeño efecto de salto */
+}
+
+/* ==========================================================================
+   RESPONSIVO (Adaptación a Tablets y Móviles)
+   ========================================================================== */
+@media (max-width: 950px) {
+  .conoce-lab-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .conoce-lab-image-col {
+    width: 100%;
+    max-width: 450px;
+    justify-content: center;
+  }
+  
+  .conoce-lab-img {
+    height: auto;
+    aspect-ratio: 4 / 5; /* Mantiene la proporción vertical */
+  }
+
+  .conoce-lab-text-col h2 {
+    font-size: 32px;
+    text-align: center;
+  }
+  
+  .btn-conoce-lab {
+    align-self: center; /* Centra el botón en móviles */
+  }
+}
+
+@media (max-width: 650px) {
+  .banner-quote {
+    font-size: 20px;
+  }
+  
+  .banner-subtext {
+    font-size: 16px;
+  }
+
+  .precision-banner-2 {
+    border-radius: 25px;
+    padding: 30px 20px;
+  }
+
+  .conoce-lab-text-col h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .conoce-lab-text-col p {
+    font-size: 14.5px;
+    text-align: left; /* A la izquierda para mejor lectura en pantallas pequeñas */
+  }
+}

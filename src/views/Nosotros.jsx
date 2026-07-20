@@ -12,6 +12,9 @@ import CertificadoAcreditacion from '../components/nosotros/CertificadoAcreditac
 import TripleCertificacion from '../components/nosotros/TripleCertificacion';
 import MisionVision from '../components/nosotros/MisionVision';
 import NuestrosValores from '../components/nosotros/NuestrosValores';
+import TalentoCultura from '../components/Nosotros/TalentoCultura';
+import CompromisoPoliticas from '../components/laboratorio/CompromisoPoliticas';
+import ConoceLaboratorios from '../components/laboratorio/ConoceLaboratorios';
 
 import './Nosotros.css';
 
@@ -253,6 +256,9 @@ const Nosotros = () => {
       <div id="triple"><TripleCertificacion /></div>
       <MisionVision />
       <NuestrosValores />
+      <TalentoCultura />
+      <CompromisoPoliticas />
+      <ConoceLaboratorios />
     </div>
   );
 };

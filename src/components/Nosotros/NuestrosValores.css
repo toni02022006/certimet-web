@@ -2,8 +2,8 @@
    SECCIÓN DE VALORES
    ========================================================================== */
 .valores-section {
-  background-color: #eef7ff; /* Mismo fondo celeste de tus otras secciones */
-  padding: 80px 20px;
+  background-color: #eef7ff;
+  padding-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +15,7 @@
   width: 100%;
   max-width: 1050px;
   margin-bottom: 40px;
+  padding: 0 20px;
 }
 
 .valores-header h2 {
@@ -38,20 +39,18 @@
   position: relative;
   width: 100%;
   max-width: 1100px;
-  height: 400px; /* Altura fija para la pista */
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 20px;
 }
 
-/* La pista donde viven las tarjetas. 
-   ¡EL SECRETO DEL DESVANECIDO ESTÁ AQUÍ! */
 .carousel-track {
   position: relative;
   width: 100%;
   height: 100%;
   max-width: 950px;
-  /* Esta máscara hace que los bordes izquierdo y derecho se vuelvan transparentes */
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
@@ -65,15 +64,13 @@
   left: 50%;
   width: 300px;
   height: 340px;
-  margin-top: -170px; /* Mitad de la altura para centrar verticalmente */
+  margin-top: -170px;
   border-radius: 20px;
   padding: 40px 30px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-  /* Transición súper suave para TODO (movimiento, color de fondo, texto) */
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
@@ -81,7 +78,7 @@
 .valor-card h3 {
   font-size: 26px;
   font-weight: 700;
-  font-style: italic; /* Cursiva como en tu diseño */
+  font-style: italic;
   margin-top: 0;
   margin-bottom: 20px;
   line-height: 1.1;
@@ -96,52 +93,39 @@
 }
 
 /* ==========================================================================
-   ESTADOS DE POSICIÓN (Magia 3D y Cambio de Color)
+   ESTADOS DE POSICIÓN
    ========================================================================== */
-
-/* 1. TARJETA EN EL CENTRO (Fondo Azul) */
 .card-center {
-  transform: translateX(-50%) scale(1.05); /* En el centro exacto y un poco más grande */
+  transform: translateX(-50%) scale(1.05);
   background: linear-gradient(180deg, #004b93 0%, #002855 100%);
   z-index: 3;
   opacity: 1;
 }
-.card-center h3 {
-  color: #00d859; /* Verde fluorescente */
-}
-.card-center p {
-  color: #ffffff; /* Texto blanco */
-}
+.card-center h3 { color: #00d859; }
+.card-center p { color: #ffffff; }
 
-/* 2. TARJETAS LATERALES (Fondo Blanco) */
 .card-left {
-  transform: translateX(-155%) scale(0.9); /* Desplazada a la izquierda y más pequeña */
+  transform: translateX(-155%) scale(0.9);
   background: #ffffff;
   z-index: 2;
-  opacity: 0.8; /* Ligeramente transparente */
+  opacity: 0.8;
 }
 .card-right {
-  transform: translateX(55%) scale(0.9); /* Desplazada a la derecha y más pequeña */
+  transform: translateX(55%) scale(0.9);
   background: #ffffff;
   z-index: 2;
   opacity: 0.8;
 }
 
-/* Estilo de texto para tarjetas laterales */
-.card-left h3, .card-right h3 {
-  color: #0056b3;
-}
-.card-left p, .card-right p {
-  color: #666666;
-}
+.card-left h3, .card-right h3 { color: #0056b3; }
+.card-left p, .card-right p { color: #666666; }
 
-/* 3. TARJETAS OCULTAS (Detrás del carrusel) */
 .card-hidden {
-  transform: translateX(-50%) scale(0.5); /* Escondidas al centro y pequeñas */
+  transform: translateX(-50%) scale(0.5);
   background: #ffffff;
   z-index: 1;
   opacity: 0;
-  pointer-events: none; /* No se pueden clickear */
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -150,7 +134,7 @@
 .carousel-arrow {
   background: transparent;
   border: none;
-  color: #0056b3; /* Azul Certimet */
+  color: #0056b3;
   width: 50px;
   height: 50px;
   cursor: pointer;
@@ -161,32 +145,76 @@
   transition: all 0.2s ease;
   padding: 5px;
 }
+.carousel-arrow:hover { color: #002855; transform: translateY(-50%) scale(1.2); }
+.left-arrow { left: 10px; }
+.right-arrow { right: 10px; }
 
-.carousel-arrow:hover {
-  color: #002855;
-  transform: translateY(-50%) scale(1.2); /* Crece un poquito al pasar el mouse */
+/* ==========================================================================
+   BANNER DE PRECISIÓN
+   ========================================================================== */
+.precision-banner-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 0 20px 50px 10px;
+  background: linear-gradient(to bottom, #eef7ff 50%, #ffffff 50%);
 }
 
-.left-arrow {
-  left: 10px;
+.precision-banner {
+  background: linear-gradient(90deg, #0056b3 0%, #002855 100%);
+  border-radius: 40px;
+  padding: 45px 30px;
+  width: 100%;
+  max-width: 850px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 40, 85, 0.2);
 }
-.right-arrow {
-  right: 10px;
+
+.precision-quote {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 600; /* Letra superior gruesa */
+  font-style: italic;
+  margin: 0 0 15px 0;
+  letter-spacing: 0.5px;
+}
+
+.precision-subtext {
+  color: #ffffff;
+  font-size: 20px;
+  /* IMPORTANTE: Anula cualquier negrita heredada */
+  font-weight: normal !important; 
+  font-style: normal;
+  margin: 0;
+  line-height: 1.5;
+  /* Suaviza el renderizado de la fuente en fondos oscuros */
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-green {
+  color: #00d859;
+  /* IMPORTANTE: Asegura que la parte verde también sea fina */
+  font-weight: normal !important; 
+  font-style: italic;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ==========================================================================
    RESPONSIVO
    ========================================================================== */
 @media (max-width: 900px) {
-  /* En tablets acercamos más las tarjetas */
   .card-left { transform: translateX(-130%) scale(0.85); }
   .card-right { transform: translateX(30%) scale(0.85); }
+  .precision-quote { font-size: 22px; }
+  .precision-subtext { font-size: 18px; }
 }
 
 @media (max-width: 650px) {
   .valores-header { text-align: center; }
   .valores-header h2 { font-size: 34px; }
-  
   .carousel-container { height: 350px; }
   
   .valor-card {
@@ -195,15 +223,20 @@
     margin-top: -150px;
     padding: 30px 20px;
   }
-  
   .valor-card h3 { font-size: 22px; }
   .valor-card p { font-size: 13.5px; }
 
-  /* En celulares escondemos las tarjetas laterales casi por completo */
   .card-left { transform: translateX(-110%) scale(0.8); opacity: 0.3; }
   .card-right { transform: translateX(10%) scale(0.8); opacity: 0.3; }
   
   .carousel-arrow { width: 40px; height: 40px; }
   .left-arrow { left: -5px; }
   .right-arrow { right: -5px; }
+
+  .precision-banner {
+    border-radius: 25px;
+    padding: 30px 20px;
+  }
+  .precision-quote { font-size: 18px; }
+  .precision-subtext { font-size: 16px; }
 }

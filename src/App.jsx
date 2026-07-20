@@ -17,16 +17,17 @@ import Registro from './components/cuenta/Registro';
 import Cuenta from './components/cuenta/Cuenta';
 import RecuperarPassword from './components/cuenta/RecuperarPassword';
 import VerificarCodigo from './components/cuenta/VerificarCodigo';
-import Carrito from './components/store/Carrito';
 import ProductoDetalle from './components/store/ProductoDetalle';
 import ArticuloDetalle from './views/ArticuloDetalle';
-import Checkout from './components/store/Checkout';
 import Nosotros from './views/Nosotros'; 
 import Catalogo from './views/Catalogo'; 
 import ScrollToTop from './components/ScrollToTop';
 import Laboratorio from './views/Laboratorio';
 import AutentificacionCalibracion from './components/autentificacion/AutentificacionCalibracion';
 import AutentificacionInformes from './components/autentificacion/AutentificacionInformes';
+import FuerzaPresion from './views/sublaboratorios/FuerzaPresion';
+import Ingenieria from './views/Ingenieria';
+import MantenimientoPredictivo from './views/subingenieria/MantenimientoPredictivo';
 
 function App() {
   return (
@@ -48,6 +49,13 @@ function App() {
           <Route path="/denuncias" element={<Denuncias />} />
           <Route path="/blog/:id" element={<ArticuloDetalle />} />
           <Route path="/laboratorio" element={<Laboratorio />} />
+          <Route path="/ingenieria" element={<Ingenieria />} />
+          
+
+          <Route path="/laboratorio/fuerza-y-presion" element={<FuerzaPresion />} />
+          <Route path='ingenieria/mantenimiento-predictivo'element={<MantenimientoPredictivo />}/>
+
+
           <Route path="/autentificacion/calibracion" element={<AutentificacionCalibracion />} />
           <Route path="/autentificacion/informes" element={<AutentificacionInformes />} />
         </Route>
@@ -62,8 +70,6 @@ function App() {
           <Route path="/tienda/cuenta" element={<Cuenta />} />
           <Route path="/tienda/recuperar" element={<RecuperarPassword />} />
           <Route path="/tienda/verificar-codigo" element={<VerificarCodigo />} />
-          <Route path="/tienda/carrito" element={<Carrito />} />
-          <Route path="/tienda/checkout" element={<Checkout />} />
           <Route path="/producto/:id" element={<ProductoDetalle />} />
           
           {/* ✅ NUEVAS RUTAS DEL CATÁLOGO */}

@@ -1,0 +1,193 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+.soluciones-section {
+  background-color: #ffffff;
+  padding: 100px 5%;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.soluciones-container {
+  width: 100%;
+  max-width: 1150px;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+/* ==========================================================================
+   COLUMNA IZQUIERDA (TEXTOS)
+   ========================================================================== */
+.soluciones-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.soluciones-title {
+  color: #0056b3;
+  font-size: 42px;
+  line-height: 1.15;
+  font-weight: 500;
+  margin: 0 0 25px 0;
+  letter-spacing: -0.5px;
+}
+
+.soluciones-desc {
+  color: #59575a;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 40px 0;
+  max-width: 480px;
+}
+
+.btn-contactanos-soluciones {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0056b3;
+  border: 1px solid #0056b3;
+  padding: 10px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-contactanos-soluciones span {
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.btn-contactanos-soluciones:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
+
+.btn-contactanos-soluciones:hover span {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA (IMAGEN Y BADGE)
+   ========================================================================== */
+.soluciones-right {
+  flex: 1.1; /* Le damos un poquito más de espacio a la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.soluciones-img-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.soluciones-img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* El recuadro azul flotante (Badge) */
+.soluciones-badge {
+  position: absolute;
+  bottom: -20px; /* Sobresale hacia abajo */
+  left: -40px;   /* Sobresale hacia la izquierda */
+  background-color: #0056b3;
+  color: #ffffff;
+  padding: 22px 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 145px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 86, 179, 0.3);
+  z-index: 5;
+}
+
+.soluciones-badge svg {
+  margin-bottom: 12px;
+}
+
+.soluciones-badge span {
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   RESPONSIVE (Adaptación a tablets y móviles)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .soluciones-container {
+    gap: 50px;
+  }
+  
+  .soluciones-title {
+    font-size: 36px;
+  }
+  
+  .soluciones-badge {
+    left: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .soluciones-section {
+    padding: 70px 20px;
+  }
+
+  .soluciones-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .soluciones-left {
+    align-items: center;
+  }
+
+  .soluciones-desc {
+    text-align: center;
+  }
+
+  .soluciones-badge {
+    bottom: -15px;
+    left: -15px;
+    padding: 15px 10px;
+    width: 120px;
+  }
+  
+  .soluciones-badge svg {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .soluciones-badge span {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .soluciones-title {
+    font-size: 32px;
+  }
+  
+  .soluciones-badge {
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%); /* En móviles pequeños lo centramos abajo */
+  }
+}

@@ -75,14 +75,106 @@ const serviciosData = [
   { name: "Análisis Termográfico", path: "/servicios" }
 ];
 
-// Rutas de Categorías de Productos
-const categoriasProductos = [
-  { name: "Automatización y Control", path: "/tienda/categoria/2" },
-  { name: "Analítica", path: "/tienda/categoria/3" },
-  { name: "Variables de Procesos", path: "/tienda/categoria/4" },
-  { name: "Laboratorio", path: "/tienda/categoria/5" },
-  { name: "SSOMA", path: "/tienda/categoria/6" },
-  { name: "Calidad de ambiente", path: "/tienda/categoria/7" }
+// ================= MEGA MENÚ DE PRODUCTOS (Estilo Falabella) =================
+const menuProductosMega = [
+  {
+    id: "aut",
+    name: "Automatización y Control",
+    path: "/tienda/categoria/2",
+    secciones: [
+      {
+        title: "Control y Autómatas",
+        links: [{ name: "PLCs", path: "#" }, { name: "Pantallas HMI", path: "#" }, { name: "Módulos de E/S", path: "#" }, { name: "Fuentes de poder", path: "#" }]
+      },
+      {
+        title: "Accionamientos",
+        links: [{ name: "Variadores de frecuencia", path: "#" }, { name: "Arrancadores Suaves", path: "#" }, { name: "Servomotores", path: "#" }]
+      },
+      {
+        title: "Maniobra y Protección",
+        links: [{ name: "Contactores", path: "#" }, { name: "Relés Térmicos", path: "#" }, { name: "Interruptores", path: "#" }, { name: "Guardamotores", path: "#" }]
+      }
+    ]
+  },
+  {
+    id: "ana",
+    name: "Analítica",
+    path: "/tienda/categoria/3",
+    secciones: [
+      {
+        title: "Análisis de Gases",
+        links: [{ name: "Analizadores de combustión", path: "#" }, { name: "Detectores de gases portátiles", path: "#" }]
+      },
+      {
+        title: "Análisis de Líquidos",
+        links: [{ name: "Medidores de pH", path: "#" }, { name: "Conductividad", path: "#" }, { name: "Turbidez", path: "#" }]
+      }
+    ]
+  },
+  {
+    id: "var",
+    name: "Variables de Procesos",
+    path: "/tienda/categoria/4",
+    secciones: [
+      {
+        title: "Temperatura",
+        links: [{ name: "Transmisores", path: "#" }, { name: "Termocuplas", path: "#" }, { name: "RTD (PT100)", path: "#" }]
+      },
+      {
+        title: "Presión y Nivel",
+        links: [{ name: "Transmisores de presión", path: "#" }, { name: "Manómetros", path: "#" }, { name: "Sensores ultrasónicos", path: "#" }]
+      },
+      {
+        title: "Caudal",
+        links: [{ name: "Caudalímetros magnéticos", path: "#" }, { name: "Flujómetros másicos", path: "#" }]
+      }
+    ]
+  },
+  {
+    id: "lab",
+    name: "Laboratorio",
+    path: "/tienda/categoria/5",
+    secciones: [
+      {
+        title: "Equipos Generales",
+        links: [{ name: "Balanzas Analíticas", path: "#" }, { name: "Agitadores", path: "#" }, { name: "Incubadoras", path: "#" }]
+      },
+      {
+        title: "Calibración",
+        links: [{ name: "Calibradores de lazo", path: "#" }, { name: "Hornos secos", path: "#" }]
+      }
+    ]
+  },
+  {
+    id: "sso",
+    name: "SSOMA",
+    path: "/tienda/categoria/6",
+    secciones: [
+      {
+        title: "Seguridad Industrial",
+        links: [{ name: "Bloqueo y Etiquetado (LOTO)", path: "#" }, { name: "EPP Especializado", path: "#" }]
+      },
+      {
+        title: "Monitoreo Ambiental",
+        links: [{ name: "Sonómetros", path: "#" }, { name: "Dosímetros", path: "#" }]
+      }
+    ]
+  },
+  {
+    id: "cal",
+    name: "Calidad de ambiente",
+    path: "/tienda/categoria/7",
+    secciones: [
+      {
+        title: "Climatización",
+        links: [{ name: "Termohigrómetros", path: "#" }, { name: "Anemómetros", path: "#" }]
+      },
+      {
+        title: "Calidad del Aire",
+        links: [{ name: "Medidores de CO2", path: "#" }, { name: "Contadores de partículas", path: "#" }]
+      }
+    ]
+  }
 ];
 
 const HeaderTienda = () => {
@@ -101,12 +193,15 @@ const HeaderTienda = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isIngenieriaOpen, setIsIngenieriaOpen] = useState(false);
   const [isServiciosOpen, setIsServiciosOpen] = useState(false);
+  
+  // Estados para el Mega Menú de Productos
   const [isProductosOpen, setIsProductosOpen] = useState(false); 
+  const [activeProductCat, setActiveProductCat] = useState(menuProductosMega[0].id);
+
   const [activeLab, setActiveLab] = useState(null);
   const location = useLocation();
   const navigate = useNavigate(); 
 
-  // SOLUCIÓN: Detectar inicio de sesión pendiente de actualización
   useEffect(() => {
     const necesitaActualizar = sessionStorage.getItem('necesita_actualizar');
     if (necesitaActualizar === 'true') {
@@ -115,7 +210,6 @@ const HeaderTienda = () => {
     }
   }, [location]);
 
-  // Efecto para verificar autenticación al cargar y al cambiar el storage
   useEffect(() => {
     const checkAuth = () => {
       const token = localStorage.getItem('token');
@@ -137,7 +231,6 @@ const HeaderTienda = () => {
 
     checkAuth();
 
-    // Escuchar cambios en localStorage (por si se abre en otra pestaña)
     const handleStorageChange = (e) => {
       if (e.key === 'token' || e.key === 'usuario') {
         checkAuth();
@@ -147,7 +240,6 @@ const HeaderTienda = () => {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
-  // Efecto para obtener conteo del carrito (simulado, luego se conectará con API)
   useEffect(() => {
     const handleCarritoUpdate = () => {
       const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
@@ -157,14 +249,12 @@ const HeaderTienda = () => {
     return () => window.removeEventListener('carritoActualizado', handleCarritoUpdate);
   }, []);
 
-  // Efecto para scroll
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Efecto para cerrar sugerencias al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -175,7 +265,6 @@ const HeaderTienda = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Efecto para sugerencias de búsqueda
   useEffect(() => {
     const fetchSugerencias = async () => {
       if (busqueda.trim().length < 2) {
@@ -210,12 +299,10 @@ const HeaderTienda = () => {
     }
   };
 
-  // Función para forzar el cierre del menú de productos al hacer click
   const handleCategoriaClick = () => {
     setIsProductosOpen(false);
   };
 
-  // Cerrar sesión
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
@@ -257,7 +344,7 @@ const HeaderTienda = () => {
                         </li>
                         <li className={activeLab === 'ensayo' ? 'active-row' : ''} onMouseEnter={() => setActiveLab('ensayo')}>
                           <span>Ensayo</span><span className="arrow-right">▸</span>
-                        </li>                    
+                        </li>                  
                       </ul>
                       <AnimatePresence>
                         {activeLab && (
@@ -331,10 +418,13 @@ const HeaderTienda = () => {
           <div className="ht-center" ref={searchRef}>
             <form onSubmit={handleBuscar} className="ht-search-form">
               
+              {/* ========================================================
+                  BOTÓN Y MEGA MENÚ DE PRODUCTOS (Estilo Falabella)
+                  ======================================================== */}
               <div 
                 className="ht-btn-productos-wrapper"
                 onMouseEnter={() => setIsProductosOpen(true)}
-                onMouseLeave={() => setIsProductosOpen(false)}
+                onMouseLeave={() => { setIsProductosOpen(false); setActiveProductCat(menuProductosMega[0].id); }}
               >
                 <div className="ht-btn-productos">
                   <span className="ht-hamburguer">≡</span> Productos
@@ -343,25 +433,69 @@ const HeaderTienda = () => {
                 <AnimatePresence>
                   {isProductosOpen && (
                     <motion.div 
-                      className="ht-productos-dropdown"
+                      className="ht-mega-productos"
                       initial={{ opacity: 0, y: 10 }} 
                       animate={{ opacity: 1, y: 0 }} 
                       exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <ul className="ht-productos-list">
-                        {categoriasProductos.map((cat, idx) => (
-                          <li key={idx}>
-                            <Link to={cat.path} onClick={handleCategoriaClick}>
-                              {cat.name}
-                            </Link>
-                          </li>
-                        ))}
-                        <li className="ht-ver-todo">
+                      {/* COLUMNA IZQUIERDA: CATEGORÍAS */}
+                      <div className="ht-mega-prod-left">
+                        <ul>
+                          {menuProductosMega.map((cat) => (
+                            <li 
+                              key={cat.id} 
+                              className={activeProductCat === cat.id ? 'active' : ''}
+                              onMouseEnter={() => setActiveProductCat(cat.id)}
+                            >
+                              <Link to={cat.path} onClick={handleCategoriaClick}>
+                                {cat.name} <span className="arrow">›</span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="ht-ver-todo-mega">
                           <Link to="/tienda/catalogo" onClick={handleCategoriaClick}>
                             Ver todo el catálogo →
                           </Link>
-                        </li>
-                      </ul>
+                        </div>
+                      </div>
+
+                      {/* COLUMNA DERECHA: SUBCATEGORÍAS DINÁMICAS */}
+                      <div className="ht-mega-prod-right">
+                        {(() => {
+                          const activeData = menuProductosMega.find(c => c.id === activeProductCat);
+                          if (!activeData) return null;
+                          return (
+                            <>
+                              {/* BANNER VERDE SUPERIOR TIPO FALABELLA */}
+                              <div className="ht-mega-prod-header">
+                                <div className="ht-header-title">
+                                  {/* Puedes añadir un icono genérico de categoría aquí si deseas */}
+                                  <h3>{activeData.name}</h3>
+                                </div>
+                                <Link to={activeData.path} onClick={handleCategoriaClick}>Ver todo</Link>
+                              </div>
+                              
+                              {/* GRILLA DE SUBCATEGORÍAS */}
+                              <div className="ht-mega-prod-grid">
+                                {activeData.secciones.map((sec, idx) => (
+                                  <div key={idx} className="ht-mega-prod-column">
+                                    <h4>{sec.title}</h4>
+                                    <ul>
+                                      {sec.links.map((link, lidx) => (
+                                        <li key={lidx}>
+                                          <Link to={link.path} onClick={handleCategoriaClick}>{link.name}</Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          );
+                        })()}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -432,7 +566,6 @@ const HeaderTienda = () => {
               </div>
             </div>
 
-            {/* ENLACE DE LOGIN / MI CUENTA */}
             {!isAuthenticated ? (
               <Link className="ht-icon-link" to="/tienda/login">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
@@ -465,7 +598,7 @@ const HeaderTienda = () => {
                 </svg>
                 <span className="ht-cart-badge">{cartCount}</span>
               </div>
-              <span>Compras</span>
+              <span>Carrito</span>
             </Link>
           </div>
 

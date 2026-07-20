@@ -1,0 +1,177 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.fp-container-main {
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================================================
+   BANNER HERO (Ahora con Imagen de Fondo)
+   ========================================================================== */
+.fp-hero-banner {
+  width: 100%;
+  /* El background-image ahora se maneja desde el JSX para cargar la variable importada */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 200px;
+}
+
+.fp-hero-content {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.fp-title {
+  color: #ffffff;
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.5px;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Esto hará resaltar el texto blanco sobre la foto */
+}
+
+.text-neon-green {
+  color: #00ff55; /* Verde fluorescente */
+  font-weight: 600;
+}
+
+.fp-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.inacal-logo {
+  height: 90px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   SECCIÓN INTRODUCCIÓN (Blanca)
+   ========================================================================== */
+.fp-intro-section {
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+.fp-intro-container {
+  width: 100%;
+  max-width: 1050px;
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+/* COLUMNA IZQUIERDA */
+.fp-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fp-description {
+  color: #6b7280;
+  font-size: 15.5px;
+  line-height: 1.7;
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-align: justify;
+  -webkit-font-smoothing: antialiased;
+}
+
+.text-blue-bold {
+  color: #014e9f;
+  font-weight: 600;
+}
+
+/* BOTÓN */
+.btn-solicitar-servicio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #014e9f;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1.5px solid #014e9f;
+  border-radius: 30px;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-solicitar-servicio:hover {
+  background-color: #014e9f;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 86, 179, 0.25);
+  transform: translateY(-2px);
+}
+
+/* COLUMNA DERECHA */
+.fp-image-col {
+  flex: 0 0 45%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fp-scientist-img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 25px;
+  object-fit: cover;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 950px) {
+  .fp-intro-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .fp-image-col {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .fp-text-col {
+    align-items: center;
+  }
+  
+  .fp-description {
+    text-align: center;
+  }
+}
+
+@media (max-width: 650px) {
+  .fp-title {
+    font-size: 38px;
+    text-align: center;
+  }
+  
+  .fp-hero-content {
+    justify-content: center;
+    text-align: center;
+  }
+}

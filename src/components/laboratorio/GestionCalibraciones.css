@@ -84,7 +84,7 @@
 }
 
 .gestion-card {
-  background-color: #00458a; /* Azul oscuro corporativo */
+  background: linear-gradient(135deg, #0069cb 0%, #00315f 100%, #002855 100%); /* Degradado corporativo de la caja */
   border-radius: 25px;
   padding: 40px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* Sombra elegante */

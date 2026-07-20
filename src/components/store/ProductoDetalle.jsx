@@ -73,23 +73,22 @@ const ProductoDetalle = () => {
     obtenerProducto();
   }, [id]);
 
-  // Agregar al carrito (usando localStorage)
   const agregarAlCarrito = () => {
     if (!producto) return;
 
     // Obtener carrito actual
     const carritoActual = JSON.parse(localStorage.getItem('carrito') || '[]');
 
-    // Verificar si el producto ya está en el carrito
-    const existeIndex = carritoActual.findIndex(item => item.id === producto.id);
+    // Buscar si el producto ya está (usando producto_id)
+    const existeIndex = carritoActual.findIndex(item => item.producto_id === producto.id);
 
     if (existeIndex !== -1) {
-      // Si existe, actualizar cantidad
+      // Si existe, sumar cantidad
       carritoActual[existeIndex].cantidad += cantidad;
     } else {
-      // Si no existe, agregar nuevo item
+      // Agregar nuevo producto
       carritoActual.push({
-        id: producto.id,
+        producto_id: producto.id,
         nombre: producto.nombre,
         precio: Number(producto.precio_regular),
         cantidad: cantidad,
@@ -101,19 +100,16 @@ const ProductoDetalle = () => {
     // Guardar en localStorage
     localStorage.setItem('carrito', JSON.stringify(carritoActual));
 
-    // Disparar evento para actualizar el badge del header
+    // Disparar evento para actualizar badge
     window.dispatchEvent(new Event('carritoActualizado'));
 
-    // ✅ MENSAJE CENTRADO TOTALMENTE (SOLUCIÓN AL HEADER)
+    // SweetAlert (opcional)
     Swal.fire({
       title: '¡Producto agregado!',
       text: `Se agregaron ${cantidad} unidad(es) de "${producto.nombre}" al carrito.`,
       icon: 'success',
       confirmButtonText: 'Entendido',
-      confirmButtonColor: '#00c652', // Verde como el botón de WhatsApp para mantener coherencia
-      customClass: {
-        container: 'swal2-modal-centrado'
-      }
+      confirmButtonColor: '#00c652',
     });
   };
 

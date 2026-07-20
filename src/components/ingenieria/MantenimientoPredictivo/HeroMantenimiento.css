@@ -1,0 +1,217 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.hm-container-main {
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+}
+
+/* ==========================================================================
+   BANNER HERO (Imagen de Fondo)
+   ========================================================================== */
+.hm-hero-banner {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 80px 5%;
+  display: flex;
+  justify-content: center;
+  padding-top: 220px; /* Espacio para compensar el header flotante */
+  padding-bottom: 150px;
+}
+
+.hm-hero-content {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+}
+
+.hm-title {
+  color: #ffffff;
+  font-size: 55px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -1px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hm-text-green {
+  color: #00e676; /* Verde Certimet */
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   SECCIÓN INTRODUCCIÓN (Blanca)
+   ========================================================================== */
+.hm-intro-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 100px 5%;
+}
+
+.hm-intro-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+/* --- COLUMNA IZQUIERDA (IMAGEN) --- */
+.hm-image-col {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hm-intro-img {
+  width: 100%;
+  max-width: 450px;
+  height: 600px; /* Le damos altura para que se vea como en el diseño (vertical) */
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* --- COLUMNA DERECHA (TEXTOS) --- */
+.hm-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hm-intro-title {
+  color: #0056b3;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 30px 0;
+  letter-spacing: -0.5px;
+}
+
+.hm-text-blue-bold {
+  font-weight: 700;
+}
+
+.hm-description {
+  color: #59575a;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-top: 0;
+  margin-bottom: 30px;
+  max-width: 480px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hm-text-green-italic {
+  color: #00e676;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+
+/* --- BOTÓN --- */
+.hm-btn-solicitar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0056b3;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid #0056b3;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hm-btn-solicitar:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 86, 179, 0.25);
+  transform: translateY(-2px);
+}
+
+.hm-btn-solicitar .arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.hm-btn-solicitar:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 950px) {
+  .hm-intro-container {
+    flex-direction: column-reverse; /* En móvil, primero texto, luego imagen abajo */
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .hm-image-col {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hm-intro-img {
+    height: auto;
+    aspect-ratio: 4/5;
+  }
+
+  .hm-text-col {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hm-description {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hm-hero-banner {
+    padding-top: 180px;
+    padding-bottom: 100px;
+  }
+
+  .hm-title {
+    font-size: 42px;
+    text-align: center;
+  }
+  
+  .hm-hero-content {
+    justify-content: center;
+  }
+
+  .hm-intro-title {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hm-title {
+    font-size: 32px;
+  }
+
+  .hm-intro-title {
+    font-size: 28px;
+  }
+
+  .hm-text-green-italic {
+    font-size: 18px;
+  }
+}

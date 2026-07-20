@@ -1,0 +1,293 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+.nuestras-soluciones-sec {
+  position: relative;
+  padding: 100px 5%;
+  background-color: #ffffff;
+  overflow: hidden; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ns-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   TÍTULO PRINCIPAL
+   ========================================================================== */
+.ns-main-title {
+  text-align: center;
+  color: #0056b3;
+  font-size: 38px;
+  font-weight: 500;
+  margin-bottom: 70px;
+  letter-spacing: -0.5px;
+}
+
+.ns-main-title span {
+  font-weight: 600; 
+}
+
+/* ==========================================================================
+   GRILLA DE TARJETAS
+   ========================================================================== */
+.ns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* ==========================================================================
+   TARJETA INDIVIDUAL
+   ========================================================================== */
+.ns-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.05; 
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  will-change: transform, opacity;
+  background-color: #002d5e; /* Fondo oscuro base por si las imágenes tardan en cargar */
+}
+
+/* --- FONDOS Y CAPAS --- */
+.ns-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* 1. La imagen clara que está al fondo */
+.ns-img-default {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* 2. La capa azul que tiñe la imagen clara (el mismo azul de certimet pero con 88% de opacidad) */
+.ns-blue-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 86, 179, 0.100); /* <- Ajusta este 0.88 si quieres que se vea MÁS o MENOS la foto */
+  z-index: 2;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* 3. La imagen oscura (oculta por defecto) */
+.ns-img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; 
+  z-index: 3;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Efectos al pasar el mouse */
+.ns-item:hover .ns-blue-overlay {
+  opacity: 1; /* Desaparece el tinte azul */
+}
+
+.ns-item:hover .ns-img-hover {
+  opacity: 1; /* Aparece la imagen oscura */
+}
+
+/* --- ICONO SUPERIOR DERECHO --- */
+.ns-card-icon-wrapper {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 35px;
+  height: 35px;
+  z-index: 4;
+}
+
+.ns-icon-default,
+.ns-icon-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.ns-icon-hover {
+  opacity: 0;
+}
+
+.ns-item:hover .ns-icon-hover {
+  opacity: 1;
+}
+
+.ns-item:hover .ns-icon-default {
+  opacity: 0;
+}
+
+/* --- CONTENIDO DE TEXTO Y BOTÓN --- */
+.ns-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 25px;
+  text-align: left;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ns-card-title {
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ns-link {
+  display: inline-block;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efectos de Hover GENÉRICOS para el Botón */
+.ns-item:hover .ns-link {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #0056b3;
+  font-weight: 600;
+}
+
+/* Efectos de Hover ESPECÍFICOS para "Control de Procesos" (theme-green) */
+.ns-item:hover .theme-green .ns-card-title {
+  color: #00e676;
+}
+
+.ns-item:hover .theme-green .ns-link {
+  background-color: #00e676;
+  border-color: #00e676;
+  color: #001a33;
+}
+
+/* ==========================================================================
+   BOTÓN FLOTANTE (PAUSA GSAP)
+   ========================================================================== */
+.ns-btn-control {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ns-btn-control.active {
+  background: rgba(0, 80, 158, 0.85);
+  color: #ffffff;
+}
+
+.ns-btn-control.paused {
+  background: rgba(230, 235, 240, 0.9);
+  color: #333333;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.ns-btn-control:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 80, 158, 0.25);
+}
+
+.ns-btn-pulse {
+  width: 8px;
+  height: 8px;
+  background-color: #00e676;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.ns-btn-control.active .ns-btn-pulse::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #00e676;
+  border-radius: 50%;
+  animation: nsPulsoBtn 1.8s infinite ease-in-out;
+}
+
+.ns-btn-control.paused .ns-btn-pulse {
+  background-color: #9e9e9e;
+}
+
+@keyframes nsPulsoBtn {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 900px) {
+  .ns-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ns-grid {
+    grid-template-columns: 1fr;
+  }
+  .ns-main-title {
+    font-size: 32px;
+  }
+  .ns-btn-control {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+}

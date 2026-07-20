@@ -1,0 +1,233 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+.pqe-section {
+  background-color: #ffffff; 
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pqe-container {
+  width: 100%;
+  max-width: 1050px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   BANNER SUPERIOR
+   ========================================================================== */
+.pqe-banner-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px; /* Espacio para separar el banner de las tarjetas */
+  width: 100%;
+}
+
+.pqe-banner {
+  background: linear-gradient(90deg, #004b9a 0%, #002855 100%);
+  border-radius: 40px;
+  padding: 40px 60px;
+  width: 100%;
+  max-width: 850px;
+  position: relative; /* Necesario para que la imagen sobresalga de forma absoluta */
+  box-shadow: 0 15px 35px rgba(0, 40, 85, 0.2);
+}
+
+.pqe-banner-content h3 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0 0 15px 0;
+  letter-spacing: -0.5px;
+}
+
+.btn-consulte {
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  border: 1px solid #ffffff;
+  border-radius: 30px;
+  padding: 8px 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-consulte:hover {
+  background-color: #ffffff;
+  color: #004b9a;
+}
+
+/* ==========================================================================
+   IMAGEN DEL BANNER (Aquí ajustas su posición y tamaño)
+   ========================================================================== */
+.pqe-banner-img {
+  position: absolute;
+  
+  /* 1. TAMAÑO: Cambia este valor para hacerla más grande o pequeña */
+  width: 370px; 
+  
+  /* 2. ARRIBA/ABAJO: Usa valores negativos para subirla. Ej: -50px, -80px */
+  top: -85px; 
+  
+  /* 3. IZQUIERDA/DERECHA: Aumenta o disminuye para mover a los lados */
+  right: 30px; 
+  
+  z-index: 10;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15)); /* Sombras de la imagen 3D */
+}
+
+/* ==========================================================================
+   TÍTULO: ¿Por qué elegirnos?
+   ========================================================================== */
+.pqe-header {
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.pqe-title {
+  color: #0056b3;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.pqe-title .text-green {
+  color: #2bff00;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   GRILLA Y TARJETAS (Adaptado)
+   ========================================================================== */
+.pqe-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px; /* Aumentamos la separación entre tarjetas */
+}
+
+/* ESTADO POR DEFECTO (Blanco) */
+.pqe-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  
+  /* AJUSTES CLAVE PARA HACERLAS DELGADAS Y ALTAS */
+  margin: 0 auto; /* Centra la tarjeta dentro de su columna */
+  width: 100%;
+  max-width: 225px; /* Tope de ancho para que no se estiren de más */
+  min-height: 400px; /* Altura forzada para dar el aspecto vertical */
+  padding: 40px 22px; 
+  
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  cursor: default;
+}
+
+.pqe-number {
+  color: #0056b3; 
+  font-size: 58px; 
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  transition: color 0.4s ease;
+  line-height: 1;
+}
+
+.pqe-card-title {
+  color: #003b7a;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 20px 0; 
+  transition: color 0.4s ease;
+}
+
+.pqe-card-text {
+  color: #59575a;
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin: 0;
+  transition: color 0.4s ease;
+}
+
+/* ==========================================================================
+   ESTADO HOVER
+   ========================================================================== */
+.pqe-card:hover {
+  background: linear-gradient(180deg, #004b9a 0%, #002d5e 100%);
+  border-color: transparent;
+  transform: translateY(-10px);
+  box-shadow: 15px 25px 45px rgba(0, 45, 94, 0.35); 
+}
+
+.pqe-card:hover .pqe-number {
+  color: #1cff57; 
+}
+
+.pqe-card:hover .pqe-card-title,
+.pqe-card:hover .pqe-card-text {
+  color: #ffffff;
+}
+
+.pqe-card:hover .pqe-card-text {
+  opacity: 0.85; 
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .pqe-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 40px;
+  }
+  .pqe-card {
+    max-width: 280px; /* En tablet pueden ser un poco más anchas */
+    min-height: 320px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .pqe-banner-img {
+    width: 200px;
+    top: -40px;
+    right: 10px;
+  }
+  .pqe-banner {
+    padding: 30px 20px;
+    text-align: center;
+  }
+  .pqe-banner-content h3 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pqe-grid {
+    grid-template-columns: 1fr;
+  }
+  .pqe-card {
+    max-width: 100%; /* En móviles toman todo el ancho */
+    min-height: auto;
+  }
+  .pqe-title {
+    font-size: 32px;
+  }
+  .pqe-banner-img {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    width: 180px;
+  }
+}

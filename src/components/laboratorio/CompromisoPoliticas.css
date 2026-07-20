@@ -1,0 +1,201 @@
+/* ==========================================================================
+   SECCIÓN COMPROMISO Y POLÍTICAS
+   ========================================================================== */
+.compromiso-section {
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.compromiso-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center; /* Centrado vertical entre texto y caja */
+  gap: 60px;
+}
+
+/* ==========================================================================
+   COLUMNA IZQUIERDA (Texto)
+   ========================================================================== */
+.compromiso-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.compromiso-text-col h2 {
+  /* Efecto de degradado en el texto azul */
+  background-color: #0060c0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  font-size: 46px;
+  font-weight: 500; /* Lo mantenemos en 500 como indicaste, pero el degradado lo hará lucir más fino */
+  line-height: 1.15;
+  margin: 0 0 25px 0;
+  letter-spacing: -0.5px;
+  
+  /* Truco para afinar la fuente en pantallas modernas */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.compromiso-text-col p {
+  color: #4b5563; /* Gris para buena legibilidad */
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 90%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA (Caja Azul con Acordeón)
+   ========================================================================== */
+.compromiso-accordion-col {
+  flex: 1.1;
+  background: linear-gradient(135deg, #0069cb 0%, #00315f 100%, #002855 100%); /* Degradado corporativo de la caja */
+  border-radius: 35px; /* Bordes redondeados */
+  padding: 40px 50px;
+  box-shadow: 0 20px 40px rgba(0, 40, 85, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 25px 0;
+}
+
+.accordion-item.last-item {
+  border-bottom: none;
+  padding-bottom: 10px;
+}
+
+/* Cabecera Clickable */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.accordion-header:hover {
+  opacity: 0.9;
+}
+
+.accordion-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.accordion-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* TÍTULO VERDE DEL ACORDEÓN (Corregido para ser fino) */
+.accordion-title {
+  color: #00ff6a; 
+  font-size: 21px; /* Un poco más estilizado */
+  font-weight: 500 !important; /* Fuerza a que sea delgado (normal) */
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Flecha animada */
+.accordion-arrow {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+  transition: transform 0.3s ease-in-out;
+}
+
+.accordion-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   ANIMACIÓN SUAVE DEL ACORDEÓN
+   ========================================================================== */
+.accordion-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-in-out;
+}
+
+.accordion-collapse.open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content-inner {
+  overflow: hidden;
+}
+
+.accordion-text {
+  color: #ffffff;
+  font-size: 14.5px;
+  line-height: 1.5;
+  margin: 0;
+  padding-top: 15px;
+  padding-left: 39px;
+  opacity: 0.9;
+  font-weight: 300; /* Texto de la descripción más fino */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 950px) {
+  .compromiso-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .compromiso-text-col {
+    text-align: center;
+    align-items: center;
+  }
+
+  .compromiso-text-col p {
+    max-width: 100%;
+  }
+
+  .compromiso-accordion-col {
+    width: 100%;
+    padding: 35px 30px;
+  }
+}
+
+@media (max-width: 650px) {
+  .compromiso-section {
+    padding: 60px 15px;
+  }
+
+  .compromiso-text-col h2 {
+    font-size: 34px;
+  }
+
+  .accordion-title {
+    font-size: 18px;
+  }
+
+  .accordion-text {
+    font-size: 13.5px;
+    padding-left: 0; 
+  }
+
+  .compromiso-accordion-col {
+    border-radius: 25px;
+    padding: 30px 20px;
+  }
+}

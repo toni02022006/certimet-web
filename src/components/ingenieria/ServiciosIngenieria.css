@@ -1,0 +1,227 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.si-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 60px 5% 100px 5%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   BANNER SUPERIOR (¿Tienes un proyecto en curso?)
+   ========================================================================== */
+.si-banner-container {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 100px;
+}
+
+.si-banner {
+  position: relative;
+  background-color: #003a70; /* Azul oscuro corporativo */
+  border-radius: 40px;
+  padding: 45px 50px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+}
+
+.si-banner-text {
+  max-width: 60%;
+  z-index: 2;
+}
+
+.si-banner-text h2 {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 25px 0;
+}
+
+.si-banner-btn {
+  display: inline-block;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 8px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.si-banner-btn:hover {
+  background-color: #ffffff;
+  color: #003a70;
+  font-weight: 600;
+}
+
+/* La imagen 3D flotante */
+.si-banner-img {
+  position: absolute;
+  right: -30px;
+  top: -50px;
+  width: 320px; /* Ajusta este tamaño dependiendo de tu imagen original */
+  z-index: 3;
+  filter: drop-shadow(0 20px 25px rgba(0,0,0,0.2));
+}
+
+/* ==========================================================================
+   SECCIÓN DE ACORDEÓN
+   ========================================================================== */
+.si-acordeon-wrapper {
+  width: 100%;
+  max-width: 900px;
+}
+
+.si-main-title {
+  text-align: center;
+  color: #0066cc; /* Azul brillante del título */
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 60px 0;
+}
+
+/* --- Ítem del Acordeón --- */
+.si-acordeon-item {
+  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 5px;
+}
+
+.si-acordeon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.si-acordeon-header h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #59575a; /* Gris oscuro para el título del acordeón */
+  font-weight: 600;
+}
+
+.si-icon {
+  font-size: 24px;
+  color: #888;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+.si-acordeon-item.active .si-icon {
+  color: #0056b3;
+}
+
+/* --- Cuerpo Desplegable --- */
+.si-acordeon-body {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.si-acordeon-content {
+  padding: 5px 0 30px 40px; /* Sangría a la izquierda */
+}
+
+.si-acordeon-content ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: decimal;
+}
+
+.si-acordeon-content li {
+  color: #0056b3; /* Letra azul como en la imagen */
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   BOTÓN INFERIOR (Solicita un servicio)
+   ========================================================================== */
+.si-btn-bottom-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.si-btn-solicita {
+  display: inline-block;
+  background: transparent;
+  color: #0066cc;
+  border: 1px solid #0066cc;
+  padding: 12px 35px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.si-btn-solicita:hover {
+  background-color: #0066cc;
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+}
+
+/* ==========================================================================
+   RESPONSIVE (Móviles y Tablets)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .si-banner-img {
+    width: 250px;
+    right: -10px;
+    top: -30px;
+  }
+  
+  .si-banner-text {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .si-banner {
+    flex-direction: column;
+    padding: 120px 30px 40px 30px; /* Espacio extra arriba para la imagen */
+    text-align: center;
+  }
+
+  .si-banner-img {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -80px;
+    width: 220px;
+  }
+
+  .si-banner-text {
+    max-width: 100%;
+  }
+
+  .si-main-title {
+    font-size: 28px;
+  }
+
+  .si-acordeon-content {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .si-main-title {
+    font-size: 24px;
+  }
+  
+  .si-banner-text h2 {
+    font-size: 22px;
+  }
+}

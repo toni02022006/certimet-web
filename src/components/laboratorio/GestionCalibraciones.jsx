@@ -7,9 +7,6 @@ import docIcon from '../../image/laboratorio/doc.webp';
 import tiempoIcon from '../../image/laboratorio/tiempo.webp';
 
 const GestionCalibraciones = () => {
-  // Ahora usamos un arreglo para guardar múltiples IDs. 
-  // Ponemos [0] para que el primer ítem empiece abierto por defecto.
-  // Si quieres que todos empiecen cerrados, usa: useState([])
   const [abiertosIds, setAbiertosIds] = useState([0]);
 
   // Función para alternar el acordeón independientemente

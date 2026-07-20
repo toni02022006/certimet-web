@@ -1,0 +1,100 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL DE LA PÁGINA
+   ========================================================================== */
+.ingenieria-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================================================
+   SECCIÓN HERO (BANNER PRINCIPAL)
+   ========================================================================== */
+.hero-ingenieria {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
+  min-height: 650px; /* Altura mínima para pantallas pequeñas */
+  background-size: cover;
+  background-position: center right; /* Centra la imagen priorizando la derecha */
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+/* 
+   EL GRADIENTE AZUL:
+   Comienza con un azul oscuro muy sólido a la izquierda (0%),
+   se mantiene bastante sólido hasta el medio (45%)
+   y luego se vuelve muy transparente a la derecha (100%) para ver al trabajador.
+*/
+.hero-ingenieria-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 45, 94, 0.98) 0%, rgba(0, 75, 147, 0.75) 45%, rgba(0, 102, 204, 0.15) 100%);
+  z-index: 1;
+}
+
+.hero-ingenieria-content {
+  position: relative;
+  z-index: 2; /* Para que el texto esté por encima del gradiente */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  margin-top: 50px; /* Espacio para compensar el header flotante */
+}
+
+/* ==========================================================================
+   TEXTOS DEL HERO
+   ========================================================================== */
+.hero-ingenieria-title {
+  color: #ffffff;
+  font-size: 75px; /* Tamaño grande como en el diseño */
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin: 0;
+  max-width: 700px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero-ingenieria-title .text-green {
+  color: #00e676; /* El verde vibrante de Certimet */
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   RESPONSIVE (Adaptación a móviles y tablets)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-ingenieria-title {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-ingenieria-title {
+    font-size: 50px;
+  }
+  
+  /* En tablets/móviles oscurecemos un poco más la parte derecha 
+     para asegurar que el texto se siga leyendo bien */
+  .hero-ingenieria-overlay {
+    background: linear-gradient(90deg, rgba(0, 45, 94, 0.98) 0%, rgba(0, 75, 147, 0.85) 60%, rgba(0, 102, 204, 0.4) 100%);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-ingenieria-title {
+    font-size: 42px;
+  }
+  
+  .hero-ingenieria {
+    background-position: 70% center; /* Ajusta el foco de la imagen en móviles */
+  }
+}
