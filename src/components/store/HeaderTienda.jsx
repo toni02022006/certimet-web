@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// ✅ IMPORTAMOS EL CONTEXTO DEL CARRITO
+import { useCarrito } from '../../context/CarritoContext';
+
 // Imágenes y Logos
 import logoBlanco from '../../image/Imagotipo-blanco-V2.png';
 import logoColor from '../../image/LOGO2026.png';
@@ -178,6 +181,9 @@ const menuProductosMega = [
 ];
 
 const HeaderTienda = () => {
+  // ✅ EXTRAEMOS EL CONTADOR DE PRODUCTOS DEL CONTEXTO
+  const { cartCount } = useCarrito();
+
   const [busqueda, setBusqueda] = useState('');
   const [sugerencias, setSugerencias] = useState([]);
   const [mostrarSugerencias, setMostrarSugerencias] = useState(false);
@@ -186,7 +192,6 @@ const HeaderTienda = () => {
   // Estado de autenticación
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [usuario, setUsuario] = useState(null);
-  const [cartCount, setCartCount] = useState(0);
 
   const searchRef = useRef(null);
   
@@ -238,15 +243,6 @@ const HeaderTienda = () => {
     };
     window.addEventListener('storage', handleStorageChange);
     return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
-
-  useEffect(() => {
-    const handleCarritoUpdate = () => {
-      const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-      setCartCount(carrito.length);
-    };
-    window.addEventListener('carritoActualizado', handleCarritoUpdate);
-    return () => window.removeEventListener('carritoActualizado', handleCarritoUpdate);
   }, []);
 
   useEffect(() => {
@@ -344,7 +340,7 @@ const HeaderTienda = () => {
                         </li>
                         <li className={activeLab === 'ensayo' ? 'active-row' : ''} onMouseEnter={() => setActiveLab('ensayo')}>
                           <span>Ensayo</span><span className="arrow-right">▸</span>
-                        </li>                  
+                        </li>                 
                       </ul>
                       <AnimatePresence>
                         {activeLab && (
@@ -596,6 +592,7 @@ const HeaderTienda = () => {
                   <circle cx="20" cy="21" r="1"></circle>
                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
+                {/* ✅ EL BADGE AHORA USA EL VALOR DEL CONTEXTO */}
                 <span className="ht-cart-badge">{cartCount}</span>
               </div>
               <span>Carrito</span>

@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Minus, Plus, FileText, Truck, Store } from 'lucide-react';
-import Swal from 'sweetalert2'; // ✅ IMPORTACIÓN DE SWEETALERT2
+import Swal from 'sweetalert2'; 
 import './ProductoDetalle.css';
+
+// ✅ IMPORTACIÓN DEL CONTEXTO (Ruta relativa hacia la carpeta context)
+import { useCarrito } from '../../context/CarritoContext';
 
 // ✅ Rutas relativas CORRECTAS desde components/store/
 import logoMastercard from '../../image/tienda/MasterCard_Logo.png';
@@ -31,6 +34,9 @@ const WhatsappIcon = () => (
 const ProductoDetalle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  // ✅ EXTRAEMOS LA FUNCIÓN DE AGREGAR DESDE EL CONTEXTO GLOBAL
+  const { agregarProducto } = useCarrito(); 
 
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
@@ -73,44 +79,13 @@ const ProductoDetalle = () => {
     obtenerProducto();
   }, [id]);
 
+  // ✅ NUEVA LÓGICA DE AGREGAR AL CARRITO USANDO EL CONTEXTO
   const agregarAlCarrito = () => {
     if (!producto) return;
-
-    // Obtener carrito actual
-    const carritoActual = JSON.parse(localStorage.getItem('carrito') || '[]');
-
-    // Buscar si el producto ya está (usando producto_id)
-    const existeIndex = carritoActual.findIndex(item => item.producto_id === producto.id);
-
-    if (existeIndex !== -1) {
-      // Si existe, sumar cantidad
-      carritoActual[existeIndex].cantidad += cantidad;
-    } else {
-      // Agregar nuevo producto
-      carritoActual.push({
-        producto_id: producto.id,
-        nombre: producto.nombre,
-        precio: Number(producto.precio_regular),
-        cantidad: cantidad,
-        imagen: producto.imagen_principal_url || '',
-        sku: producto.sku
-      });
-    }
-
-    // Guardar en localStorage
-    localStorage.setItem('carrito', JSON.stringify(carritoActual));
-
-    // Disparar evento para actualizar badge
-    window.dispatchEvent(new Event('carritoActualizado'));
-
-    // SweetAlert (opcional)
-    Swal.fire({
-      title: '¡Producto agregado!',
-      text: `Se agregaron ${cantidad} unidad(es) de "${producto.nombre}" al carrito.`,
-      icon: 'success',
-      confirmButtonText: 'Entendido',
-      confirmButtonColor: '#00c652',
-    });
+    
+    // Al llamar esta función, el Contexto se encarga de enviarlo al backend,
+    // actualizar el badge y mostrar el SweetAlert automáticamente.
+    agregarProducto(producto, cantidad);
   };
 
   // Comprar por WhatsApp
@@ -124,7 +99,9 @@ const ProductoDetalle = () => {
   if (!producto) return <div style={{ padding: '200px 20px', textAlign: 'center' }}>Producto no encontrado</div>;
 
   const urlBase = 'http://localhost:3000';
-  const principalReal = producto.imagen_principal_url ? `${urlBase}${producto.imagen_principal_url}` : 'https://via.placeholder.com/500?text=Sin+Imagen';
+  const imagenFallback = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkeT0iLjNlbSIgZmlsbD0iIzU1NSIgZm9udC1zaXplPSIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlNpbiBpbWFnZW48L3RleHQ+PC9zdmc+';
+  const principalReal = producto.imagen_principal_url ? `${urlBase}${producto.imagen_principal_url}` : imagenFallback;
+  // Modificamos esta lógica para que la imagenGrande no intente usar urlBase si imagenActiva está vacía
   const imagenGrande = imagenActiva ? `${urlBase}${imagenActiva}` : principalReal;
 
   const limpiarHTML = (html) => {
@@ -231,8 +208,23 @@ const ProductoDetalle = () => {
             </div>
           </div>
 
+          {/* 👇 AQUÍ APLICAMOS EL CAMBIO EN LOS PRECIOS 👇 */}
           <div className="precio-grande-buybox">
-            <span className="moneda">S/</span> {Number(producto.precio_regular).toFixed(2)}
+            {producto.precio_oferta ? (
+              <>
+                {/* Precio Regular (Tachado) */}
+                <span style={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.65em', marginRight: '12px', fontWeight: 'normal' }}>
+                  S/ {Number(producto.precio_regular).toFixed(2)}
+                </span>
+                {/* Precio de Oferta (Resaltado) */}
+                <span className="moneda">S/</span> {Number(producto.precio_oferta).toFixed(2)}
+              </>
+            ) : (
+              <>
+                {/* Precio Regular Normal (Cuando no hay oferta) */}
+                <span className="moneda">S/</span> {Number(producto.precio_regular).toFixed(2)}
+              </>
+            )}
             <span className="igv-texto">Inc. IGV</span>
           </div>
 

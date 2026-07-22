@@ -70,6 +70,9 @@ const ProductosDestacados = () => {
     }
   };
 
+  // Constante para la imagen por defecto (SVG súper ligero en base64)
+  const imagenFallback = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkeT0iLjNlbSIgZmlsbD0iIzU1NSIgZm9udC1zaXplPSIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlNpbiBpbWFnZW48L3RleHQ+PC9zdmc+';
+
   return (
     <section className="productos-destacados-section">
       
@@ -98,9 +101,17 @@ const ProductosDestacados = () => {
               <Link to={`/producto/${prod.id}`} className="prod-link">
                 <div className="prod-img-box">
                   <img 
-                    src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : 'https://via.placeholder.com/300x200?text=Sin+Imagen'} 
+                    // 👇 1. Aplicamos el Fallback aquí
+                    src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : imagenFallback} 
                     alt={prod.nombre} 
                     className="prod-img" 
+                    // 👇 2. Y protegemos contra errores 404 del backend
+                    onError={(e) => { 
+                      if (!e.target.dataset.error) {
+                        e.target.dataset.error = true;
+                        e.target.src = imagenFallback; 
+                      }
+                    }}
                   />
                 </div>
                 

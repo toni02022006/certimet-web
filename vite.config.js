@@ -1,18 +1,27 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import basicSsl from '@vitejs/plugin-basic-ssl' // <-- 1. Importas el plugin
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    basicSsl() // <-- 2. Lo agregas a la lista de plugins
+    basicSsl()
   ],
   base: '/certimet-web/',
   server: {
+    https: true, // ya lo da basicSsl
     watch: {
       usePolling: true,
       interval: 100,
+    },
+    // 👇 Agregamos cabeceras para relajar CSP en desarrollo
+    headers: {
+      'Content-Security-Policy':
+        "default-src 'self' https:; " +
+        "script-src 'unsafe-inline' 'unsafe-eval' https:; " +
+        "style-src 'unsafe-inline' https:; " +
+        "img-src 'self' data: https:; " +
+        "connect-src 'self' http://localhost:3000 https:;"
     }
   }
 })
