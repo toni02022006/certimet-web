@@ -2,20 +2,24 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './ServiciosIngenieria.css';
 
-// Importación exacta de la imagen según tu ruta
+// Importación de la imagen
 import imgMensaje from '../../image/laboratorio/msdefyp.png';
 
 const ServiciosIngenieria = () => {
-  // Estado para controlar qué ítem del acordeón está abierto
-  // Inicializamos en 0 para que el primero aparezca abierto por defecto (como en tu imagen)
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Ahora usamos un arreglo para permitir múltiples acordeones abiertos al mismo tiempo.
+  // Iniciamos con [0] para que el primer elemento esté abierto por defecto.
+  const [activeIndices, setActiveIndices] = useState([0]);
 
   const toggleAccordion = (index) => {
-    // Si clickeas el que ya está abierto, lo cierra. Si no, abre el nuevo.
-    setActiveIndex(activeIndex === index ? null : index);
+    // Si el índice ya está en el arreglo, lo quitamos (cerramos el acordeón)
+    if (activeIndices.includes(index)) {
+      setActiveIndices(activeIndices.filter((i) => i !== index));
+    } else {
+      // Si no está, lo agregamos (abrimos el acordeón sin cerrar los demás)
+      setActiveIndices([...activeIndices, index]);
+    }
   };
 
-  // Data del acordeón extraída de tu diseño
   const acordeonData = [
     {
       title: 'Servicio de Montaje y Conexionado Eléctrico',
@@ -48,9 +52,7 @@ const ServiciosIngenieria = () => {
   return (
     <section className="si-section">
       
-      {/* =========================================================
-          BANNER FLOTANTE SUPERIOR
-          ========================================================= */}
+      {/* BANNER FLOTANTE SUPERIOR */}
       <div className="si-banner-container">
         <div className="si-banner">
           <div className="si-banner-text">
@@ -63,14 +65,11 @@ const ServiciosIngenieria = () => {
             </Link>
           </div>
           
-          {/* Imagen 3D flotante que sobresale del contenedor */}
           <img src={imgMensaje} alt="Icono Mensaje Check" className="si-banner-img" />
         </div>
       </div>
 
-      {/* =========================================================
-          SECCIÓN DE ACORDEÓN (SERVICIOS)
-          ========================================================= */}
+      {/* SECCIÓN DE ACORDEÓN */}
       <div className="si-acordeon-wrapper">
         <h2 className="si-main-title">
           Servicios de Ingeniería, Automatización<br />
@@ -79,14 +78,15 @@ const ServiciosIngenieria = () => {
 
         <div className="si-acordeon">
           {acordeonData.map((servicio, index) => {
-            const isOpen = activeIndex === index;
+            // Verificamos si este índice específico está dentro del arreglo de abiertos
+            const isOpen = activeIndices.includes(index);
 
             return (
               <div 
                 key={index} 
                 className={`si-acordeon-item ${isOpen ? 'active' : ''}`}
               >
-                {/* Cabecera del Acordeón */}
+                {/* Cabecera */}
                 <div 
                   className="si-acordeon-header" 
                   onClick={() => toggleAccordion(index)}
@@ -95,7 +95,7 @@ const ServiciosIngenieria = () => {
                   <span className="si-icon">{isOpen ? '-' : '+'}</span>
                 </div>
 
-                {/* Cuerpo del Acordeón (Desplegable) */}
+                {/* Cuerpo Desplegable */}
                 <div 
                   className="si-acordeon-body"
                   style={{ maxHeight: isOpen ? '500px' : '0px' }}

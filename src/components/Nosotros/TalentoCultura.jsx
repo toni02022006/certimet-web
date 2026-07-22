@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './TalentoCultura.css';
 
-// 1. Tu imagen local (asegúrate de que la extensión sea correcta, .png o .jpg)
-import img1 from '../../image/nosotros/Talento_Cultura.png'; 
+// 1. Imágenes locales mapeadas según tus rutas
+import img1 from '../../image/laboratorio/talentocultura/IMG_0786.jpeg'; 
+import img2 from '../../image/laboratorio/talentocultura/IMG_0804.jpeg';
+import img3 from '../../image/laboratorio/talentocultura/IMG_4013.jpeg';
+import img4 from '../../image/laboratorio/talentocultura/Mesa_trabajo.jpeg';
+import img5 from '../../image/laboratorio/talentocultura/dsefa.jpeg';
 
-// 2. Imágenes de relleno de internet (cámbialas cuando tengas las tuyas)
-const img2 = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-const img3 = "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-const img4 = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-const img5 = "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-const img6 = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-
-const carouselImages = [img1, img2, img3, img4, img5, img6];
+// Solo dejamos tus 5 imágenes
+const carouselImages = [img1, img2, img3, img4, img5];
 
 const TalentoCultura = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-reproducción del carrusel de imágenes cada 4 segundos
+  // Referencias para las animaciones al hacer scroll
+  const imageRef = useRef(null);
+  const textRef = useRef(null);
+
+  // Auto-reproducción del carrusel cada 4 segundos
   useEffect(() => {
     const slideInterval = setInterval(() => {
       setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
@@ -24,12 +26,41 @@ const TalentoCultura = () => {
     return () => clearInterval(slideInterval);
   }, []);
 
+  // Lógica para detectar el Scroll (Intersection Observer)
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2 // Se activa cuando el 20% del elemento es visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Si entra a la pantalla, añade la clase visible
+          entry.target.classList.add('visible');
+        } else {
+          // Si sale de la pantalla, quita la clase para que el efecto se repita al volver
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, observerOptions);
+
+    if (imageRef.current) observer.observe(imageRef.current);
+    if (textRef.current) observer.observe(textRef.current);
+
+    return () => {
+      if (imageRef.current) observer.unobserve(imageRef.current);
+      if (textRef.current) observer.unobserve(textRef.current);
+    };
+  }, []);
+
   return (
     <section className="talento-section">
       <div className="talento-container">
         
         {/* Columna Izquierda: Imagen y Carrusel */}
-        <div className="talento-image-col">
+        <div className="talento-image-col scroll-effect" ref={imageRef}>
           <div className="image-wrapper">
             <img 
               src={carouselImages[currentSlide]} 
@@ -51,7 +82,7 @@ const TalentoCultura = () => {
         </div>
 
         {/* Columna Derecha: Texto */}
-        <div className="talento-text-col">
+        <div className="talento-text-col scroll-effect delay-1" ref={textRef}>
           <h2>Talento y Cultura</h2>
           
           <p>

@@ -1,193 +1,194 @@
 /* ==========================================================================
-   SECCIÓN PRINCIPAL
+   SECCIÓN PRINCIPAL (Contenedor de toda la franja)
    ========================================================================== */
 .soluciones-section {
-  background-color: #ffffff;
-  padding: 100px 5%;
-  display: flex;
-  justify-content: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff !important; 
+  padding: 100px 5% !important; 
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  box-sizing: border-box !important;
 }
 
 .soluciones-container {
-  width: 100%;
-  max-width: 1150px;
-  display: flex;
-  align-items: center;
-  gap: 80px;
+  width: 100% !important;
+  max-width: 1100px !important; 
+  display: flex !important;
+  flex-direction: row !important; /* Fuerza las dos columnas */
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 60px !important; 
+  margin: 0 auto !important;
 }
 
 /* ==========================================================================
-   COLUMNA IZQUIERDA (TEXTOS)
+   COLUMNA IZQUIERDA (CONTENEDOR DE TEXTOS)
    ========================================================================== */
 .soluciones-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* FUERZA elementos a la izquierda */
+  text-align: left !important; /* FUERZA texto a la izquierda */
+  max-width: 480px !important; 
 }
 
+/* TÍTULO PRINCIPAL */
 .soluciones-title {
-  color: #0056b3;
-  font-size: 42px;
-  line-height: 1.15;
-  font-weight: 500;
-  margin: 0 0 25px 0;
-  letter-spacing: -0.5px;
+  color: #0056b3 !important; 
+  font-size: 46px !important; 
+  line-height: 1.1 !important; 
+  margin: 0 0 25px 0 !important; 
+  letter-spacing: -1px !important;
+  text-align: left !important; /* Asegura la alineación izquierda */
+  width: 100% !important;
 }
 
+/* Grosores de las letras del título */
+.texto-regular {
+  font-weight: 400 !important; 
+}
+
+.texto-bold {
+  font-weight: 600 !important; 
+}
+
+/* PÁRRAFO DESCRIPTIVO */
 .soluciones-desc {
-  color: #59575a;
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 0 0 40px 0;
-  max-width: 480px;
+  color: #59575a !important; 
+  font-size: 16px !important; 
+  line-height: 1.6 !important; 
+  margin: 0 0 40px 0 !important; 
+  text-align: left !important; /* Asegura la alineación izquierda */
+  width: 100% !important;
 }
 
+/* BOTÓN "CONTÁCTANOS" */
 .btn-contactanos-soluciones {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #0056b3;
-  border: 1px solid #0056b3;
-  padding: 10px 28px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: #0056b3 !important; 
+  background-color: transparent !important;
+  border: 1px solid #0056b3 !important; 
+  padding: 10px 30px !important; 
+  border-radius: 50px !important; 
+  text-decoration: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
 }
 
 .btn-contactanos-soluciones span {
-  font-size: 18px;
-  line-height: 1;
-  transition: transform 0.3s ease;
+  font-size: 20px !important; 
+  line-height: 1 !important;
+  transition: transform 0.3s ease !important;
 }
 
 .btn-contactanos-soluciones:hover {
-  background-color: #0056b3;
-  color: #ffffff;
+  background-color: #0056b3 !important; 
+  color: #ffffff !important; 
 }
 
 .btn-contactanos-soluciones:hover span {
-  transform: translateX(4px);
+  transform: translateX(5px) !important; 
 }
 
 /* ==========================================================================
-   COLUMNA DERECHA (IMAGEN Y BADGE)
+   COLUMNA DERECHA (IMAGEN PRINCIPAL Y BADGE)
    ========================================================================== */
 .soluciones-right {
-  flex: 1.1; /* Le damos un poquito más de espacio a la imagen */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  padding-left: 40px !important; 
 }
 
 .soluciones-img-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
+  position: relative !important;
+  width: 100% !important;
+  max-width: 460px !important; 
+  display: flex !important;
 }
 
+/* IMAGEN DEL INGENIERO */
 .soluciones-img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  display: block;
-  object-fit: cover;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  width: 100% !important;
+  height: 600px !important; 
+  border-radius: 25px !important; 
+  display: block !important;
+  object-fit: cover !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important; 
 }
 
-/* El recuadro azul flotante (Badge) */
+/* CONTENEDOR DE LA IMAGEN FLOTANTE (img4.png) */
 .soluciones-badge {
-  position: absolute;
-  bottom: -20px; /* Sobresale hacia abajo */
-  left: -40px;   /* Sobresale hacia la izquierda */
-  background-color: #0056b3;
-  color: #ffffff;
-  padding: 22px 15px;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 145px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 86, 179, 0.3);
-  z-index: 5;
+  position: absolute !important;
+  bottom: 30px !important; 
+  left: -80px !important;  
+  z-index: 5 !important; 
 }
 
-.soluciones-badge svg {
-  margin-bottom: 12px;
-}
-
-.soluciones-badge span {
-  font-size: 12.5px;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: 0.5px;
+/* LA IMAGEN FLOTANTE EN SÍ */
+.badge-icon {
+  width: 150px !important; 
+  height: auto !important;
+  border-radius: 12px !important; 
+  box-shadow: 0 10px 25px rgba(0, 86, 179, 0.2) !important; 
+  display: block !important;
 }
 
 /* ==========================================================================
-   RESPONSIVE (Adaptación a tablets y móviles)
+   RESPONSIVE (Ajustes para tablets y celulares)
    ========================================================================== */
 @media (max-width: 1024px) {
-  .soluciones-container {
-    gap: 50px;
-  }
-  
-  .soluciones-title {
-    font-size: 36px;
-  }
-  
-  .soluciones-badge {
-    left: -20px;
-  }
+  .soluciones-container { gap: 40px !important; }
+  .soluciones-title { font-size: 38px !important; }
+  .soluciones-badge { left: -40px !important; }
 }
 
 @media (max-width: 768px) {
-  .soluciones-section {
-    padding: 70px 20px;
-  }
-
+  .soluciones-section { padding: 70px 20px !important; }
   .soluciones-container {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column !important;
+    text-align: center !important;
   }
-
+  
+  /* En móviles, centramos el texto */
   .soluciones-left {
-    align-items: center;
+    align-items: center !important; 
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  
+  .soluciones-title, .soluciones-desc {
+    text-align: center !important; 
   }
 
-  .soluciones-desc {
-    text-align: center;
+  .soluciones-right {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    margin-top: 40px !important;
   }
 
+  .soluciones-img { height: auto !important; max-height: 500px !important; }
+
+  /* Posición de la imagen azul en móviles */
   .soluciones-badge {
-    bottom: -15px;
-    left: -15px;
-    padding: 15px 10px;
-    width: 120px;
+    bottom: -20px !important;
+    left: 20px !important; 
   }
   
-  .soluciones-badge svg {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .soluciones-badge span {
-    font-size: 11px;
-  }
+  .badge-icon { width: 130px !important; }
 }
 
 @media (max-width: 480px) {
-  .soluciones-title {
-    font-size: 32px;
-  }
-  
+  .soluciones-title { font-size: 32px !important; }
   .soluciones-badge {
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%); /* En móviles pequeños lo centramos abajo */
+    bottom: -15px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important; 
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import './DefinicionMantenimiento.css';
 
 // Reutilizamos la imagen del ingeniero de la sección "Quiénes Somos / Soluciones Integrales"
-import imgDefinicion from '../../../image/nosotros/quienssms.png';
+import imgDefinicion from '../../../image/ingenieria/img1.png';
 
 const DefinicionMantenimiento = () => {
   return (

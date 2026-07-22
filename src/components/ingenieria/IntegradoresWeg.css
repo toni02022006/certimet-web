@@ -1,0 +1,142 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL DE LA SECCIÓN
+   ========================================================================== */
+.weg-section {
+  width: 100%;
+  padding: 80px 20px; /* Espacio arriba/abajo de la sección completa */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff; /* Fondo de la página */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Evita que si una imagen sobresale mucho, cree scroll horizontal */
+}
+
+/* ==========================================================================
+   EL BANNER ESTILO "CÁPSULA" (FONDO GRIS CLARO)
+   ========================================================================== */
+.weg-banner {
+  position: relative; /* Clave para poder mover las imágenes fuera de la caja */
+  width: 100%;
+  max-width: 950px; /* Ancho de la franja gris */
+  background: linear-gradient(90deg, #f0f1f4 0%, #e7eaed 100%); /* Degradado gris muy suave */
+  border-radius: 50px; /* Hace que los bordes sean totalmente curvos (cápsula) */
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.277); /* Sombra suave de la cápsula */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 180px; /* Mucho padding a los lados para dejar espacio a las imágenes */
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   IMAGEN IZQUIERDA (LOGO WEG AZUL)
+   ========================================================================== */
+.weg-left-img {
+  position: absolute; 
+  left: -20px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  z-index: 10;
+}
+
+.weg-left-img img {
+  width: 180px; 
+  height: auto;
+  
+  /* ESTAS LÍNEAS ELIMINAN EL BORDE BLANCO FANTASMA */
+  background-color: transparent !important; 
+  border: none !important; 
+  padding: 0 !important; 
+  outline: none;
+  
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.277);
+  border-radius: 1px; 
+}
+
+/* ==========================================================================
+   TEXTOS DEL CENTRO
+   ========================================================================== */
+.weg-content {
+  text-align: center;
+  z-index: 5;
+}
+
+.weg-title {
+  color: #0056b3;
+  font-size: 38px; /* Tamaño del título principal */
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 0 15px 0;
+  letter-spacing: -0.5px;
+}
+
+.weg-bold {
+  font-weight: 650; /* Hace que la palabra "WEG" resalte en negrita */
+}
+
+.weg-subtitle {
+  color: #0056b3; /* Mismo color azul para el párrafo pequeño */
+  font-size: 14px; /* Tamaño de letra del subtítulo */
+  line-height: 1.5;
+  margin: 0;
+  max-width: 500px;
+}
+
+/* ==========================================================================
+   IMAGEN DERECHA (INSIGNIA 3D)
+   ========================================================================== */
+.weg-right-img {
+  position: absolute; /* La sacamos del flujo normal */
+  right: -60px; /* Qué tanto sobresale hacia la derecha. Ajústalo a tu gusto */
+  top: 40%;
+  transform: translateY(-50%); /* Centrado vertical */
+  z-index: 10;
+}
+
+.weg-right-img img {
+  width: 300px; /* Tamaño de la insignia 3D (ajustar si es muy grande o chica) */
+  height: auto;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.15)); /* Sombra para el formato PNG */
+}
+
+/* ==========================================================================
+   RESPONSIVE (Adaptación a tablets y móviles)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  /* En tablets cerramos un poco los espacios */
+  .weg-banner {
+    padding: 30px 140px;
+    max-width: 800px;
+  }
+  .weg-title { font-size: 32px; }
+  .weg-left-img { left: -10px; }
+  .weg-left-img img { width: 170px; }
+  .weg-right-img { right: -30px; }
+  .weg-right-img img { width: 180px; }
+}
+
+@media (max-width: 768px) {
+  /* En celulares pequeños (pantallas < 768px), rompemos la cápsula y apilamos todo verticalmente */
+  .weg-section {
+    padding: 60px 15px;
+  }
+
+  .weg-banner {
+    flex-direction: column; /* Apila elementos uno sobre otro */
+    padding: 40px 20px; /* Reducimos el padding de la cápsula */
+    border-radius: 40px; /* Bordes menos curvos en móvil */
+    position: static; /* Quitamos posicionamiento relativo */
+    gap: 30px; /* Espacio entre imagen - texto - imagen */
+  }
+
+  /* Las imágenes ya no flotan en celular, se acomodan en el centro */
+  .weg-left-img, .weg-right-img {
+    position: static;
+    transform: none; /* Quitamos el centrado vertical absoluto */
+  }
+
+  .weg-title { font-size: 28px; }
+  .weg-subtitle { font-size: 13px; }
+}

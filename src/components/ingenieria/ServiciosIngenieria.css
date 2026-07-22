@@ -22,7 +22,7 @@
 
 .si-banner {
   position: relative;
-  background-color: #003a70; /* Azul oscuro corporativo */
+  background: linear-gradient(90deg, #0056a6 0%, #003a70 100%);
   border-radius: 40px;
   padding: 45px 50px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
@@ -64,9 +64,10 @@
 /* La imagen 3D flotante */
 .si-banner-img {
   position: absolute;
-  right: -30px;
-  top: -50px;
-  width: 320px; /* Ajusta este tamaño dependiendo de tu imagen original */
+  /* ESTE ES EL CAMBIO CLAVE: empuja la imagen hacia la izquierda */
+  right: 60px; 
+  top: -70px;
+  width: 320px; 
   z-index: 3;
   filter: drop-shadow(0 20px 25px rgba(0,0,0,0.2));
 }
@@ -81,7 +82,7 @@
 
 .si-main-title {
   text-align: center;
-  color: #0066cc; /* Azul brillante del título */
+  color: #0066cc; 
   font-size: 36px;
   font-weight: 400;
   line-height: 1.2;
@@ -106,7 +107,7 @@
 .si-acordeon-header h3 {
   margin: 0;
   font-size: 15px;
-  color: #59575a; /* Gris oscuro para el título del acordeón */
+  color: #59575a; 
   font-weight: 600;
 }
 
@@ -118,7 +119,7 @@
 }
 
 .si-acordeon-item.active .si-icon {
-  color: #0056b3;
+  color: #0059b8;
 }
 
 /* --- Cuerpo Desplegable --- */
@@ -128,7 +129,7 @@
 }
 
 .si-acordeon-content {
-  padding: 5px 0 30px 40px; /* Sangría a la izquierda */
+  padding: 5px 0 30px 40px; 
 }
 
 .si-acordeon-content ol {
@@ -138,7 +139,7 @@
 }
 
 .si-acordeon-content li {
-  color: #0056b3; /* Letra azul como en la imagen */
+  color: #005dc0; 
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 12px;
@@ -179,7 +180,7 @@
 @media (max-width: 900px) {
   .si-banner-img {
     width: 250px;
-    right: -10px;
+    right: 20px; /* Ajustado también para tablets */
     top: -30px;
   }
   
@@ -191,7 +192,7 @@
 @media (max-width: 768px) {
   .si-banner {
     flex-direction: column;
-    padding: 120px 30px 40px 30px; /* Espacio extra arriba para la imagen */
+    padding: 120px 30px 40px 30px; 
     text-align: center;
   }
 

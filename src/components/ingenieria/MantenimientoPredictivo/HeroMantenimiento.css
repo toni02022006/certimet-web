@@ -19,29 +19,29 @@
   display: flex;
   justify-content: center;
   padding-top: 220px; /* Espacio para compensar el header flotante */
-  padding-bottom: 150px;
+  padding-bottom: 80px;
 }
 
 .hm-hero-content {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   display: flex;
   align-items: center;
 }
 
 .hm-title {
   color: #ffffff;
-  font-size: 55px;
-  font-weight: 400;
+  font-size: 52px;
+  font-weight: 300; /* Letra delgada para la parte blanca */
   line-height: 1.15;
   margin: 0;
-  letter-spacing: -1px;
+  letter-spacing: normal;
   -webkit-font-smoothing: antialiased;
 }
 
 .hm-text-green {
   color: #00e676; /* Verde Certimet */
-  font-weight: 600;
+  font-weight: 600; /* Letra gruesa para la parte verde */
 }
 
 /* ==========================================================================
@@ -66,16 +66,16 @@
 .hm-image-col {
   flex: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end; /* Empuja la imagen un poco hacia el centro */
 }
 
 .hm-intro-img {
   width: 100%;
-  max-width: 450px;
-  height: 600px; /* Le damos altura para que se vea como en el diseño (vertical) */
+  max-width: 420px;
+  height: 600px;
   object-fit: cover;
-  border-radius: 30px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 25px; /* Bordes redondeados idénticos al diseño */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 /* --- COLUMNA DERECHA (TEXTOS) --- */
@@ -84,27 +84,28 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 500px;
 }
 
 .hm-intro-title {
   color: #0056b3;
   font-size: 42px;
-  font-weight: 400;
+  font-weight: 400; /* Letra inicial más delgada y elegante */
   line-height: 1.15;
   margin: 0 0 30px 0;
   letter-spacing: -0.5px;
 }
 
 .hm-text-blue-bold {
-  font-weight: 700;
+  font-weight: 500; /* "detener toda su operación" en negrita */
 }
 
 .hm-description {
   color: #59575a;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.7;
   margin-top: 0;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
   max-width: 480px;
   -webkit-font-smoothing: antialiased;
 }
@@ -130,7 +131,7 @@
   color: #0056b3;
   text-decoration: none;
   background-color: transparent;
-  border: 1px solid #0056b3;
+  border: 1px solid #0056b3; /* Borde fino azul */
   border-radius: 30px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -149,17 +150,25 @@
 }
 
 .hm-btn-solicitar:hover .arrow {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
 /* ==========================================================================
    RESPONSIVO
    ========================================================================== */
+@media (max-width: 1024px) {
+  .hm-title {
+    font-size: 46px;
+  }
+  .hm-intro-container {
+    gap: 50px;
+  }
+}
+
 @media (max-width: 950px) {
   .hm-intro-container {
     flex-direction: column-reverse; /* En móvil, primero texto, luego imagen abajo */
     align-items: center;
-    gap: 50px;
   }
   
   .hm-image-col {
@@ -189,7 +198,7 @@
   }
 
   .hm-title {
-    font-size: 42px;
+    font-size: 40px;
     text-align: center;
   }
   
@@ -198,7 +207,7 @@
   }
 
   .hm-intro-title {
-    font-size: 34px;
+    font-size: 36px;
   }
 }
 
@@ -208,7 +217,7 @@
   }
 
   .hm-intro-title {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .hm-text-green-italic {

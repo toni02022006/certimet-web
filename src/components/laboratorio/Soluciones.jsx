@@ -1,11 +1,12 @@
 import React from 'react';
-import './Soluciones.css';
+import '../../views/Laboratorio.css';
 import laboratorioImg from '../../image/laboratorio/DSC08101.jpeg';
 
 const Soluciones = () => {
   return (
-    <section className="soluciones">
+    <section className="soluciones-section">
       <div className="soluciones-container">
+        
         {/* Primera fila: título centrado */}
         <div className="soluciones-header">
           <h2 className="soluciones-title">
@@ -31,6 +32,7 @@ const Soluciones = () => {
             <img src={laboratorioImg} alt="Laboratorio CERTIMET" className="soluciones-img" />
           </div>
         </div>
+
       </div>
     </section>
   );

@@ -34,6 +34,9 @@ import icMasaV from '../../image/header_icons/header_iconsverde/masa.webp';
 import icTempV from '../../image/header_icons/header_iconsverde/temperatura.webp';
 import icTempoV from '../../image/header_icons/header_iconsverde/tempo.webp';
 
+// NUEVA IMAGEN PARA MANTENIMIENTO PREDICTIVO
+import imgMantenimiento from '../../image/ingenieria/img2.png';
+
 // ===============================================================
 // DATOS ESTRUCTURADOS: METROLOGÍA
 // ===============================================================
@@ -98,7 +101,7 @@ const laboratoriosData = {
 };
 
 // ===============================================================
-// DATOS ESTRUCTURADOS: INGENIERÍA Y AUTOMATIZACIÓN (NUEVO MEGA MENÚ)
+// DATOS ESTRUCTURADOS: INGENIERÍA Y AUTOMATIZACIÓN (CORREGIDO)
 // ===============================================================
 const ingenieriaMegaData = {
   mantenimiento: {
@@ -111,8 +114,8 @@ const ingenieriaMegaData = {
       "Análisis predictivo en tiempo real con integración IoT y nube"
     ],
     btnText: "Nuestras soluciones →",
-    btnLink: "ingenieria/mantenimiento-predictivo",
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" // Imagen de prueba
+    btnLink: "/ingenieria/mantenimiento-predictivo",
+    img: imgMantenimiento // Actualizado con tu imagen local
   },
   control: {
     tabName: <>Control de<br/>Procesos</>,
@@ -125,7 +128,7 @@ const ingenieriaMegaData = {
     ],
     btnText: "Ver soluciones →",
     btnLink: "/ingenieria/control",
-    img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=600" // Imagen de prueba
+    img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=600" 
   },
   vision: {
     tabName: <>Visión<br/>Artificial</>,
@@ -138,7 +141,7 @@ const ingenieriaMegaData = {
     ],
     btnText: "Conoce más →",
     btnLink: "/ingenieria/vision",
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" // Imagen de prueba
+    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" 
   },
   eficiencia: {
     tabName: <>Eficiencia<br/>Energética</>,
@@ -151,7 +154,7 @@ const ingenieriaMegaData = {
     ],
     btnText: "Soluciones energéticas →",
     btnLink: "/ingenieria/eficiencia",
-    img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=600" // Imagen de prueba
+    img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=600" 
   },
   telemetria: {
     tabName: <>Sistemas de<br/>Telemetría 4.0</>,
@@ -164,7 +167,7 @@ const ingenieriaMegaData = {
     ],
     btnText: "Saber más →",
     btnLink: "/ingenieria/telemetria",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" // Imagen de prueba
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" 
   }
 };
 
@@ -500,11 +503,14 @@ const Header = () => {
                     <div className="ingenieria-info-box">
                       <h3>{ingenieriaMegaData[activeIngenieriaCategory].title}</h3>
                       <p>{ingenieriaMegaData[activeIngenieriaCategory].desc}</p>
-                      <ul>
+                      
+                      {/* Lista de viñetas corregida */}
+                      <ul className="ingenieria-bullet-list">
                         {ingenieriaMegaData[activeIngenieriaCategory].bullets.map((bullet, idx) => (
                           <li key={idx}>{bullet}</li>
                         ))}
                       </ul>
+                      
                       <Link to={ingenieriaMegaData[activeIngenieriaCategory].btnLink} className="btn-ingenieria-outline">
                         {ingenieriaMegaData[activeIngenieriaCategory].btnText}
                       </Link>

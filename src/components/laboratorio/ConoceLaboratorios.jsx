@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './ConoceLaboratorios.css';
 
 // Ruta de tu imagen
-import contactoImg from '../../image/laboratorio/DSC08361_1.jpeg';
+import contactoImg from '../../image/laboratorio/DSC09315.jpeg';
 
 const ConoceLaboratorios = () => {
   return (

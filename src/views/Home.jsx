@@ -153,16 +153,27 @@ const Home = () => {
       {/* SECCIÓN HERO */}
       <section className="hero-section">
         
+        {/* ==================================================================
+            FONDO ANIMADO CON EFECTO CINEMÁTICO (FLUIDO TIPO VIDEO)
+            ================================================================== */}
         <div className="hero-bg-wrapper">
-          <AnimatePresence mode="wait">
+          {/* Se elimina mode="wait" para permitir el fundido cruzado continuo */}
+          <AnimatePresence>
             <motion.img
               key={slideIndex}
               src={currentSlide.image}
               alt="Certimet Carrusel"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              // Inicia sin opacidad y escala normal
+              initial={{ opacity: 0, scale: 1 }}
+              // Hace un zoom muy lento (escala 1.08) dando el efecto de paneo de cámara
+              animate={{ opacity: 1, scale: 1.08 }}
+              // Sale desvaneciéndose
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
+              transition={{ 
+                // El cambio de opacidad dura 1.5s, la animación de escala dura 8s
+                opacity: { duration: 1.5, ease: "easeInOut" },
+                scale: { duration: 8, ease: "linear" } 
+              }}
               className="hero-bg-img"
               style={{ objectFit: "cover" }}
             />
@@ -208,7 +219,7 @@ const Home = () => {
                   className="hero-subtitle"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 1.5 }}
+                  transition={{ duration: 1, delay: 1.2 }}
                 >
                   {currentSlide.subtitle}
                 </motion.p>
@@ -226,7 +237,7 @@ const Home = () => {
                     className="hero-buttons-container"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 1.8 }}
+                    transition={{ duration: 1, delay: 1.5 }}
                   >
                     <button className="hero-btn hero-btn-primary">
                       Agenda una visita &rarr;

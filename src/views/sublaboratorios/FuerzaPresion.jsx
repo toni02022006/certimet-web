@@ -5,6 +5,7 @@ import InstrumentosFuerza from '../../components/laboratorio/Laboratorio_Fuerza_
 import PorQueElegirnos from '../../components/laboratorio/Laboratorio_Fuerza_Presión/PorQueElegirnos';
 import LaboratoriosRelacionados from '../../components/laboratorio/Laboratorio_Fuerza_Presión/LaboratoriosRelacionados';
 import FAQ from '../../components/laboratorio/Laboratorio_Fuerza_Presión/FAQ';
+import AsesoramientoCTA from '../../components/laboratorio/Laboratorio_Fuerza_Presión/AsesoramientoCTA';
 const FuerzaPresion = () => {
   return (
     <div className="page-fuerza-presion">
@@ -14,6 +15,7 @@ const FuerzaPresion = () => {
       <PorQueElegirnos />
       <LaboratoriosRelacionados />
       <FAQ />
+      <AsesoramientoCTA />
       {/* <OtrasSecciones /> */}
     </div>
   );

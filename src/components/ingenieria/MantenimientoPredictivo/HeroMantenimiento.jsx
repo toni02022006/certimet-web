@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeroMantenimiento.css';
 
-// --- IMPORTACIÓN DE LA IMAGEN SEGÚN TU RUTA ---
-// Ajustamos la ruta relativa (subiendo 3 niveles para llegar a src/image)
-import calibracionImg from '../../../image/calibracioninicio.jpeg';
+// --- IMPORTACIÓN DE IMÁGENES EXACTAS ---
+import imgFondo from '../../../image/laboratorio/FuerzapresiónMS.jpeg';
+import imgPersona from '../../../image/ingenieria/img1.png';
 
 const HeroMantenimiento = () => {
   return (
@@ -14,8 +14,8 @@ const HeroMantenimiento = () => {
       <section 
         className="hm-hero-banner" 
         style={{ 
-          // Usamos la misma imagen para el fondo del banner con un degradado azul superpuesto
-          backgroundImage: `linear-gradient(135deg, rgba(0, 75, 147, 0.85) 0%, rgba(0, 26, 59, 0.9) 100%), url(${calibracionImg})` 
+          // Degradado azul elegante de izquierda a derecha sobre la imagen
+          backgroundImage: `linear-gradient(90deg, rgba(0, 45, 94, 0.27) 0%, rgba(0, 76, 147, 0.24) 50%, rgba(0, 102, 204, 0.2) 100%), url(${imgFondo})` 
         }}
       >
         <div className="hm-hero-content">
@@ -33,7 +33,7 @@ const HeroMantenimiento = () => {
           {/* Columna Izquierda: Imagen */}
           <div className="hm-image-col">
             <img 
-              src={calibracionImg} 
+              src={imgPersona} 
               alt="Ingeniero en planta industrial" 
               className="hm-intro-img" 
             />

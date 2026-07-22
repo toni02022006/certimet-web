@@ -1,48 +1,121 @@
-/* Laboratorio.css */
+/* Laboratorio.css o Soluciones.css */
 
-/* Soluciones */
+/* =========================================
+   Sección Soluciones
+========================================= */
 .soluciones-section {
-  padding: 80px 0;
-  background-color: #f8fafc;
-  text-align: center;
+  padding: 80px 20px !important;
+  background-color: #ffffff !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.soluciones-container {
+  max-width: 1100px !important; 
+  margin: 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* --- Cabecera y Títulos --- */
+.soluciones-header {
+  display: flex !important; /* Usamos flex aquí para forzar el centrado absoluto */
+  justify-content: center !important;
+  width: 100% !important;
+  margin-bottom: 50px !important;
+  text-align: center !important;
 }
 
 .soluciones-title {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #003b7a;
-  margin-bottom: 20px;
+  text-align: center !important; /* Obliga al texto a centrarse */
+  font-size: 2.2rem !important;
+  color: #0056b3 !important;
+  font-weight: normal !important;
+  line-height: 1.3 !important;
+  margin: 0 auto !important;
+  width: 100% !important;
 }
 
-.soluciones-title .highlight {
-  color: #00ff3c;
+.title-light-thin {
+  font-weight: 450 !important;
 }
 
+.title-dark-bold {
+  font-weight: 650 !important;
+}
+
+/* --- Cuerpo (Texto + Imagen) --- */
+.soluciones-body {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 50px !important;
+  width: 100% !important;
+}
+
+/* --- Texto --- */
 .soluciones-text {
-  max-width: 800px;
-  margin: 0 auto 30px;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #333;
+  flex: 1 !important; 
+  text-align: left !important;
+  display: block !important;
 }
 
+.soluciones-description {
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  color: #4a4a4a !important;
+  margin-bottom: 30px !important;
+}
+
+.highlight {
+  color: #0056b3 !important;
+  font-weight: 700 !important;
+}
+
+/* --- Botón --- */
 .soluciones-btn {
-  background-color: #00ff3c;
-  color: #003b7a;
-  border: none;
-  padding: 12px 36px;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s;
+  background-color: transparent !important;
+  color: #0056b3 !important;
+  border: 1px solid #0056b3 !important;
+  padding: 10px 28px !important;
+  border-radius: 25px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
 }
 
 .soluciones-btn:hover {
-  background-color: #14de4a;
+  background-color: #0056b3 !important;
+  color: #ffffff !important;
 }
 
-/* Acreditaciones */
+.soluciones-btn .arrow {
+  font-size: 1.2rem !important;
+}
+
+/* --- Imagen --- */
+.soluciones-image {
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.soluciones-img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 20px !important;
+  object-fit: cover !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* =========================================
+   Acreditaciones
+========================================= */
 .acreditaciones-section {
   padding: 60px 0;
   background: #fff;
@@ -77,7 +150,9 @@
   color: #003b7a;
 }
 
-/* Laboratorios */
+/* =========================================
+   Laboratorios
+========================================= */
 .laboratorios-section {
   padding: 80px 0;
   background: #f8fafc;
@@ -131,11 +206,28 @@
   text-decoration: underline;
 }
 
-/* Responsive */
+/* =========================================
+   Responsive (Celulares)
+========================================= */
 @media (max-width: 768px) {
   .soluciones-title {
-    font-size: 1.8rem;
+    font-size: 1.8rem !important;
   }
+  
+  .soluciones-body {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 30px !important;
+  }
+
+  .soluciones-text {
+    text-align: center !important;
+  }
+
+  .soluciones-image {
+    justify-content: center !important;
+  }
+
   .laboratorios-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }

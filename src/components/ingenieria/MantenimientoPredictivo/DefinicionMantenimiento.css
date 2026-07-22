@@ -20,7 +20,7 @@
    BANNER SUPERIOR
    ========================================================================== */
 .dm-banner {
-  background-color: #003a70; /* Azul muy oscuro corporativo */
+  background: linear-gradient(90deg, #004b9a 0%, #002855 100%);
   border-radius: 30px;
   padding: 40px 50px;
   text-align: center;

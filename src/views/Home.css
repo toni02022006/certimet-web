@@ -11,11 +11,13 @@
   z-index: 1; 
 }
 
+/* IMPORTANTE: overflow: hidden para que el efecto zoom no genere scroll */
 .hero-bg-wrapper {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
   z-index: 0;
   background-color: var(--color-blue);
+  overflow: hidden; 
 }
 
 .hero-bg-img {
@@ -59,171 +61,6 @@
   z-index: 1;
 }
 
-.hero-gradient-overlay {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(90deg, rgba(0,59,122,1) 0%, rgba(0,59,122,0.75) 40%, rgba(0,59,122,0) 100%);
-  z-index: 1;
-}
-
-.hero-content {
-  position: absolute;
-  top: 55%; left: 0;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 100%;
-  padding: 0 8%; 
-}
-
-.hero-text-box { max-width: 600px; }
-
-.hero-title {
-  font-size: 56px;
-  color: var(--color-white);
-  line-height: 1.15;
-  /* EL GROSOR REDUCIDO PARA QUE SE VEA MÁS FINO */
-  font-weight: 500; 
-  margin-bottom: 25px;
-}
-
-.text-green-light {
-  /* EL NUEVO VERDE ULTRA LUMINOSO */
-  color: #00ff3c; 
-  font-style: italic;
-  font-weight: 600;
-}
-
-.hero-subtitle {
-  font-size: 15px;
-  color: var(--color-white);
-  line-height: 1.6;
-  font-weight: 400;
-  max-width: 480px;
-}
-
-/* ==========================================================================
-   NUEVOS BOTONES DEL HERO
-   ========================================================================== */
-.hero-buttons-container {
-  display: flex;
-  gap: 15px;
-  margin-top: 35px;
-}
-
-.hero-btn {
-  padding: 12px 28px;
-  border-radius: 30px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.3s ease;
-}
-
-.hero-btn-primary {
-  background-color: #00ff3c; /* Verde luminoso */
-  color: #003b7a; /* Azul oscuro */
-  border: none;
-}
-
-.hero-btn-primary:hover {
-  background-color: #14de4a;
-  transform: scale(1.05);
-}
-
-.hero-btn-secondary {
-  background-color: transparent;
-  color: #ffffff;
-  border: 1px solid #ffffff;
-}
-
-.hero-btn-secondary img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  /* Convierte el icono de WhatsApp a color blanco por si viene en verde o negro */
-  filter: brightness(0) invert(1); 
-}
-
-.hero-btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: scale(1.05);
-}
-
-/* ==========================================================================
-   BARRA DE PROGRESO INFERIOR
-   ========================================================================== */
-.hero-progress-track {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.2); 
-  z-index: 10;
-}
-
-.hero-progress-fill {
-  height: 100%;
-  background-color: #00ff3c; /* Actualizado al nuevo verde */
-  box-shadow: 0 0 10px rgba(0, 255, 60, 0.6); 
-}
-/* ==========================================================================
-   POSICIÓN DEL TEXTO (IZQUIERDA / DERECHA)
-   ========================================================================== */
-.hero-content-left {
-  left: 0;
-  padding: 0 8%;
-}
-
-.hero-content-right {
-  left: auto;
-  right: 0;
-  padding: 0 8%;
-  text-align: right; /* Alinea el texto a la derecha */
-}
-
-/* Cuando el texto está a la derecha, también alineamos el subtítulo y los botones a la derecha */
-.hero-content-right .hero-text-box {
-  margin-left: auto;
-  text-align: right;
-}
-
-.hero-content-right .hero-subtitle {
-  margin-left: auto;
-  text-align: right;
-}
-
-.hero-content-right .hero-buttons-container {
-  justify-content: flex-end;
-}
-
-/* ==========================================================================
-   QR
-   ========================================================================== */
-.hero-qr-container {
-  margin-top: 20px;
-  display: inline-block;
-  background-color: #ffffff;   /* Fondo blanco */
-  padding: 12px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  max-width: 140px;
-}
-
-.hero-qr-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Si el texto está a la derecha, alineamos el QR también a la derecha */
-.hero-content-right .hero-qr-container {
-  margin-left: auto;
-  margin-right: 0;
-}
 /* ==========================================================================
    OVERLAY CON DIRECCIÓN DINÁMICA
    ========================================================================== */
@@ -249,6 +86,42 @@
 }
 
 /* ==========================================================================
+   CONTENIDO TEXTUAL
+   ========================================================================== */
+.hero-content {
+  position: absolute;
+  top: 55%; left: 0;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 100%;
+  padding: 0 8%; 
+}
+
+.hero-text-box { max-width: 600px; }
+
+.hero-title {
+  font-size: 56px;
+  color: var(--color-white);
+  line-height: 1.15;
+  font-weight: 500; 
+  margin-bottom: 25px;
+}
+
+.text-green-light {
+  color: #00ff3c; 
+  font-style: italic;
+  font-weight: 600;
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  color: var(--color-white);
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 480px;
+}
+
+/* ==========================================================================
    POSICIÓN DEL TEXTO (IZQUIERDA / DERECHA)
    ========================================================================== */
 .hero-content-left {
@@ -263,7 +136,7 @@
   text-align: right; /* Alinea el texto a la derecha */
 }
 
-/* Cuando el texto está a la derecha, también alineamos el subtítulo y los botones a la derecha */
+/* Cuando el texto está a la derecha, también alineamos el subtítulo y botones */
 .hero-content-right .hero-text-box {
   margin-left: auto;
   text-align: right;
@@ -278,13 +151,87 @@
   justify-content: flex-end;
 }
 
+.hero-content-right .hero-qr-container {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* ==========================================================================
+   BOTONES DEL HERO
+   ========================================================================== */
+.hero-buttons-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 35px;
+}
+
+.hero-btn {
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.hero-btn-primary {
+  background-color: #00ff3c; 
+  color: #003b7a; 
+  border: none;
+}
+
+.hero-btn-primary:hover {
+  background-color: #14de4a;
+  transform: scale(1.05);
+}
+
+.hero-btn-secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.hero-btn-secondary img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); 
+}
+
+.hero-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   BARRA DE PROGRESO INFERIOR
+   ========================================================================== */
+.hero-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2); 
+  z-index: 10;
+}
+
+.hero-progress-fill {
+  height: 100%;
+  background-color: #00ff3c; 
+  box-shadow: 0 0 10px rgba(0, 255, 60, 0.6); 
+}
+
 /* ==========================================================================
    QR
    ========================================================================== */
 .hero-qr-container {
   margin-top: 20px;
   display: inline-block;
-  background-color: #ffffff;   /* Fondo blanco */
+  background-color: #ffffff;   
   padding: 12px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -297,27 +244,6 @@
   display: block;
 }
 
-/* Si el texto está a la derecha, alineamos el QR también a la derecha */
-.hero-content-right .hero-qr-container {
-  margin-left: auto;
-  margin-right: 0;
-}
-
-/* ==========================================================================
-   RESPONSIVO
-   ========================================================================== */
-@media (max-width: 768px) {
-  .hero-buttons-container {
-    flex-direction: column;
-    max-width: 250px;
-  }
-  .hero-btn {
-    justify-content: center;
-  }
-  .hero-title {
-    font-size: 40px;
-  }
-}
 /* ==========================================================================
    RESPONSIVO
    ========================================================================== */
