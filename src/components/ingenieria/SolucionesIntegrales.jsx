@@ -8,16 +8,16 @@ import iconLlave from '../../image/ingenieria/img4.png';
 
 const SolucionesIntegrales = () => {
   return (
-    <section className="soluciones-section">
-      <div className="soluciones-container">
+    <section className="ing-soluciones-section">
+      <div className="ing-soluciones-container">
         
         {/* COLUMNA IZQUIERDA: Textos */}
-        <div className="soluciones-left">
-          <h2 className="soluciones-title">
-            <span className="texto-regular">Soluciones<br />Integrales en</span><br />
-            <span className="texto-bold">Ingeniería y<br />Automatización<br />Industrial</span>
+        <div className="ing-soluciones-left">
+          <h2 className="ing-soluciones-title">
+            <span className="ing-texto-regular">Soluciones<br />Integrales en</span><br />
+            <span className="ing-texto-bold">Ingeniería y<br />Automatización<br />Industrial</span>
           </h2>
-          <p className="soluciones-desc">
+          <p className="ing-soluciones-desc">
             Integramos tecnología, experiencia técnica y visión estra-
             tégica para optimizar tus procesos industriales. Nuestro
             equipo trabaja de la mano contigo, combinando conoci-
@@ -25,23 +25,23 @@ const SolucionesIntegrales = () => {
             para mejorar la ingeniería, las operaciones y el rendi-
             miento de tu planta.
           </p>
-          <Link to="/contacto" className="btn-contactanos-soluciones">
+          <Link to="/contacto" className="ing-btn-contactanos">
             Contáctanos <span>&rarr;</span>
           </Link>
         </div>
 
         {/* COLUMNA DERECHA: Imagen principal e imagen flotante */}
-        <div className="soluciones-right">
-          <div className="soluciones-img-wrapper">
+        <div className="ing-soluciones-right">
+          <div className="ing-img-wrapper">
             <img 
               src={imgSoluciones} 
               alt="Ingeniero de Certimet en planta industrial" 
-              className="soluciones-img" 
+              className="ing-img-principal" 
             />
             
             {/* Solo llamamos a tu imagen completa, sin textos ni fondos extra */}
-            <div className="soluciones-badge">
-              <img src={iconLlave} alt="Proyectos Llave en Mano" className="badge-icon" />
+            <div className="ing-badge">
+              <img src={iconLlave} alt="Proyectos Llave en Mano" className="ing-badge-icon" />
             </div>
           </div>
         </div>

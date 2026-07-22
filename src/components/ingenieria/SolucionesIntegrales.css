@@ -1,7 +1,7 @@
 /* ==========================================================================
    SECCIÓN PRINCIPAL (Contenedor de toda la franja)
    ========================================================================== */
-.soluciones-section {
+.ing-soluciones-section {
   background-color: #ffffff !important; 
   padding: 100px 5% !important; 
   display: flex !important;
@@ -11,7 +11,7 @@
   box-sizing: border-box !important;
 }
 
-.soluciones-container {
+.ing-soluciones-container {
   width: 100% !important;
   max-width: 1100px !important; 
   display: flex !important;
@@ -25,7 +25,7 @@
 /* ==========================================================================
    COLUMNA IZQUIERDA (CONTENEDOR DE TEXTOS)
    ========================================================================== */
-.soluciones-left {
+.ing-soluciones-left {
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
@@ -35,7 +35,7 @@
 }
 
 /* TÍTULO PRINCIPAL */
-.soluciones-title {
+.ing-soluciones-title {
   color: #0056b3 !important; 
   font-size: 46px !important; 
   line-height: 1.1 !important; 
@@ -46,16 +46,16 @@
 }
 
 /* Grosores de las letras del título */
-.texto-regular {
+.ing-texto-regular {
   font-weight: 400 !important; 
 }
 
-.texto-bold {
+.ing-texto-bold {
   font-weight: 600 !important; 
 }
 
 /* PÁRRAFO DESCRIPTIVO */
-.soluciones-desc {
+.ing-soluciones-desc {
   color: #59575a !important; 
   font-size: 16px !important; 
   line-height: 1.6 !important; 
@@ -65,7 +65,7 @@
 }
 
 /* BOTÓN "CONTÁCTANOS" */
-.btn-contactanos-soluciones {
+.ing-btn-contactanos {
   display: inline-flex !important;
   align-items: center !important;
   gap: 12px !important;
@@ -80,25 +80,25 @@
   transition: all 0.3s ease !important;
 }
 
-.btn-contactanos-soluciones span {
+.ing-btn-contactanos span {
   font-size: 20px !important; 
   line-height: 1 !important;
   transition: transform 0.3s ease !important;
 }
 
-.btn-contactanos-soluciones:hover {
+.ing-btn-contactanos:hover {
   background-color: #0056b3 !important; 
   color: #ffffff !important; 
 }
 
-.btn-contactanos-soluciones:hover span {
+.ing-btn-contactanos:hover span {
   transform: translateX(5px) !important; 
 }
 
 /* ==========================================================================
    COLUMNA DERECHA (IMAGEN PRINCIPAL Y BADGE)
    ========================================================================== */
-.soluciones-right {
+.ing-soluciones-right {
   flex: 1 !important;
   display: flex !important;
   justify-content: flex-end !important;
@@ -106,7 +106,7 @@
   padding-left: 40px !important; 
 }
 
-.soluciones-img-wrapper {
+.ing-img-wrapper {
   position: relative !important;
   width: 100% !important;
   max-width: 460px !important; 
@@ -114,7 +114,7 @@
 }
 
 /* IMAGEN DEL INGENIERO */
-.soluciones-img {
+.ing-img-principal {
   width: 100% !important;
   height: 600px !important; 
   border-radius: 25px !important; 
@@ -124,7 +124,7 @@
 }
 
 /* CONTENEDOR DE LA IMAGEN FLOTANTE (img4.png) */
-.soluciones-badge {
+.ing-badge {
   position: absolute !important;
   bottom: 30px !important; 
   left: -80px !important;  
@@ -132,7 +132,7 @@
 }
 
 /* LA IMAGEN FLOTANTE EN SÍ */
-.badge-icon {
+.ing-badge-icon {
   width: 150px !important; 
   height: auto !important;
   border-radius: 12px !important; 
@@ -144,49 +144,49 @@
    RESPONSIVE (Ajustes para tablets y celulares)
    ========================================================================== */
 @media (max-width: 1024px) {
-  .soluciones-container { gap: 40px !important; }
-  .soluciones-title { font-size: 38px !important; }
-  .soluciones-badge { left: -40px !important; }
+  .ing-soluciones-container { gap: 40px !important; }
+  .ing-soluciones-title { font-size: 38px !important; }
+  .ing-badge { left: -40px !important; }
 }
 
 @media (max-width: 768px) {
-  .soluciones-section { padding: 70px 20px !important; }
-  .soluciones-container {
+  .ing-soluciones-section { padding: 70px 20px !important; }
+  .ing-soluciones-container {
     flex-direction: column !important;
     text-align: center !important;
   }
   
   /* En móviles, centramos el texto */
-  .soluciones-left {
+  .ing-soluciones-left {
     align-items: center !important; 
     text-align: center !important;
     max-width: 100% !important;
   }
   
-  .soluciones-title, .soluciones-desc {
+  .ing-soluciones-title, .ing-soluciones-desc {
     text-align: center !important; 
   }
 
-  .soluciones-right {
+  .ing-soluciones-right {
     justify-content: center !important;
     padding-left: 0 !important;
     margin-top: 40px !important;
   }
 
-  .soluciones-img { height: auto !important; max-height: 500px !important; }
+  .ing-img-principal { height: auto !important; max-height: 500px !important; }
 
   /* Posición de la imagen azul en móviles */
-  .soluciones-badge {
+  .ing-badge {
     bottom: -20px !important;
     left: 20px !important; 
   }
   
-  .badge-icon { width: 130px !important; }
+  .ing-badge-icon { width: 130px !important; }
 }
 
 @media (max-width: 480px) {
-  .soluciones-title { font-size: 32px !important; }
-  .soluciones-badge {
+  .ing-soluciones-title { font-size: 32px !important; }
+  .ing-badge {
     bottom: -15px !important;
     left: 50% !important;
     transform: translateX(-50%) !important; 
