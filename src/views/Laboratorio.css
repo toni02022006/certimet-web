@@ -1,16 +1,14 @@
-/* Laboratorio.css o Soluciones.css */
-
 /* =========================================
    Sección Soluciones
 ========================================= */
-.soluciones-section {
+.cert-lab-soluciones-section {
   padding: 80px 20px !important;
   background-color: #ffffff !important;
   display: block !important;
   width: 100% !important;
 }
 
-.soluciones-container {
+.cert-lab-soluciones-container {
   max-width: 1100px !important; 
   margin: 0 auto !important;
   display: block !important;
@@ -18,16 +16,16 @@
 }
 
 /* --- Cabecera y Títulos --- */
-.soluciones-header {
-  display: flex !important; /* Usamos flex aquí para forzar el centrado absoluto */
+.cert-lab-soluciones-header {
+  display: flex !important; 
   justify-content: center !important;
   width: 100% !important;
   margin-bottom: 50px !important;
   text-align: center !important;
 }
 
-.soluciones-title {
-  text-align: center !important; /* Obliga al texto a centrarse */
+.cert-lab-soluciones-title {
+  text-align: center !important; 
   font-size: 2.2rem !important;
   color: #0056b3 !important;
   font-weight: normal !important;
@@ -36,16 +34,16 @@
   width: 100% !important;
 }
 
-.title-light-thin {
-  font-weight: 300 !important;
+.cert-lab-title-light-thin {
+  font-weight: 450 !important;
 }
 
-.title-dark-bold {
-  font-weight: 700 !important;
+.cert-lab-title-dark-bold {
+  font-weight: 650 !important;
 }
 
 /* --- Cuerpo (Texto + Imagen) --- */
-.soluciones-body {
+.cert-lab-soluciones-body {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
@@ -55,26 +53,26 @@
 }
 
 /* --- Texto --- */
-.soluciones-text {
+.cert-lab-soluciones-text {
   flex: 1 !important; 
   text-align: left !important;
   display: block !important;
 }
 
-.soluciones-description {
+.cert-lab-soluciones-description {
   font-size: 1rem !important;
   line-height: 1.6 !important;
   color: #4a4a4a !important;
   margin-bottom: 30px !important;
 }
 
-.highlight {
+.cert-lab-highlight {
   color: #0056b3 !important;
   font-weight: 700 !important;
 }
 
 /* --- Botón --- */
-.soluciones-btn {
+.cert-lab-soluciones-btn {
   background-color: transparent !important;
   color: #0056b3 !important;
   border: 1px solid #0056b3 !important;
@@ -89,23 +87,23 @@
   transition: all 0.3s ease !important;
 }
 
-.soluciones-btn:hover {
+.cert-lab-soluciones-btn:hover {
   background-color: #0056b3 !important;
   color: #ffffff !important;
 }
 
-.soluciones-btn .arrow {
+.cert-lab-soluciones-btn .cert-lab-arrow {
   font-size: 1.2rem !important;
 }
 
 /* --- Imagen --- */
-.soluciones-image {
+.cert-lab-soluciones-image {
   flex: 1 !important;
   display: flex !important;
   justify-content: flex-end !important;
 }
 
-.soluciones-img {
+.cert-lab-soluciones-img {
   max-width: 100% !important;
   height: auto !important;
   border-radius: 20px !important;
@@ -116,19 +114,19 @@
 /* =========================================
    Acreditaciones
 ========================================= */
-.acreditaciones-section {
+.cert-lab-acreditaciones-section {
   padding: 60px 0;
   background: #fff;
 }
 
-.acreditaciones-grid {
+.cert-lab-acreditaciones-grid {
   display: flex;
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
 }
 
-.acreditacion-item {
+.cert-lab-acreditacion-item {
   max-width: 400px;
   padding: 30px;
   background: #f0f4f8;
@@ -137,14 +135,14 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.acreditacion-logo {
+.cert-lab-acreditacion-logo {
   font-size: 2rem;
   font-weight: 700;
   color: #003b7a;
   margin-bottom: 10px;
 }
 
-.registro {
+.cert-lab-registro {
   margin-top: 15px;
   font-weight: 600;
   color: #003b7a;
@@ -153,12 +151,12 @@
 /* =========================================
    Laboratorios
 ========================================= */
-.laboratorios-section {
+.cert-lab-laboratorios-section {
   padding: 80px 0;
   background: #f8fafc;
 }
 
-.laboratorios-title {
+.cert-lab-laboratorios-title {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 600;
@@ -166,7 +164,7 @@
   margin-bottom: 50px;
 }
 
-.laboratorios-grid {
+.cert-lab-laboratorios-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
@@ -175,7 +173,7 @@
   padding: 0 20px;
 }
 
-.laboratorio-card {
+.cert-lab-laboratorio-card {
   background: #fff;
   padding: 24px 20px;
   border-radius: 12px;
@@ -184,25 +182,25 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.laboratorio-card:hover {
+.cert-lab-laboratorio-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-.laboratorio-card h3 {
+.cert-lab-laboratorio-card h3 {
   font-size: 1.1rem;
   margin-bottom: 12px;
   color: #003b7a;
 }
 
-.laboratorio-link {
+.cert-lab-laboratorio-link {
   color: #00ff3c;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
 }
 
-.laboratorio-link:hover {
+.cert-lab-laboratorio-link:hover {
   text-decoration: underline;
 }
 
@@ -210,25 +208,25 @@
    Responsive (Celulares)
 ========================================= */
 @media (max-width: 768px) {
-  .soluciones-title {
+  .cert-lab-soluciones-title {
     font-size: 1.8rem !important;
   }
   
-  .soluciones-body {
+  .cert-lab-soluciones-body {
     flex-direction: column !important;
     text-align: center !important;
     gap: 30px !important;
   }
 
-  .soluciones-text {
+  .cert-lab-soluciones-text {
     text-align: center !important;
   }
 
-  .soluciones-image {
+  .cert-lab-soluciones-image {
     justify-content: center !important;
   }
 
-  .laboratorios-grid {
+  .cert-lab-laboratorios-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
