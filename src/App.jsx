@@ -1,7 +1,9 @@
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext'
 import { CarritoProvider } from './context/CarritoContext'; 
 import PagoListener from './components/PagoListener';
+
 // Importa tus Layouts
 import Layout from './components/layout/Layout';
 import LayoutTienda from './components/layout/LayoutTienda';
@@ -34,6 +36,30 @@ import Carrito from './components/store/Carrito';
 import Checkout from './components/store/Checkout';
 
 function App() {
+  // ==========================================================================
+  // EFECTO: Cambia el título de la pestaña cuando el usuario sale de la web
+  // ==========================================================================
+  useEffect(() => {
+    // Guarda el título original que tenga tu página en ese momento
+    const tituloOriginal = document.title;
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Mensaje que aparece cuando cambian a otra pestaña
+        document.title = "¡Vuelve, te extrañamos! 😢 | CERTIMET";
+      } else {
+        // Regresa al título normal cuando vuelven
+        document.title = tituloOriginal;
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return (
     // 👇 Envolvemos todo el enrutador con el CarritoProvider
     <CarritoProvider>
@@ -59,7 +85,7 @@ function App() {
             <Route path="/ingenieria" element={<Ingenieria />} />
             
             <Route path="/laboratorio/fuerza-y-presion" element={<FuerzaPresion />} />
-            <Route path='ingenieria/mantenimiento-predictivo'element={<MantenimientoPredictivo />}/>
+            <Route path='ingenieria/mantenimiento-predictivo' element={<MantenimientoPredictivo />}/>
 
             <Route path="/autentificacion/calibracion" element={<AutentificacionCalibracion />} />
             <Route path="/autentificacion/informes" element={<AutentificacionInformes />} />
