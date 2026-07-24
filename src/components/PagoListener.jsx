@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useCarrito } from '../context/CarritoContext';
 /*Aqui en la url cambia de acuerdo al backen de ngrock hasta subir a produccion*/
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://c71a-201-218-159-227.ngrok-free.app';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://dbad-190-116-75-25.ngrok-free.app';
 
 const PagoListener = () => {
   const location = useLocation();

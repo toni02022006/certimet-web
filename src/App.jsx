@@ -34,6 +34,7 @@ import Ingenieria from './views/Ingenieria';
 import MantenimientoPredictivo from './views/subingenieria/MantenimientoPredictivo';
 import Carrito from './components/store/Carrito';
 import Checkout from './components/store/Checkout';
+import CheckoutInvitado from './components/store/CheckoutInvitado';
 
 function App() {
   // ==========================================================================
@@ -104,6 +105,7 @@ function App() {
             <Route path="/producto/:id" element={<ProductoDetalle />} />
             <Route path="/tienda/carrito" element={<Carrito />} />
             <Route path="/tienda/checkout" element={<Checkout />} />
+            <Route path="/tienda/checkout-invitado" element={<CheckoutInvitado />} />
             
             {/* ✅ NUEVAS RUTAS DEL CATÁLOGO */}
             <Route path="/tienda/catalogo" element={<Catalogo />} />

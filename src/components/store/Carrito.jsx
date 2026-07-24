@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Trash2, Plus, Minus, ArrowLeft, ShoppingBag } from 'lucide-react';
 import { useCarrito } from '../../context/CarritoContext';
@@ -13,6 +13,23 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 const Carrito = () => {
   const { carrito, loadingCarrito, actualizarCantidad, eliminarProducto } = useCarrito();
   const navigate = useNavigate();
+
+  // ✅ Estado para controlar el modal de autenticación
+  const [mostrarModalAuth, setMostrarModalAuth] = useState(false);
+
+  // ✅ Función para manejar el clic en "Proceder al Pago"
+  const handleProcederPago = () => {
+    // Validamos si hay un token o usuario en localStorage (ajusta la key según tu proyecto)
+    const token = localStorage.getItem('token'); 
+    
+    if (token) {
+      // Si está logueado, va al checkout normal
+      navigate('/tienda/checkout');
+    } else {
+      // Si no, mostramos el modal de opciones
+      setMostrarModalAuth(true);
+    }
+  };
 
   if (loadingCarrito) {
     return (
@@ -161,9 +178,10 @@ const Carrito = () => {
 
           <p className="resumen-igv-nota">Los precios incluyen IGV</p>
 
+          {/* ✅ NUEVO: Botón actualizado con el evento onClick de validación */}
           <button 
             className="btn-proceder-pago"
-            onClick={() => navigate('/tienda/checkout')}
+            onClick={handleProcederPago}
           >
             Proceder al Pago
           </button>
@@ -177,8 +195,89 @@ const Carrito = () => {
           </div>
         </div>
       </div>
+
+      {/* ✅ NUEVO: Modal para usuarios que no han iniciado sesión */}
+      {mostrarModalAuth && (
+        <div className="modal-overlay" style={modalStyles.overlay}>
+          <div className="modal-content" style={modalStyles.content}>
+            <h3 style={modalStyles.title}>¿Cómo deseas continuar?</h3>
+            <p style={modalStyles.text}>Para finalizar tu compra de forma segura, selecciona una opción:</p>
+            
+            <div style={modalStyles.botones}>
+              <button 
+                style={modalStyles.btnInvitado} 
+                onClick={() => navigate('/tienda/checkout-invitado')}
+              >
+                Continuar como Invitado
+              </button>
+              
+              <div style={modalStyles.divisor}>
+                <span style={modalStyles.linea}></span>
+                <span style={modalStyles.oText}>O</span>
+                <span style={modalStyles.linea}></span>
+              </div>
+
+              <button 
+                style={modalStyles.btnSecundario} 
+                onClick={() => navigate('/tienda/login?redirect=checkout')}
+              >
+                Iniciar Sesión
+              </button>
+              <button 
+                style={modalStyles.btnSecundario} 
+                onClick={() => navigate('/tienda/registro')}
+              >
+                Crear una Cuenta
+              </button>
+            </div>
+            
+            <button 
+              style={modalStyles.btnCerrar} 
+              onClick={() => setMostrarModalAuth(false)}
+            >
+              Cancelar y volver al carrito
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
+};
+
+// Estilos en línea para el modal (los mantenemos aquí para no afectar tu CSS global)
+const modalStyles = {
+  overlay: {
+    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(3px)',
+    display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 9999
+  },
+  content: {
+    backgroundColor: '#fff', padding: '2.5rem', borderRadius: '12px',
+    width: '90%', maxWidth: '420px', textAlign: 'center',
+    boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+  },
+  title: { margin: '0 0 10px 0', fontSize: '1.4rem', color: '#333' },
+  text: { color: '#666', fontSize: '0.95rem', marginBottom: '25px' },
+  botones: { display: 'flex', flexDirection: 'column', gap: '12px' },
+  btnInvitado: {
+    backgroundColor: '#0056b3', color: '#fff', padding: '14px', border: 'none',
+    borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem',
+    transition: 'background-color 0.3s'
+  },
+  divisor: {
+    display: 'flex', alignItems: 'center', margin: '15px 0', color: '#888'
+  },
+  linea: { flex: 1, height: '1px', backgroundColor: '#e0e0e0' },
+  oText: { padding: '0 10px', fontSize: '0.9rem' },
+  btnSecundario: {
+    backgroundColor: '#fff', color: '#333', padding: '12px', border: '1px solid #ccc',
+    borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '0.95rem',
+    transition: 'all 0.3s'
+  },
+  btnCerrar: {
+    marginTop: '25px', background: 'none', border: 'none', color: '#888',
+    cursor: 'pointer', fontSize: '0.9rem', textDecoration: 'underline'
+  }
 };
 
 export default Carrito;
