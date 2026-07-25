@@ -30,6 +30,15 @@ import Laboratorio from './views/Laboratorio';
 import AutentificacionCalibracion from './components/autentificacion/AutentificacionCalibracion';
 import AutentificacionInformes from './components/autentificacion/AutentificacionInformes';
 import FuerzaPresion from './views/sublaboratorios/FuerzaPresion';
+import Electricidad from './views/sublaboratorios/Electricidad';
+import TiempoFrecuencia from './views/sublaboratorios/TiempoFrecuencia';
+import Temperatura from './views/sublaboratorios/Temperatura';
+import Longitud from './views/sublaboratorios/Longitud';
+import Humedad from './views/sublaboratorios/Humedad';
+import FotometriaAcustica from './views/sublaboratorios/FotometriaAcustica';
+import Flujo from './views/sublaboratorios/Flujo';
+import FisicoQuimico from './views/sublaboratorios/FisicoQuimico';
+import Masa from './views/sublaboratorios/Masa';
 import Ingenieria from './views/Ingenieria';
 import MantenimientoPredictivo from './views/subingenieria/MantenimientoPredictivo';
 import Carrito from './components/store/Carrito';
@@ -86,6 +95,16 @@ function App() {
             <Route path="/ingenieria" element={<Ingenieria />} />
             
             <Route path="/laboratorio/fuerza-y-presion" element={<FuerzaPresion />} />
+            <Route path="/laboratorio/electricidad" element={<Electricidad />} />
+            <Route path="/laboratorio/tiempo-frecuencia" element={<TiempoFrecuencia />} />
+            <Route path="/laboratorio/temperatura" element={<Temperatura />} />
+            <Route path="/laboratorio/longitud" element={<Longitud />} />
+            <Route path="/laboratorio/humedad" element={<Humedad />} />
+            <Route path="/laboratorio/fotometria-acustica" element={<FotometriaAcustica />} />
+            <Route path="/laboratorio/flujo" element={<Flujo />} />
+            <Route path="/laboratorio/fisico-quimico" element={<FisicoQuimico />} />
+            <Route path="/laboratorio/masa" element={<Masa />} />
+
             <Route path='ingenieria/mantenimiento-predictivo' element={<MantenimientoPredictivo />}/>
 
             <Route path="/autentificacion/calibracion" element={<AutentificacionCalibracion />} />

@@ -2,45 +2,167 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LaboratoriosRelacionados.css';
 
-// --- IMPORTACIONES DE IMÁGENES DE FONDO (CLARAS) ---
-import fisicoImg from '../../../image/laboratorio/nlds/Fisico.webp';
-import masaImg from '../../../image/laboratorio/nlds/Masa.webp';
-import elecImg from '../../../image/laboratorio/nlds/Elec.webp';
-import longImg from '../../../image/laboratorio/nlds/Long.webp';
+// ===============================================================
+// IMPORTS DE IMÁGENES DE FONDO (CLARAS) – Igual que NuestrosLaboratorios
+// ===============================================================
 import tempImg from '../../../image/laboratorio/nlds/Temp.webp';
+import masaImg from '../../../image/laboratorio/nlds/Masa.webp';
+import fuerzaImg from '../../../image/laboratorio/nlds/Fuerza.webp';
+import fisicoImg from '../../../image/laboratorio/nlds/Fisico.webp';
+import longImg from '../../../image/laboratorio/nlds/Long.webp';
+import elecImg from '../../../image/laboratorio/nlds/Elec.webp';
+import humedadImg from '../../../image/laboratorio/nlds/Humedad.webp';
+import tiempoImg from '../../../image/laboratorio/nlds/Tiempo y Fre.webp';
+import fotometriaImg from '../../../image/laboratorio/nlds/Fotometri.webp';
+import flujoImg from '../../../image/laboratorio/nlds/Flujo.webp';
 
-// --- IMPORTACIONES DE IMÁGENES DE FONDO (OSCURAS HOVER) ---
-import fisicoHover from '../../../image/laboratorio/nlds/Recurso 8.webp';
-import masaHover from '../../../image/laboratorio/nlds/Recurso 10.webp';
-import elecHover from '../../../image/laboratorio/nlds/Recurso 6.webp';
-import longHover from '../../../image/laboratorio/nlds/Recurso 7.webp';
+// ===============================================================
+// IMPORTS DE IMÁGENES DE FONDO (OSCURAS HOVER)
+// ===============================================================
 import tempHover from '../../../image/laboratorio/nlds/Recurso 11.webp';
+import masaHover from '../../../image/laboratorio/nlds/Recurso 10.webp';
+import fuerzaHover from '../../../image/laboratorio/nlds/Recurso 9.webp';
+import fisicoHover from '../../../image/laboratorio/nlds/Recurso 8.webp';
+import longHover from '../../../image/laboratorio/nlds/Recurso 7.webp';
+import elecHover from '../../../image/laboratorio/nlds/Recurso 6.webp';
+import humedadHover from '../../../image/laboratorio/nlds/Recurso 5.webp';
+import tiempoHover from '../../../image/laboratorio/nlds/Recurso 4.webp';
+import fotometriaHover from '../../../image/laboratorio/nlds/Recurso 2.webp';
+import flujoHover from '../../../image/laboratorio/nlds/Recurso 3.webp';
 
-// --- IMPORTACIÓN SELLO INACAL ---
+// ===============================================================
+// IMPORTACIÓN SELLO INACAL
+// ===============================================================
 import inacalImg from '../../../image/laboratorio/nlds/inacal.webp';
 
-// --- IMPORTACIONES DE ICONOS ESQUINA (BLANCOS) ---
-import fisicoIcon from '../../../image/header_icons/fisico.webp';
-import masaIcon from '../../../image/header_icons/masa.webp';
-import elecIcon from '../../../image/header_icons/elec.webp';
-import longIcon from '../../../image/header_icons/longitud.webp';
+// ===============================================================
+// IMPORTS DE ICONOS (BLANCOS) – Igual que NuestrosLaboratorios
+// ===============================================================
 import tempIcon from '../../../image/header_icons/temperatura.webp';
+import masaIcon from '../../../image/header_icons/masa.webp';
+import fuerzaIcon from '../../../image/header_icons/fuerza.webp';
+import fisicoIcon from '../../../image/header_icons/fisico.webp';
+import longIcon from '../../../image/header_icons/longitud.webp';
+import elecIcon from '../../../image/header_icons/elec.webp';
+import humedadIcon from '../../../image/header_icons/humedad.webp';
+import tiempoIcon from '../../../image/header_icons/tempo.webp';
+import fotometriaIcon from '../../../image/header_icons/fotometria.webp';
+import flujoIcon from '../../../image/header_icons/flujo.webp';
 
-// --- IMPORTACIONES DE ICONOS ESQUINA (VERDES HOVER) ---
-import fisicoIconHover from '../../../image/header_icons/header_iconsverde/fisico.webp';
-import masaIconHover from '../../../image/header_icons/header_iconsverde/masa.webp';
-import elecIconHover from '../../../image/header_icons/header_iconsverde/elec.webp';
-import longIconHover from '../../../image/header_icons/header_iconsverde/longitud.webp';
+// ===============================================================
+// IMPORTS DE ICONOS (VERDES HOVER)
+// ===============================================================
 import tempIconHover from '../../../image/header_icons/header_iconsverde/temperatura.webp';
+import masaIconHover from '../../../image/header_icons/header_iconsverde/masa.webp';
+import fuerzaIconHover from '../../../image/header_icons/header_iconsverde/fuerza.webp';
+import fisicoIconHover from '../../../image/header_icons/header_iconsverde/fisico.webp';
+import longIconHover from '../../../image/header_icons/header_iconsverde/longitud.webp';
+import elecIconHover from '../../../image/header_icons/header_iconsverde/elec.webp';
+import humedadIconHover from '../../../image/header_icons/header_iconsverde/humedad.webp';
+import tiempoIconHover from '../../../image/header_icons/header_iconsverde/tempo.webp';
+import fotometriaIconHover from '../../../image/header_icons/header_iconsverde/fotometria.webp';
+import flujoIconHover from '../../../image/header_icons/header_iconsverde/flujo.webp';
 
+// ===============================================================
+// ARRAY COMPLETO CON 10 LABORATORIOS (igual que NuestrosLaboratorios)
+// ===============================================================
 const laboratoriosRelacionadosData = [
-  { name: 'Fisicoquímico', img: fisicoImg, hoverImg: fisicoHover, icon: fisicoIcon, hoverIcon: fisicoIconHover, isGreen: false, showInacal: false },
-  { name: 'Masa', img: masaImg, hoverImg: masaHover, icon: masaIcon, hoverIcon: masaIconHover, isGreen: true, showInacal: true },
-  { name: 'Electricidad', img: elecImg, hoverImg: elecHover, icon: elecIcon, hoverIcon: elecIconHover, isGreen: false, showInacal: false },
-  { name: 'Longitud', img: longImg, hoverImg: longHover, icon: longIcon, hoverIcon: longIconHover, isGreen: false, showInacal: false },
-  { name: 'Temperatura', img: tempImg, hoverImg: tempHover, icon: tempIcon, hoverIcon: tempIconHover, isGreen: false, showInacal: true }
+  { 
+    name: 'Temperatura', 
+    img: tempImg, 
+    hoverImg: tempHover, 
+    icon: tempIcon, 
+    hoverIcon: tempIconHover, 
+    showInacal: true,
+    path: '/laboratorio/temperatura'
+  },
+  { 
+    name: 'Masa', 
+    img: masaImg, 
+    hoverImg: masaHover, 
+    icon: masaIcon, 
+    hoverIcon: masaIconHover, 
+    isGreen: true, 
+    showInacal: true,
+    path: '/laboratorio/masa'
+  },
+  { 
+    name: 'Fuerza y Presión', 
+    img: fuerzaImg, 
+    hoverImg: fuerzaHover, 
+    icon: fuerzaIcon, 
+    hoverIcon: fuerzaIconHover, 
+    showInacal: true,
+    path: '/laboratorio/fuerza-y-presion'
+  },
+  { 
+    name: 'Fisicoquímico', 
+    img: fisicoImg, 
+    hoverImg: fisicoHover, 
+    icon: fisicoIcon, 
+    hoverIcon: fisicoIconHover, 
+    showInacal: false,
+    path: '/laboratorio/fisico-quimico'
+  },
+  { 
+    name: 'Longitud', 
+    img: longImg, 
+    hoverImg: longHover, 
+    icon: longIcon, 
+    hoverIcon: longIconHover, 
+    showInacal: false,
+    path: '/laboratorio/longitud'
+  },
+  { 
+    name: 'Electricidad', 
+    img: elecImg, 
+    hoverImg: elecHover, 
+    icon: elecIcon, 
+    hoverIcon: elecIconHover, 
+    showInacal: false,
+    path: '/laboratorio/electricidad'
+  },
+  { 
+    name: 'Humedad', 
+    img: humedadImg, 
+    hoverImg: humedadHover, 
+    icon: humedadIcon, 
+    hoverIcon: humedadIconHover, 
+    showInacal: false,
+    path: '/laboratorio/humedad'
+  },
+  { 
+    name: 'Tiempo y Frecuencia', 
+    img: tiempoImg, 
+    hoverImg: tiempoHover, 
+    icon: tiempoIcon, 
+    hoverIcon: tiempoIconHover, 
+    showInacal: false,
+    path: '/laboratorio/tiempo-frecuencia'
+  },
+  { 
+    name: 'Fotometría y Acústica', 
+    img: fotometriaImg, 
+    hoverImg: fotometriaHover, 
+    icon: fotometriaIcon, 
+    hoverIcon: fotometriaIconHover, 
+    showInacal: false,
+    path: '/laboratorio/fotometria-acustica'
+  },
+  { 
+    name: 'Flujo', 
+    img: flujoImg, 
+    hoverImg: flujoHover, 
+    icon: flujoIcon, 
+    hoverIcon: flujoIconHover, 
+    showInacal: false,
+    path: '/laboratorio/flujo'
+  }
 ];
 
+// ===============================================================
+// COMPONENTE PRINCIPAL
+// ===============================================================
 const LaboratoriosRelacionados = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalLabs = laboratoriosRelacionadosData.length;
@@ -48,8 +170,9 @@ const LaboratoriosRelacionados = () => {
   const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % totalLabs);
   const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + totalLabs) % totalLabs);
 
+  // Mostramos 3 tarjetas visibles
   const visibleLabs = [
-    laboratoriosRelacionadosData[currentIndex],
+    laboratoriosRelacionadosData[currentIndex % totalLabs],
     laboratoriosRelacionadosData[(currentIndex + 1) % totalLabs],
     laboratoriosRelacionadosData[(currentIndex + 2) % totalLabs]
   ];
@@ -85,9 +208,7 @@ const LaboratoriosRelacionados = () => {
           {/* Tarjetas Visibles */}
           <div className="lr-cards-wrapper">
             {visibleLabs.map((lab, index) => {
-              // El index 1 siempre será la tarjeta del centro en nuestro array de 3
               const isCenter = index === 1; 
-              
               return (
                 <div key={index} className={`lr-card ${isCenter ? 'is-center' : ''}`}>
                   
@@ -98,7 +219,7 @@ const LaboratoriosRelacionados = () => {
                     <img src={lab.hoverImg} alt={`Fondo Oscuro ${lab.name}`} className="lr-img-hover" />
                   </div>
 
-                  {/* Sello INACAL */}
+                  {/* Sello INACAL (Solo primeros 3) */}
                   {lab.showInacal && (
                     <div className="lr-inacal-badge">
                       <img src={inacalImg} alt="Sello INACAL Acreditado" />
@@ -118,7 +239,7 @@ const LaboratoriosRelacionados = () => {
                       <br />
                       <strong>{lab.name}</strong>
                     </h3>
-                    <Link to="/laboratorio" className="lr-link-btn">
+                    <Link to={lab.path} className="lr-link-btn">
                       Conoce nuestro servicio &rarr;
                     </Link>
                   </div>

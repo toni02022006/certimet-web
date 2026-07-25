@@ -39,7 +39,7 @@ const HeroFuerzaPresion = () => {
               <span className="text-blue-bold">
                 El laboratorio de Fuerza y Presión de CERTIMET ofrece mantenimiento siguiendo los lineamientos de la norma ISO/IEC 17025
               </span>{' '}
-              y cuenta con triple certificación ISO para la verificación de mediciones, asegurando trazabilidad a patrones internacionales. También realiza análisis de incertidumbre, ajustes y reparaciones, garantizando precisión en la medición de fuerza y presión. Cuenta con tecnología avanzada para proporcionar los servicios de calibración que necesite. Conozca algunos de los instrumentos que podemos atender:
+              y cuenta con triple certificación ISO para la verificación de mediciones, asegurando trazabilidad a patrones internacionales. También realiza análisis de incertidumbre, ajustes y reparaciones, garantizando precisión en la medición de fuerza y presión. Cuenta con tecnología avanzada para proporcionar los servicios de calibración que necesite. Conozca algunos de los instrumentos que podemos atender.
             </p>
             
             <Link to="/contacto" className="btn-solicitar-servicio">

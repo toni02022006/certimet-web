@@ -51,16 +51,16 @@ const laboratoriosData = {
       "Resultados confiables, trazables y respaldados técnicamente."
     ],
     items: [
-      { name: "Laboratorio de Masa", path: "/laboratorio", icBase: icMasa, icHover: icMasaV },
-      { name: "Laboratorio de Temperatura", path: "/laboratorio", icBase: icTemp, icHover: icTempV },
+      { name: "Laboratorio de Masa", path: "/laboratorio/masa", icBase: icMasa, icHover: icMasaV },
+      { name: "Laboratorio de Temperatura", path: "/laboratorio/temperatura", icBase: icTemp, icHover: icTempV },
       { name: "Laboratorio de Fuerza y Presión", path: "/laboratorio/fuerza-y-presion", icBase: icFuerza, icHover: icFuerzaV },
-      { name: "Laboratorio de Físico Químico", path: "/laboratorio", icBase: icFisico, icHover: icFisicoV },
-      { name: "Laboratorio de Electricidad", path: "/laboratorio", icBase: icElec, icHover: icElecV },
-      { name: "Laboratorio de Tiempo y Frecuencia", path: "/laboratorio", icBase: icTempo, icHover: icTempoV },
-      { name: "Laboratorio de Longitud", path: "/laboratorio", icBase: icLongitud, icHover: icLongitudV },
-      { name: "Laboratorio de Fotometría y Acústica", path: "/laboratorio", icBase: icFoto, icHover: icFotoV },
-      { name: "Laboratorio de Humedad", path: "/laboratorio", icBase: icHumedad, icHover: icHumedadV },
-      { name: "Laboratorio de Flujo", path: "/laboratorio", icBase: icFlujo, icHover: icFlujoV }
+      { name: "Laboratorio de Físico Químico", path: "/laboratorio/fisico-quimico", icBase: icFisico, icHover: icFisicoV },
+      { name: "Laboratorio de Electricidad", path: "/laboratorio/electricidad", icBase: icElec, icHover: icElecV },
+      { name: "Laboratorio de Tiempo y Frecuencia", path: "/laboratorio/tiempo-frecuencia", icBase: icTempo, icHover: icTempoV },
+      { name: "Laboratorio de Longitud", path: "/laboratorio/longitud", icBase: icLongitud, icHover: icLongitudV },
+      { name: "Laboratorio de Fotometría y Acústica", path: "/laboratorio/fotometria-acustica", icBase: icFoto, icHover: icFotoV },
+      { name: "Laboratorio de Humedad", path: "/laboratorio/humedad", icBase: icHumedad, icHover: icHumedadV },
+      { name: "Laboratorio de Flujo", path: "/laboratorio/flujo", icBase: icFlujo, icHover: icFlujoV }
     ]
   },
   ensayo: {

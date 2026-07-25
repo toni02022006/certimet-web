@@ -3,39 +3,36 @@
 ========================================= */
 .cuenta-page-wrapper {
   min-height: 100vh;
-  background-color: #f1f5f9; 
-  padding-top: 150px; 
+  background: #f5f7fa;
+  padding-top: 140px;
   padding-bottom: 60px;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
 }
 
 .cuenta-container {
-  max-width: 1400px; /* Aumentamos el ancho máximo para acomodar 3 columnas cómodamente */
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  padding: 0 30px;
 }
 
 /* =========================================
-   HERO BANNER SUPERIOR (NUEVO)
+   HERO BANNER
 ========================================= */
 .cuenta-hero-banner {
   background: #ffffff;
-  padding: 30px 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(4, 58, 106, 0.05);
-  border: 1px solid #e2e8f0;
+  padding: 28px 40px;
+  border-radius: 24px;
+  box-shadow: 0 8px 30px rgba(4, 58, 106, 0.06);
+  border: 1px solid #eef2f6;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   overflow: hidden;
+  margin-bottom: 35px;
 }
 
-/* Un detalle decorativo azul en el banner */
 .cuenta-hero-banner::before {
   content: '';
   position: absolute;
@@ -49,34 +46,34 @@
 .hero-user-info {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 22px;
 }
 
 .cuenta-avatar-premium {
-  width: 80px;
-  height: 80px;
+  width: 76px;
+  height: 76px;
   background: linear-gradient(135deg, #043A6A 0%, #0a589f 100%);
   color: #ffffff;
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 28px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(4, 58, 106, 0.2);
+  box-shadow: 0 6px 18px rgba(4, 58, 106, 0.15);
   letter-spacing: 1px;
 }
 
 .hero-text-content h2 {
-  font-size: 24px;
-  font-weight: 800;
-  margin: 0 0 5px 0;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
   color: #043A6A;
 }
 
 .cuenta-email {
   color: #64748b;
-  font-size: 15px;
+  font-size: 14px;
   margin: 0;
 }
 
@@ -84,9 +81,9 @@
   background: #ffffff;
   color: #ef4444;
   border: 1px solid #fecaca;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-size: 14.5px;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -108,33 +105,41 @@
 }
 
 /* =========================================
-   GRILLA DE 3 COLUMNAS (NUEVO)
+   LAYOUT DOS COLUMNAS
 ========================================= */
-.cuenta-grid-3 {
+.cuenta-two-columns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1.8fr; /* izquierda más angosta, derecha más ancha */
   gap: 30px;
-  align-items: start; /* Para que cada columna crezca según su contenido */
+  align-items: start;
 }
 
 /* =========================================
-   SECCIONES Y TARJETAS
+   SECCIONES (tarjetas blancas)
 ========================================= */
 .cuenta-section {
   background: #ffffff;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(4, 58, 106, 0.05);
-  border: 1px solid #e2e8f0;
+  padding: 28px 30px;
+  border-radius: 24px;
+  box-shadow: 0 8px 30px rgba(4, 58, 106, 0.04);
+  border: 1px solid #eef2f6;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.cuenta-section:last-child {
+  margin-bottom: 0;
 }
 
 .cuenta-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #f1f5f9;
-  padding-bottom: 20px;
-  margin-bottom: 25px;
+  border-bottom: 1px solid #f0f3f7;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  flex-shrink: 0;
 }
 
 .section-title-group {
@@ -144,10 +149,10 @@
 }
 
 .icon-wrapper {
-  background: rgba(4, 58, 106, 0.08);
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  background: rgba(4, 58, 106, 0.07);
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -160,23 +165,22 @@
 }
 
 .cuenta-section h3 {
-  font-size: 18px;
+  font-size: 17px;
   color: #0f172a;
   margin: 0;
-  font-weight: 800;
+  font-weight: 700;
 }
 
-/* Botones secundarios */
 .btn-editar-premium,
 .btn-toggle-direccion {
   background: transparent;
   color: #043A6A;
-  border: 1px solid #cbd5e1;
-  padding: 8px 16px;
-  border-radius: 8px;
+  border: 1px solid #dce1e9;
+  padding: 6px 16px;
+  border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12.5px;
   transition: all 0.2s ease;
 }
 
@@ -188,51 +192,53 @@
   border-color: #043A6A;
 }
 
-/* Listas de info */
+/* =========================================
+   PERFIL
+========================================= */
 .cuenta-info-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .info-card-premium {
   background: #f8fafc;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid #eef2f6;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .info-label {
   font-size: 11px;
   text-transform: uppercase;
   color: #64748b;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
 }
 
 .info-value {
-  font-size: 14.5px;
-  color: #043A6A; 
-  font-weight: 600;
+  font-size: 14px;
+  color: #0f172a;
+  font-weight: 500;
 }
 
 /* =========================================
-   FORMULARIOS ADAPTADOS A COLUMNA
+   FORMULARIOS
 ========================================= */
 .cuenta-form .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 15px;
+  gap: 6px;
+  margin-bottom: 14px;
 }
 
 .cuenta-form .form-row-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 14px;
 }
 
 .cuenta-form label {
@@ -242,12 +248,12 @@
 }
 
 .cuenta-form input {
-  padding: 12px 14px;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid #dce1e9;
+  border-radius: 12px;
   font-size: 14px;
   color: #0f172a;
-  background-color: #f8fafc;
+  background-color: #fafbfc;
   transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;
@@ -256,7 +262,7 @@
 .cuenta-form input:focus {
   outline: none;
   border-color: #043A6A;
-  box-shadow: 0 0 0 3px rgba(4, 58, 106, 0.1);
+  box-shadow: 0 0 0 3px rgba(4, 58, 106, 0.08);
   background-color: #ffffff;
 }
 
@@ -264,15 +270,15 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .btn-guardar-premium {
   background: #043A6A;
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 10px;
+  padding: 11px 24px;
+  border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
@@ -282,7 +288,7 @@
 .btn-guardar-premium:hover {
   background: #032b4f;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(4, 58, 106, 0.2);
+  box-shadow: 0 4px 14px rgba(4, 58, 106, 0.2);
 }
 
 .btn-guardar-premium.btn-full {
@@ -292,9 +298,9 @@
 .btn-cancelar-premium {
   background: #ffffff;
   color: #475569;
-  border: 1px solid #cbd5e1;
-  padding: 12px 24px;
-  border-radius: 10px;
+  border: 1px solid #dce1e9;
+  padding: 11px 24px;
+  border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
@@ -306,24 +312,42 @@
 }
 
 /* =========================================
-   DIRECCIONES ADAPTADAS
+   DIRECCIONES - SCROLL
 ========================================= */
-.direcciones-list {
+.direcciones-scroll-container {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 6px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
+}
+
+.direcciones-scroll-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.direcciones-scroll-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.direcciones-scroll-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
 }
 
 .direccion-card-premium {
   background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid #eef2f6;
   display: flex;
   flex-direction: column;
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .direccion-card-premium::before {
@@ -333,17 +357,17 @@
   top: 0;
   height: 100%;
   width: 4px;
-  background-color: #e2e8f0;
+  background-color: #eef2f6;
   transition: all 0.3s ease;
 }
 
 .direccion-card-premium:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 4px 15px rgba(4, 58, 106, 0.05);
+  border-color: #dce1e9;
+  box-shadow: 0 4px 12px rgba(4, 58, 106, 0.04);
 }
 
 .direccion-card-premium:hover::before {
-  background-color: #043A6A; 
+  background-color: #043A6A;
 }
 
 .dir-header {
@@ -351,14 +375,14 @@
   align-items: center;
   gap: 10px;
   color: #043A6A;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .dir-icon { width: 16px; height: 16px; }
 
 .direccion-card-premium h4 {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 700;
   margin: 0;
   color: #0f172a;
 }
@@ -366,14 +390,14 @@
 .dir-content { padding-left: 26px; }
 
 .dir-body {
-  font-size: 13.5px;
+  font-size: 13px;
   color: #334155;
   font-weight: 500;
-  margin: 0 0 4px 0;
+  margin: 0 0 2px 0;
 }
 
 .dir-sub {
-  font-size: 12.5px;
+  font-size: 12px;
   color: #64748b;
   margin: 0;
 }
@@ -382,58 +406,61 @@
   font-size: 12px;
   color: #475569;
   background: #f8fafc;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  margin: 10px 0 0;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #eef2f6;
+  margin: 8px 0 0;
+  display: inline-block;
 }
 
 /* =========================================
-   PEDIDOS (NUEVAS TARJETAS VERTICALES)
+   PEDIDOS
 ========================================= */
 .pedidos-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
+  flex: 1;
 }
 
 .pedido-card-item {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 18px;
+  border: 1px solid #eef2f6;
+  border-radius: 18px;
+  padding: 20px 24px;
   transition: box-shadow 0.2s;
 }
 
 .pedido-card-item:hover {
-  box-shadow: 0 4px 15px rgba(4, 58, 106, 0.05);
-  border-color: #cbd5e1;
+  box-shadow: 0 6px 20px rgba(4, 58, 106, 0.04);
+  border-color: #dce1e9;
 }
 
 .pedido-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
   padding-bottom: 12px;
-  border-bottom: 1px dashed #e2e8f0;
+  border-bottom: 1px dashed #eef2f6;
 }
 
 .ped-id {
-  font-weight: 800;
+  font-weight: 700;
   color: #043A6A;
-  font-size: 14.5px;
+  font-size: 14px;
 }
 
 .pedido-card-body {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .ped-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .ped-monto {
@@ -444,29 +471,50 @@
   font-size: 11px;
   text-transform: uppercase;
   color: #64748b;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .ped-fecha {
-  font-size: 14px;
+  font-size: 13px;
   color: #334155;
   font-weight: 500;
 }
 
 .ped-total {
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   color: #0f172a;
 }
 
-/* Estados del pedido */
+/* Dirección de envío dentro del pedido */
+.pedido-direccion-envio {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f3f7;
+}
+
+.pedido-direccion-envio .ped-label {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.ped-direccion-text {
+  font-size: 13px;
+  color: #334155;
+  margin: 0;
+  font-weight: 450;
+  line-height: 1.5;
+}
+
+/* Estados */
 .estado-badge {
-  padding: 5px 12px;
-  border-radius: 20px; 
+  padding: 4px 14px;
+  border-radius: 30px;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 .estado-badge.completado,
@@ -490,21 +538,80 @@
   border: 1px solid #fecaca;
 }
 
+/* Paginación */
+.pedidos-pagina-indicador {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 3px 14px;
+  border-radius: 30px;
+}
+
+.pedidos-paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f3f7;
+}
+
+.btn-flecha-pedido {
+  background: #ffffff;
+  border: 1px solid #dce1e9;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #0f172a;
+}
+
+.btn-flecha-pedido:hover:not(:disabled) {
+  background: #043A6A;
+  border-color: #043A6A;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(4, 58, 106, 0.15);
+}
+
+.btn-flecha-pedido:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-flecha-pedido svg {
+  width: 18px;
+  height: 18px;
+}
+
+.pedidos-pagina-info {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  min-width: 70px;
+  text-align: center;
+}
+
 /* =========================================
-   ESTADOS VACÍOS Y LOADING
+   ESTADOS VACÍOS
 ========================================= */
 .cuenta-vacio {
   text-align: center;
   padding: 40px 20px;
   color: #64748b;
   background: #f8fafc;
-  border-radius: 12px;
-  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+  border: 1px dashed #dce1e9;
 }
 
 .vacio-icon {
-  font-size: 30px;
-  margin-bottom: 10px;
+  font-size: 32px;
+  margin-bottom: 8px;
   opacity: 0.5;
 }
 
@@ -528,6 +635,93 @@
   animation: spin 1s linear infinite;
 }
 
+
+/* =========================================
+   PRODUCTOS DEL PEDIDO
+========================================= */
+.pedido-productos {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #f0f3f7;
+}
+
+.pedido-productos .ped-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.pedido-productos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pedido-producto-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  padding: 8px 12px 8px 8px;
+  border-radius: 12px;
+  border: 1px solid #eef2f6;
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.pedido-producto-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.pedido-producto-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.pedido-producto-nombre {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f172a;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pedido-producto-cantidad {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .pedido-productos-lista {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pedido-producto-item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .pedido-producto-nombre {
+    max-width: 200px;
+    white-space: normal;
+  }
+}
+
 @keyframes spin { 100% { transform: rotate(360deg); } }
 .animated-fade { animation: fadeIn 0.3s ease-in-out; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -536,28 +730,65 @@
    RESPONSIVO
 ========================================= */
 @media (max-width: 1024px) {
-  .cuenta-grid-3 {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  .cuenta-two-columns {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .cuenta-section {
+    margin-bottom: 0;
+  }
+
+  .cuenta-col-left .cuenta-section:last-child {
+    margin-bottom: 0;
   }
 }
 
-@media (max-width: 768px) {
-  .cuenta-grid-3 {
-    grid-template-columns: 1fr; /* 1 columna en móviles */
+@media (max-width: 640px) {
+  .cuenta-page-wrapper {
+    padding-top: 120px;
+    padding-bottom: 40px;
   }
-  
+
+  .cuenta-container {
+    padding: 0 16px;
+  }
+
   .cuenta-hero-banner {
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
     text-align: center;
+    padding: 24px 20px;
   }
-  
+
   .hero-user-info {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
   }
-  
+
   .btn-cerrar-sesion-premium {
     width: 100%;
+    justify-content: center;
+  }
+
+  .cuenta-section {
+    padding: 20px 18px;
+  }
+
+  .cuenta-form .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .pedido-card-item {
+    padding: 16px;
+  }
+
+  .pedido-card-body {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ped-monto {
+    text-align: left;
   }
 }

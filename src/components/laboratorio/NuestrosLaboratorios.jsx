@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom'; // Importamos Link
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './NuestrosLaboratorios.css';
@@ -61,17 +62,18 @@ const NuestrosLaboratorios = () => {
   const containerRef = useRef(null);
   const [efectoActivo, setEfectoActivo] = useState(true);
 
+  // Definimos las rutas para cada laboratorio
   const laboratoriosData = [
-    { name: 'Temperatura', img: tempImg, hoverImg: tempHover, icon: tempIcon, hoverIcon: tempIconHover, showInacal: true },
-    { name: 'Masa', img: masaImg, hoverImg: masaHover, isGreen: true, icon: masaIcon, hoverIcon: masaIconHover, showInacal: true },
-    { name: 'Fuerza y Presión', img: fuerzaImg, hoverImg: fuerzaHover, icon: fuerzaIcon, hoverIcon: fuerzaIconHover, showInacal: true },
-    { name: 'Fisicoquímico', img: fisicoImg, hoverImg: fisicoHover, icon: fisicoIcon, hoverIcon: fisicoIconHover },
-    { name: 'Longitud', img: longImg, hoverImg: longHover, icon: longIcon, hoverIcon: longIconHover },
-    { name: 'Electricidad', img: elecImg, hoverImg: elecHover, icon: elecIcon, hoverIcon: elecIconHover },
-    { name: 'Humedad', img: humedadImg, hoverImg: humedadHover, icon: humedadIcon, hoverIcon: humedadIconHover },
-    { name: 'Tiempo y Frecuencia', img: tiempoImg, hoverImg: tiempoHover, icon: tiempoIcon, hoverIcon: tiempoIconHover },
-    { name: 'Fotometría y Acústica', img: fotometriaImg, hoverImg: fotometriaHover, icon: fotometriaIcon, hoverIcon: fotometriaIconHover },
-    { name: 'Flujo', img: flujoImg, hoverImg: flujoHover, icon: flujoIcon, hoverIcon: flujoIconHover }
+    { name: 'Temperatura', path: '/laboratorio/temperatura', img: tempImg, hoverImg: tempHover, icon: tempIcon, hoverIcon: tempIconHover, showInacal: true },
+    { name: 'Masa', path: '/laboratorio/masa', img: masaImg, hoverImg: masaHover, isGreen: true, icon: masaIcon, hoverIcon: masaIconHover, showInacal: true },
+    { name: 'Fuerza y Presión', path: '/laboratorio/fuerza-y-presion', img: fuerzaImg, hoverImg: fuerzaHover, icon: fuerzaIcon, hoverIcon: fuerzaIconHover, showInacal: true },
+    { name: 'Fisicoquímico', path: '/laboratorio/fisico-quimico', img: fisicoImg, hoverImg: fisicoHover, icon: fisicoIcon, hoverIcon: fisicoIconHover },
+    { name: 'Longitud', path: '/laboratorio/longitud', img: longImg, hoverImg: longHover, icon: longIcon, hoverIcon: longIconHover },
+    { name: 'Electricidad', path: '/laboratorio/electricidad', img: elecImg, hoverImg: elecHover, icon: elecIcon, hoverIcon: elecIconHover },
+    { name: 'Humedad', path: '/laboratorio/humedad', img: humedadImg, hoverImg: humedadHover, icon: humedadIcon, hoverIcon: humedadIconHover },
+    { name: 'Tiempo y Frecuencia', path: '/laboratorio/tiempo-frecuencia', img: tiempoImg, hoverImg: tiempoHover, icon: tiempoIcon, hoverIcon: tiempoIconHover },
+    { name: 'Fotometría y Acústica', path: '/laboratorio/fotometria-acustica', img: fotometriaImg, hoverImg: fotometriaHover, icon: fotometriaIcon, hoverIcon: fotometriaIconHover },
+    { name: 'Flujo', path: '/laboratorio/flujo', img: flujoImg, hoverImg: flujoHover, icon: flujoIcon, hoverIcon: flujoIconHover }
   ];
 
   useEffect(() => {
@@ -194,7 +196,8 @@ const NuestrosLaboratorios = () => {
                   <br />
                   <strong>{lab.name}</strong>
                 </h3>
-                <a href="#" className="nl-link">Conoce nuestro servicio →</a>
+                {/* Reemplazamos <a> por Link de React Router */}
+                <Link to={lab.path} className="nl-link">Conoce nuestro servicio →</Link>
               </div>
 
             </div>
