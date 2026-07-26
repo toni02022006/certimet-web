@@ -1,0 +1,300 @@
+/* 1. CONTENEDOR PRINCIPAL */
+.seguimiento-page {
+  padding-top: 190px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+}
+
+.seguimiento-container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 20px;
+}
+
+.seguimiento-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  padding: 40px 45px 50px;
+}
+
+/* 2. ENCABEZADO */
+.seguimiento-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.seguimiento-header h2 {
+  font-size: 28px;
+  color: #1e293b;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.seguimiento-header h2 span {
+  color: #0056b3;
+}
+
+.seguimiento-fecha {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* 3. STEPPER HORIZONTAL */
+.stepper-horizontal {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  margin-bottom: 45px;
+}
+
+.stepper-linea-fondo {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #e2e8f0;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+.stepper-linea-progreso {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  height: 4px;
+  background-color: #3b82f6;
+  z-index: 2;
+  transition: width 1s ease-in-out;
+  border-radius: 2px;
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  flex: 1;
+}
+
+.stepper-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 3px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #94a3b8;
+  transition: all 0.4s ease;
+  margin-bottom: 12px;
+}
+
+.stepper-content h4 {
+  margin: 0 0 4px 0;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.stepper-content p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #cbd5e1;
+}
+
+/* Estados completado y actual */
+.stepper-item.completado .stepper-icon-box {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+.stepper-item.completado .stepper-content h4 {
+  color: #0f172a;
+}
+.stepper-item.completado .stepper-content p {
+  color: #64748b;
+}
+
+.stepper-item.actual .stepper-icon-box {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: #fff;
+  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.15);
+}
+.stepper-item.actual .stepper-content h4 {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* 4. PISTA CON CAMIÓN SVG */
+.animacion-track-container {
+  width: 100%;
+  margin: 20px 0 40px;
+}
+
+.pista {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background-color: #e2e8f0;
+  border-radius: 30px;
+  overflow: visible;
+}
+
+.lineas-carretera {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-image: linear-gradient(to right, #94a3b8 50%, transparent 50%);
+  background-size: 30px 100%;
+  transform: translateY(-50%);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.pista-progreso {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #93c5fd, #3b82f6);
+  border-radius: 30px 0 0 30px;
+  transition: width 1.2s ease-in-out;
+  z-index: 2;
+}
+
+.vehiculo-container {
+  position: absolute;
+  top: -20px;
+  width: 60px;
+  height: 40px;
+  transform: translateX(-50%);
+  transition: left 1.2s ease-in-out;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camion-animado {
+  animation: conducir 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes conducir {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-6px); }
+}
+
+/* 5. FOOTER Y BOTÓN */
+.seguimiento-footer {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-volver-centrado {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #f1f5f9;
+  color: #1e293b;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 32px;
+  border-radius: 40px;
+  border: 1px solid #cbd5e1;
+  transition: all 0.3s ease;
+}
+
+.btn-volver-centrado:hover {
+  background: #0056b3;
+  color: #fff;
+  border-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 86, 179, 0.25);
+}
+
+/* Carga y error */
+.sig-loading, .sig-error {
+  text-align: center;
+  padding: 80px 20px;
+}
+.sig-error a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: #0056b3;
+  color: #fff;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .seguimiento-page {
+    padding-top: 150px;
+  }
+  .seguimiento-card {
+    padding: 25px 20px;
+  }
+  .stepper-horizontal {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .stepper-item {
+    min-width: 80px;
+  }
+  .stepper-icon-box {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+  .stepper-content h4 {
+    font-size: 0.75rem;
+  }
+  .stepper-content p {
+    font-size: 0.65rem;
+  }
+  .vehiculo-container {
+    width: 45px;
+    height: 30px;
+    top: -10px;
+  }
+  .camion-animado svg {
+    width: 45px;
+    height: 30px;
+  }
+  .btn-volver-centrado {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .seguimiento-header h2 {
+    font-size: 22px;
+  }
+  .seguimiento-card {
+    padding: 20px 15px;
+  }
+}

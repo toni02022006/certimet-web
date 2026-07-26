@@ -1,27 +1,26 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import basicSsl from '@vitejs/plugin-basic-ssl'
 
 export default defineConfig({
   plugins: [
-    react(),
-    basicSsl()
+    react()
+    // Eliminamos basicSsl()
   ],
   base: '/certimet-web/',
   server: {
-    https: true, // ya lo da basicSsl
+    // Eliminamos https: true
     watch: {
       usePolling: true,
       interval: 100,
     },
-    // 👇 Agregamos cabeceras para relajar CSP en desarrollo
+    // Ajustamos las cabeceras CSP para permitir que las imágenes vengan de localhost:3000
     headers: {
       'Content-Security-Policy':
-        "default-src 'self' https:; " +
-        "script-src 'unsafe-inline' 'unsafe-eval' https:; " +
-        "style-src 'unsafe-inline' https:; " +
-        "img-src 'self' data: https:; " +
-        "connect-src 'self' http://localhost:3000 https:;"
+        "default-src 'self'; " +
+        "script-src 'unsafe-inline' 'unsafe-eval' 'self'; " +
+        "style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; " +
+        "img-src 'self' data: http://localhost:3000 https:; " + // <- Aquí agregamos http://localhost:3000
+        "connect-src 'self' http://localhost:3000;"
     }
   }
 })

@@ -19,6 +19,7 @@ import Tienda from './views/Tienda';
 import Login from './views/Login';
 import Registro from './components/cuenta/Registro';
 import Cuenta from './components/cuenta/Cuenta';
+import SeguimientoPedido from './components/cuenta/SeguimientoPedido';
 import RecuperarPassword from './components/cuenta/RecuperarPassword';
 import VerificarCodigo from './components/cuenta/VerificarCodigo';
 import ProductoDetalle from './components/store/ProductoDetalle';
@@ -44,6 +45,7 @@ import MantenimientoPredictivo from './views/subingenieria/MantenimientoPredicti
 import Carrito from './components/store/Carrito';
 import Checkout from './components/store/Checkout';
 import CheckoutInvitado from './components/store/CheckoutInvitado';
+import SeguimientoInvitado from './page/SeguimientoInvitado';
 
 function App() {
   // ==========================================================================
@@ -121,10 +123,12 @@ function App() {
             <Route path="/tienda/cuenta" element={<Cuenta />} />
             <Route path="/tienda/recuperar" element={<RecuperarPassword />} />
             <Route path="/tienda/verificar-codigo" element={<VerificarCodigo />} />
+            <Route path="/tienda/seguimiento/:id" element={<SeguimientoPedido />} />
             <Route path="/producto/:id" element={<ProductoDetalle />} />
             <Route path="/tienda/carrito" element={<Carrito />} />
             <Route path="/tienda/checkout" element={<Checkout />} />
             <Route path="/tienda/checkout-invitado" element={<CheckoutInvitado />} />
+            <Route path="/tienda/seguimiento-invitado/:id" element={<SeguimientoInvitado />} />
             
             {/* ✅ NUEVAS RUTAS DEL CATÁLOGO */}
             <Route path="/tienda/catalogo" element={<Catalogo />} />

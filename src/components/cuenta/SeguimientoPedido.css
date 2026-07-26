@@ -1,0 +1,259 @@
+/* 1. CONTENEDOR PRINCIPAL */
+.seguimiento-page {
+  padding-top: 190px; /* Reducido para que quede mejor debajo del nav */
+  padding-bottom: 80px;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+}
+
+.seguimiento-container, 
+.seguimiento-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 0 20px;
+}
+
+/* 2. CABECERA LIMPIA Y CENTRADA */
+.seguimiento-header {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 25px;
+  margin-bottom: 40px;
+  text-align: center; /* Centramos el título */
+}
+
+.seguimiento-titulo-grupo h2 {
+  font-size: 2rem; /* Un poco más grande */
+  color: #1e293b;
+  margin: 0 0 10px 0;
+}
+
+.seguimiento-titulo-grupo h2 span {
+  color: #0056b3;
+}
+
+.seguimiento-fecha {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* 3. STEPPER HORIZONTAL (FILA 1) */
+.stepper-horizontal {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  margin-bottom: 60px; 
+}
+
+.stepper-linea-fondo {
+  position: absolute;
+  top: 22px; 
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #e2e8f0;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+.stepper-linea-progreso {
+  position: absolute;
+  top: 22px;
+  left: 0;
+  height: 4px;
+  background-color: #3b82f6;
+  z-index: 2;
+  transition: width 1s ease-in-out;
+  border-radius: 2px;
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  width: 16.66%; 
+}
+
+.stepper-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 3px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+  color: #94a3b8;
+  margin-bottom: 15px;
+}
+
+.stepper-content h4 {
+  margin: 0 0 5px 0;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.stepper-content p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  padding: 0 5px;
+  line-height: 1.2;
+}
+
+.stepper-item.completado .stepper-icon-box {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+.stepper-item.completado .stepper-content h4 {
+  color: #0f172a;
+}
+.stepper-item.completado .stepper-content p {
+  color: #64748b;
+}
+
+.stepper-item.actual .stepper-icon-box {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+  box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.15);
+}
+.stepper-item.actual .stepper-content h4 {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* 4. CARRETERA Y ANIMACIÓN (FILA 2) */
+.animacion-track-container {
+  width: 100%;
+  padding: 0 calc(8.33% - 24px); 
+}
+
+.pista {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  background-color: #cbd5e1;
+  border-radius: 6px;
+  overflow: visible; 
+}
+
+.lineas-carretera {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-image: linear-gradient(to right, #ffffff 50%, transparent 50%);
+  background-size: 40px 100%; 
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.pista-progreso {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #93c5fd; 
+  border-radius: 6px 0 0 6px;
+  transition: width 1s ease-in-out;
+  z-index: 2;
+}
+
+.vehiculo-container {
+  position: absolute;
+  top: -35px; 
+  width: 50px;
+  transform: translateX(-50%); 
+  transition: left 1s ease-in-out;
+  z-index: 3;
+}
+
+.camion-animado {
+  animation: conducir 0.6s infinite alternate ease-in-out;
+}
+
+@keyframes conducir {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+/* 5. FOOTER Y BOTÓN DE VOLVER NUEVO */
+.seguimiento-footer {
+  margin-top: 60px; /* Separación de la pista */
+  padding-top: 30px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center; /* Centra el botón horizontalmente */
+  align-items: center;
+}
+
+.btn-volver-centrado {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #f8fafc;
+  color: #334155;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 14px 32px;
+  border-radius: 30px; /* Diseño en forma de píldora */
+  border: 1px solid #cbd5e1;
+  transition: all 0.3s ease;
+}
+
+.btn-volver-centrado:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  border-color: #0056b3;
+  transform: translateY(-3px); /* Pequeño salto hacia arriba */
+  box-shadow: 0 8px 20px rgba(0, 86, 179, 0.25); /* Sombra elegante */
+}
+
+/* Vistas de error */
+.error-card {
+  text-align: center;
+  padding: 60px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .stepper-horizontal {
+    min-width: 600px; 
+  }
+  .animacion-track-container {
+    min-width: 600px;
+  }
+  .seguimiento-container {
+    overflow-x: auto;
+    padding: 25px 20px;
+  }
+  .seguimiento-page {
+    padding-top: 120px; 
+  }
+  .seguimiento-header {
+    margin-bottom: 30px;
+  }
+}
