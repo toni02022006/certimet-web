@@ -65,7 +65,7 @@ const slides = [
       { text: "que ", isGreen: false },
       { text: "transforma", isGreen: true }
     ],
-    subtitle: "Lorem ipsum Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis",
+    subtitle: "Respaldamos la calidad de su industria con soluciones metrológicas de vanguardia. Nuestro equipo de expertos garantiza mediciones exactas y automatización inteligente para optimizar sus procesos y llevar su empresa al siguiente nivel.",
     showButtons: true,
     textPosition: 'left',
     overlay: 'left',   // gradiente de izquierda a derecha

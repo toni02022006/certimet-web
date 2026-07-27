@@ -1,0 +1,549 @@
+/* ==========================================================================
+   PORTAL DE BLOG - CERTIMET (VERSIÓN DEFINITIVA TECH & EDITORIAL)
+   Prefijo de aislamiento: cbp-
+   Cero !important - Animaciones 3D fluidas
+   ========================================================================== */
+
+/* Variables Corporativas y Estilos Base */
+.cbp-wrapper {
+  --certi-blue-dark: #001226;
+  --certi-blue: #00234a;
+  --certi-blue-light: #00458f;
+  --certi-green: #00d639;
+  --certi-green-glow: rgba(0, 214, 57, 0.3);
+  --certi-bg: #f8fafc;
+  --certi-surface: #ffffff;
+  --certi-text-main: #0f172a;
+  --certi-text-muted: #64748b;
+  
+  background-color: var(--certi-bg);
+  min-height: 100vh;
+  padding-bottom: 100px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   ANIMACIONES GLOBALES Y KEYFRAMES
+========================================= */
+@keyframes cbp-fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cbp-pulseLight {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes cbp-gridMove {
+  0% { transform: perspective(600px) rotateX(60deg) translateY(0) translateZ(-200px); }
+  100% { transform: perspective(600px) rotateX(60deg) translateY(50px) translateZ(-200px); }
+}
+
+/* Animación letra por letra al cargar (Giro de -90 a 0) */
+@keyframes cbp-flipIn {
+  0% { opacity: 0; transform: rotateY(-90deg); }
+  100% { opacity: 1; transform: rotateY(0deg); }
+}
+
+/* =========================================
+   HERO SECTION (Fondo 3D y Luces)
+========================================= */
+.cbp-hero-section {
+  background: var(--certi-blue-dark);
+  position: relative;
+  padding: 130px 5% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Luces radiales palpitantes */
+.cbp-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0, 214, 57, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 69, 143, 0.4) 0%, transparent 50%);
+  z-index: 1;
+  animation: cbp-pulseLight 8s ease-in-out infinite alternate;
+}
+
+/* Grilla Tech 3D en movimiento */
+.cbp-hero-grid {
+  position: absolute;
+  inset: -50%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 1;
+  transform: perspective(600px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+  animation: cbp-gridMove 15s linear infinite;
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+}
+
+.cbp-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  margin-bottom: 50px;
+  animation: cbp-fadeUp 1s ease-out forwards;
+}
+
+/* =========================================
+   TIPOGRAFÍA Y ANIMACIONES 3D DEL HERO
+========================================= */
+.cbp-hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 450; 
+  color: #ffffff;
+  margin: 0 0 20px;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  perspective: 1000px; 
+}
+
+.cbp-letter-flip {
+  display: inline-block;
+  opacity: 0;
+  transform-origin: center;
+  transform: rotateY(-90deg);
+  animation: cbp-flipIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.cbp-blog-spin {
+  display: inline-block;
+  color: var(--certi-green);
+  font-weight: 500;
+  font-style: italic;
+  margin: 0 10px;
+  position: relative;
+}
+
+.cbp-blog-spin::after {
+  content: 'blog';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.9) 50%,
+    transparent 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: cbp-shimmerEffect 4s linear infinite 2s;
+  pointer-events: none;
+}
+
+@keyframes cbp-shimmerEffect {
+  0% { background-position: -200% center; }
+  30% { background-position: 200% center; }
+}
+
+.cbp-hero-content p {
+  font-size: 1.15rem;
+  color: #cbd5e1;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   FILTROS (Menú integrado elegante)
+========================================= */
+.cbp-nav-filters {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding-bottom: 25px;
+}
+
+.cbp-filter-item {
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.cbp-filter-item:hover {
+  color: #ffffff;
+}
+
+.cbp-filter-item.cbp-active {
+  color: var(--certi-green);
+}
+
+.cbp-filter-item::after {
+  content: '';
+  position: absolute;
+  bottom: -26px; 
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--certi-green);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.cbp-filter-item.cbp-active::after {
+  transform: scaleX(1);
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL Y GRILLA EXPANSIVA
+========================================= */
+.cbp-main-container {
+  max-width: 1440px; 
+  width: 95%;
+  margin: 60px auto 0;
+}
+
+.cbp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* =========================================
+   PORTADA: TARJETA DESTACADA (MAGAZINE STYLE)
+========================================= */
+.cbp-featured-post {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  background: var(--certi-surface);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 35, 74, 0.06);
+  margin-bottom: 20px;
+  animation: cbp-fadeUp 0.8s ease-out forwards;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cbp-featured-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 35, 74, 0.12);
+}
+
+.cbp-featured-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  overflow: hidden;
+}
+
+/* La imagen destacada mantiene 'cover' para llenar su gran área de revista */
+.cbp-featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.cbp-featured-post:hover .cbp-featured-image img {
+  transform: scale(1.05);
+}
+
+.cbp-featured-content {
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(to right, var(--certi-surface), rgba(255,255,255,0.9));
+}
+
+.cbp-tag {
+  align-self: flex-start;
+  background: rgba(0, 214, 57, 0.15);
+  color: var(--certi-blue);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.cbp-featured-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600; 
+  color: var(--certi-blue-dark);
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.cbp-featured-title a {
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(var(--certi-green), var(--certi-green));
+  background-size: 0% 3px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 0.4s ease;
+}
+
+.cbp-featured-post:hover .cbp-featured-title a {
+  background-size: 100% 3px;
+}
+
+.cbp-featured-excerpt {
+  font-size: 1.1rem;
+  color: var(--certi-text-muted);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+/* =========================================
+   TARJETAS NORMALES
+========================================= */
+.cbp-post-card {
+  background: var(--certi-surface);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  opacity: 0;
+  animation: cbp-fadeUp 0.6s ease-out forwards;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.cbp-post-card:nth-child(1) { animation-delay: 0.1s; }
+.cbp-post-card:nth-child(2) { animation-delay: 0.2s; }
+.cbp-post-card:nth-child(3) { animation-delay: 0.3s; }
+.cbp-post-card:nth-child(4) { animation-delay: 0.4s; }
+.cbp-post-card:nth-child(n+5) { animation-delay: 0.5s; }
+
+.cbp-post-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--certi-green), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.cbp-post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 35, 74, 0.08);
+}
+.cbp-post-card:hover::before {
+  opacity: 1;
+}
+
+/* CORRECCIÓN: El "Marco Universal" para las imágenes de tarjetas normales */
+.cbp-card-img-box {
+  width: 100%;
+  height: 240px; /* Altura fija para mantener el grid perfecto */
+  background: linear-gradient(to bottom, #f8fafc, #f1f5f9); /* Fondo sutil premium */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #f1f5f9; /* Línea de separación sutil */
+}
+
+/* Magia pura: La imagen entra completa */
+.cbp-card-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Evita cualquier recorte o deformación */
+  padding: 15px; /* Crea un pequeño respiro alrededor de la imagen */
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.cbp-post-card:hover .cbp-card-img-box img {
+  transform: scale(1.08);
+  filter: brightness(0.9);
+}
+
+.cbp-card-body {
+  padding: 25px 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cbp-card-meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cbp-card-cat {
+  color: var(--certi-green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cbp-card-title {
+  font-size: 1.35rem;
+  font-weight: 600; 
+  line-height: 1.4;
+  color: var(--certi-text-main);
+  margin: 0 0 12px 0;
+  transition: color 0.3s ease;
+}
+
+.cbp-post-card:hover .cbp-card-title {
+  color: var(--certi-blue);
+}
+
+.cbp-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cbp-card-desc {
+  font-size: 0.95rem;
+  color: var(--certi-text-muted);
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  flex: 1;
+}
+
+.cbp-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 15px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.cbp-read-more {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--certi-blue);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cbp-read-more svg {
+  transition: transform 0.3s ease;
+}
+
+.cbp-post-card:hover .cbp-read-more {
+  color: var(--certi-green);
+}
+.cbp-post-card:hover .cbp-read-more svg {
+  transform: translateX(5px);
+}
+
+/* =========================================
+   PAGINACIÓN
+========================================= */
+.cbp-pagination-modern {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 80px;
+}
+
+.cbp-page-arrow, .cbp-page-dot {
+  background: var(--certi-surface);
+  border: 1px solid #e2e8f0;
+  color: var(--certi-blue);
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cbp-page-arrow {
+  padding: 0 20px;
+}
+
+.cbp-page-dot {
+  width: 44px;
+}
+
+.cbp-page-arrow:hover:not(:disabled), .cbp-page-dot:hover {
+  background: var(--certi-blue);
+  color: #fff;
+  border-color: var(--certi-blue);
+  transform: translateY(-2px);
+}
+
+.cbp-page-dot.cbp-active {
+  background: var(--certi-green);
+  color: var(--certi-blue-dark);
+  border-color: var(--certi-green);
+}
+
+.cbp-page-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 1024px) {
+  .cbp-featured-post {
+    grid-template-columns: 1fr;
+  }
+  .cbp-featured-image {
+    min-height: 350px;
+  }
+  .cbp-featured-content {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cbp-hero-content h1 { font-size: 2.2rem; }
+  .cbp-nav-filters { flex-wrap: wrap; gap: 5px; }
+  .cbp-filter-item { padding: 8px 12px; font-size: 0.9rem; }
+  .cbp-grid { grid-template-columns: 1fr; }
+  .cbp-main-container { width: 90%; }
+}

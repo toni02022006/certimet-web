@@ -1,184 +1,238 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import './Blog.css';
+import './BlogCertimet.css';
 
 const categories = ['Todos', 'Metrología', 'Automatización', 'Normativas'];
 
-// Diccionario para mapear cómo viene de la BD a cómo se ve en tu menú
 const mapCategoriaVisual = {
   'METROLOGIA': 'Metrología',
   'AUTOMATIZACION': 'Automatización',
   'NORMATIVAS': 'Normativas'
 };
 
+// Íconos Modernos Minimalistas
+const ArrowRight = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+  </svg>
+);
+const TimeIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '4px', verticalAlign: 'middle'}}>
+    <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+  </svg>
+);
+const CalendarIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '4px', verticalAlign: 'middle'}}>
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+);
+
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('Todos');
-  const [blogPosts, setBlogPosts] = useState([]); // Estado para los datos reales
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [cargando, setCargando] = useState(true);
 
-  // ==========================================
-  // CONEXIÓN CON EL BACKEND
-  // ==========================================
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 10;
+
   useEffect(() => {
-    const fetchArticulosPúblicos = async () => {
+    const fetchArticulos = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/blog');
-        if (response.ok) {
-          const data = await response.json();
-          
-          // 1. Obtenemos la fecha de hoy en formato 'YYYY-MM-DD' para comparar correctamente
-          const hoy = new Date().toISOString().split('T')[0];
-
-          // 2. Filtramos: Solo artículos activos Y cuya fecha de publicación ya haya llegado
-          const articulosValidos = data.filter(post => {
-            if (!post.activo) return false;
-            const fechaPub = post.fecha_publicacion.split('T')[0];
-            return fechaPub <= hoy;
-          });
-
-          // 3. Ordenamos del más nuevo al más antiguo
-          articulosValidos.sort((a, b) => new Date(b.fecha_publicacion) - new Date(a.fecha_publicacion));
-
-          // 4. Adaptamos los datos de la Base de Datos a la estructura de tus tarjetas visuales
-          const formattedPosts = articulosValidos.map((post, index) => {
-            // Formatear fecha a estilo "15 Jun 2026"
-            const fechaObjeto = new Date(post.fecha_publicacion);
-            const opcionesFecha = { day: '2-digit', month: 'short', year: 'numeric' };
-            const fechaBonita = fechaObjeto.toLocaleDateString('es-ES', opcionesFecha);
-
-            return {
-              id: post.id,
-              title: post.titulo,
-              excerpt: post.subtitulo || 'Sin descripción',
-              category: mapCategoriaVisual[post.categoria] || 'General',
-              date: fechaBonita,
-              readTime: `${post.minutos_lectura} min`,
-              // Si no subió imagen, ponemos una por defecto corporativa
-              image: post.imagen_url || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
-              // El primer artículo de la lista es automáticamente el destacado
-              featured: index === 0 
-            };
-          });
-
-          setBlogPosts(formattedPosts);
-        }
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        
+        const hoy = new Date().toISOString().split('T')[0];
+        const validos = data.filter(post => post.activo && post.fecha_publicacion.split('T')[0] <= hoy);
+        validos.sort((a, b) => new Date(b.fecha_publicacion) - new Date(a.fecha_publicacion));
+        
+        const formatted = validos.map((post, index) => ({
+          id: post.id,
+          title: post.titulo,
+          excerpt: post.subtitulo || 'Sin descripción',
+          category: mapCategoriaVisual[post.categoria] || 'General',
+          date: new Date(post.fecha_publicacion).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }),
+          readTime: `${post.minutos_lectura || 1} min`,
+          image: post.imagen_url || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+          featured: index === 0
+        }));
+        
+        setBlogPosts(formatted);
       } catch (error) {
-        console.error('Error al cargar el blog:', error);
+        console.error('Error fetching blog:', error);
+      } finally {
+        setCargando(false);
       }
     };
-
-    fetchArticulosPúblicos();
+    fetchArticulos();
   }, []);
 
-  // Filtrar posts según la categoría seleccionada
   const filteredPosts = blogPosts.filter(post => 
-    activeCategory === 'Todos' ? true : post.category === activeCategory
+    activeCategory === 'Todos' || post.category === activeCategory
   );
 
-  // Animaciones
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+
+  const handleCategoryChange = (cat) => {
+    setActiveCategory(cat);
+    setCurrentPage(1);
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+  const renderFlippingText = (text, delayOffset = 0) => {
+    return text.split('').map((char, index) => (
+      <span
+        key={index}
+        className="cbp-letter-flip"
+        style={{ animationDelay: `${delayOffset + (index * 0.05)}s` }}
+      >
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ));
   };
 
   return (
-    <div className="blog-page">
-      {/* ================= HERO SECTION ================= */}
-      <div className="blog-hero">
-        <div className="blog-hero-content">
-          <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Actualidad y <span>Recursos</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Noticias, artículos técnicos y guías sobre metrología y automatización industrial.
-          </motion.p>
+    <div className="cbp-wrapper">
+      
+      {/* CABECERA EDITORIAL */}
+      <section className="cbp-hero-section">
+        <div className="cbp-hero-bg"></div>
+        <div className="cbp-hero-grid"></div>
+        
+        <div className="cbp-hero-content">
+          <h1>
+            {renderFlippingText("Nuestro", 0)}
+            <span className="cbp-blog-spin">
+              {renderFlippingText("blog", 0.5)}
+            </span>
+            {renderFlippingText("y recursos", 0.7)}
+          </h1>
+          <p>Innovación, guías especializadas y las últimas tendencias en metrología y automatización industrial, diseñadas para profesionales.</p>
         </div>
-      </div>
 
-      {/* ================= FILTROS DE CATEGORÍAS ================= */}
-      <div className="blog-filters-container">
-        <div className="blog-filters">
-          {categories.map((cat, index) => (
+        {/* FILTROS */}
+        <nav className="cbp-nav-filters">
+          {categories.map(cat => (
             <button
-              key={index}
-              className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
-              onClick={() => setActiveCategory(cat)}
+              key={cat}
+              onClick={() => handleCategoryChange(cat)}
+              className={`cbp-filter-item ${activeCategory === cat ? 'cbp-active' : ''}`}
             >
               {cat}
             </button>
           ))}
-        </div>
-      </div>
+        </nav>
+      </section>
 
-      {/* ================= GRILLA DE ARTÍCULOS ================= */}
-      <div className="blog-content-wrapper">
-        <motion.div 
-          className="blog-grid"
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          key={activeCategory} 
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredPosts.map((post) => (
-              <motion.div 
-                key={post.id} 
-                className={`blog-card ${post.featured && activeCategory === 'Todos' ? 'featured-card' : ''}`}
-                variants={itemVariants}
-                layout
-              >
-                {/* Imagen del Post */}
-                <div className="blog-card-image">
-                  <img src={post.image} alt={post.title} />
-                  <div className="blog-card-category">{post.category}</div>
-                </div>
-
-                {/* Contenido del Post */}
-                <div className="blog-card-content">
-                  <div className="blog-card-meta">
-                    <span>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                      {post.date}
-                    </span>
-                    <span>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                      {post.readTime}
-                    </span>
-                  </div>
-                  
-                  <h3 className="blog-card-title">{post.title}</h3>
-                  <p className="blog-card-excerpt">{post.excerpt}</p>
-                  
-                  <div className="blog-card-footer">
-                      <Link to={`/blog/${post.id}`} className="read-more-btn" style={{ textDecoration: 'none' }}>
-                        Leer Artículo
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                      </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-        
-        {filteredPosts.length === 0 && (
-          <div className="no-posts-message">
-            <p>No se encontraron artículos en esta categoría.</p>
+      {/* CONTENEDOR PRINCIPAL */}
+      <main className="cbp-main-container">
+        {cargando ? (
+          <div style={{ textAlign: 'center', padding: '120px 0', color: '#64748b' }}>
+             <p style={{fontSize: '1.2rem'}}>Cargando contenido premium...</p>
           </div>
+        ) : (
+          <>
+            <div className="cbp-grid" key={`grid-anim-${activeCategory}-${currentPage}`}>
+              {currentPosts.map(post => {
+                const isFeatured = post.featured && activeCategory === 'Todos' && currentPage === 1;
+                
+                if (isFeatured) {
+                  return (
+                    <article key={post.id} className="cbp-featured-post">
+                      <div className="cbp-featured-image">
+                        <img src={post.image} alt={post.title} />
+                      </div>
+                      <div className="cbp-featured-content">
+                        <span className="cbp-tag">{post.category}</span>
+                        <h2 className="cbp-featured-title">
+                          <Link to={`/blog/${post.id}`}>{post.title}</Link>
+                        </h2>
+                        <p className="cbp-featured-excerpt">{post.excerpt}</p>
+                        
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
+                           <Link to={`/blog/${post.id}`} className="cbp-read-more" style={{fontSize: '1.1rem'}}>
+                            Leer artículo completo <ArrowRight />
+                          </Link>
+                          <span style={{ color: '#94a3b8', fontSize: '0.9rem', fontWeight: 500 }}>
+                            <TimeIcon /> {post.readTime}
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                }
+
+                return (
+                  <article key={post.id} className="cbp-post-card">
+                    <div className="cbp-card-img-box">
+                      <img src={post.image} alt={post.title} />
+                    </div>
+                    
+                    <div className="cbp-card-body">
+                      <div className="cbp-card-meta-top">
+                        <span className="cbp-card-cat">{post.category}</span>
+                        <span style={{ fontSize: '0.8rem', color: '#cbd5e1' }}><TimeIcon /> {post.readTime}</span>
+                      </div>
+                      
+                      <h3 className="cbp-card-title">
+                        <Link to={`/blog/${post.id}`}>{post.title}</Link>
+                      </h3>
+                      
+                      <p className="cbp-card-desc">{post.excerpt}</p>
+                      
+                      <div className="cbp-card-footer">
+                        <span><CalendarIcon /> {post.date}</span>
+                        <Link to={`/blog/${post.id}`} className="cbp-read-more">
+                          Leer <ArrowRight />
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            {!cargando && currentPosts.length === 0 && (
+              <div style={{ textAlign: 'center', padding: '100px 0', color: '#94a3b8' }}>
+                <h3 style={{ fontWeight: 500, fontSize: '1.5rem', color: '#00234a' }}>No hay artículos disponibles</h3>
+                <p>Intenta seleccionando otra categoría.</p>
+              </div>
+            )}
+
+            {totalPages > 1 && (
+              <div className="cbp-pagination-modern">
+                <button 
+                  className="cbp-page-arrow" 
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                >
+                  Anterior
+                </button>
+                
+                {[...Array(totalPages)].map((_, index) => (
+                  <button
+                    key={index + 1}
+                    onClick={() => setCurrentPage(index + 1)}
+                    className={`cbp-page-dot ${currentPage === index + 1 ? 'cbp-active' : ''}`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+
+                <button 
+                  className="cbp-page-arrow" 
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                >
+                  Siguiente
+                </button>
+              </div>
+            )}
+          </>
         )}
-      </div>
+      </main>
     </div>
   );
 };

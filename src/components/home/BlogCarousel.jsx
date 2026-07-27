@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './BlogCarousel.css';
 
-// Importamos la imagen de prueba que me pasaste
-import blogImg from '../../image/blog.png';
+import defaultBlogImg from '../../image/blog.png';
 
-// Iconos SVG simples para el autor y compartir (Idénticos al diseño)
 const UserIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
@@ -18,82 +16,145 @@ const ShareIcon = () => (
   </svg>
 );
 
+const PrevArrow = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+  </svg>
+);
+
+const NextArrow = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+  </svg>
+);
+
 const BlogCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Generamos 10 tarjetas ficticias con la misma imagen
-  const cards = Array(10).fill({
-    img: blogImg,
-    category: 'Laboratorio de Masa',
-    title: 'Recomendaciones para detectar problemas con tu báscula',
-    desc: 'CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad',
-    author: 'CERTIMET',
-    date: '02 de julio, 2026'
-  });
-
-  // Movimiento automático cada 3.5 segundos
   useEffect(() => {
+    const fetchRecentBlogs = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/blog/recent');
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (Array.isArray(data)) {
+            setCards(data);
+          }
+        }
+      } catch (error) {
+        console.error("Error de conexión:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecentBlogs();
+  }, []);
+
+  useEffect(() => {
+    if (cards.length === 0) return; 
+
     const interval = setInterval(() => {
       setActiveIndex((current) => (current + 1) % cards.length);
-    }, 3500);
+    }, 4000); 
     return () => clearInterval(interval);
-  }, [cards.length]);
+  }, [cards.length, activeIndex]); 
 
   const handleDotClick = (index) => {
     setActiveIndex(index);
   };
 
-  // Lógica para asignar la clase correcta según la posición de la tarjeta
+  const handlePrev = () => {
+    setActiveIndex((current) => (current - 1 + cards.length) % cards.length);
+  };
+
+  const handleNext = () => {
+    setActiveIndex((current) => (current + 1) % cards.length);
+  };
+
   const getCardPositionClass = (index) => {
+    if (cards.length === 0) return 'blog-card hidden';
     if (index === activeIndex) return 'blog-card active';
     if (index === (activeIndex - 1 + cards.length) % cards.length) return 'blog-card prev';
     if (index === (activeIndex + 1) % cards.length) return 'blog-card next';
     return 'blog-card hidden';
   };
 
+  if (loading) {
+    return (
+      <section className="blog-section">
+        <div className="blog-header">
+          <h2 className="blog-section-title">Nuestro <strong className="text-shimmer">Blog</strong></h2>
+        </div>
+        <div style={{ textAlign: 'center', padding: '40px 0', color: '#0056b3' }}>
+          Cargando artículos...
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="blog-section">
       <div className="blog-header">
-        <h2 className="blog-section-title">Nuestro <strong>Blog</strong></h2>
+        <h2 className="blog-section-title">Nuestro <strong className="text-shimmer">Blog</strong></h2>
       </div>
       
-      <div className="blog-carousel-container">
-        {cards.map((card, index) => (
-          <div key={index} className={getCardPositionClass(index)}>
-            <div className="blog-card-img-wrapper">
-              <img src={card.img} alt="Certimet Blog" className="blog-card-img" />
-            </div>
-            <div className="blog-card-content">
-              <p className="blog-category">
-                <span className="blog-line">—</span> {card.category}
-              </p>
-              <h3 className="blog-title">{card.title}</h3>
-              <p className="blog-desc">{card.desc}</p>
-              <div className="blog-footer">
-                <div className="blog-author-info">
-                  <UserIcon />
-                  <span>{card.author} - {card.date}</span>
+      {cards.length > 0 ? (
+        <>
+          <div className="blog-carousel-container">
+            <button className="blog-arrow prev-arrow" onClick={handlePrev} aria-label="Artículo anterior">
+              <PrevArrow />
+            </button>
+
+            {cards.map((card, index) => (
+              <div key={card.id || index} className={getCardPositionClass(index)}>
+                <div className="blog-card-img-wrapper">
+                  <img src={card.img || defaultBlogImg} alt={card.title} className="blog-card-img" />
                 </div>
-                <div className="blog-share">
-                  <ShareIcon />
+                <div className="blog-card-content">
+                  <p className="blog-category">
+                    <span className="blog-line">—</span> {card.category}
+                  </p>
+                  <h3 className="blog-title">{card.title}</h3>
+                  <p className="blog-desc">{card.desc}</p>
+                  <div className="blog-footer">
+                    <div className="blog-author-info">
+                      <UserIcon />
+                      <span>{card.author} - {new Date(card.date).toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
+                    </div>
+                    <div className="blog-share">
+                      <ShareIcon />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            ))}
 
-      <div className="blog-pagination">
-        {cards.map((_, index) => (
-          <button
-            key={index}
-            className={`blog-dot ${index === activeIndex ? 'active' : ''}`}
-            onClick={() => handleDotClick(index)}
-            aria-label={`Ir a la diapositiva ${index + 1}`}
-          />
-        ))}
-      </div>
-      {/* NUEVO BOTÓN CENTRADO */}
+            <button className="blog-arrow next-arrow" onClick={handleNext} aria-label="Siguiente artículo">
+              <NextArrow />
+            </button>
+          </div>
+
+          <div className="blog-pagination">
+            {cards.map((_, index) => (
+              <button
+                key={index}
+                className={`blog-dot ${index === activeIndex ? 'active' : ''}`}
+                onClick={() => handleDotClick(index)}
+                aria-label={`Ir a la diapositiva ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div style={{ textAlign: 'center', padding: '40px 0', color: '#666' }}>
+          Aún no hay artículos publicados.
+        </div>
+      )}
+
       <div className="blog-button-wrapper">
         <Link to="/blog" className="blog-btn">
           Ver todos los artículos

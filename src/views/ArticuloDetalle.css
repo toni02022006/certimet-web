@@ -1,153 +1,326 @@
-.articulo-detalle-page {
-  padding: 130px 20px 60px; /* Reduje un poco el padding superior */
+/* ==========================================================================
+   DISEÑO ORDENADO, COMPACTO Y ANIMADO - CERTIMET
+   ========================================================================== */
+
+.articulo-elegante-page {
   background-color: #ffffff;
-  color: #333;
-  position: relative; /* ¡Importante para que funcione la franja! */
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+  position: relative;
 }
 
-/* 2. ¡AGREGA ESTA NUEVA CLASE! Es la franja azul que irá detrás del menú */
-.articulo-detalle-page::before {
-  content: '';
-  position: absolute;
-  top: 0;
+/* --- EFECTO PREMIUM: BARRA DE PROGRESO DE LECTURA --- */
+.barra-progreso-lectura {
+  position: fixed;
+  top: 0; 
   left: 0;
-  width: 100%;
-  height: 100px; /* Alto de la franja (ajusta si tu menú es más alto) */
-  background-color: #004b98; /* El color azul corporativo de Certimet */
-  z-index: 0;
+  right: 0;
+  height: 4px;
+  background-color: #00d639;
+  transform-origin: 0%;
+  z-index: 9999;
+  box-shadow: 0 2px 10px rgba(0, 214, 57, 0.4);
 }
 
-.detalle-container {
-  max-width: 800px;
+/* 1. HEADER COMPACTO */
+.header-compacto {
+  background: linear-gradient(135deg, #00234a 0%, #003b7a 100%);
+  padding: 120px 20px 80px;
+  color: #ffffff;
+}
+
+.header-limite {
+  max-width: 1000px;
   margin: 0 auto;
-  position: relative; 
-  z-index: 1; /* Esto asegura que el botón de volver no quede atrapado detrás del azul */
+  position: relative;
 }
 
-.back-link {
+/* --- ANIMACIÓN EN BOTÓN DE VOLVER --- */
+.link-retorno {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #002f6c;
+  color: #94a3b8;
   text-decoration: none;
-  font-weight: 600;
-  margin-bottom: 40px;
-  transition: color 0.3s ease;
-}
-
-.back-link svg {
-  width: 20px;
-  height: 20px;
-}
-
-.back-link:hover {
-  color: #00d639;
-}
-
-.detalle-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.detalle-categoria {
-  background-color: #e6f9ed;
-  color: #00d639;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.detalle-titulo {
-  font-size: 2.8rem;
-  color: #002f6c;
-  margin: 20px 0;
-  line-height: 1.2;
-}
-
-.detalle-subtitulo {
-  font-size: 1.3rem;
-  color: #666;
-  margin-bottom: 30px;
-  font-style: italic;
-  line-height: 1.5;
-}
-
-.detalle-meta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  color: #777;
   font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.flecha-hover {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.link-retorno:hover {
+  color: #00d639;
+}
+
+.link-retorno:hover .flecha-hover {
+  transform: translateX(-5px); 
+}
+
+/* Textos del Header */
+.header-textos {
+  text-align: left;
+}
+
+.etiqueta-categoria {
+  display: inline-block;
+  background-color: #00d639;
+  color: #00234a;
+  padding: 4px 14px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0, 214, 57, 0.15);
+}
+
+.titulo-principal {
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+}
+
+.subtitulo-header {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #cbd5e1;
+  margin: 0 0 25px 0;
+  max-width: 800px;
+}
+
+.fila-meta {
+  display: flex;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 20px;
 }
 
 .meta-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  font-weight: 400;
 }
 
-.autor-avatar {
-  width: 35px;
-  height: 35px;
-  background-color: #002f6c;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 0.9rem;
+.icono-meta {
+  font-size: 1rem;
 }
 
-.meta-divider {
-  color: #ccc;
+.punto-separador {
+  color: #475569;
+  font-size: 1.2rem;
 }
 
-.detalle-imagen-container {
+/* 2. CUERPO ANCHO */
+.cuerpo-ancho {
   max-width: 1000px;
-  margin: 0 auto 50px auto;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin: 0 auto;
+  padding: 0 20px 80px;
 }
 
-.detalle-imagen {
+/* =========================================================
+   3. IMAGEN CORREGIDA (NO SE DEFORMA NI SE CORTA)
+   ========================================================= */
+.marco-imagen {
+  width: 100%;
+  max-width: 900px;
+  margin: -40px auto 40px auto;
+  /* Fondo sutil por si la imagen es cuadrada y quedan espacios a los lados */
+  background-color: #f8fafc; 
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 10;
+}
+
+.mascara-hover {
+  border-radius: 8px;
+  overflow: hidden; 
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-items: center; /* Centra la imagen verticalmente */
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.imagen-proporcional {
   width: 100%;
   height: auto;
-  max-height: 500px;
-  object-fit: cover;
+  max-height: 550px; /* Aumentado ligeramente para dar espacio a flyers */
+  /* ✨ LA SOLUCIÓN MÁGICA: contain muestra la imagen completa siempre */
+  object-fit: contain; 
   display: block;
 }
 
-.detalle-contenido {
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: #444;
+.animacion-zoom {
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Estilos para el HTML inyectado de Quill */
-.detalle-contenido h2 {
-  color: #002f6c;
-  margin-top: 40px;
+.marco-imagen:hover .animacion-zoom {
+  transform: scale(1.02); /* Zoom más suave ya que ahora vemos toda la imagen */
+}
+
+/* 4. CONTENEDOR DEL TEXTO */
+.contenedor-texto-amplio {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.quill-contenido-limpio {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #334155;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.quill-contenido-limpio h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #00234a;
+  margin: 35px 0 15px 0;
+}
+
+.quill-contenido-limpio h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #003b7a;
+  margin: 25px 0 12px 0;
+}
+
+.quill-contenido-limpio p {
   margin-bottom: 20px;
 }
-.detalle-contenido h3 {
-  color: #333;
-  margin-top: 30px;
+
+.quill-contenido-limpio ul, 
+.quill-contenido-limpio ol {
+  margin-bottom: 20px;
+  padding-left: 24px;
+}
+
+.quill-contenido-limpio li {
+  margin-bottom: 8px;
+}
+
+.quill-contenido-limpio img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 25px 0;
+  border: 1px solid #e2e8f0;
+}
+
+/* 5. FOOTER FINAL ANIMADO */
+.footer-sencillo {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.boton-verde-final {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: transparent;
+  color: #00234a;
+  border: 2px solid #00d639;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.boton-verde-final::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #00d639;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.boton-verde-final:hover::before {
+  width: 100%;
+}
+
+.boton-verde-final:hover {
+  color: #00234a;
+  box-shadow: 0 6px 15px rgba(0, 214, 57, 0.25);
+  transform: translateY(-2px);
+}
+
+/* LOADER / ERROR */
+.articulo-loader {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.spinner-certimet {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #00d639;
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
   margin-bottom: 15px;
 }
-.detalle-contenido p {
-  margin-bottom: 20px;
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
 }
-.detalle-contenido ul, .detalle-contenido ol {
-  margin-bottom: 20px;
-  padding-left: 20px;
+
+.link-retorno-simple {
+  color: #003b7a;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 10px;
 }
-.detalle-contenido li {
-  margin-bottom: 10px;
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .header-compacto {
+    padding-top: 100px;
+  }
+  
+  .titulo-principal {
+    font-size: 1.8rem;
+  }
+  
+  .marco-imagen {
+    margin-top: -20px;
+  }
+  
+  .fila-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .punto-separador {
+    display: none;
+  }
 }
