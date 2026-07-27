@@ -1,0 +1,36 @@
+name: Deploy Test Frontend
+
+on:
+  push:
+    branches:
+      - test # Se ejecutará al hacer push a la rama 'test'. Cámbialo si usas otro nombre.
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Asegúrate de que coincida con tu versión local
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Compilar el proyecto (Build)
+        run: npm run build
+        # Si usaste variables de entorno para la API, descomenta las dos líneas de abajo:
+        # env:
+        #   VITE_API_URL: ${{ secrets.PROD_API_URL }}
+
+      - name: Subir a cPanel vía FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/ # Sube solo lo que Vite compiló
+          server-dir: ./     # Lo deja en la raíz de la cuenta FTP que creaste
