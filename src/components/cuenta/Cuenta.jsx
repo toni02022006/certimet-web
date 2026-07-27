@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Cuenta.css';
 
-const IMAGE_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const IMAGE_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
 
 const Cuenta = () => {
   const navigate = useNavigate();

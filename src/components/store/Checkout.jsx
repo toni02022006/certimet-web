@@ -6,7 +6,7 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import './Checkout.css';
 
 // ✅ Constante única para la URL del backend (misma que Carrito.jsx y ProductoDetalle.jsx)
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
 
 // ✅ Public Key tomada de .env, no hardcodeada
 const MP_PUBLIC_KEY = import.meta.env.VITE_MP_PUBLIC_KEY;

@@ -19,8 +19,8 @@ export default defineConfig({
         "default-src 'self'; " +
         "script-src 'unsafe-inline' 'unsafe-eval' 'self'; " +
         "style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; " +
-        "img-src 'self' data: http://localhost:3000 https:; " + 
-        "connect-src 'self' http://localhost:3000;"
+        "img-src 'self' data: https://api.certimet.pe https:; " + 
+        "connect-src 'self' https://api.certimet.pe;"
     }
   }
 })

@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle, Package, Truck, MapPin, Home, XCircle } from 'lucide-react';
 import './SeguimientoPedido.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
 
 const SeguimientoPedido = () => {
   const { id } = useParams();

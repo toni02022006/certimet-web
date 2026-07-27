@@ -527,7 +527,7 @@ const HeaderTienda = () => {
                               onClick={() => setMostrarSugerencias(false)}
                             >
                               <img 
-                                src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : 'https://via.placeholder.com/50'} 
+                                src={prod.imagen_principal_url ? `https://api.certimet.pe${prod.imagen_principal_url}` : 'https://via.placeholder.com/50'} 
                                 alt={prod.nombre} 
                               />
                               <span className="sug-text">{prod.nombre}</span>
