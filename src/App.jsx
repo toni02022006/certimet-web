@@ -75,7 +75,7 @@ function App() {
   return (
     // 👇 Envolvemos todo el enrutador con el CarritoProvider
     <CarritoProvider>
-      <BrowserRouter basename="/certimet-web/">
+      <BrowserRouter basename="/">
         
         {/* ✅ AQUÍ VA EL COMPONENTE: Escucha los cambios de ruta y sube el scroll */}
         <ScrollToTop />
