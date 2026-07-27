@@ -7,11 +7,12 @@ import fondoNosotros from '../image/nosotros/nosotrosfondo.jpeg';
 import inacalImg from '../image/baners/baners_inicio/inacal.jpg.jpeg';
 import qrImg from '../image/baners/baners_inicio/Objeto inteligente vectorial.png';
 
+// CORRECCIÓN: Todas las rutas apuntan a la carpeta 'Nosotros' con 'N' mayúscula
 import QuienesSomos from '../components/Nosotros/QuienesSomos';
-import CertificadoAcreditacion from '../components/nosotros/CertificadoAcreditacion';
-import TripleCertificacion from '../components/nosotros/TripleCertificacion';
-import MisionVision from '../components/nosotros/MisionVision';
-import NuestrosValores from '../components/nosotros/NuestrosValores';
+import CertificadoAcreditacion from '../components/Nosotros/CertificadoAcreditacion';
+import TripleCertificacion from '../components/Nosotros/TripleCertificacion';
+import MisionVision from '../components/Nosotros/MisionVision';
+import NuestrosValores from '../components/Nosotros/NuestrosValores';
 import TalentoCultura from '../components/Nosotros/TalentoCultura';
 import CompromisoPoliticas from '../components/laboratorio/CompromisoPoliticas';
 import ConoceLaboratorios from '../components/laboratorio/ConoceLaboratorios';
