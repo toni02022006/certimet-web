@@ -5,7 +5,7 @@ import { useCarrito } from '../../context/CarritoContext';
 import './Carrito.css'; 
 
 // ✅ URL base específica para las imágenes (sin /api) para evitar el error 404
-const IMAGE_BASE_URL = 'http://localhost:3000';
+const IMAGE_BASE_URL = import.meta.env.VITE_API_URL;
 
 // URL de la API por si la necesitas para otras peticiones (opcional en este archivo)
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';

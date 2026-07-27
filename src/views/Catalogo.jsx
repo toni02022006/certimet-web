@@ -46,7 +46,7 @@ const Catalogo = () => {
     const fetchProductos = async () => {
       setCargando(true);
       try {
-        let url = 'http://localhost:3000/api/productos';
+        let url = import.meta.env.VITE_API_URL + '/api/productos';
         if (idCategoria) {
           url += `?categoria_id=${idCategoria}`;
         }

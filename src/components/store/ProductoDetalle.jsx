@@ -62,7 +62,7 @@ const ProductoDetalle = () => {
     const obtenerProducto = async () => {
       try {
         setCargando(true);
-        const response = await fetch(`http://localhost:3000/api/productos/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos/${id}`);
         if (response.ok) {
           const data = await response.json();
           setProducto(data);
@@ -98,7 +98,7 @@ const ProductoDetalle = () => {
   if (cargando) return <div style={{ padding: '200px 20px', textAlign: 'center' }}>Cargando información del producto...</div>;
   if (!producto) return <div style={{ padding: '200px 20px', textAlign: 'center' }}>Producto no encontrado</div>;
 
-  const urlBase = 'http://localhost:3000';
+  const urlBase = import.meta.env.VITE_API_URL;
   const imagenFallback = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkeT0iLjNlbSIgZmlsbD0iIzU1NSIgZm9udC1zaXplPSIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlNpbiBpbWFnZW48L3RleHQ+PC9zdmc+';
   const principalReal = producto.imagen_principal_url ? `${urlBase}${producto.imagen_principal_url}` : imagenFallback;
   // Modificamos esta lógica para que la imagenGrande no intente usar urlBase si imagenActiva está vacía

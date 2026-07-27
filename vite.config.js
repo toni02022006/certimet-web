@@ -4,22 +4,22 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [
     react()
-    // Eliminamos basicSsl()
   ],
-  base: '/certimet-web/',
+  // ¡ESTE ES EL CAMBIO CLAVE PARA PRODUCCIÓN!
+  base: '/', 
+  
+  // Esto se ignora en producción, pero déjalo para tu desarrollo local
   server: {
-    // Eliminamos https: true
     watch: {
       usePolling: true,
       interval: 100,
     },
-    // Ajustamos las cabeceras CSP para permitir que las imágenes vengan de localhost:3000
     headers: {
       'Content-Security-Policy':
         "default-src 'self'; " +
         "script-src 'unsafe-inline' 'unsafe-eval' 'self'; " +
         "style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; " +
-        "img-src 'self' data: http://localhost:3000 https:; " + // <- Aquí agregamos http://localhost:3000
+        "img-src 'self' data: http://localhost:3000 https:; " + 
         "connect-src 'self' http://localhost:3000;"
     }
   }

@@ -19,7 +19,7 @@ const ArticuloDetalle = () => {
   useEffect(() => {
     const fetchDetalle = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/blog/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blog/${id}`);
         if (response.ok) {
           const data = await response.json();
           setArticulo(data);

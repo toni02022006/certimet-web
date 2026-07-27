@@ -38,7 +38,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchArticulos = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/blog');
+        const response = await fetch(import.meta.env.VITE_API_URL + '/api/blog');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         

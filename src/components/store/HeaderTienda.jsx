@@ -268,7 +268,7 @@ const HeaderTienda = () => {
         return;
       }
       try {
-        const response = await fetch(`http://localhost:3000/api/productos/buscar/sugerencias?q=${encodeURIComponent(busqueda.trim())}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos/buscar/sugerencias?q=${encodeURIComponent(busqueda.trim())}`);
         if (response.ok) {
           const data = await response.json();
           setSugerencias(data);

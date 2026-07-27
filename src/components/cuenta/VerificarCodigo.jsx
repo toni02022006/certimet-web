@@ -29,7 +29,7 @@ const VerificarCodigo = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:3000/api/auth/verificar-codigo', {
+      const res = await fetch(import.meta.env.VITE_API_URL + '/api/auth/verificar-codigo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ correo, codigo })
@@ -61,7 +61,7 @@ const VerificarCodigo = () => {
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/auth/restablecer-password', {
+      const res = await fetch(import.meta.env.VITE_API_URL + '/api/auth/restablecer-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ correo, codigo, nuevaPassword })

@@ -26,7 +26,7 @@ const RecuperarPassword = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:3000/api/auth/recuperar-solicitar', {
+      const res = await fetch(import.meta.env.VITE_API_URL + '/api/auth/recuperar-solicitar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ correo })
