@@ -15,7 +15,7 @@ jobs:
       - name: Instalar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Asegúrate de que coincida con tu versión local
+          node-version: '20' # Asegúrate de que coincida con tu versión local
 
       - name: Instalar dependencias
         run: npm install
