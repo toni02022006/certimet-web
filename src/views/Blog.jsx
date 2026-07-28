@@ -39,7 +39,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchArticulos = async () => {
       try {
-        const response = await fetch(`${API_URL}/blog`);
+        const response = await fetch(`${API_URL}/api/blog`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         
