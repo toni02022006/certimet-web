@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './BlogCertimet.css';
 
-// ✅ URL FIJA PARA PRUEBA
+// ⚡ URL BASE FIJA (sin depender de variables de entorno)
 const API_BASE = 'https://api.certimet.pe';
 
 const categories = ['Todos', 'Metrología', 'Automatización', 'Normativas'];
@@ -41,9 +41,11 @@ const Blog = () => {
   useEffect(() => {
     const fetchArticulos = async () => {
       try {
-        console.log('🔍 Intentando obtener artículos desde:', `${API_BASE}/api/blog`);
-        const response = await fetch(`${API_BASE}/api/blog`);
-        console.log('📡 Respuesta recibida, status:', response.status);
+        const url = `${API_BASE}/api/blog`;
+        console.log('🔍 Obteniendo artículos desde:', url);
+        
+        const response = await fetch(url);
+        console.log('📡 Status de la respuesta:', response.status);
         
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
