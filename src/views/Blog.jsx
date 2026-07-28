@@ -39,12 +39,25 @@ const Blog = () => {
   useEffect(() => {
     const fetchArticulos = async () => {
       try {
+        setCargando(true);
+        // Hacemos la petición a la URL correcta
         const response = await fetch(`${API_URL}/blog`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const data = await response.json();
+        
+        const responseData = await response.json();
+        
+        // CORRECCIÓN CLAVE: Asegurarnos de obtener el Array, venga directo o dentro de un objeto
+        const data = Array.isArray(responseData) ? responseData : (responseData.blogs || responseData.data || []);
         
         const hoy = new Date().toISOString().split('T')[0];
-        const validos = data.filter(post => post.activo && post.fecha_publicacion.split('T')[0] <= hoy);
+        
+        // Filtramos validando que fecha_publicacion exista para evitar errores de undefined
+        const validos = data.filter(post => 
+          post.activo && 
+          post.fecha_publicacion && 
+          post.fecha_publicacion.split('T')[0] <= hoy
+        );
+        
         validos.sort((a, b) => new Date(b.fecha_publicacion) - new Date(a.fecha_publicacion));
         
         const formatted = validos.map((post, index) => ({
@@ -65,6 +78,7 @@ const Blog = () => {
         setCargando(false);
       }
     };
+    
     fetchArticulos();
   }, []);
 
