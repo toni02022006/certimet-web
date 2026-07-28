@@ -39,30 +39,12 @@ const Blog = () => {
   useEffect(() => {
     const fetchArticulos = async () => {
       try {
-        setCargando(true);
-        
-        // Petición blindada con cabeceras explícitas
-        const response = await fetch(`${API_URL}/blog`, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        });
-        
+        const response = await fetch(`${API_URL}/blog`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const responseData = await response.json();
-        const data = Array.isArray(responseData) ? responseData : (responseData.blogs || responseData.data || []);
+        const data = await response.json();
         
         const hoy = new Date().toISOString().split('T')[0];
-        
-        const validos = data.filter(post => 
-          post.activo && 
-          post.fecha_publicacion && 
-          post.fecha_publicacion.split('T')[0] <= hoy
-        );
-        
+        const validos = data.filter(post => post.activo && post.fecha_publicacion.split('T')[0] <= hoy);
         validos.sort((a, b) => new Date(b.fecha_publicacion) - new Date(a.fecha_publicacion));
         
         const formatted = validos.map((post, index) => ({
@@ -83,7 +65,6 @@ const Blog = () => {
         setCargando(false);
       }
     };
-    
     fetchArticulos();
   }, []);
 
