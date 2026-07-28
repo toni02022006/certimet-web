@@ -19,7 +19,7 @@ export const CarritoProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [loadingCarrito, setLoadingCarrito] = useState(true);
 
-  const CARRITO_URL = `${API_URL}/carrito`; (si está logueado) o Session ID (invitado)
+  const CARRITO_URL = `${API_URL}/carrito`; //(si está logueado) o Session ID (invitado)
   const getCredenciales = () => {
     const usuarioStr = localStorage.getItem('usuario');
     let usuario_id = null;
