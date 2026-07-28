@@ -40,18 +40,23 @@ const Blog = () => {
     const fetchArticulos = async () => {
       try {
         setCargando(true);
-        // Hacemos la petición a la URL correcta
-        const response = await fetch(`${API_URL}/blog`);
+        
+        // Petición blindada con cabeceras explícitas
+        const response = await fetch(`${API_URL}/blog`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+        
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         
         const responseData = await response.json();
-        
-        // CORRECCIÓN CLAVE: Asegurarnos de obtener el Array, venga directo o dentro de un objeto
         const data = Array.isArray(responseData) ? responseData : (responseData.blogs || responseData.data || []);
         
         const hoy = new Date().toISOString().split('T')[0];
         
-        // Filtramos validando que fecha_publicacion exista para evitar errores de undefined
         const validos = data.filter(post => 
           post.activo && 
           post.fecha_publicacion && 
@@ -124,7 +129,7 @@ const Blog = () => {
             </span>
             {renderFlippingText("y recursos", 0.7)}
           </h1>
-          <p>Innovación guías especializadas y las últimas tendencias en metrología y automatización industrial, diseñadas para profesionales.</p>
+          <p>Innovación, guías especializadas y las últimas tendencias en metrología y automatización industrial, diseñadas para profesionales.</p>
         </div>
 
         {/* FILTROS */}
