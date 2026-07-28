@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import Swal from 'sweetalert2';
+import { API_URL } from '../config/api';
 
 // 1. Creamos el Contexto
 export const CarritoContext = createContext();
@@ -18,9 +19,7 @@ export const CarritoProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [loadingCarrito, setLoadingCarrito] = useState(true);
 
-  const API_URL = import.meta.env.VITE_API_URL + '/api/carrito';
-
-  // Función para obtener ID de usuario (si está logueado) o Session ID (invitado)
+  const CARRITO_URL = `${API_URL}/carrito`; (si está logueado) o Session ID (invitado)
   const getCredenciales = () => {
     const usuarioStr = localStorage.getItem('usuario');
     let usuario_id = null;
@@ -55,7 +54,7 @@ export const CarritoProvider = ({ children }) => {
       if (usuario_id) query += `usuario_id=${usuario_id}`;
       else if (session_id) query += `session_id=${session_id}`;
 
-      const response = await fetch(`${API_URL}${query}`);
+      const response = await fetch(`${CARRITO_URL}${query}`);
       if (response.ok) {
         const data = await response.json();
         setCarrito(data);
@@ -90,7 +89,7 @@ export const CarritoProvider = ({ children }) => {
     const { usuario_id, session_id } = getCredenciales();
     
     try {
-      const res = await fetch(`${API_URL}/agregar`, {
+      const res = await fetch(`${CARRITO_URL}/agregar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -124,7 +123,7 @@ export const CarritoProvider = ({ children }) => {
   // 4. Actualizar Cantidad (+ o - en la vista de Carrito)
   const actualizarCantidad = async (item_id, nuevaCantidad) => {
     try {
-      const res = await fetch(`${API_URL}/item/${item_id}`, {
+      const res = await fetch(`${CARRITO_URL}/item/${item_id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cantidad: nuevaCantidad })
@@ -138,7 +137,7 @@ export const CarritoProvider = ({ children }) => {
   // 5. Eliminar un ítem
   const eliminarProducto = async (item_id) => {
     try {
-      const res = await fetch(`${API_URL}/item/${item_id}`, { method: 'DELETE' });
+      const res = await fetch(`${CARRITO_URL}/item/${item_id}`, { method: 'DELETE' });
       if (res.ok) await cargarCarrito();
     } catch (error) {
       console.error("Error eliminando producto:", error);

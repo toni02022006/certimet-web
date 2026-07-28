@@ -22,9 +22,8 @@ jobs:
 
       - name: Compilar el proyecto (Build)
         run: npm run build
-        # Si usaste variables de entorno para la API, descomenta las dos líneas de abajo:
-        # env:
-        #   VITE_API_URL: ${{ secrets.PROD_API_URL }}
+        env:
+          VITE_API_URL: https://api.certimet.pe
 
       - name: Subir a cPanel vía FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4

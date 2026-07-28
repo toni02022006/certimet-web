@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../../config/api';
 import './BlogCarousel.css';
 
 import defaultBlogImg from '../../image/blog.png';
@@ -36,7 +37,7 @@ const BlogCarousel = () => {
   useEffect(() => {
     const fetchRecentBlogs = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_API_URL + '/api/blog/recent');
+        const response = await fetch(`${API_URL}/blog/recent`);
         
         if (response.ok) {
           const data = await response.json();

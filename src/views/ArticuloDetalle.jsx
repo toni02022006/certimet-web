@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { API_URL } from '../config/api';
 import './ArticuloDetalle.css';
 
 const ArticuloDetalle = () => {
@@ -19,7 +20,7 @@ const ArticuloDetalle = () => {
   useEffect(() => {
     const fetchDetalle = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blog/${id}`);
+        const response = await fetch(`${API_URL}/blog/${id}`);
         if (response.ok) {
           const data = await response.json();
           setArticulo(data);

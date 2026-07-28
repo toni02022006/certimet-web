@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../config/api';
 import './BlogCertimet.css';
 
 const categories = ['Todos', 'Metrología', 'Automatización', 'Normativas'];
@@ -38,7 +39,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchArticulos = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_API_URL + '/api/blog');
+        const response = await fetch(`${API_URL}/blog`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         
