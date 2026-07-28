@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { API_URL } from '../config/api';
 import './BlogCertimet.css';
+
+// ✅ URL FIJA PARA PRUEBA
+const API_BASE = 'https://api.certimet.pe';
 
 const categories = ['Todos', 'Metrología', 'Automatización', 'Normativas'];
 
@@ -39,9 +41,13 @@ const Blog = () => {
   useEffect(() => {
     const fetchArticulos = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/blog`);
+        console.log('🔍 Intentando obtener artículos desde:', `${API_BASE}/api/blog`);
+        const response = await fetch(`${API_BASE}/api/blog`);
+        console.log('📡 Respuesta recibida, status:', response.status);
+        
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
+        console.log('📦 Datos recibidos:', data);
         
         const hoy = new Date().toISOString().split('T')[0];
         const validos = data.filter(post => post.activo && post.fecha_publicacion.split('T')[0] <= hoy);
@@ -58,9 +64,10 @@ const Blog = () => {
           featured: index === 0
         }));
         
+        console.log('✅ Artículos formateados:', formatted);
         setBlogPosts(formatted);
       } catch (error) {
-        console.error('Error fetching blog:', error);
+        console.error('❌ Error fetching blog:', error);
       } finally {
         setCargando(false);
       }
