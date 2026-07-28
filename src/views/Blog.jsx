@@ -124,7 +124,7 @@ const Blog = () => {
             </span>
             {renderFlippingText("y recursos", 0.7)}
           </h1>
-          <p>Innovación, guías especializadas y las últimas tendencias en metrología y automatización industrial, diseñadas para profesionales.</p>
+          <p>Innovación guías especializadas y las últimas tendencias en metrología y automatización industrial, diseñadas para profesionales.</p>
         </div>
 
         {/* FILTROS */}
