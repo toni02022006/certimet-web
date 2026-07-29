@@ -408,7 +408,15 @@ const Catalogo = () => {
           ) : (
             <div className="grilla-catalogo">
               {productosProcesados.map(prod => (
-                <Link to={`/producto/${prod.id}`} key={prod.id} className="tarjeta-catalogo">
+                /* =========================================================
+                   🚀 CAMBIO IMPLEMENTADO: uso de slug o ID como fallback
+                   ========================================================= */
+                <Link 
+                  // 👇 MIRA EL FINAL DE ESTA LÍNEA, AHÍ ESTÁ LA BARRA AGREGADA 👇
+                  to={`/producto/${prod.slug ? prod.slug : prod.id}/`} 
+                  key={prod.id} 
+                  className="tarjeta-catalogo"
+                >
                   
                   <div className="tarjeta-img-box">
                     <img 
@@ -418,7 +426,6 @@ const Catalogo = () => {
                           : 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkeT0iLjNlbSIgZmlsbD0iIzU1NSIgZm9udC1zaXplPSIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlNpbiBpbWFnZW48L3RleHQ+PC9zdmc+'
                       } 
                       alt={prod.nombre}
-                      // 👇 PROTECCIÓN AÑADIDA AQUÍ
                       onError={(e) => { 
                         if (!e.target.dataset.error) {
                           e.target.dataset.error = true;
@@ -429,7 +436,6 @@ const Catalogo = () => {
                   </div>
                   
                   <div className="tarjeta-info">
-                    {/* Imprimimos el nombre de la categoría del producto */}
                     <div className="tarjeta-marca">{prod.categoria?.nombre || 'CERTIMET'}</div>
                     <h3 className="tarjeta-titulo">{prod.nombre}</h3>
                     <p className="tarjeta-sku">SKU: {prod.sku || 'N/A'}</p>
