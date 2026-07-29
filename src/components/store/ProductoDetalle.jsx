@@ -35,6 +35,9 @@ const ProductoDetalle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // ✅ 1. AGREGA ESTA LÍNEA AQUÍ: Limpia la barra final (slash) si es que existe
+  const idLimpio = id ? id.replace(/\/$/, '') : '';
+
   // ✅ EXTRAEMOS LA FUNCIÓN DE AGREGAR DESDE EL CONTEXTO GLOBAL
   const { agregarProducto } = useCarrito(); 
 
@@ -62,7 +65,8 @@ const ProductoDetalle = () => {
     const obtenerProducto = async () => {
       try {
         setCargando(true);
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos/${id}`);
+        // ✅ 2. CAMBIA ${id} POR ${idLimpio} EN ESTA LÍNEA:
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos/${idLimpio}`);
         if (response.ok) {
           const data = await response.json();
           setProducto(data);
@@ -77,7 +81,7 @@ const ProductoDetalle = () => {
       }
     };
     obtenerProducto();
-  }, [id]);
+  }, [idLimpio]);
 
   // ✅ NUEVA LÓGICA DE AGREGAR AL CARRITO USANDO EL CONTEXTO
   const agregarAlCarrito = () => {

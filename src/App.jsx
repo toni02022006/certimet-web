@@ -125,6 +125,7 @@ function App() {
             <Route path="/tienda/verificar-codigo" element={<VerificarCodigo />} />
             <Route path="/tienda/seguimiento/:id" element={<SeguimientoPedido />} />
             <Route path="/producto/:id" element={<ProductoDetalle />} />
+            <Route path="/producto/:id/" element={<ProductoDetalle />} />
             <Route path="/tienda/carrito" element={<Carrito />} />
             <Route path="/tienda/checkout" element={<Checkout />} />
             <Route path="/tienda/checkout-invitado" element={<CheckoutInvitado />} />

@@ -98,7 +98,7 @@ const ProductosDestacados = () => {
             <div key={`${prod.id}-${index}`} className="producto-card">
               
               {/* Contenido enlazado al producto */}
-              <Link to={`/producto/${prod.id}`} className="prod-link">
+              <Link to={`/producto/${prod.slug ? prod.slug : prod.id}/`} className="prod-link">
                 <div className="prod-img-box">
                   <img 
                     // 👇 1. Aplicamos el Fallback aquí
