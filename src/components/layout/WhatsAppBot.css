@@ -1,0 +1,176 @@
+.whatsapp-bot-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Botón flotante de WhatsApp limpio */
+.whatsapp-floating-btn {
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  background-color: #25D366;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-floating-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.whatsapp-icon {
+  width: 34px;
+  height: 34px;
+}
+
+/* Tarjeta del formulario más ordenada */
+.whatsapp-form-popup {
+  width: 320px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  margin-bottom: 15px;
+  overflow: hidden;
+  font-family: inherit;
+  animation: slideUp 0.3s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.whatsapp-form-header {
+  background-color: #004a98; /* Azul Certimet */
+  color: white;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* GIF libre de círculos y ajustable */
+.header-bot-gif {
+  /* 1. PARA EL TAMAÑO */
+  width: 75px;  /* Aumenta este valor para hacerlo más ancho (ej. 70px, 80px) */
+  height: 75px; /* Aumenta este valor para hacerlo más alto. Sugerencia: mantenlo igual al width */
+  
+  /* 2. PARA MOVERLO (Márgenes) */
+  margin-top: -5px;    /* Negativo (-5px) lo sube. Positivo (5px) lo baja. */
+  margin-left: -10px;  /* Negativo lo mueve a la izquierda. Positivo a la derecha. */
+  margin-right: 8px;   /* Espacio entre el GIF y el título "Asistente Certimet" */
+  margin-bottom: 0px;  /* Espacio en la parte inferior */
+  object-fit: contain; /* Asegura que el GIF no se deforme */
+}
+
+.whatsapp-form-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+  opacity: 1;
+}
+
+.whatsapp-form-body {
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.whatsapp-form-body p {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 2px 0;
+  line-height: 1.4;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #004a98;
+}
+
+.whatsapp-form-body input,
+.whatsapp-form-body select,
+.whatsapp-form-body textarea {
+  padding: 9px 11px;
+  border: 1px solid #ccd0d5;
+  border-radius: 6px;
+  font-size: 13.5px;
+  outline: none;
+  font-family: inherit;
+  background-color: #fcfcfc;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.whatsapp-form-body input:focus,
+.whatsapp-form-body select:focus,
+.whatsapp-form-body textarea:focus {
+  border-color: #00e53f;
+  background-color: #fff;
+}
+
+.whatsapp-form-body textarea {
+  resize: none;
+  height: 50px;
+}
+
+.start-chat-btn {
+  background-color: #00e53f; /* Verde Certimet */
+  color: #002244;
+  border: none;
+  padding: 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 4px;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 5px rgba(0, 229, 63, 0.3);
+}
+
+.start-chat-btn:hover {
+  background-color: #00cc38;
+  color: #ffffff;
+}
+
+.start-chat-btn:active {
+  transform: scale(0.98);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

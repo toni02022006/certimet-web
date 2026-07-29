@@ -46,6 +46,7 @@ import Carrito from './components/store/Carrito';
 import Checkout from './components/store/Checkout';
 import CheckoutInvitado from './components/store/CheckoutInvitado';
 import SeguimientoInvitado from './page/SeguimientoInvitado';
+import WhatsAppBot from './components/layout/WhatsAppBot';
 
 function App() {
   // ==========================================================================
@@ -144,6 +145,7 @@ function App() {
           <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
           
         </Routes>
+        <WhatsAppBot />
       </BrowserRouter>
     </CarritoProvider>
   );
