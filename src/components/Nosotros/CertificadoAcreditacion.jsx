@@ -33,7 +33,12 @@ const CertificadoAcreditacion = () => {
                   por INACAL
                 </span>
               </h2>
-              <a href="#" className="btn-outline-blue">
+              <a 
+                href="https://cdn.www.gob.pe/uploads/document/file/2868894/2780730-lc-016-lc-016-test-control-s-a-c.pdf?v=1775856963" 
+                className="btn-outline-blue"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Nuestro alcance &rarr;
               </a>
             </motion.div>

@@ -5,7 +5,7 @@ import './FloatingSocials.css';
 const socialLinks = [
   {
     id: 'linkedin',
-    url: '#',
+    url: 'https://www.linkedin.com/company/certimet/',
     color: '#0077b5',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -15,7 +15,7 @@ const socialLinks = [
   },
   {
     id: 'facebook',
-    url: '#',
+    url: 'https://www.facebook.com/CalibracionesCertimet/',
     color: '#1877F2',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -25,7 +25,7 @@ const socialLinks = [
   },
   {
     id: 'whatsapp',
-    url: '#',
+    url: 'https://api.whatsapp.com/send?phone=51941101546',
     color: '#25D366',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
@@ -35,7 +35,7 @@ const socialLinks = [
   },
   {
     id: 'youtube',
-    url: '#',
+    url: 'https://www.youtube.com/@certimetsac9494',
     color: '#FF0000',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
