@@ -109,7 +109,7 @@
 ========================================= */
 .cuenta-two-columns {
   display: grid;
-  grid-template-columns: 1fr 1.8fr; 
+  grid-template-columns: 1fr 1.8fr; /* izquierda más angosta, derecha más ancha */
   gap: 30px;
   align-items: start;
 }
@@ -414,96 +414,53 @@
 }
 
 /* =========================================
-   PEDIDOS (NUEVO DISEÑO PROTAGONISTA)
+   PEDIDOS
 ========================================= */
 .pedidos-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   flex: 1;
 }
 
 .pedido-card-item {
   background: #ffffff;
   border: 1px solid #eef2f6;
-  border-radius: 20px;
-  padding: 24px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  border-radius: 18px;
+  padding: 20px 24px;
+  transition: box-shadow 0.2s;
 }
 
 .pedido-card-item:hover {
-  box-shadow: 0 8px 25px rgba(4, 58, 106, 0.06);
+  box-shadow: 0 6px 20px rgba(4, 58, 106, 0.04);
   border-color: #dce1e9;
-  transform: translateY(-2px);
 }
 
-/* 1. SECCIÓN SUPERIOR: Productos y Estado */
-.pedido-card-header-nuevo {
+.pedido-card-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
-  gap: 15px;
-}
-
-.pedido-productos-top {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
-}
-
-.pedido-producto-resumen {
-  display: flex;
   align-items: center;
-  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #eef2f6;
 }
 
-.producto-img-top {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  object-fit: cover;
-  border: 1px solid #e2e8f0;
-  background-color: #f8fafc;
-  flex-shrink: 0;
-}
-
-.producto-info-top {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.producto-nombre-top {
-  font-size: 16px;
+.ped-id {
   font-weight: 700;
-  color: #0f172a;
-  line-height: 1.2;
+  color: #043A6A;
+  font-size: 14px;
 }
 
-.producto-cantidad-top {
-  font-size: 13px;
-  color: #64748b;
-  font-weight: 500;
+.pedido-card-body {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-/* 2. SECCIÓN INFO: Grid de 3 columnas (Pedido, Fecha, Total) */
-.pedido-info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  background-color: #f8fafc;
-  padding: 16px 20px;
-  border-radius: 14px;
-  border: 1px solid #f1f5f9;
-  margin-bottom: 16px;
-}
-
-.ped-info-col {
+.ped-info {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 3px;
 }
 
 .ped-monto {
@@ -514,107 +471,55 @@
   font-size: 11px;
   text-transform: uppercase;
   color: #64748b;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
-.ped-valor {
-  font-size: 14px;
+.ped-fecha {
+  font-size: 13px;
   color: #334155;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .ped-total {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 700;
   color: #0f172a;
 }
 
-/* 3. DIRECCIÓN */
+/* Dirección de envío dentro del pedido */
 .pedido-direccion-envio {
-  margin-bottom: 16px;
-  padding: 0 4px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f3f7;
 }
 
 .pedido-direccion-envio .ped-label {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .ped-direccion-text {
-  font-size: 13.5px;
-  color: #475569;
+  font-size: 13px;
+  color: #334155;
   margin: 0;
+  font-weight: 450;
   line-height: 1.5;
 }
 
-/* 4. FOOTER Y BOTÓN ELEGANTE */
-.pedido-card-footer {
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 18px;
-  border-top: 1px dashed #e2e8f0;
-}
-
-.btn-seguir-elegante {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #ffffff;
-  color: #0056b3;
-  font-size: 13.5px;
-  font-weight: 600;
-  padding: 10px 22px;
-  border-radius: 30px;
-  text-decoration: none;
-  border: 1.5px solid #cbd5e1;
-  transition: all 0.2s ease;
-}
-
-.btn-seguir-elegante svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease;
-}
-
-.btn-seguir-elegante:hover {
-  background: #0056b3;
-  color: #ffffff;
-  border-color: #0056b3;
-  box-shadow: 0 4px 12px rgba(0, 86, 179, 0.15);
-}
-
-.btn-seguir-elegante:hover svg {
-  transform: translateX(4px);
-}
-
-/* SKELETON PARA PEDIDOS VACÍOS (Ej. Pedido #120) */
-.skeleton-img {
-  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-  background-size: 200% 100%;
-  animation: loadingSkeleton 1.5s infinite;
-}
-
-@keyframes loadingSkeleton {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* ESTADOS DEL BADGE */
+/* Estados */
 .estado-badge {
-  padding: 6px 14px;
+  padding: 4px 14px;
   border-radius: 30px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
+  letter-spacing: 0.4px;
 }
 
 .estado-badge.completado,
 .estado-badge.entregado,
-.estado-badge.finalizado,
-.estado-badge.pagado {
+.estado-badge.finalizado {
   background: #ecfdf5;
   color: #059669;
   border: 1px solid #a7f3d0;
@@ -633,13 +538,13 @@
   border: 1px solid #fecaca;
 }
 
-/* PAGINACIÓN */
+/* Paginación */
 .pedidos-pagina-indicador {
   font-size: 13px;
   font-weight: 600;
   color: #64748b;
   background: #f1f5f9;
-  padding: 4px 14px;
+  padding: 3px 14px;
   border-radius: 30px;
 }
 
@@ -648,15 +553,17 @@
   justify-content: center;
   align-items: center;
   gap: 18px;
-  margin-top: 30px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f3f7;
 }
 
 .btn-flecha-pedido {
   background: #ffffff;
-  border: 1.5px solid #dce1e9;
+  border: 1px solid #dce1e9;
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -666,55 +573,222 @@
 }
 
 .btn-flecha-pedido:hover:not(:disabled) {
-  background: #0056b3;
-  border-color: #0056b3;
+  background: #043A6A;
+  border-color: #043A6A;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 86, 179, 0.2);
+  box-shadow: 0 4px 12px rgba(4, 58, 106, 0.15);
 }
 
 .btn-flecha-pedido:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
-  background: #f8fafc;
+}
+
+.btn-flecha-pedido svg {
+  width: 18px;
+  height: 18px;
 }
 
 .pedidos-pagina-info {
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 600;
   color: #334155;
   min-width: 70px;
   text-align: center;
 }
 
-/* RESPONSIVE */
+/* =========================================
+   ESTADOS VACÍOS
+========================================= */
+.cuenta-vacio {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px dashed #dce1e9;
+}
+
+.vacio-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+.cuenta-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+  color: #043A6A;
+  font-weight: 600;
+}
+
+.cuenta-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #043A6A;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+
+/* =========================================
+   PRODUCTOS DEL PEDIDO
+========================================= */
+.pedido-productos {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #f0f3f7;
+}
+
+.pedido-productos .ped-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.pedido-productos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pedido-producto-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  padding: 8px 12px 8px 8px;
+  border-radius: 12px;
+  border: 1px solid #eef2f6;
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.pedido-producto-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.pedido-producto-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.pedido-producto-nombre {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f172a;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pedido-producto-cantidad {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Responsive */
 @media (max-width: 640px) {
-  .pedido-card-header-nuevo {
+  .pedido-productos-lista {
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
   }
-  
-  .pedido-estado-top {
+
+  .pedido-producto-item {
     width: 100%;
+    max-width: 100%;
   }
 
-  .estado-badge {
-    display: block;
-    text-align: center;
+  .pedido-producto-nombre {
+    max-width: 200px;
+    white-space: normal;
   }
+}
 
-  .pedido-info-grid {
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.animated-fade { animation: fadeIn 0.3s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+@media (max-width: 1024px) {
+  .cuenta-two-columns {
     grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .cuenta-section {
+    margin-bottom: 0;
+  }
+
+  .cuenta-col-left .cuenta-section:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .cuenta-page-wrapper {
+    padding-top: 120px;
+    padding-bottom: 40px;
+  }
+
+  .cuenta-container {
+    padding: 0 16px;
+  }
+
+  .cuenta-hero-banner {
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+    padding: 24px 20px;
+  }
+
+  .hero-user-info {
+    flex-direction: column;
     gap: 12px;
+  }
+
+  .btn-cerrar-sesion-premium {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cuenta-section {
+    padding: 20px 18px;
+  }
+
+  .cuenta-form .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .pedido-card-item {
+    padding: 16px;
+  }
+
+  .pedido-card-body {
+    flex-direction: column;
+    gap: 6px;
   }
 
   .ped-monto {
     text-align: left;
-    padding-top: 8px;
-    border-top: 1px solid #e2e8f0;
-  }
-
-  .btn-seguir-elegante {
-    width: 100%;
-    justify-content: center;
   }
 }

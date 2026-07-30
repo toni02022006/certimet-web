@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Cuenta.css';
 
-const IMAGE_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-
 const Cuenta = () => {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState(null);
@@ -41,8 +39,7 @@ const Cuenta = () => {
 
     const fetchData = async () => {
       try {
-        // 1. Obtener Perfil
-        const perfilRes = await fetch(`${IMAGE_BASE_URL}/api/usuario/perfil`, {
+        const perfilRes = await fetch('http://localhost:3000/api/usuario/perfil', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (perfilRes.ok) {
@@ -55,8 +52,7 @@ const Cuenta = () => {
           });
         }
 
-        // 2. Obtener Direcciones
-        const dirRes = await fetch(`${IMAGE_BASE_URL}/api/usuario/direcciones`, {
+        const dirRes = await fetch('http://localhost:3000/api/usuario/direcciones', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (dirRes.ok) {
@@ -64,8 +60,7 @@ const Cuenta = () => {
           setDirecciones(dirs);
         }
 
-        // 3. Obtener Pedidos
-        const pedRes = await fetch(`${IMAGE_BASE_URL}/api/pedidos`, {
+        const pedRes = await fetch('http://localhost:3000/api/usuario/pedidos', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (pedRes.ok) {
@@ -85,7 +80,7 @@ const Cuenta = () => {
   const handleActualizar = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${IMAGE_BASE_URL}/api/usuario/perfil`, {
+      const res = await fetch('http://localhost:3000/api/usuario/perfil', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +104,7 @@ const Cuenta = () => {
   const handleAgregarDireccion = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${IMAGE_BASE_URL}/api/usuario/direcciones`, {
+      const res = await fetch('http://localhost:3000/api/usuario/direcciones', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -295,7 +290,7 @@ const Cuenta = () => {
               )}
             </div>
 
-            {/* DIRECCIONES */}
+            {/* DIRECCIONES (con scroll) */}
             <div className="cuenta-section direcciones-section">
               <div className="cuenta-section-header">
                 <div className="section-title-group">
@@ -428,84 +423,57 @@ const Cuenta = () => {
                   <div className="pedidos-list">
                     {pedidosPaginados.map(ped => (
                       <div className="pedido-card-item" key={ped.id}>
-                        
-                        {/* 1. SECCIÓN SUPERIOR: PRODUCTOS Y ESTADO */}
-                        <div className="pedido-card-header-nuevo">
-                          <div className="pedido-productos-top">
-                            {ped.detalles && ped.detalles.length > 0 ? (
-                              ped.detalles.map(det => (
-                                <div key={det.id} className="pedido-producto-resumen">
-                                  <img
-                                    src={det.producto?.imagen_principal_url ? `${IMAGE_BASE_URL}${det.producto.imagen_principal_url}` : '/placeholder-producto.png'}
-                                    alt={det.producto?.nombre}
-                                    className="producto-img-top"
-                                    onError={(e) => { 
-                                      if (!e.target.dataset.error) {
-                                        e.target.dataset.error = true;
-                                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkeT0iLjNlbSIgZmlsbD0iIzU1NSIgZm9udC1zaXplPSIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlNpbiBpbWFnZW48L3RleHQ+PC9zdmc+';
-                                      }
-                                    }}
-                                  />
-                                  <div className="producto-info-top">
-                                    <span className="producto-nombre-top">{det.producto?.nombre || 'Producto no disponible'}</span>
-                                    <span className="producto-cantidad-top">Cantidad: {det.cantidad}</span>
-                                  </div>
-                                </div>
-                              ))
-                            ) : (
-                              <div className="pedido-producto-resumen vacio">
-                                <div className="producto-img-top skeleton-img"></div>
-                                <div className="producto-info-top">
-                                  <span className="producto-nombre-top" style={{ color: '#94a3b8' }}>Procesando detalles...</span>
+                      <div className="pedido-card-header">
+                        <span className="ped-id">Pedido #{ped.id}</span>
+                        <span className={`estado-badge ${ped.estado_pedido?.toLowerCase()}`}>
+                          {ped.estado_pedido}
+                        </span>
+                      </div>
+                      <div className="pedido-card-body">
+                        <div className="ped-info">
+                          <span className="ped-label">Fecha</span>
+                          <span className="ped-fecha">{new Date(ped.fecha_pedido).toLocaleDateString()}</span>
+                        </div>
+                        <div className="ped-info ped-monto">
+                          <span className="ped-label">Total</span>
+                          <span className="ped-total">S/ {parseFloat(ped.total).toFixed(2)}</span>
+                        </div>
+                      </div>
+
+                      {/* === NUEVA SECCIÓN: PRODUCTOS DEL PEDIDO === */}
+                      {ped.detalles && ped.detalles.length > 0 && (
+                        <div className="pedido-productos">
+                          <span className="ped-label">Productos</span>
+                          <div className="pedido-productos-lista">
+                            {ped.detalles.map(det => (
+                              <div key={det.id} className="pedido-producto-item">
+                                <img
+                                  src={det.producto.imagen_principal_url || '/placeholder-producto.png'}
+                                  alt={det.producto.nombre}
+                                  className="pedido-producto-img"
+                                  onError={(e) => { e.target.src = '/placeholder-producto.png'; }}
+                                />
+                                <div className="pedido-producto-info">
+                                  <span className="pedido-producto-nombre">{det.producto.nombre}</span>
+                                  <span className="pedido-producto-cantidad">x{det.cantidad}</span>
                                 </div>
                               </div>
-                            )}
-                          </div>
-                          
-                          <div className="pedido-estado-top">
-                            <span className={`estado-badge ${ped.estado_pedido?.toLowerCase()}`}>
-                              {ped.estado_pedido}
-                            </span>
+                            ))}
                           </div>
                         </div>
+                      )}
 
-                        {/* 2. SECCIÓN INFO: PEDIDO, FECHA Y TOTAL EN UNA FILA */}
-                        <div className="pedido-info-grid">
-                          <div className="ped-info-col">
-                            <span className="ped-label">N° Pedido</span>
-                            <span className="ped-valor">#{ped.id}</span>
-                          </div>
-                          <div className="ped-info-col">
-                            <span className="ped-label">Fecha</span>
-                            <span className="ped-valor">{new Date(ped.fecha_pedido).toLocaleDateString()}</span>
-                          </div>
-                          <div className="ped-info-col ped-monto">
-                            <span className="ped-label">Total</span>
-                            <span className="ped-total">S/ {parseFloat(ped.total).toFixed(2)}</span>
-                          </div>
+                      {/* Dirección de envío (si existe) */}
+                      {ped.direccion_envio && (
+                        <div className="pedido-direccion-envio">
+                          <span className="ped-label">Dirección de envío</span>
+                          <p className="ped-direccion-text">
+                            {ped.direccion_envio.direccion}, {ped.direccion_envio.distrito}, {ped.direccion_envio.provincia}
+                            {ped.direccion_envio.referencia && ` (Ref: ${ped.direccion_envio.referencia})`}
+                          </p>
                         </div>
-
-                        {/* 3. DIRECCIÓN (Si existe) */}
-                        {ped.direccion_envio && (
-                          <div className="pedido-direccion-envio">
-                            <span className="ped-label">Enviado a:</span>
-                            <p className="ped-direccion-text">
-                              {ped.direccion_envio.direccion}, {ped.direccion_envio.distrito}, {ped.direccion_envio.provincia}
-                            </p>
-                          </div>
-                        )}
-
-                        {/* 4. BOTÓN ELEGANTE AL FINAL */}
-                        <div className="pedido-card-footer">
-                          <Link to={`/tienda/seguimiento/${ped.id}`} className="btn-seguir-elegante">
-                            Seguir mi pedido
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <polyline points="9 18 15 12 9 6" />
-                            </svg>
-                          </Link>
-                        </div>
-                        
-                      </div>
+                      )}
+                    </div>
                     ))}
                   </div>
 
@@ -533,7 +501,7 @@ const Cuenta = () => {
                     </div>
                   )}
 
-                  <Link to="/tienda/catalogo" className="btn-editar-premium btn-full" style={{ textAlign: 'center', marginTop: '20px', display: 'block', textDecoration: 'none' }}>
+                  <Link to="/tienda" className="btn-editar-premium btn-full" style={{ textAlign: 'center', marginTop: '20px', display: 'block', textDecoration: 'none' }}>
                     Seguir Comprando
                   </Link>
                 </>
