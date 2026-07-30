@@ -18,7 +18,7 @@ const WhatsAppBot = () => {
     if (!name || !service) return;
 
     // Actualicé el número al que aparece en tu captura, modifícalo si es necesario
-    const phoneNumber = "51960141668"; 
+    const phoneNumber = "51992056019";
     
     // Formato de mensaje con saltos de línea (\n\n) para que se vea ordenado
     let message = `Hola, mi nombre es ${name}.\n\nEstoy buscando información sobre el servicio de ${service}.`;
