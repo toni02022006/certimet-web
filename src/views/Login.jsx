@@ -49,29 +49,29 @@ const Login = () => {
   return (
     <div 
       className="login-fullscreen-wrapper"
-      // Imagen cruda sin filtros CSS ni gradientes azules
       style={{ backgroundImage: `url(${fondoEcommerce})` }}
     >
-      <button className="btn-volver" onClick={() => navigate('/tienda')}>
+      <button className="login-btn-volver" onClick={() => navigate('/tienda')}>
         ← Volver a la tienda
       </button>
 
       <div className="login-glass-container">
         <div className="login-header-box">
-          <div className="logo-pill">
+          <div className="login-logo-pill">
             <img src={logoCertimet} alt="Certimet Logo" className="login-logo" />
           </div>
-          <h2>¡Hola! Qué bueno verte</h2>
+          <h2 className="login-title-main">¡Hola! Qué bueno verte</h2>
           <p className="login-sub">Inicia sesión para continuar con tu compra</p>
         </div>
 
         {error && <div className="login-error">{error}</div>}
 
         <form onSubmit={handleSubmit} className="login-form">
-          <div className="form-group">
-            <label>Correo Electrónico</label>
-            <div className="input-wrapper">
+          <div className="login-form-group">
+            <label className="login-label">Correo Electrónico</label>
+            <div className="login-input-wrapper">
               <input
+                className="login-input"
                 type="email"
                 placeholder="ejemplo@certimet.pe"
                 value={correo}
@@ -81,10 +81,11 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="form-group">
-            <label>Contraseña</label>
-            <div className="input-wrapper">
+          <div className="login-form-group">
+            <label className="login-label">Contraseña</label>
+            <div className="login-input-wrapper">
               <input
+                className="login-input"
                 type="password"
                 placeholder="••••••••"
                 value={password}
@@ -95,20 +96,20 @@ const Login = () => {
           </div>
 
           <div className="login-options">
-            <label className="remember-me">
-              <input type="checkbox" /> Recordarme
+            <label className="login-remember-me">
+              <input type="checkbox" className="login-checkbox" /> Recordarme
             </label>
-            <Link to="/tienda/recuperar" className="forgot-link">¿Olvidaste tu contraseña?</Link>
+            <Link to="/tienda/recuperar" className="login-forgot-link">¿Olvidaste tu contraseña?</Link>
           </div>
 
-          <button type="submit" className="btn-login-glass" disabled={loading}>
+          <button type="submit" className="login-btn-glass" disabled={loading}>
             {loading ? 'Validando...' : 'Ingresar a mi cuenta'}
           </button>
         </form>
 
         <div className="login-footer">
-          <p>¿Eres nuevo en Certimet?</p>
-          <Link to="/tienda/registro" className="btn-registro-link">Crear una cuenta nueva</Link>
+          <p className="login-footer-text">¿Eres nuevo en Certimet?</p>
+          <Link to="/tienda/registro" className="login-btn-registro-link">Crear una cuenta nueva</Link>
         </div>
       </div>
     </div>
