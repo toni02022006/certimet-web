@@ -115,7 +115,7 @@ const ingenieriaMegaData = {
     ],
     btnText: "Nuestras soluciones →",
     btnLink: "/ingenieria/mantenimiento-predictivo",
-    img: imgMantenimiento // Actualizado con tu imagen local
+    img: imgMantenimiento
   },
   control: {
     tabName: <>Control de<br/>Procesos</>,
@@ -171,12 +171,6 @@ const ingenieriaMegaData = {
   }
 };
 
-const serviciosData = [
-  { name: "Mantenimiento", path: "/servicios" },
-  { name: "Mapeo Térmico", path: "/servicios" },
-  { name: "Análisis Termográfico", path: "/servicios" }
-];
-
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   
@@ -192,7 +186,6 @@ const Header = () => {
   const [activeIngenieriaCategory, setActiveIngenieriaCategory] = useState('mantenimiento');
   
   // Estados para otros menús
-  const [isServiciosOpen, setIsServiciosOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false); 
   
   // Estados para el login de Certilab
@@ -256,10 +249,10 @@ const Header = () => {
       <div className="top-contact-bar">
         <div className="top-bar-content">
           <div className="top-bar-left">
-            <Link to="/blog" className="btn-outline-top">Blog</Link>
+            {/* Se removió el botón de Blog de aquí */}
           </div>
           <div className="top-bar-right">
-            <a href="#" className="top-link">
+            <a href="https://wa.me/51992056019" target="_blank" rel="noopener noreferrer" className="top-link">
               <img src={iconWhatsapp} alt="WhatsApp" className="top-icon" /> Cotiza con nosotros
             </a>
             <a href="mailto:ventas@certimet.pe" className="top-link">
@@ -531,36 +524,9 @@ const Header = () => {
           </li>
 
           {/* =========================================================
-              MENÚ SIMPLE: SERVICIOS
+              NUEVO ENLACE: BLOG (Reemplaza a Servicios)
               ========================================================= */}
-          <li 
-            className="nav-item-dropdown-simple"
-            onMouseEnter={() => setIsServiciosOpen(true)}
-            onMouseLeave={() => setIsServiciosOpen(false)}
-          >
-            <Link to="/servicios" className={location.pathname.startsWith('/servicios') ? 'active' : ''}>
-              Servicios <span className="arrow-down">▾</span>
-            </Link>
-            <AnimatePresence>
-              {isServiciosOpen && (
-                <motion.div 
-                  className="simple-dropdown-box"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <ul className="simple-dropdown-list">
-                    {serviciosData.map((item, index) => (
-                      <li key={index}>
-                        <Link to={item.path}>{item.name}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </li>
+          <li><Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link></li>
 
           <li><Link to="/tienda" className={location.pathname === '/tienda' ? 'active' : ''}>Tienda</Link></li>
           <li><Link to="/contacto" className={location.pathname === '/contacto' ? 'active' : ''}>Contacto</Link></li>
