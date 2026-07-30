@@ -245,17 +245,96 @@
 }
 
 /* ==========================================================================
-   RESPONSIVO
+   ADAPTACIÓN RESPONSIVA (Mejorada para Móvil)
    ========================================================================== */
+
+/* Tablet (hasta 992px) */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 42px;
+  }
+}
+
+/* Móvil (hasta 768px) */
 @media (max-width: 768px) {
+  .hero-content {
+    /* Padding left más grande para evitar que la botonera social monte el texto */
+    padding: 0 6% 0 55px; 
+    top: 50%;
+  }
+
+  /* Ajuste tipográfico */
+  .hero-title {
+    font-size: 32px;
+    margin-bottom: 15px;
+    line-height: 1.25;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* En móvil, forzamos TODO a alinear a la izquierda para mantener la legibilidad */
+  .hero-content-right {
+    text-align: left;
+  }
+  
+  .hero-content-right .hero-text-box,
+  .hero-content-right .hero-subtitle,
+  .hero-content-right .hero-qr-container {
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .hero-content-right .hero-buttons-container {
+    justify-content: flex-start;
+  }
+
+  /* Ajuste de Botones */
   .hero-buttons-container {
     flex-direction: column;
-    max-width: 250px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    gap: 12px;
   }
+
   .hero-btn {
+    width: 100%;
     justify-content: center;
+    padding: 14px 20px; /* Botones más gruesos y fáciles de tocar */
   }
+
+  /* Ajuste de flechas (más pequeñas y cerca de los bordes) */
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .left-arrow { left: 8px; }
+  .right-arrow { right: 8px; }
+
+  /* Ajuste del Gradiente (De abajo hacia arriba funciona mejor en móvil para leer el texto) */
+  .hero-gradient-overlay,
+  .hero-gradient-overlay-right {
+    background: linear-gradient(to top, rgba(0,59,122,0.95) 0%, rgba(0,59,122,0.6) 60%, rgba(0,59,122,0.1) 100%) !important;
+  }
+
+  /* QR más pequeño */
+  .hero-qr-container {
+    max-width: 100px;
+    padding: 8px;
+  }
+}
+
+/* Teléfonos muy pequeños (hasta 480px) */
+@media (max-width: 480px) {
   .hero-title {
-    font-size: 40px;
+    font-size: 28px;
+  }
+  .hero-subtitle {
+    font-size: 13.5px;
   }
 }
