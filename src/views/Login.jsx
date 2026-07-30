@@ -25,13 +25,17 @@ const Login = () => {
       const response = await fetch('http://localhost:3000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo, password }),
+        body: JSON.stringify({ correo, password, origen: 'ecommerce' }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.error || data.message || 'Credenciales incorrectas');
+      }
+      const rolUsuario = data.usuario.rol.toLowerCase();
+      if (rolUsuario !== 'cliente') {
+        throw new Error('Acceso denegado. Los administradores deben ingresar por el panel de gestión.');
       }
 
       localStorage.setItem('token', data.token);
