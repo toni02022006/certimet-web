@@ -13,14 +13,15 @@ export default defineConfig({
       usePolling: true,
       interval: 100,
     },
-    // Ajustamos las cabeceras CSP para permitir que las imágenes vengan de localhost:3000
+    // Cabeceras CSP corregidas para permitir reCAPTCHA de Google
     headers: {
       'Content-Security-Policy':
         "default-src 'self'; " +
-        "script-src 'unsafe-inline' 'unsafe-eval' 'self'; " +
+        "script-src 'unsafe-inline' 'unsafe-eval' 'self' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " +
         "style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; " +
-        "img-src 'self' data: http://localhost:3000 https:; " + // <- Aquí agregamos http://localhost:3000
-        "connect-src 'self' http://localhost:3000;"
+        "img-src 'self' data: http://localhost:3000 https:; " +
+        "frame-src 'self' https://www.google.com https://recaptcha.google.com https://www.recaptcha.net; " +
+        "connect-src 'self' http://localhost:3000 https://www.google.com https://www.gstatic.com;"
     }
   }
 })
