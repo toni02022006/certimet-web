@@ -42,7 +42,6 @@ const Footer = () => {
     e.preventDefault();
     setMensaje({ texto: '', tipo: '' });
 
-    // Validaciones frontend
     if (!correo.trim()) {
       setMensaje({ texto: 'Por favor, ingresa tu correo electrónico.', tipo: 'error' });
       return;
@@ -58,12 +57,11 @@ const Footer = () => {
     const { origen, etiqueta } = obtenerOrigenYRuta();
 
     try {
-      // Ajuste para producción: usa variable de entorno o ruta relativa en lugar de localhost
-      const apiUrl = process.env.REACT_APP_API_URL 
-        ? `${process.env.REACT_APP_API_URL}/api/newsletter/suscribir` 
-        : '/api/newsletter/suscribir';
+      // SOLUCIÓN: Usar la sintaxis de Vite para la variable de entorno
+      const API_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
+      const endpoint = `${API_URL}/api/newsletter/suscribir`;
 
-      const response = await fetch(apiUrl, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
