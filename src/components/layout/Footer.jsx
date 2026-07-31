@@ -20,24 +20,20 @@ const Footer = () => {
   const [correo, setCorreo] = useState('');
   const [aceptaPoliticas, setAceptaPoliticas] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [mensaje, setMensaje] = useState({ texto: '', tipo: '' }); // tipo: 'exito' | 'error'
+  const [mensaje, setMensaje] = useState({ texto: '', tipo: '' });
 
   const location = useLocation();
 
-  // Estilo en línea para mantener los enlaces blancos y sin subrayado
   const linkStyle = { color: 'white', textDecoration: 'none' };
 
-  // Función helper para limpiar la ruta y obtener un nombre legible
   const obtenerOrigenYRuta = () => {
     const rutaLimpia = location.pathname.replace('/', '').replaceAll('/', '_') || 'inicio';
-    
     return {
       origen: `footer_${rutaLimpia}`,
       etiqueta: `seccion_${rutaLimpia}`
     };
   };
 
-  // Manejador del envío de la suscripción
   const handleSuscripcion = async (e) => {
     e.preventDefault();
     setMensaje({ texto: '', tipo: '' });
@@ -57,8 +53,10 @@ const Footer = () => {
     const { origen, etiqueta } = obtenerOrigenYRuta();
 
     try {
-      // SOLUCIÓN: Usar la sintaxis de Vite para la variable de entorno
-      const API_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
+      // Limpiamos los slashes dobles que causan errores 404/500 en producción
+      let API_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
+      API_URL = API_URL.replace(/\/$/, ""); // Quita el '/' final si existe
+
       const endpoint = `${API_URL}/api/newsletter/suscribir`;
 
       const response = await fetch(endpoint, {
@@ -92,11 +90,8 @@ const Footer = () => {
   };
 
   return (
-    /* ESTE ES EL DIV QUE FALTABA PARA PINTAR EL FONDO CELESTE */
     <div className="footer-bg-wrapper">
       <footer className="footer-container">
-        
-        {/* Tarjeta flotante superior ("Mantente al día") */}
         <div className="footer-cta-card">
           <div className="cta-text-content">
             <h2>¡Mantente al día<br/>con CERTIMET!</h2>
@@ -106,7 +101,6 @@ const Footer = () => {
               directamente en tu correo.
             </p>
             
-            {/* Se reemplaza el div estático por el form dinámico */}
             <form className="cta-form" onSubmit={handleSuscripcion}>
               <input 
                 type="email" 
@@ -137,7 +131,6 @@ const Footer = () => {
                 {loading ? 'Procesando...' : 'Suscríbete →'}
               </button>
 
-              {/* Mensajes de feedback visual */}
               {mensaje.texto && (
                 <p className={`cta-mensaje ${mensaje.tipo}`}>
                   {mensaje.texto}
@@ -146,7 +139,6 @@ const Footer = () => {
             </form>
           </div>
           
-          {/* Sección de la imagen (Balanza PNG) */}
           <div className="cta-image-content">
             <img 
               src={balanceImg} 
@@ -157,8 +149,6 @@ const Footer = () => {
         </div>
 
         <div className="footer-content">
-          
-          {/* Columna 1: Marca y Redes */}
           <div className="footer-col brand-col">
             <img src={logo} alt="Certimet Logo" className="footer-logo" />
             <p className="brand-tagline">Presición que certifica,<br />Ingeniería que transforma</p>
@@ -184,7 +174,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Columna 2: Navegación */}
           <div className="footer-col">
             <h3>Navegación</h3>
             <ul>
@@ -198,7 +187,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Columna 3: Soluciones */}
           <div className="footer-col">
             <h3>Soluciones</h3>
             <ul>
@@ -209,15 +197,12 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Columna 4: Ubícanos */}
           <div className="footer-col">
             <h3>Ubícanos</h3>
             <p className="location-text"><strong>Lima:</strong> Av. Canadá Nro.<br/>3263, Ofic. 301 - San Luis</p>
           </div>
-
         </div>
         
-        {/* Footer Inferior */}
         <div className="footer-bottom">
           <p>MSF Creative Agencia de marketing digital © 2026. Todos los Derechos Reservados.</p>
           <Link to="/denuncias" style={linkStyle}>
