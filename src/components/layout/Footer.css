@@ -276,3 +276,33 @@
     gap: 15px;
   }
 }
+/* ----- Mensajes de Alerta del Formulario ----- */
+.cta-mensaje {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  border-radius: 6px;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+.cta-mensaje.exito {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+.cta-mensaje.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+/* Estado deshabilitado del botón durante el envío */
+.cta-button.outline:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #7a9cc2;
+  color: #7a9cc2;
+}

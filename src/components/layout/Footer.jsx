@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
 
 // Rutas de imágenes
@@ -12,12 +12,86 @@ import iconTk from "../../image/icons/Recurso 11.webp";
 import iconWp from "../../image/icons/whatsapp.webp";
 import iconMail from "../../image/icons/correo.webp";
 
-// Nueva importación de la balanza
+// Importación de la balanza
 import balanceImg from "../../image/balance.png"; 
 
 const Footer = () => {
+  // Estados para el formulario de newsletter
+  const [correo, setCorreo] = useState('');
+  const [aceptaPoliticas, setAceptaPoliticas] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [mensaje, setMensaje] = useState({ texto: '', tipo: '' }); // tipo: 'exito' | 'error'
+
+  const location = useLocation();
+
   // Estilo en línea para mantener los enlaces blancos y sin subrayado
   const linkStyle = { color: 'white', textDecoration: 'none' };
+
+  // Función helper para limpiar la ruta y obtener un nombre legible
+  const obtenerOrigenYRuta = () => {
+    const rutaLimpia = location.pathname.replace('/', '').replaceAll('/', '_') || 'inicio';
+    
+    return {
+      origen: `footer_${rutaLimpia}`,
+      etiqueta: `seccion_${rutaLimpia}`
+    };
+  };
+
+  // Manejador del envío de la suscripción
+  const handleSuscripcion = async (e) => {
+    e.preventDefault();
+    setMensaje({ texto: '', tipo: '' });
+
+    // Validaciones frontend
+    if (!correo.trim()) {
+      setMensaje({ texto: 'Por favor, ingresa tu correo electrónico.', tipo: 'error' });
+      return;
+    }
+
+    if (!aceptaPoliticas) {
+      setMensaje({ texto: 'Debes aceptar las políticas de privacidad para suscribirte.', tipo: 'error' });
+      return;
+    }
+
+    setLoading(true);
+
+    const { origen, etiqueta } = obtenerOrigenYRuta();
+
+    try {
+      // Ajuste para producción: usa variable de entorno o ruta relativa en lugar de localhost
+      const apiUrl = process.env.REACT_APP_API_URL 
+        ? `${process.env.REACT_APP_API_URL}/api/newsletter/suscribir` 
+        : '/api/newsletter/suscribir';
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          correo: correo.trim(),
+          acepta_politicas: aceptaPoliticas,
+          origen: origen,
+          etiquetas: [etiqueta, 'general_web']
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMensaje({ texto: data.message || '¡Gracias por suscribirte!', tipo: 'exito' });
+        setCorreo('');
+        setAceptaPoliticas(false);
+      } else {
+        setMensaje({ texto: data.error || 'Ocurrió un error al procesar tu solicitud.', tipo: 'error' });
+      }
+    } catch (error) {
+      console.error('Error al conectar con el servidor:', error);
+      setMensaje({ texto: 'Error de conexión con el servidor. Inténtalo más tarde.', tipo: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     /* ESTE ES EL DIV QUE FALTABA PARA PINTAR EL FONDO CELESTE */
@@ -34,22 +108,44 @@ const Footer = () => {
               directamente en tu correo.
             </p>
             
-            <div className="cta-form">
+            {/* Se reemplaza el div estático por el form dinámico */}
+            <form className="cta-form" onSubmit={handleSuscripcion}>
               <input 
                 type="email" 
                 placeholder="Ingresa tu correo electrónico aquí" 
                 className="cta-input"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
+                disabled={loading}
               />
               
               <label className="cta-checkbox-label">
-                <input type="checkbox" />
-                <span>Acepto los <Link to="/terminos" style={{ color: '#004085', textDecoration: 'none', fontWeight: 'bold' }}>Términos y Condiciones</Link> y la <Link to="/privacidad" style={{ color: '#004085', textDecoration: 'none', fontWeight: 'bold' }}>Política de privacidad</Link></span>
+                <input 
+                  type="checkbox" 
+                  checked={aceptaPoliticas}
+                  onChange={(e) => setAceptaPoliticas(e.target.checked)}
+                  disabled={loading}
+                />
+                <span>
+                  Acepto los <Link to="/terminos" style={{ color: '#004085', textDecoration: 'none', fontWeight: 'bold' }}>Términos y Condiciones</Link> y la <Link to="/privacidad" style={{ color: '#004085', textDecoration: 'none', fontWeight: 'bold' }}>Política de privacidad</Link>
+                </span>
               </label>
               
-              <button className="cta-button outline">
-                Suscríbete &rarr;
+              <button 
+                type="submit" 
+                className="cta-button outline"
+                disabled={loading}
+              >
+                {loading ? 'Procesando...' : 'Suscríbete →'}
               </button>
-            </div>
+
+              {/* Mensajes de feedback visual */}
+              {mensaje.texto && (
+                <p className={`cta-mensaje ${mensaje.tipo}`}>
+                  {mensaje.texto}
+                </p>
+              )}
+            </form>
           </div>
           
           {/* Sección de la imagen (Balanza PNG) */}
