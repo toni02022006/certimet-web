@@ -8,7 +8,7 @@ import './Carrito.css';
 const IMAGE_BASE_URL = import.meta.env.VITE_API_URL;
 
 // URL de la API por si la necesitas para otras peticiones (opcional en este archivo)
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const Carrito = () => {
   const { carrito, loadingCarrito, actualizarCantidad, eliminarProducto } = useCarrito();

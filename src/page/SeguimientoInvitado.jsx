@@ -19,7 +19,7 @@ const SeguimientoInvitado = () => {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchPedidoPublico = async () => {

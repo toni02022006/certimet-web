@@ -102,7 +102,7 @@ const ProductosDestacados = () => {
                 <div className="prod-img-box">
                   <img 
                     // 👇 1. Aplicamos el Fallback aquí
-                    src={prod.imagen_principal_url ? `https://api.certimet.pe${prod.imagen_principal_url}` : imagenFallback} 
+                    src={prod.imagen_principal_url ? `${import.meta.env.VITE_API_URL}${prod.imagen_principal_url}` : imagenFallback}
                     alt={prod.nombre} 
                     className="prod-img" 
                     // 👇 2. Y protegemos contra errores 404 del backend

@@ -6,7 +6,7 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import './Checkout.css';
 
 // ✅ Constante única para la URL del backend
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 // ✅ SOLUCIÓN: Agregamos tu clave directamente como respaldo por si la variable de entorno falla en producción.
 const MP_PUBLIC_KEY = import.meta.env.VITE_MP_PUBLIC_KEY || 'APP_USR-009fc59d-a737-4b71-84aa-f0eaca2f58c5';

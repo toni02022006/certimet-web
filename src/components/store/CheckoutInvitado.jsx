@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import './CheckoutInvitado.css'; 
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const CheckoutInvitado = () => {
   const { carrito, loadingCarrito, recargarCarrito } = useCarrito();

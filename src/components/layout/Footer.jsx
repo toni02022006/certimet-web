@@ -54,7 +54,7 @@ const Footer = () => {
 
     try {
       // Limpiamos los slashes dobles que causan errores 404/500 en producción
-      let API_URL = import.meta.env.VITE_API_URL || 'https://api.certimet.pe';
+      let API_URL = import.meta.env.VITE_API_URL;
       API_URL = API_URL.replace(/\/$/, ""); // Quita el '/' final si existe
 
       const endpoint = `${API_URL}/api/newsletter/suscribir`;

@@ -14,15 +14,17 @@ export default defineConfig({
       usePolling: true,
       interval: 100,
     },
-    // Cabeceras CSP fusionadas: URLs de producción + permisos para reCAPTCHA
+    // Cabeceras CSP fusionadas: URLs de producción + URLs de desarrollo + permisos para reCAPTCHA
     headers: {
       'Content-Security-Policy':
         "default-src 'self'; " +
         "script-src 'unsafe-inline' 'unsafe-eval' 'self' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " +
         "style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; " +
-        "img-src 'self' data: https://api.certimet.pe https:; " + 
+        // 👇 Se agregó http://localhost:3000 para permitir imágenes en local
+        "img-src 'self' data: https://api.certimet.pe http://localhost:3000 https:; " + 
         "frame-src 'self' https://www.google.com https://recaptcha.google.com https://www.recaptcha.net; " +
-        "connect-src 'self' https://api.certimet.pe https://www.google.com https://www.gstatic.com;"
+        // 👇 Se agregó http://localhost:3000 para permitir llamadas a la API en local
+        "connect-src 'self' https://api.certimet.pe http://localhost:3000 https://www.google.com https://www.gstatic.com;"
     }
   }
 })
