@@ -32,4 +32,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/ # Sube solo lo que Vite compiló
-          server-dir: ./     # Lo deja en la raíz de la cuenta FTP que creaste
+          server-dir: ./
+          protocol: ftps
+          port: 21
+          timeout: 60000
