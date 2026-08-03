@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCarrito } from '../../context/CarritoContext';
 
 // Imágenes y Logos
-import logoBlanco from '../../image/Imagotipo-blanco-V2.png';
-import logoColor from '../../image/LOGO2026.png';
+import logoBlanco from '../../image/Imagotipo-blanco-V2.webp';
+import logoColor from '../../image/LOGO2026.webp';
 import iconUbicacion from '../../image/icons/ubicacion.png'; 
 import iconCorreo from '../../image/icons/correo.webp';
 

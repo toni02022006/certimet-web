@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';  // ← Importa Link
 import './WhyCalibrate.css';
 
-import calibracionImg from '../../image/calibracioninicio.jpeg';
+import calibracionImg from '../../image/calibracioninicio.webp';  // ← Asegúrate de que la ruta sea correcta
 
 // Animaciones (igual que antes)
 const imageReveal = {

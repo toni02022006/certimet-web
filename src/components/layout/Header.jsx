@@ -3,8 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Importaciones de imágenes estáticas y logos
-import logo from '../../image/Imagotipo-blanco-V2.png';
-import logoColor from '../../image/LOGO2026.png';
+import logo from '../../image/Imagotipo-blanco-V2.webp';
+import logoColor from '../../image/LOGO2026.webp';
 import iconWhatsapp from '../../image/icons/whatsapp.webp';
 import iconCorreo from '../../image/icons/correo.webp';
 import iconTelefono from '../../image/icons/telefono.webp';

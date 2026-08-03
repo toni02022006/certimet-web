@@ -2,7 +2,7 @@ import React from 'react';
 import './DescargasBanner.css';
 
 // Importamos la nueva imagen combinada que creaste
-import descarga3 from '../../image/descarga3.png';
+import descarga3 from '../../image/descarga3.webp';
 
 const DescargasBanner = () => {
   return (

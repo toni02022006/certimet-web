@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { API_URL } from '../../config/api';
 import './BlogCarousel.css';
 
-import defaultBlogImg from '../../image/blog.png';
+import defaultBlogImg from '../../image/blog.webp';
 
 const UserIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">

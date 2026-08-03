@@ -27,7 +27,7 @@ import rec303 from '../../image/brands/Recurso 303.webp';
 import rec304 from '../../image/brands/Recurso 304.webp';
 
 // Importación de las manos
-import manosImg from '../../image/manos.png';
+import manosImg from '../../image/manos.webp';
 
 const brandsData = [
   { id: 283, src: rec283 }, { id: 284, src: rec284 }, { id: 285, src: rec285 },

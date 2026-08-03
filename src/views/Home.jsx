@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Importación de imágenes locales
-import fondo1 from '../image/FONDO1.jpg.jpeg';
+import fondo1 from '../image/FONDO1.webp';
 import inacalImg from '../image/baners/baners_inicio/inacal.jpg.jpeg';
 import laboraImg from '../image/baners/baners_inicio/Labora.jpg.jpeg';
 import ecommerceImg from '../image/baners/baners_inicio/Ecommerce.jpg.jpeg';

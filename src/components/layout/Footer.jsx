@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
 
 // Rutas de imágenes
-import logo from "../../image/Imagotipo-blanco-V2.png";
+import logo from "../../image/Imagotipo-blanco-V2.webp";
 import iconFb from "../../image/icons/Recurso 10.webp";
 import iconIg from "../../image/icons/Recurso 9.webp";
 import iconLi from "../../image/icons/Recurso 12.webp";
@@ -13,7 +13,7 @@ import iconWp from "../../image/icons/whatsapp.webp";
 import iconMail from "../../image/icons/correo.webp";
 
 // Importación de la balanza
-import balanceImg from "../../image/balance.png"; 
+import balanceImg from "../../image/balance.webp"; 
 
 const Footer = () => {
   // Estados para el formulario de newsletter

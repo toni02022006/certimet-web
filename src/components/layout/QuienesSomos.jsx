@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './QuienesSomos.css';
 
 // Importación de las nuevas imágenes
-import cientificoImg from '../../image/cientifico_QS.png';
+import cientificoImg from '../../image/cientifico_QS.webp';
 // Nota: La imagen del fondo verde la usaremos directamente en el CSS
 
 const modernReveal = {

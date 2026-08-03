@@ -2,7 +2,7 @@
    SECCIÓN PRINCIPAL Y FONDO
    ========================================================================== */
 .solutions-section {
-  background: linear-gradient(rgba(0, 59, 122, 0.85), rgba(0, 97, 188, 0.85)), url('../../image/fondo01.jpg.jpeg');
+  background: linear-gradient(rgba(0, 59, 122, 0.85), rgba(0, 97, 188, 0.85)), url('../../image/fondo01.webp');
   background-size: cover;
   background-position: center;
   padding: 80px 5%;
