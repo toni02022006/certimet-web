@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Registro.css';
 
 // Mismas rutas exactas que usaste en el login
-import logoCertimet from '../../image/baners/baners_inicio/Imagotipo v2.png';
-import fondoEcommerce from '../../image/baners/baners_inicio/Ecommerce.jpg.jpeg';
+import logoCertimet from '../../image/baners/baners_inicio/Imagotipo v2.webp';
+import fondoEcommerce from '../../image/baners/baners_inicio/Ecommerce.webp';
 
 const Registro = () => {
   const [form, setForm] = useState({

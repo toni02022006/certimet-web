@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './ServiciosIngenieria.css';
 
 // Importación de la imagen
-import imgMensaje from '../../image/laboratorio/msdefyp.png';
+import imgMensaje from '../../image/laboratorio/msdefyp.webp';
 
 const ServiciosIngenieria = () => {
   // Ahora usamos un arreglo para permitir múltiples acordeones abiertos al mismo tiempo.

@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import './TalentoCultura.css';
 
 // 1. Imágenes locales mapeadas según tus rutas
-import img1 from '../../image/laboratorio/talentocultura/IMG_0786.jpeg'; 
-import img2 from '../../image/laboratorio/talentocultura/IMG_0804.jpeg';
-import img3 from '../../image/laboratorio/talentocultura/IMG_4013.jpeg';
-import img4 from '../../image/laboratorio/talentocultura/Mesa_trabajo.jpeg';
-import img5 from '../../image/laboratorio/talentocultura/dsefa.jpeg';
+import img1 from '../../image/laboratorio/talentocultura/IMG_0786.webp'; 
+import img2 from '../../image/laboratorio/talentocultura/IMG_0804.webp';
+import img3 from '../../image/laboratorio/talentocultura/IMG_4013.webp';
+import img4 from '../../image/laboratorio/talentocultura/Mesa_trabajo.webp';
+import img5 from '../../image/laboratorio/talentocultura/dsefa.webp';
 
 // Solo dejamos tus 5 imágenes
 const carouselImages = [img1, img2, img3, img4, img5];

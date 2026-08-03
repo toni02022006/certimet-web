@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './RecuperarPassword.css';
 
 // Rutas actualizadas
-import logoCertimet from '../../image/baners/baners_inicio/Imagotipo v2.png';
-import fondoEcommerce from '../../image/baners/baners_inicio/Ecommerce.jpg.jpeg';
+import logoCertimet from '../../image/baners/baners_inicio/Imagotipo v2.webp';
+import fondoEcommerce from '../../image/baners/baners_inicio/Ecommerce.webp';
 
 const RecuperarPassword = () => {
   const [correo, setCorreo] = useState('');

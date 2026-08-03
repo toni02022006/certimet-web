@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import laboraImg from '../../image/baners/baners_inicio/Labora.jpg.jpeg';
+import laboraImg from '../../image/baners/baners_inicio/Labora.webp';
 
 const AnimatedWord = ({ text, isGreen }) => {
   const letters = Array.from(text);

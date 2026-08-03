@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeroFotometriaAcustica.css';
 
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Fotometria_Acustica.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/Fotometria.jpeg';
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Fotometria_Acustica.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/Fotometria.webp';
 
 const HeroFotometriaAcustica = () => {
   return (

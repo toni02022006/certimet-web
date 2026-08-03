@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import './CategoriasTienda.css';
 
 // Importamos las imágenes
-import cat1 from '../../image/categoriasespeciales/categoria1.png';
-import cat2 from '../../image/categoriasespeciales/categoria2.png';
-import cat3 from '../../image/categoriasespeciales/categoria3.png';
-import cat4 from '../../image/categoriasespeciales/categoria4.png';
-import cat5 from '../../image/categoriasespeciales/categoria5.png';
-import cat6 from '../../image/categoriasespeciales/categoria6.png';
+import cat1 from '../../image/categoriasespeciales/categoria1.webp';
+import cat2 from '../../image/categoriasespeciales/categoria2.webp';
+import cat3 from '../../image/categoriasespeciales/categoria3.webp';
+import cat4 from '../../image/categoriasespeciales/categoria4.webp';
+import cat5 from '../../image/categoriasespeciales/categoria5.webp';
+import cat6 from '../../image/categoriasespeciales/categoria6.webp';
 
 // CORRECCIÓN: Los IDs ahora coinciden con la tabla 'categorias' de tu base de datos (pgAdmin)
 const categoriasBase = [

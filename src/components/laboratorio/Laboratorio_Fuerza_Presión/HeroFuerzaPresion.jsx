@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import './HeroFuerzaPresion.css';
 
 // --- IMPORTACIONES DE IMÁGENES ---
-import laboratorioImg from '../../../image/laboratorio/DSC08101.jpeg';
+import laboratorioImg from '../../../image/laboratorio/DSC08101.webp';
 import inacalLogo from '../../../image/laboratorio/nlds/inacal.webp'; 
-import fondoHeroImg from '../../../image/laboratorio/FuerzapresiónMS.jpeg'; // Nueva imagen de fondo
+import fondoHeroImg from '../../../image/laboratorio/FuerzapresiónMS.webp'; // Nueva imagen de fondo
 
 const HeroFuerzaPresion = () => {
   return (

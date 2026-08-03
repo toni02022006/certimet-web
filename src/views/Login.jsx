@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
-import logoCertimet from '../image/baners/baners_inicio/Imagotipo v2.png';
-import fondoEcommerce from '../image/baners/baners_inicio/Ecommerce.jpg.jpeg';
+import logoCertimet from '../image/baners/baners_inicio/Imagotipo v2.webp';
+import fondoEcommerce from '../image/baners/baners_inicio/Ecommerce.webp';
 
 const Login = () => {
   const [correo, setCorreo] = useState('');

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './SolucionesIntegrales.css';
 
 // Importación de tus imágenes
-import imgSoluciones from '../../image/ingenieria/img1.png';
-import iconLlave from '../../image/ingenieria/img4.png';
+import imgSoluciones from '../../image/ingenieria/img1.webp';
+import iconLlave from '../../image/ingenieria/img4.webp';
 
 const SolucionesIntegrales = () => {
   return (

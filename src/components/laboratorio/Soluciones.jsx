@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../views/Laboratorio.css';
-import laboratorioImg from '../../image/laboratorio/DSC08101.jpeg';
+import laboratorioImg from '../../image/laboratorio/DSC08101.webp';
 
 const Soluciones = () => {
   return (

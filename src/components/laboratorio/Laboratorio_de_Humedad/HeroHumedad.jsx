@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeroHumedad.css';
 
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Humedad.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/humedad.jpeg';
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Humedad1.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/humedad.webp';
 
 const HeroHumedad = () => {
   return (

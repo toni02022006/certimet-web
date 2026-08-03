@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './HeroElectricidad.css';
 
 // --- IMPORTACIONES DE IMÁGENES ---
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/electricidad.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/electricidadfondo.jpeg'; 
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/electricidad.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/electricidadfondo.webp'; 
 
 const HeroElectricidad = () => {
   return (

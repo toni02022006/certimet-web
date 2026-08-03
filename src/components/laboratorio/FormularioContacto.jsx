@@ -2,7 +2,7 @@ import React from 'react';
 import './FormularioContacto.css';
 
 // Importa la imagen de la izquierda
-import contactoImg from '../../image/laboratorio/DSC08361_1.jpeg';
+import contactoImg from '../../image/laboratorio/DSC08361_1.webp';
 
 const FormularioContacto = () => {
   return (

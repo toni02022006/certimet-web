@@ -2,8 +2,8 @@ import React from 'react';
 import './IntegradoresWeg.css';
 
 // Importación de las imágenes según las rutas que proporcionaste
-import imgWeg from '../../image/ingenieria/img5.png';
-import imgInsignia from '../../image/laboratorio/acredti.png';
+import imgWeg from '../../image/ingenieria/img5.webp';
+import imgInsignia from '../../image/laboratorio/acredti.webp';
 
 const IntegradoresWeg = () => {
   return (

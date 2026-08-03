@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import fondoNosotros from '../image/nosotros/nosotrosfondo.jpeg';
-import inacalImg from '../image/baners/baners_inicio/inacal.jpg.jpeg';
-import qrImg from '../image/baners/baners_inicio/Objeto inteligente vectorial.png';
+import fondoNosotros from '../image/nosotros/nosotrosfondo.webp';
+import inacalImg from '../image/baners/baners_inicio/inacal.webp';
+import qrImg from '../image/baners/baners_inicio/Objeto inteligente vectorial.webp';
 
 // CORRECCIÓN: Todas las rutas apuntan a la carpeta 'Nosotros' con 'N' mayúscula
 import QuienesSomos from '../components/Nosotros/QuienesSomos';

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeroFisicoQuimico.css';
 
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/FisicoQuimico.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/FisQuim.jpeg';
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/FisicoQuimico.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/FisQuim.webp';
 
 const HeroFisicoQuimico = () => {
   return (

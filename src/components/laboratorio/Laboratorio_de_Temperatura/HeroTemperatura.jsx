@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeroTemperatura.css';
 
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Temperatura.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/temperaturafondo.jpeg';
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Temperatura.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/temperaturafondo.webp';
 import inacalLogo from '../../../image/laboratorio/nlds/inacal.webp';
 
 const HeroTemperatura = () => {

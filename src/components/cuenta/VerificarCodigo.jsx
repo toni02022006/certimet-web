@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './VerificarCodigo.css';
 
 // Rutas actualizadas (las mismas que en login)
-import logoCertimet from '../../image/baners/baners_inicio/Imagotipo v2.png';
-import fondoEcommerce from '../../image/baners/baners_inicio/Ecommerce.jpg.jpeg';
+import logoCertimet from '../../image/baners/baners_inicio/Imagotipo v2.webp';
+import fondoEcommerce from '../../image/baners/baners_inicio/Ecommerce.webp';
 
 const VerificarCodigo = () => {
   const [correo, setCorreo] = useState('');

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './IntegradorAutorizado.css';
 
 // Importación de las imágenes exactas con tus rutas
-import imgPersona from '../../image/ingenieria/img3.png';
-import imgLogo from '../../image/ingenieria/img5.png';
+import imgPersona from '../../image/ingenieria/img3.webp';
+import imgLogo from '../../image/ingenieria/img5.webp';
 
 const IntegradorAutorizado = () => {
   return (
@@ -22,7 +22,7 @@ const IntegradorAutorizado = () => {
 
         {/* COLUMNA DERECHA: Textos y Logo */}
         <div className="ia-right">
-          {/* Logo WEG (img5.png) */}
+          {/* Logo WEG (img5.webp) */}
           <img src={imgLogo} alt="Logo WEG Integradores Oficiales" className="ia-logo" />
           
           <h2 className="ia-title">

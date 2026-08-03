@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeroMasa.css';
 
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/masa.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/Masafondo.jpeg';
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/masa.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/Masafondo.webp';
 import inacalLogo from '../../../image/laboratorio/nlds/inacal.webp';
 
 const HeroMasa = () => {

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './HeroMantenimiento.css';
 
 // --- IMPORTACIÓN DE IMÁGENES EXACTAS ---
-import imgFondo from '../../../image/laboratorio/FuerzapresiónMS.jpeg';
-import imgPersona from '../../../image/ingenieria/img1.png';
+import imgFondo from '../../../image/laboratorio/FuerzapresiónMS.webp';
+import imgPersona from '../../../image/ingenieria/img1.webp';
 
 const HeroMantenimiento = () => {
   return (

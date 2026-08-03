@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeroFlujo.css';
 
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Flujo.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/flujofondo.jpeg';
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Flujo.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/flujofondo.webp';
 
 const HeroFlujo = () => {
   return (

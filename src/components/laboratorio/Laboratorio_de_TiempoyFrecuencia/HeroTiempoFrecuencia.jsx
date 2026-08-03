@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './HeroTiempoFrecuencia.css';
 
 // --- IMPORTACIONES DE IMÁGENES ---
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Tiempo_Frecuencia.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/tiempo.jpeg';
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/Tiempo_Frecuencia.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/tiempo.webp';
 
 const HeroTiempoFrecuencia = () => {
   return (

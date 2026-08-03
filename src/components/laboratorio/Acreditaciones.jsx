@@ -1,7 +1,7 @@
 import React from 'react';
 import './Acreditaciones.css';
 import inacalLogo from '../../image/laboratorio/inacal morado.webp';
-import escarapelaImg from '../../image/laboratorio/acredti.png';
+import escarapelaImg from '../../image/laboratorio/acredti.webp';
 
 const Acreditaciones = () => {
   return (

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './HeroLongitud.css';
 
 // --- IMPORTACIONES DE IMÁGENES ---
-import laboratorioImg from '../../../image/laboratorio/sublaboratorios/longitud.png';
-import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/longitudfondo.jpeg';
+import laboratorioImg from '../../../image/laboratorio/sublaboratorios/longitud.webp';
+import fondoHeroImg from '../../../image/laboratorio/sublaboratorios/longitudfondo.webp';
 
 const HeroLongitud = () => {
   return (

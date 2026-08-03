@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'; // <-- Importamos Framer Motion
 import './CertificadoAcreditacion.css';
 
 // Importación de las imágenes
-import certimetCer from '../../image/nosotros/certimetcer.jpg';
-import coheteImg from '../../image/nosotros/cohete.png';
+import certimetCer from '../../image/nosotros/certimetcer.webp';
+import coheteImg from '../../image/nosotros/cohete.webp';
 
 const CertificadoAcreditacion = () => {
   return (

@@ -5,8 +5,8 @@ import './Ingenieria.css';
 // =====================================================================
 // IMPORTACIÓN DE IMÁGENES (Tus 2 fondos para Ingeniería)
 // =====================================================================
-import imgFondoBanner from '../image/ingenieria/imgfondobaner.jpeg';
-import fondoNosotros from '../image/nosotros/nosotrosfondo.jpeg';
+import imgFondoBanner from '../image/ingenieria/imgfondobaner.webp';
+import fondoNosotros from '../image/nosotros/nosotrosfondo.webp';
 
 // =====================================================================
 // IMPORTACIÓN DE COMPONENTES DE LA PÁGINA

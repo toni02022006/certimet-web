@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import imagenQuienesSomos from '../../image/nosotros/quienssms.png';
+import imagenQuienesSomos from '../../image/nosotros/quienssms.webp';
 import './QuienesSomos.css';
 
 const QuienesSomos = () => {

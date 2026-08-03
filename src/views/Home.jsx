@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Importación de imágenes locales
 import fondo1 from '../image/FONDO1.webp';
-import inacalImg from '../image/baners/baners_inicio/inacal.jpg.jpeg';
-import laboraImg from '../image/baners/baners_inicio/Labora.jpg.jpeg';
-import ecommerceImg from '../image/baners/baners_inicio/Ecommerce.jpg.jpeg';
-import serviciosImg from '../image/baners/baners_inicio/Servicios.jpg.jpeg';
-import qrImg from '../image/baners/baners_inicio/Objeto inteligente vectorial.png';
+import inacalImg from '../image/baners/baners_inicio/inacal.webp';
+import laboraImg from '../image/baners/baners_inicio/Labora.webp';
+import ecommerceImg from '../image/baners/baners_inicio/Ecommerce.webp';
+import serviciosImg from '../image/baners/baners_inicio/Servicios.webp';
+import qrImg from '../image/baners/baners_inicio/Objeto inteligente vectorial.webp';
 
 // ÍCONO DE WHATSAPP
 import iconWp from '../image/icons/whatsapp.webp';

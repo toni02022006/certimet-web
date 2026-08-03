@@ -36,7 +36,7 @@ import icTempV from '../../image/header_icons/header_iconsverde/temperatura.webp
 import icTempoV from '../../image/header_icons/header_iconsverde/tempo.webp';
 
 // IMAGEN PARA MANTENIMIENTO PREDICTIVO
-import imgMantenimiento from '../../image/ingenieria/img2.png';
+import imgMantenimiento from '../../image/ingenieria/img2.webp';
 
 import '../layout/Header.css'; 
 import './HeaderTienda.css';

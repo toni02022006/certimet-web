@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import './MisionVision.css';
 
 // Importación de las imágenes 3D
-import imgMision from '../../image/nosotros/MISION.png';
-import imgVision from '../../image/nosotros/VISION.png';
+import imgMision from '../../image/nosotros/MISION.webp';
+import imgVision from '../../image/nosotros/VISION.webp';
 
 const MisionVision = () => {
   return (

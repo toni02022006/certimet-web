@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './PorQueElegirnos.css';
 
 // Ruta de tu imagen del mensaje 3D
-import imgMensaje from '../../../image/laboratorio/msdefyp.png';
+import imgMensaje from '../../../image/laboratorio/msdefyp.webp';
 
 const stepsData = [
   {
