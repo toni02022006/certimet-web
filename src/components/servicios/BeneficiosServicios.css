@@ -1,0 +1,198 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+.bs-section {
+  background-color: #ffffff; 
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Evita scroll horizontal si la imagen 3D sobresale mucho */
+}
+
+.bs-container {
+  width: 100%;
+  max-width: 1050px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   BANNER SUPERIOR
+   ========================================================================== */
+.bs-banner-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  width: 100%;
+}
+
+.bs-banner {
+  background: linear-gradient(90deg, #004b9a 0%, #002855 100%);
+  border-radius: 40px;
+  padding: 40px 60px;
+  width: 100%;
+  max-width: 850px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 40, 85, 0.2);
+}
+
+.bs-banner-content h3 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.5px;
+}
+
+.bs-banner-light {
+  font-weight: 400;
+}
+
+.btn-consulte {
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid #ffffff;
+  border-radius: 30px;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-consulte:hover {
+  background-color: #ffffff;
+  color: #004b9a;
+}
+
+/* IMAGEN DEL BANNER (El check verde 3D) */
+.bs-banner-img {
+  position: absolute;
+  width: 320px; 
+  top: -65px; 
+  right: -20px; 
+  z-index: 10;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.25));
+}
+
+/* ==========================================================================
+   SECCIÓN DIVIDIDA: IMAGEN Y TEXTO
+   ========================================================================== */
+.bs-content-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+/* Columna Izquierda (Imagen) */
+.bs-image-col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* EFECTO DE DESVANECIMIENTO INFERIOR EN LA IMAGEN */
+.bs-img-fade {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  object-fit: cover;
+  /* Máscara de gradiente: hace que la imagen pase de sólida a transparente hacia abajo */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+}
+
+/* Columna Derecha (Texto) */
+.bs-text-col {
+  flex: 1;
+  max-width: 450px;
+}
+
+.bs-title {
+  color: #0056b3;
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin: 0 0 20px 0;
+}
+
+.bs-description {
+  color: #555555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Botón contorneado azul */
+.btn-outline-blue {
+  display: inline-flex;
+  align-items: center;
+  color: #0056b3;
+  background-color: transparent;
+  border: 1.5px solid #0056b3;
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-blue:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 968px) {
+  .bs-content-split {
+    flex-direction: column-reverse; /* Pone el texto arriba y la imagen abajo en móviles */
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .bs-text-col {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .bs-title {
+    font-size: 2.8rem;
+  }
+  
+  .bs-banner-img {
+    width: 250px;
+    top: -50px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bs-banner {
+    padding: 30px 25px;
+    text-align: center;
+    border-radius: 25px;
+  }
+  
+  .bs-banner-img {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    width: 200px;
+  }
+}
+
+@media (max-width: 500px) {
+  .bs-title {
+    font-size: 2.2rem;
+  }
+}

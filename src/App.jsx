@@ -48,6 +48,7 @@ import Checkout from './components/store/Checkout';
 import CheckoutInvitado from './components/store/CheckoutInvitado';
 import SeguimientoInvitado from './page/SeguimientoInvitado';
 import WhatsAppBot from './components/layout/WhatsAppBot';
+import Servicios from './views/Servicios';
 
 function App() {
   // ==========================================================================
@@ -98,6 +99,7 @@ function App() {
               <Route path="/blog/:id" element={<ArticuloDetalle />} />
               <Route path="/laboratorio" element={<Laboratorio />} />
               <Route path="/ingenieria" element={<Ingenieria />} />
+              <Route path="/servicios" element={<Servicios />} />
               
               <Route path="/laboratorio/fuerza-y-presion" element={<FuerzaPresion />} />
               <Route path="/laboratorio/electricidad" element={<Electricidad />} />

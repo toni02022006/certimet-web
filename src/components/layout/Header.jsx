@@ -81,6 +81,7 @@ const laboratoriosData = {
       "Resultados confiables, trazables y respaldados técnicamente."
     ],
     items: [
+      // 👇 Cambia los paths según necesites (ej. "/servicios/mantenimiento", "/servicios/mapeo-termico", etc.)
       { name: "Mantenimiento", path: "/servicios", icBase: icElec, icHover: icElecV },
       { name: "Mapeo Térmico", path: "/servicios", icBase: icTemp, icHover: icTempV },
       { name: "Análisis Termográfico", path: "/servicios", icBase: icFoto, icHover: icFotoV },
@@ -101,7 +102,7 @@ const laboratoriosData = {
 };
 
 // ===============================================================
-// DATOS ESTRUCTURADOS: INGENIERÍA Y AUTOMATIZACIÓN (CORREGIDO)
+// DATOS ESTRUCTURADOS: INGENIERÍA Y AUTOMATIZACIÓN
 // ===============================================================
 const ingenieriaMegaData = {
   mantenimiento: {
@@ -320,7 +321,6 @@ const Header = () => {
             }}
             onMouseLeave={() => {
               setIsMouseInside(false);
-              // Solo cerramos si no estamos escribiendo en los inputs
               if (!isFormFocused) {
                 setIsMenuOpen(false);
                 setHoveredItem(null);
@@ -343,13 +343,25 @@ const Header = () => {
                   {/* PESTAÑAS SUPERIORES */}
                   <div className="mega-tabs-container">
                     {Object.keys(laboratoriosData).map((key) => (
-                      <div 
-                        key={key}
-                        className={`mega-tab ${activeCategory === key ? 'active' : ''}`}
-                        onMouseEnter={() => setActiveCategory(key)}
-                      >
-                        {laboratoriosData[key].tabName}
-                      </div>
+                      // 🔥 Si la clave es 'servicios', renderizamos un Link, sino un div
+                      key === 'servicios' ? (
+                        <Link
+                          key={key}
+                          to="/servicios"
+                          className={`mega-tab ${activeCategory === key ? 'active' : ''}`}
+                          onMouseEnter={() => setActiveCategory(key)}
+                        >
+                          {laboratoriosData[key].tabName}
+                        </Link>
+                      ) : (
+                        <div
+                          key={key}
+                          className={`mega-tab ${activeCategory === key ? 'active' : ''}`}
+                          onMouseEnter={() => setActiveCategory(key)}
+                        >
+                          {laboratoriosData[key].tabName}
+                        </div>
+                      )
                     ))}
                   </div>
 
@@ -378,7 +390,6 @@ const Header = () => {
                     {/* Caja de Información Derecha */}
                     <div className={`mega-info-card ${laboratoriosData[activeCategory].isLoginForm ? 'certilab-mode' : ''}`}>
                       
-                      {/* CONDICIONAL: SI ES CERTILAB, MOSTRAMOS EL LOGIN */}
                       {laboratoriosData[activeCategory].isLoginForm ? (
                         <div className="mega-certilab-login">
                           <img src={logo} alt="Certimet Logo" className="login-logo-mega" />
@@ -431,7 +442,6 @@ const Header = () => {
                           </div>
                         </div>
                       ) : (
-                        /* SI NO ES CERTILAB, MOSTRAMOS TEXTOS Y LISTAS NORMALES */
                         <>
                           {laboratoriosData[activeCategory].infoTitle && (
                             <h3>{laboratoriosData[activeCategory].infoTitle}</h3>
@@ -476,7 +486,6 @@ const Header = () => {
                   exit={{ opacity: 0, y: 15 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  {/* PESTAÑAS SUPERIORES HORIZONTALES */}
                   <div className="ingenieria-tabs-container">
                     {Object.keys(ingenieriaMegaData).map((key) => (
                       <div 
@@ -489,34 +498,25 @@ const Header = () => {
                     ))}
                   </div>
 
-                  {/* PANEL INFERIOR CON IMAGEN */}
                   <div className="ingenieria-content-panel">
-                    
-                    {/* Caja de Información Izquierda */}
                     <div className="ingenieria-info-box">
                       <h3>{ingenieriaMegaData[activeIngenieriaCategory].title}</h3>
                       <p>{ingenieriaMegaData[activeIngenieriaCategory].desc}</p>
-                      
-                      {/* Lista de viñetas corregida */}
                       <ul className="ingenieria-bullet-list">
                         {ingenieriaMegaData[activeIngenieriaCategory].bullets.map((bullet, idx) => (
                           <li key={idx}>{bullet}</li>
                         ))}
                       </ul>
-                      
                       <Link to={ingenieriaMegaData[activeIngenieriaCategory].btnLink} className="btn-ingenieria-outline">
                         {ingenieriaMegaData[activeIngenieriaCategory].btnText}
                       </Link>
                     </div>
-
-                    {/* Imagen Derecha */}
                     <div className="ingenieria-image-box">
                       <img 
                         src={ingenieriaMegaData[activeIngenieriaCategory].img} 
                         alt={ingenieriaMegaData[activeIngenieriaCategory].title} 
                       />
                     </div>
-
                   </div>
                 </motion.div>
               )}
@@ -524,10 +524,9 @@ const Header = () => {
           </li>
 
           {/* =========================================================
-              NUEVO ENLACE: BLOG (Reemplaza a Servicios)
+              ENLACES EXISTENTES (Sin Servicios en el principal)
               ========================================================= */}
           <li><Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link></li>
-
           <li><Link to="/tienda" className={location.pathname === '/tienda' ? 'active' : ''}>Tienda</Link></li>
           <li><Link to="/contacto" className={location.pathname === '/contacto' ? 'active' : ''}>Contacto</Link></li>
         </ul>

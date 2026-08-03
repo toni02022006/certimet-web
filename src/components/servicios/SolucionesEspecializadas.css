@@ -1,0 +1,121 @@
+/* Contenedor principal de la sección */
+.soluciones-especializadas-section {
+  width: 100%;
+  padding: 6rem 2rem;
+  background-color: #ffffff;
+}
+
+/* Flexbox para alinear texto e imagen */
+.soluciones-especializadas-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+/* ==========================================
+   ESTILOS DEL TEXTO (Izquierda)
+   ========================================== */
+.soluciones-text-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.soluciones-title {
+  color: #0056b3; /* Ajusta este azul al color corporativo exacto de Certimet */
+  font-size: 2.8rem;
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.soluciones-title-bold {
+  font-weight: 600;
+}
+
+.soluciones-description {
+  color: #555555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  text-align: justify; /* Para que el texto se alinee como en tu diseño */
+}
+
+/* Botón contorneado tipo píldora */
+.soluciones-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.8rem;
+  color: #0056b3; /* Azul Certimet */
+  background-color: transparent;
+  border: 1.5px solid #0056b3;
+  border-radius: 50px; /* Borde redondeado completo */
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.soluciones-btn-outline .arrow-icon {
+  margin-left: 8px;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.soluciones-btn-outline:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
+
+.soluciones-btn-outline:hover .arrow-icon {
+  transform: translateX(4px); /* Pequeña animación de la flecha al hacer hover */
+}
+
+/* ==========================================
+   ESTILOS DE LA IMAGEN (Derecha)
+   ========================================== */
+.soluciones-image-content {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.soluciones-img {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  border-radius: 20px; /* Borde redondeado de la imagen según la captura */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra sutil para darle profundidad */
+  object-fit: cover;
+}
+
+/* ==========================================
+   DISEÑO RESPONSIVO (Móviles y Tablets)
+   ========================================== */
+@media (max-width: 968px) {
+  .soluciones-especializadas-container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .soluciones-text-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .soluciones-description {
+    text-align: center;
+  }
+
+  .soluciones-image-content {
+    justify-content: center;
+  }
+
+  .soluciones-title {
+    font-size: 2.2rem;
+  }
+}
