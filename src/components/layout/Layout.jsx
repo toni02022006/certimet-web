@@ -1,25 +1,27 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import FloatingSocials from './FloatingSocials';
+import SeoHelmet from '../seo/SeoHelmet'; // 👈 Importamos
 
 const Layout = () => {
+  const location = useLocation();
+  const ruta = location.pathname; // Ej: '/nosotros', '/blog/123'
+
   return (
-    <div className="layout-wrapper">
-      {/* 1. La cabecera se queda fija arriba */}
-      <Header />
-      
-      {/* 2. El Outlet es el "hueco" dinámico donde React inyectará el Home, Contacto, etc. */}
-      <main className="main-content-area">
-        <Outlet /> 
-      </main>
+    <>
+      {/* ✅ Inyectamos el SEO en el <head> */}
+      <SeoHelmet ruta={ruta} />
 
-      {/* 3. El pie de página va al final */}
-      <Footer />
-      {/* 4. Los botones sociales flotantes */}
-      <FloatingSocials />
-
-    </div>
+      <div className="layout-wrapper">
+        <Header />
+        <main className="main-content-area">
+          <Outlet />
+        </main>
+        <Footer />
+        <FloatingSocials />
+      </div>
+    </>
   );
 };
 

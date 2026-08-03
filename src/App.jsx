@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async'; // 👈 Importación agregada
 import { AuthProvider } from './context/AuthContext'
 import { CarritoProvider } from './context/CarritoContext'; 
 import PagoListener from './components/PagoListener';
@@ -74,80 +75,82 @@ function App() {
   }, []);
 
   return (
-    // 👇 Envolvemos todo el enrutador con el CarritoProvider
-    <CarritoProvider>
-      <BrowserRouter basename="/">
-        
-        {/* ✅ AQUÍ VA EL COMPONENTE: Escucha los cambios de ruta y sube el scroll */}
-        <ScrollToTop />
-        <PagoListener />
-
-        <Routes>
+    // 👇 Envolvemos toda la aplicación en el nivel más alto con HelmetProvider
+    <HelmetProvider>
+      <CarritoProvider>
+        <BrowserRouter basename="/">
           
-          {/* =======================================================
-              RUTAS WEB CORPORATIVA (Con Header Normal y Footer)
-              ======================================================= */}
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/denuncias" element={<Denuncias />} />
-            <Route path="/blog/:id" element={<ArticuloDetalle />} />
-            <Route path="/laboratorio" element={<Laboratorio />} />
-            <Route path="/ingenieria" element={<Ingenieria />} />
+          {/* ✅ AQUÍ VA EL COMPONENTE: Escucha los cambios de ruta y sube el scroll */}
+          <ScrollToTop />
+          <PagoListener />
+
+          <Routes>
             
-            <Route path="/laboratorio/fuerza-y-presion" element={<FuerzaPresion />} />
-            <Route path="/laboratorio/electricidad" element={<Electricidad />} />
-            <Route path="/laboratorio/tiempo-frecuencia" element={<TiempoFrecuencia />} />
-            <Route path="/laboratorio/temperatura" element={<Temperatura />} />
-            <Route path="/laboratorio/longitud" element={<Longitud />} />
-            <Route path="/laboratorio/humedad" element={<Humedad />} />
-            <Route path="/laboratorio/fotometria-acustica" element={<FotometriaAcustica />} />
-            <Route path="/laboratorio/flujo" element={<Flujo />} />
-            <Route path="/laboratorio/fisico-quimico" element={<FisicoQuimico />} />
-            <Route path="/laboratorio/masa" element={<Masa />} />
+            {/* =======================================================
+                RUTAS WEB CORPORATIVA (Con Header Normal y Footer)
+                ======================================================= */}
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/nosotros" element={<Nosotros />} />
+              <Route path="/contacto" element={<Contacto />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/denuncias" element={<Denuncias />} />
+              <Route path="/blog/:id" element={<ArticuloDetalle />} />
+              <Route path="/laboratorio" element={<Laboratorio />} />
+              <Route path="/ingenieria" element={<Ingenieria />} />
+              
+              <Route path="/laboratorio/fuerza-y-presion" element={<FuerzaPresion />} />
+              <Route path="/laboratorio/electricidad" element={<Electricidad />} />
+              <Route path="/laboratorio/tiempo-frecuencia" element={<TiempoFrecuencia />} />
+              <Route path="/laboratorio/temperatura" element={<Temperatura />} />
+              <Route path="/laboratorio/longitud" element={<Longitud />} />
+              <Route path="/laboratorio/humedad" element={<Humedad />} />
+              <Route path="/laboratorio/fotometria-acustica" element={<FotometriaAcustica />} />
+              <Route path="/laboratorio/flujo" element={<Flujo />} />
+              <Route path="/laboratorio/fisico-quimico" element={<FisicoQuimico />} />
+              <Route path="/laboratorio/masa" element={<Masa />} />
 
-            <Route path='ingenieria/mantenimiento-predictivo' element={<MantenimientoPredictivo />}/>
+              <Route path='ingenieria/mantenimiento-predictivo' element={<MantenimientoPredictivo />}/>
 
-            <Route path="/autentificacion/calibracion" element={<AutentificacionCalibracion />} />
-            <Route path="/autentificacion/informes" element={<AutentificacionInformes />} />
-          </Route>
+              <Route path="/autentificacion/calibracion" element={<AutentificacionCalibracion />} />
+              <Route path="/autentificacion/informes" element={<AutentificacionInformes />} />
+            </Route>
 
-          {/* =======================================================
-              RUTAS E-COMMERCE (Con Header Tienda y Footer)
-              ======================================================= */}
-          <Route element={<LayoutTienda />}>
-            <Route path="/tienda" element={<Tienda />} />
-            <Route path="/tienda/login" element={<Login />} />
-            <Route path="/tienda/registro" element={<Registro />} />
-            <Route path="/tienda/cuenta" element={<Cuenta />} />
-            <Route path="/tienda/recuperar" element={<RecuperarPassword />} />
-            <Route path="/tienda/verificar-codigo" element={<VerificarCodigo />} />
-            <Route path="/tienda/seguimiento/:id" element={<SeguimientoPedido />} />
-            <Route path="/producto/:id" element={<ProductoDetalle />} />
-            <Route path="/producto/:id/" element={<ProductoDetalle />} />
-            <Route path="/tienda/carrito" element={<Carrito />} />
-            <Route path="/tienda/checkout" element={<Checkout />} />
-            <Route path="/tienda/checkout-invitado" element={<CheckoutInvitado />} />
-            <Route path="/tienda/seguimiento-invitado/:id" element={<SeguimientoInvitado />} />
+            {/* =======================================================
+                RUTAS E-COMMERCE (Con Header Tienda y Footer)
+                ======================================================= */}
+            <Route element={<LayoutTienda />}>
+              <Route path="/tienda" element={<Tienda />} />
+              <Route path="/tienda/login" element={<Login />} />
+              <Route path="/tienda/registro" element={<Registro />} />
+              <Route path="/tienda/cuenta" element={<Cuenta />} />
+              <Route path="/tienda/recuperar" element={<RecuperarPassword />} />
+              <Route path="/tienda/verificar-codigo" element={<VerificarCodigo />} />
+              <Route path="/tienda/seguimiento/:id" element={<SeguimientoPedido />} />
+              <Route path="/producto/:id" element={<ProductoDetalle />} />
+              <Route path="/producto/:id/" element={<ProductoDetalle />} />
+              <Route path="/tienda/carrito" element={<Carrito />} />
+              <Route path="/tienda/checkout" element={<Checkout />} />
+              <Route path="/tienda/checkout-invitado" element={<CheckoutInvitado />} />
+              <Route path="/tienda/seguimiento-invitado/:id" element={<SeguimientoInvitado />} />
+              
+              {/* ✅ NUEVAS RUTAS DEL CATÁLOGO */}
+              <Route path="/tienda/catalogo" element={<Catalogo />} />
+              <Route path="/tienda/categoria/:idCategoria" element={<Catalogo />} />
+              
+            </Route>
+
+            {/* =======================================================
+                RUTAS AISLADAS (Sin Header ni Footer)
+                ======================================================= */}
+            <Route path="/playground" element={<Playground />} />
+            <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
             
-            {/* ✅ NUEVAS RUTAS DEL CATÁLOGO */}
-            <Route path="/tienda/catalogo" element={<Catalogo />} />
-            <Route path="/tienda/categoria/:idCategoria" element={<Catalogo />} />
-            
-          </Route>
-
-          {/* =======================================================
-              RUTAS AISLADAS (Sin Header ni Footer)
-              ======================================================= */}
-          <Route path="/playground" element={<Playground />} />
-          <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
-          
-        </Routes>
-        <WhatsAppBot />
-      </BrowserRouter>
-    </CarritoProvider>
+          </Routes>
+          <WhatsAppBot />
+        </BrowserRouter>
+      </CarritoProvider>
+    </HelmetProvider>
   );
 }
 
