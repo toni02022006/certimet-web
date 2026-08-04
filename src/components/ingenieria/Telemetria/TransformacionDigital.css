@@ -1,0 +1,159 @@
+/* ==========================================================================
+   SECCIÓN Y CONTENEDOR
+   ========================================================================== */
+.td-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 80px 5%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.td-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* ==========================================================================
+   COLUMNA IZQUIERDA (Bloque Azul / Imagen)
+   ========================================================================== */
+.td-media-col {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilo del cuadro azul que aparece en tu imagen */
+.td-blue-block {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4/5;
+  background-color: #0056b3; /* Azul institucional */
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 86, 179, 0.15);
+}
+
+/* Por si decides usar una imagen después */
+.td-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA (Textos)
+   ========================================================================== */
+.td-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.td-title {
+  color: #0056b3;
+  font-size: 38px;
+  font-weight: 300; /* Texto normal/delgado */
+  line-height: 1.2;
+  margin: 0 0 25px 0;
+  letter-spacing: -0.5px;
+}
+
+.td-title-bold {
+  font-weight: 700; /* Resalta "IoT y monitoreo remoto" */
+}
+
+.td-description {
+  color: #59575a;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 35px 0;
+  max-width: 480px;
+}
+
+/* ==========================================================================
+   LISTA CON PUNTITOS NIVELADOS
+   ========================================================================== */
+.td-list {
+  list-style: none; /* Quitamos las viñetas por defecto de HTML */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px; /* Separación vertical entre cada item */
+}
+
+.td-list-item {
+  color: #0056b3;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  position: relative;
+  /* Este padding asegura que si el texto baja a una segunda línea, 
+     respete el margen del puntito y quede todo alineado (nivelado) */
+  padding-left: 25px; 
+}
+
+/* Creamos el puntito personalizado con CSS para control exacto */
+.td-list-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  /* Esta altura controla el nivel del puntito respecto a la primera línea */
+  top: 7px; 
+  width: 6px;
+  height: 6px;
+  background-color: #0056b3;
+  border-radius: 50%;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 950px) {
+  .td-container {
+    flex-direction: column;
+    gap: 60px;
+    text-align: center;
+  }
+
+  .td-text-col {
+    align-items: center;
+  }
+
+  .td-description {
+    text-align: center;
+  }
+
+  .td-list {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 768px) {
+  .td-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .td-title {
+    font-size: 28px;
+  }
+  
+  .td-blue-block {
+    border-radius: 20px;
+  }
+}

@@ -43,6 +43,7 @@ import FisicoQuimico from './views/sublaboratorios/FisicoQuimico';
 import Masa from './views/sublaboratorios/Masa';
 import Ingenieria from './views/Ingenieria';
 import MantenimientoPredictivo from './views/subingenieria/MantenimientoPredictivo';
+import Telemetria from './views/subingenieria/Telemetria';
 import Carrito from './components/store/Carrito';
 import Checkout from './components/store/Checkout';
 import CheckoutInvitado from './components/store/CheckoutInvitado';
@@ -113,6 +114,7 @@ function App() {
               <Route path="/laboratorio/masa" element={<Masa />} />
 
               <Route path='ingenieria/mantenimiento-predictivo' element={<MantenimientoPredictivo />}/>
+              <Route path='ingenieria/telemetria' element={<Telemetria />}/>
 
               <Route path="/autentificacion/calibracion" element={<AutentificacionCalibracion />} />
               <Route path="/autentificacion/informes" element={<AutentificacionInformes />} />

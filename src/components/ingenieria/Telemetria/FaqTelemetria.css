@@ -1,0 +1,132 @@
+/* ==========================================================================
+   SECCIÓN Y CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.faq-section {
+  width: 100%;
+  background-color: #e9f5ff; /* El fondo celeste exacto de tu imagen */
+  padding: 80px 5% 100px 5%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.faq-container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* ==========================================================================
+   TÍTULO PRINCIPAL
+   ========================================================================== */
+.faq-main-title {
+  color: #0056b3; /* Azul Certimet */
+  font-size: 42px;
+  font-weight: 600;
+  margin: 0 0 50px 0;
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   LISTA DE ACORDEONES
+   ========================================================================== */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item {
+  border-bottom: 1px solid #c2dcf6; /* Línea separadora gris/celeste */
+}
+
+/* --- PREGUNTA (BOTÓN) --- */
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 25px 0;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.faq-question-text {
+  color: #59575a;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding-right: 30px; /* Espacio para que el texto no choque con el icono */
+  transition: color 0.3s ease;
+}
+
+.faq-icon {
+  color: #59575a;
+  font-size: 24px;
+  font-weight: 300;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Cambio de color al pasar el mouse (hover) o al estar abierto */
+.faq-question:hover .faq-question-text,
+.faq-question:hover .faq-icon,
+.faq-item.open .faq-question-text,
+.faq-item.open .faq-icon {
+  color: #0056b3; /* Se vuelve azul al interactuar */
+}
+
+/* --- RESPUESTA (CONTENEDOR ANIMADO) --- */
+.faq-answer-wrapper {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); /* Transición suave de acordeón */
+}
+
+.faq-item.open .faq-answer-wrapper {
+  transition: max-height 0.5s ease-in-out;
+}
+
+.faq-answer-content {
+  padding-bottom: 25px; /* Espacio inferior antes de la línea */
+}
+
+.faq-answer-content p {
+  color: #59575a;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 60px 5%;
+  }
+
+  .faq-main-title {
+    font-size: 34px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .faq-question-text {
+    font-size: 15px;
+  }
+
+  .faq-answer-content p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-main-title {
+    font-size: 28px;
+  }
+  
+  .faq-question {
+    padding: 20px 0;
+  }
+}

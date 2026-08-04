@@ -1,0 +1,261 @@
+/* ==========================================================================
+   SECCIÓN Y CONTENEDOR
+   ========================================================================== */
+.cs-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 80px 5%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.cs-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ==========================================================================
+   ENCABEZADO
+   ========================================================================== */
+.cs-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.cs-title {
+  color: #0056b3;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0 0 15px 0;
+  letter-spacing: -0.5px;
+}
+
+.cs-title-bold {
+  font-weight: 700;
+}
+
+.cs-subtitle {
+  color: #59575a;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   ÁREA DEL CARRUSEL
+   ========================================================================== */
+.cs-carousel-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* Contenedor relativo para posicionar las tarjetas absolutamente */
+.cs-cards-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 480px; /* Altura suficiente para la tarjeta activa (la más grande) */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px; /* Opcional: Da un leve efecto 3D si se desea */
+}
+
+/* ==========================================================================
+   TARJETAS (ESTILOS Y ANIMACIONES)
+   ========================================================================== */
+.cs-card {
+  position: absolute;
+  width: 280px;
+  height: 400px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  border: 1px solid #c2dcf6;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  
+  /* Estado por defecto (Oculto) */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(0) scale(0.8);
+  z-index: 1;
+}
+
+/* Imagen dentro de la tarjeta */
+.cs-card-img-wrapper {
+  width: 100%;
+  height: 200px;
+  padding: 15px; /* Margen interior según el diseño */
+}
+
+.cs-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Textos dentro de la tarjeta */
+.cs-card-content {
+  padding: 10px 25px 25px 25px;
+}
+
+.cs-card-title {
+  color: #0056b3;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  transition: color 0.4s ease;
+}
+
+.cs-card-desc {
+  color: #59575a;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+  transition: color 0.4s ease;
+}
+
+/* --- ESTADO: ACTIVO (TARJETA CENTRAL) --- */
+.cs-card.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1.15); /* Crece un 15% */
+  z-index: 3;
+  background-color: #002855; /* Fondo azul oscuro */
+  border-color: #002855;
+  box-shadow: 0 20px 40px rgba(0, 40, 85, 0.3);
+}
+
+.cs-card.active .cs-card-title {
+  color: #00e676; /* Título Verde */
+}
+
+.cs-card.active .cs-card-desc {
+  color: #ffffff; /* Texto Blanco */
+  font-size: 12px; /* Ligeramente más grande al estar activo */
+}
+
+/* --- ESTADOS: ANTERIOR Y SIGUIENTE (LADOS) --- */
+.cs-card.prev {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-110%) scale(0.9); /* Se mueve a la izq y se encoge */
+  z-index: 2;
+}
+
+.cs-card.next {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(110%) scale(0.9); /* Se mueve a la der y se encoge */
+  z-index: 2;
+}
+
+/* ==========================================================================
+   BOTONES Y FLECHAS
+   ========================================================================== */
+.cs-arrow {
+  background: transparent;
+  border: none;
+  color: #0056b3;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-arrow:hover {
+  color: #002855;
+  transform: scale(1.1);
+}
+
+.cs-arrow:active {
+  transform: scale(0.9);
+}
+
+/* ==========================================================================
+   PAGINACIÓN (PUNTITOS)
+   ========================================================================== */
+.cs-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.cs-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.cs-dot:hover {
+  background-color: #9ca3af;
+}
+
+.cs-dot.active {
+  background-color: #4b5563; /* Gris oscuro para el activo */
+  transform: scale(1.2);
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .cs-cards-wrapper {
+    max-width: 750px;
+  }
+  .cs-card.prev { transform: translateX(-95%) scale(0.85); }
+  .cs-card.next { transform: translateX(95%) scale(0.85); }
+}
+
+@media (max-width: 768px) {
+  .cs-title {
+    font-size: 32px;
+  }
+  
+  .cs-cards-wrapper {
+    max-width: 100%;
+    height: 420px;
+  }
+  
+  .cs-card {
+    width: 250px;
+    height: 360px;
+  }
+
+  /* En móviles encogemos un poco más las tarjetas laterales o las juntamos */
+  .cs-card.prev { transform: translateX(-65%) scale(0.8); opacity: 0.5; }
+  .cs-card.next { transform: translateX(65%) scale(0.8); opacity: 0.5; }
+  .cs-card.active { transform: translateX(0) scale(1.05); }
+  
+  .cs-arrow {
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-title {
+    font-size: 28px;
+  }
+
+  /* En celulares muy pequeños ocultamos los lados para que no se vea amontonado */
+  .cs-card.prev { opacity: 0; pointer-events: none; }
+  .cs-card.next { opacity: 0; pointer-events: none; }
+  .cs-card.active { transform: translateX(0) scale(1); }
+}
