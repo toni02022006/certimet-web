@@ -257,3 +257,33 @@
     margin-bottom: 30px;
   }
 }
+.seguimiento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-cancelar-pedido {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+}
+
+.btn-cancelar-pedido:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.btn-cancelar-pedido:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

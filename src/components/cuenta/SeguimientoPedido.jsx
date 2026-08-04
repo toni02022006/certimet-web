@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Package, Truck, MapPin, Home, XCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Package, Truck, MapPin, Home, XCircle, AlertTriangle } from 'lucide-react';
+import Swal from 'sweetalert2';
 import './SeguimientoPedido.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
@@ -9,6 +10,7 @@ const SeguimientoPedido = () => {
   const { id } = useParams();
   const [pedido, setPedido] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cancelando, setCancelando] = useState(false);
   
   const token = localStorage.getItem('token');
 
@@ -29,15 +31,63 @@ const SeguimientoPedido = () => {
         if (res.ok) {
           const data = await res.json();
           setPedido(data);
+        } else {
+          setPedido(null);
         }
       } catch (error) {
         console.error("Error fetching pedido:", error);
+        setPedido(null);
       } finally {
         setLoading(false);
       }
     };
     fetchPedido();
   }, [id, token]);
+
+  const handleCancelar = async () => {
+    if (!token) {
+      Swal.fire('Error', 'Debes iniciar sesión para cancelar el pedido.', 'error');
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: '¿Cancelar pedido?',
+      text: 'Esta acción no se puede deshacer. Si el pedido ya fue pagado, se solicitará el reembolso.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, cancelar',
+      cancelButtonText: 'No, mantener'
+    });
+
+    if (!result.isConfirmed) return;
+
+    setCancelando(true);
+    try {
+      // ✅ CAMBIO IMPORTANTE: método PUT en lugar de POST
+      const res = await fetch(`${API_BASE_URL}/api/pedidos/${id}/cancelar`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await res.json();
+      if (res.ok) {
+        Swal.fire('Cancelado', 'El pedido ha sido cancelado exitosamente.', 'success');
+        // Actualizar el estado local a CANCELADO para reflejar inmediatamente
+        setPedido({ ...pedido, estado_pedido: 'CANCELADO' });
+      } else {
+        Swal.fire('Error', data.error || 'No se pudo cancelar el pedido.', 'error');
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire('Error', 'Ocurrió un error al cancelar el pedido.', 'error');
+    } finally {
+      setCancelando(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -80,11 +130,13 @@ const SeguimientoPedido = () => {
   const indiceSeguro = Math.max(0, indiceActual);
   const porcentajeProgreso = (indiceSeguro / (pasosLogistica.length - 1)) * 100;
 
+  // Mostrar botón de cancelar solo si está PENDIENTE o PAGADO (y el usuario está autenticado)
+  const puedeCancelar = (pedido.estado_pedido === 'PENDIENTE' || pedido.estado_pedido === 'PAGADO') && token;
+
   return (
     <div className="seguimiento-page">
       <div className="seguimiento-container">
         
-        {/* CABECERA LIMPIA */}
         <div className="seguimiento-header">
           <div className="seguimiento-titulo-grupo">
             <h2>Seguimiento del Pedido <span>#{pedido.id}</span></h2>
@@ -92,9 +144,19 @@ const SeguimientoPedido = () => {
               Realizado el: {new Date(pedido.fecha_pedido).toLocaleDateString()}
             </p>
           </div>
+          {puedeCancelar && (
+            <button 
+              className="btn-cancelar-pedido" 
+              onClick={handleCancelar}
+              disabled={cancelando}
+            >
+              <AlertTriangle size={18} />
+              {cancelando ? 'Cancelando...' : 'Cancelar Pedido'}
+            </button>
+          )}
         </div>
         
-        {/* FILA 1: ESTADOS (STEPPER HORIZONTAL) */}
+        {/* Stepper horizontal */}
         <div className="stepper-horizontal">
           <div className="stepper-linea-fondo"></div>
           <div className="stepper-linea-progreso" style={{ width: `${porcentajeProgreso}%` }}></div>
@@ -118,7 +180,7 @@ const SeguimientoPedido = () => {
           })}
         </div>
 
-        {/* FILA 2: ANIMACIÓN DEL CAMIÓN EN LA PISTA */}
+        {/* Animación del camión */}
         <div className="animacion-track-container">
           <div className="pista">
             <div className="pista-progreso" style={{ width: `${porcentajeProgreso}%` }}></div>
@@ -131,7 +193,6 @@ const SeguimientoPedido = () => {
           </div>
         </div>
 
-        {/* FILA 3: BOTÓN DE VOLVER (NUEVO DISEÑO) */}
         <div className="seguimiento-footer">
           <Link to="/tienda/cuenta" className="btn-volver-centrado">
             <ArrowLeft size={20} />
