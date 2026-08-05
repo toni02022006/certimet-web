@@ -27,9 +27,7 @@ const Certifications = () => {
           </div>
           <h3>Acreditaciones</h3>
           <p className="card-text">
-            Laboratorio de Metrología y<br/>
-            Calibración Acreditado por INACAL<br/>
-            Norma Técnica ISO/IEC 17025:2017
+            Laboratorio de Metrología y Calibración Acreditado por INACAL. Norma Técnica ISO/IEC 17025:2017.
           </p>
           <Link to="/nosotros#acreditacion" className="cert-button">
             Nuestro alcance &rarr;
@@ -44,9 +42,7 @@ const Certifications = () => {
           <h3>Certificaciones</h3>
           <p className="card-subtitle">Triple certificación ISO</p>
           <p className="card-text">
-            CERTIMET cuenta con triple certificación<br/>
-            ISO, resultado de su compromiso con la<br/>
-            mejora continua y la calidad
+            CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad.
           </p>
           <Link to="/nosotros#triple" className="cert-button">
             Ver especialidades

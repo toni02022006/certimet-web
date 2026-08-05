@@ -1,47 +1,64 @@
+/* ==========================================================================
+   SECCIÓN BASE
+   ========================================================================== */
 .why-calibrate-section {
-  /* Fondo celeste que pediste */
   background-color: #e9f5ff; 
   padding: 100px 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  overflow: hidden; 
+  box-sizing: border-box;
 }
 
 .why-calibrate-container {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 80px; /* Separación entre la imagen y el texto */
-  max-width: 1100px;
+  justify-content: space-between;
+  gap: 70px;
   width: 100%;
 }
 
 /* ==========================================================================
-   IMAGEN LIMPIA (Sin marco desplazado)
+   IMÁGENES (ESCRITORIO VS MÓVIL)
    ========================================================================== */
 .why-calibrate-image-wrapper {
-  flex: 1;
-  max-width: 480px; 
+  display: flex;
+}
+
+.desktop-only {
+  flex: 0.9;
+  justify-content: flex-start;
+}
+
+.mobile-only {
+  display: none; /* Oculta la imagen intercalada en PC */
+  width: 100%;
 }
 
 .why-calibrate-image {
-  width: 80%;
+  width: 100%;
+  max-width: 480px;
   height: auto;
   object-fit: cover;
-  border-radius: 25px; /* Bordes redondeados más suaves */
-  box-shadow: 0 20px 40px rgba(0, 59, 122, 0.15); /* Sombra sutil azulada */
+  border-radius: 25px;
+  box-shadow: 0 15px 35px rgba(0, 59, 122, 0.15); /* Sombra más ligera */
   display: block;
 }
 
 /* ==========================================================================
-   TEXTOS
+   TEXTOS Y COLUMNA DERECHA
    ========================================================================== */
 .why-calibrate-content {
-  flex: 1;
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Fuerza la alineación a la izquierda */
+  text-align: left; /* Fuerza la alineación a la izquierda */
 }
 
-/* Etiqueta superior con la rayita verde */
 .why-calibrate-tag {
-  color: #00d639; /* Verde Certimet */
+  color: #00d639; 
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
@@ -49,7 +66,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .why-calibrate-tag::before {
@@ -60,39 +77,40 @@
   background-color: #00d639;
 }
 
-/* Título Cursiva (¡Letra más grande!) */
 .why-calibrate-title {
-  color: #0056b3; /* Azul Certimet */
-  font-size: 55px; /* Aumentado drásticamente */
+  color: #0056b3; 
+  font-size: 50px; 
   font-style: italic; 
   line-height: 1.1;
   margin-bottom: 25px;
-  font-weight: 500;
-  letter-spacing: -1.5px; /* Letras un poquito más juntas para el efecto moderno */
+  font-weight: 600;
+  letter-spacing: -1.5px; 
 }
 
-/* Párrafo */
 .why-calibrate-description {
   color: #555555;
   font-size: 15px;
   line-height: 1.6;
+  margin-bottom: 35px; /* Espacio antes del botón */
 }
+
 /* ==========================================================================
-   BOTÓN TRANSPARENTE CON BORDE AZUL
+   BOTÓN
    ========================================================================== */
 .why-calibrate-button-wrapper {
-  margin-top: 30px; /* Separación del párrafo */
+  display: flex;
+  width: 100%;
 }
 
 .why-calibrate-btn {
   display: inline-block;
-  padding: 12px 32px;
+  padding: 12px 28px; /* Mismas proporciones que Quienes Somos */
   background-color: transparent;
-  color: #0056b3;          /* Azul Certimet */
-  border: 2px solid #0056b3;
-  border-radius: 30px;     /* Bordes redondeados */
+  color: #0056b3;
+  border: 1px solid #0056b3; /* Borde más fino para parecerse al otro */
+  border-radius: 50px; /* Redondeado idéntico */
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -101,37 +119,58 @@
 .why-calibrate-btn:hover {
   background-color: #0056b3;
   color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
-  transform: translateY(-2px); /* Pequeño efecto de elevación */
+  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
+  transform: translateY(-2px); 
 }
 
-/* En responsive, si el contenido está centrado, el botón también */
-@media (max-width: 600px) {
-  .why-calibrate-button-wrapper {
-    text-align: center;
-  }
-}
 /* ==========================================================================
-   RESPONSIVO
+   DISEÑO RESPONSIVO (MÓVIL / INTERCALADO COMO QUIÉNES SOMOS)
    ========================================================================== */
-@media (max-width: 992px) {
+@media (max-width: 960px) {
+  .desktop-only {
+    display: none !important; 
+  }
+  
+  .mobile-only {
+    display: flex !important; 
+    margin: 25px 0; 
+    justify-content: flex-start; /* Alineado a la izquierda */
+  }
+
   .why-calibrate-container {
     flex-direction: column;
-    gap: 50px;
+    gap: 0;
   }
-  .why-calibrate-title {
-    font-size: 45px;
+
+  .why-calibrate-content {
+    width: 100%;
   }
 }
 
-@media (max-width: 600px) {
-  .why-calibrate-title {
-    font-size: 38px;
+@media (max-width: 768px) {
+  .why-calibrate-section {
+    /* Mismo padding que "Quiénes Somos" para respetar la barra de redes sociales */
+    padding: 60px 20px 60px 70px; 
   }
-  .why-calibrate-content {
-    text-align: center;
+  
+  .why-calibrate-image {
+    max-width: 320px; /* Igual que en Quiénes Somos */
+    border-radius: 20px;
   }
+
   .why-calibrate-tag {
-    justify-content: center;
+    font-size: 12px;
+    margin-bottom: 15px;
   }
-} 
+
+  .why-calibrate-title {
+    font-size: 32px; 
+    letter-spacing: -1px;
+    margin-bottom: 0; /* El margen lo da la imagen móvil */
+  }
+
+  .why-calibrate-description {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+}

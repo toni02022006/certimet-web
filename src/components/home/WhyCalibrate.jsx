@@ -1,30 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';  // ← Importa Link
+import { Link } from 'react-router-dom';
 import './WhyCalibrate.css';
 
-import calibracionImg from '../../image/calibracioninicio.webp';  // ← Asegúrate de que la ruta sea correcta
+import calibracionImg from '../../image/calibracioninicio.webp';
 
-// Animaciones (igual que antes)
-const imageReveal = {
-  hidden: { opacity: 0, x: -40, scale: 0.95, rotateY: -10, filter: "blur(8px)" },
+// Animaciones LIGERAS y FLUIDAS (sin blur, sin 3D)
+// Optimizadas para ejecutarse varias veces (once: false) sin causar lag.
+const imageSlide = {
+  hidden: { opacity: 0, x: -30 },
   visible: { 
     opacity: 1, 
     x: 0, 
-    scale: 1, 
-    rotateY: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" }
   }
 };
 
-const textReveal = {
-  hidden: { opacity: 0, x: 40, filter: "blur(8px)" },
+const textFadeSlide = {
+  hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
-    x: 0, 
-    filter: "blur(0px)", 
-    transition: { duration: 0.8, ease: "easeOut" } 
+    y: 0, 
+    transition: { duration: 0.5, ease: "easeOut" } 
   }
 };
 
@@ -33,14 +30,13 @@ const WhyCalibrate = () => {
     <section className="why-calibrate-section">
       <div className="why-calibrate-container">
         
-        {/* Imagen */}
+        {/* COLUMNA IZQUIERDA (Imagen) - SOLO VISIBLE EN ESCRITORIO */}
         <motion.div 
-          className="why-calibrate-image-wrapper"
+          className="why-calibrate-image-wrapper desktop-only"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.4 }}
-          variants={imageReveal}
-          style={{ perspective: 1000 }}
+          viewport={{ once: false, amount: 0.3 }} /* Efecto activo al subir y bajar */
+          variants={imageSlide}
         >
           <img 
             src={calibracionImg} 
@@ -49,33 +45,44 @@ const WhyCalibrate = () => {
           />
         </motion.div>
 
-        {/* Contenido de texto */}
+        {/* COLUMNA DERECHA (Texto, Imagen Móvil y Botón) */}
         <motion.div 
           className="why-calibrate-content"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.4 }}
-          variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
+          viewport={{ once: false, amount: 0.2 }} /* Efecto activo al subir y bajar */
+          variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
         >
-          <motion.span variants={textReveal} className="why-calibrate-tag">
+          <motion.span variants={textFadeSlide} className="why-calibrate-tag">
             POR QUÉ CALIBRAR
           </motion.span>
           
-          <motion.h2 variants={textReveal} className="why-calibrate-title">
-            ¿Cuándo vence<br />tu próxima<br />calibración?
+          <motion.h2 variants={textFadeSlide} className="why-calibrate-title">
+            ¿Cuándo vence tu próxima calibración?
           </motion.h2>
+
+          {/* IMAGEN INTERCALADA - SOLO VISIBLE EN MÓVIL */}
+          <motion.div 
+            className="why-calibrate-image-wrapper mobile-only"
+            variants={imageSlide}
+          >
+            <img 
+              src={calibracionImg} 
+              alt="Calibración Certimet" 
+              className="why-calibrate-image"
+            />
+          </motion.div>
           
-          <motion.p variants={textReveal} className="why-calibrate-description">
+          <motion.p variants={textFadeSlide} className="why-calibrate-description">
             Mantener tus instrumentos calibrados a tiempo es clave para garantizar la precisión de tus 
             procesos y el cumplimiento normativo. En CERTIMET te ayudamos a gestionar y cumplir 
             con tus periodos de calibración, respaldados por nuestra acreditación INACAL y técnicos 
             altamente calificados.
           </motion.p>
 
-          {/* NUEVO BOTÓN */}
-          <motion.div variants={textReveal} className="why-calibrate-button-wrapper">
+          <motion.div variants={textFadeSlide} className="why-calibrate-button-wrapper">
             <Link to="/laboratorio" className="why-calibrate-btn">
-              Explora nuestro laboratorio
+              Explora nuestro laboratorio &rarr;
             </Link>
           </motion.div>
 

@@ -5,11 +5,13 @@
   background: linear-gradient(rgba(0, 59, 122, 0.85), rgba(0, 97, 188, 0.85)), url('../../image/fondo01.webp');
   background-size: cover;
   background-position: center;
-  padding: 80px 5%;
+  padding: 80px 20px; /* Cambiado a px fijos para garantizar margen seguro en celular */
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #ffffff;
+  box-sizing: border-box; /* CRUCIAL: Previene el desbordamiento horizontal */
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -42,7 +44,8 @@
   gap: 20px;
   max-width: 1200px;
   width: 100%;
-  margin-bottom: 50px;
+  margin: 0 auto 50px auto; /* Agregado margin auto para forzar el centrado */
+  box-sizing: border-box;
 }
 
 /* ==========================================================================
@@ -54,11 +57,11 @@
   display: flex;
   flex-direction: column;
   min-height: 400px;
-  
   background-color: rgba(255, 255, 255, 0.05); 
   border: 1px solid rgba(28, 255, 87, 0.4); 
-  
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  box-sizing: border-box; /* CRUCIAL para que el padding no rompa la caja */
+  width: 100%;
 }
 
 .solution-card:hover {
@@ -107,29 +110,29 @@
 
 .solution-text {
   color: rgba(255, 255, 255, 0.85);
-  font-size: 13px;
+  font-size: 14px; /* Un poco más grande para mejor lectura */
   line-height: 1.6;
-  margin-bottom: auto;
+  margin-bottom: auto; /* Empuja el botón al fondo */
 }
 
 /* ==========================================================================
    BOTONES
    ========================================================================== */
    
-/* Botón de la tarjeta (Borde y letra blanca) */
+/* Botón de la tarjeta */
 .solution-btn {
   background-color: transparent;
   color: #ffffff; 
   border: 1px solid #ffffff;
   border-radius: 20px;
-  padding: 8px 18px;
+  padding: 10px 18px; /* Ajuste para mayor área táctil */
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   align-self: flex-start;
   margin-top: 25px;
   transition: all 0.3s ease;
-  text-decoration: none; /* ← ¡QUITA LA LÍNEA DEBAJO DEL TEXTO! */
+  text-decoration: none; 
 }
 
 .solution-btn:hover {
@@ -151,8 +154,9 @@
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(28, 255, 87, 0.2);
   transition: transform 0.2s ease;
-  text-decoration: none; /* Por si acaso, también lo quito aquí */
+  text-decoration: none; 
   display: inline-block;
+  text-align: center;
 }
 
 .solutions-main-cta:hover {
@@ -163,17 +167,37 @@
 /* ==========================================================================
    DISEÑO RESPONSIVO
    ========================================================================== */
+
+/* Tablets */
 @media (max-width: 1024px) {
   .solutions-grid {
     grid-template-columns: repeat(2, 1fr); 
-    max-width: 700px;
+    max-width: 800px;
   }
 }
 
+/* Móviles */
 @media (max-width: 600px) {
+  .solutions-section {
+    padding: 50px 15px; /* Reduce espacio superior e inferior */
+  }
+
   .solutions-grid {
     grid-template-columns: 1fr; 
+    gap: 25px; /* Un poco más de aire entre tarjetas apiladas */
   }
-  .title-light { font-size: 30px; }
-  .title-bold { font-size: 36px; }
+
+  .solution-card {
+    min-height: auto; /* QUITA la altura forzada de 400px en celulares */
+    padding: 30px 20px; /* Reduce el padding interno */
+  }
+
+  .title-light { font-size: 28px; }
+  .title-bold { font-size: 34px; }
+
+  .solution-btn {
+    width: 100%; /* Botón al 100% de ancho para ser fácil de tocar */
+    text-align: center;
+    box-sizing: border-box;
+  }
 }
