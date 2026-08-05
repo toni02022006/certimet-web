@@ -48,12 +48,12 @@ const chunkArray = (arr, size) => {
   return chunked;
 };
 
-// Como ahora hay manos a la derecha, agrupamos de a 4 para que encajen a la izquierda
+// Agrupamos de a 4
 const logoChunks = chunkArray(brandsData, 4);
 
-// 2. CONFIGURACIÓN DE ANIMACIONES
+// 2. CONFIGURACIÓN DE ANIMACIONES LIGERAS (Sin blur para optimizar rendimiento)
 const containerScrollVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
@@ -64,13 +64,13 @@ const gridVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(8px)" }, 
+  hidden: { opacity: 0, y: 20 }, 
   visible: { 
-    opacity: 1, y: 0, filter: "blur(0px)", 
+    opacity: 1, y: 0, 
     transition: { type: "spring", stiffness: 100, damping: 12 } 
   },
   exit: { 
-    opacity: 0, y: -40, filter: "blur(8px)", 
+    opacity: 0, y: -20, 
     transition: { duration: 0.3 } 
   }
 };
@@ -92,11 +92,11 @@ const Logos = () => {
         variants={containerScrollVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.2 }}
       >
         <h2 className="alianzas-title">Alianzas Estratégicas</h2>
 
-        {/* Las manos con posición absoluta */}
+        {/* Las manos */}
         <img src={manosImg} alt="Manos Alianza" className="alianzas-hands" />
 
         <div className="alianzas-carousel-wrapper">
