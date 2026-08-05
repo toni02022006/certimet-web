@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Minus, Plus, FileText, Truck, Store } from 'lucide-react';
 import Swal from 'sweetalert2'; 
 import './ProductoDetalle.css';
-
+import ProductosRelacionados from './ProductosRelacionados.jsx'; // ✅ IMPORTACIÓN DEL COMPONENTE DE PRODUCTOS RELACIONADOS
 // ✅ IMPORTACIÓN DEL CONTEXTO (Ruta relativa hacia la carpeta context)
 import { useCarrito } from '../../context/CarritoContext';
 
@@ -340,6 +340,10 @@ const ProductoDetalle = () => {
         )}
 
       </div>
+      <ProductosRelacionados 
+        productoId={producto.id} 
+        categoriaId={producto.categoria_id} 
+      />
     </div>
   );
 };
