@@ -81,7 +81,6 @@ const laboratoriosData = {
       "Resultados confiables, trazables y respaldados técnicamente."
     ],
     items: [
-      // 👇 Cambia los paths según necesites (ej. "/servicios/mantenimiento", "/servicios/mapeo-termico", etc.)
       { name: "Mantenimiento", path: "/servicios", icBase: icElec, icHover: icElecV },
       { name: "Mapeo Térmico", path: "/servicios", icBase: icTemp, icHover: icTempV },
       { name: "Análisis Termográfico", path: "/servicios", icBase: icFoto, icHover: icFotoV },
@@ -194,7 +193,11 @@ const Header = () => {
   const [password, setPassword] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
-  
+
+  // ✅ ESTADO PARA EL MENÚ MÓVIL (SIDEBAR)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileExpandedCat, setMobileExpandedCat] = useState(null);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -211,6 +214,11 @@ const Header = () => {
       setIsMenuOpen(false);
     }
   }, [isFormFocused, isMouseInside]);
+
+  // Función para toggle de categorías en móvil
+  const toggleMobileCat = (catName) => {
+    setMobileExpandedCat(prev => prev === catName ? null : catName);
+  };
 
   const handleCertilabLogin = async (e) => {
     e.preventDefault();
@@ -300,6 +308,15 @@ const Header = () => {
 
       {/* NAVEGACIÓN PRINCIPAL */}
       <nav className="main-navigation">
+        {/* ✅ BOTÓN HAMBURGUESA (SÓLO MÓVIL) */}
+        <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(true)}>
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" strokeWidth="2" fill="none">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
         <div className="logo-box">
           <Link to="/">
             <img src={isScrolled ? logoColor : logo} alt="Certimet Logo" className="logo-img" />
@@ -343,7 +360,6 @@ const Header = () => {
                   {/* PESTAÑAS SUPERIORES */}
                   <div className="mega-tabs-container">
                     {Object.keys(laboratoriosData).map((key) => (
-                      // 🔥 Si la clave es 'servicios', renderizamos un Link, sino un div
                       key === 'servicios' ? (
                         <Link
                           key={key}
@@ -524,13 +540,78 @@ const Header = () => {
           </li>
 
           {/* =========================================================
-              ENLACES EXISTENTES (Sin Servicios en el principal)
+              ENLACES EXISTENTES
               ========================================================= */}
           <li><Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link></li>
           <li><Link to="/tienda" className={location.pathname === '/tienda' ? 'active' : ''}>Tienda</Link></li>
           <li><Link to="/contacto" className={location.pathname === '/contacto' ? 'active' : ''}>Contacto</Link></li>
         </ul>
       </nav>
+
+      {/* ===================================================================
+          ✅ SIDEBAR MÓVIL (VISIBLE SÓLO EN PANTALLAS PEQUEÑAS)
+          =================================================================== */}
+      <div className={`mobile-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+      
+      <div className={`mobile-sidebar ${isMobileMenuOpen ? 'active' : ''}`}>
+        <div className="mobile-sidebar-header">
+          <button className="mobile-sidebar-close" onClick={() => setIsMobileMenuOpen(false)}>
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="white" strokeWidth="2" fill="none">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+            <img src={logo} alt="CERTIMET" className="mobile-logo" />
+          </Link>
+        </div>
+
+        <div className="mobile-sidebar-content">
+          <ul className="mobile-nav">
+            <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)}>INICIO</Link></li>
+            <li><Link to="/nosotros" onClick={() => setIsMobileMenuOpen(false)}>NOSOTROS</Link></li>
+
+            {/* Acordeón Metrología */}
+            <li>
+              <div className="mobile-nav-header" onClick={() => toggleMobileCat('metrologia')}>
+                <span>METROLOGÍA</span>
+                <span className={`arrow ${mobileExpandedCat === 'metrologia' ? 'open' : ''}`}>›</span>
+              </div>
+              {mobileExpandedCat === 'metrologia' && (
+                <ul className="mobile-subnav">
+                  {laboratoriosData.metrologia.items.map((item, i) => (
+                    <li key={i}><Link to={item.path} onClick={() => setIsMobileMenuOpen(false)}>{item.name}</Link></li>
+                  ))}
+                  {/* También incluimos las otras pestañas como enlaces */}
+                  <li><Link to="/laboratorio/ensayo" onClick={() => setIsMobileMenuOpen(false)}>Laboratorio de Ensayo</Link></li>
+                  <li><Link to="/servicios" onClick={() => setIsMobileMenuOpen(false)}>Servicios</Link></li>
+                  <li><Link to="/certilab" onClick={() => setIsMobileMenuOpen(false)}>CERTILAB</Link></li>
+                </ul>
+              )}
+            </li>
+
+            {/* Acordeón Ingeniería */}
+            <li>
+              <div className="mobile-nav-header" onClick={() => toggleMobileCat('ingenieria')}>
+                <span>INGENIERÍA Y AUTOMATIZACIÓN</span>
+                <span className={`arrow ${mobileExpandedCat === 'ingenieria' ? 'open' : ''}`}>›</span>
+              </div>
+              {mobileExpandedCat === 'ingenieria' && (
+                <ul className="mobile-subnav">
+                  {Object.values(ingenieriaMegaData).map((ing, i) => (
+                    <li key={i}><Link to={ing.btnLink} onClick={() => setIsMobileMenuOpen(false)}>{ing.title}</Link></li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            <li><Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>BLOG</Link></li>
+            <li><Link to="/tienda" onClick={() => setIsMobileMenuOpen(false)}>TIENDA</Link></li>
+            <li><Link to="/contacto" onClick={() => setIsMobileMenuOpen(false)}>CONTACTO</Link></li>
+            <li><Link to="/trabaja-con-nosotros" onClick={() => setIsMobileMenuOpen(false)}>TRABAJA CON NOSOTROS</Link></li>
+          </ul>
+        </div>
+      </div>
     </header>
   );
 };

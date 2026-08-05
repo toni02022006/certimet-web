@@ -412,7 +412,8 @@
 .btn-flotante-registro {
   position: fixed;
   bottom: 40px;
-  right: 40px;
+  left: 40px;                /* ← antes era right: 40px */
+  right: auto;               /* anula cualquier right heredado */
   background: var(--certimet-blue);
   color: white;
   padding: 15px 30px;
@@ -423,17 +424,25 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 10px 25px rgba(0, 77, 153, 0.4);
-  z-index: 999;
+  box-shadow: 0 10px 25px rgba(0, 77, 153, 0.5);
+  z-index: 9999;             /* más alto que el típico z-index de WhatsApp (ej. 999) */
   transition: all 0.3s ease;
+  animation: flotar 3s ease-in-out infinite; /* efecto de "flotación" suave */
 }
 
+/* Efecto hover mejorado */
 .btn-flotante-registro:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px) scale(1.02);
   background: var(--certimet-blue-dark);
-  box-shadow: 0 15px 35px rgba(0, 77, 153, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 77, 153, 0.7);
 }
 
+/* Animación de flotación sutil */
+@keyframes flotar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
 /* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
   .categorias-grid, .productos-grid { grid-template-columns: repeat(3, 1fr); }
