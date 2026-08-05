@@ -33,9 +33,9 @@ const QuienesSomos = () => {
     <section className="about-section">
       <div className="about-container">
         
-        {/* COLUMNA IZQUIERDA (Imagen del Científico) */}
+        {/* COLUMNA IZQUIERDA (Imagen) - SOLO VISIBLE EN ESCRITORIO */}
         <motion.div 
-          className="about-image-wrapper"
+          className="about-image-wrapper desktop-only"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.4 }}
@@ -45,12 +45,12 @@ const QuienesSomos = () => {
           <img src={cientificoImg} alt="Laboratorio CERTIMET" className="about-real-image" />
         </motion.div>
 
-        {/* COLUMNA DERECHA (Texto y Botón) */}
+        {/* COLUMNA DERECHA (Texto, Imagen Móvil y Botón) */}
         <motion.div 
           className="about-text-content"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.4 }} 
+          viewport={{ once: false, amount: 0.2 }} 
           variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
         >
           <motion.span variants={modernReveal} className="about-subtitle">
@@ -63,6 +63,15 @@ const QuienesSomos = () => {
             ingeniería y automatización<br/>
             industrial
           </motion.h2>
+
+          {/* IMAGEN INTERCALADA - SOLO VISIBLE EN MÓVIL */}
+          <motion.div 
+            className="about-image-wrapper mobile-only"
+            variants={imageReveal}
+            style={{ perspective: 1000 }} 
+          >
+            <img src={cientificoImg} alt="Laboratorio CERTIMET" className="about-real-image" />
+          </motion.div>
           
           <motion.p variants={modernReveal} className="about-description">
             <strong>CERTIMET</strong> es un laboratorio de Metrología, Calibración e Ingeniería & Automatización 
@@ -72,7 +81,6 @@ const QuienesSomos = () => {
             personalizado con cada cliente.
           </motion.p>
           
-          {/* NUEVO: Botón hacia la página de Nosotros */}
           <motion.div variants={modernReveal} className="about-btn-container">
             <Link to="/nosotros" className="btn-outline-white">
               Saber más sobre nosotros &rarr;

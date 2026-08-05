@@ -2,58 +2,64 @@
    SECCIÓN: QUIÉNES SOMOS (Fondo Verde)
    ========================================================================== */
 .about-section {
-  /* Usamos tu imagen de fondo verde */
   background-image: url('../../image/fondo_verde.webp');
   background-size: cover;
   background-position: center;
-  background-color: #00b33c; /* Color de respaldo por si tarda en cargar */
+  background-color: #00b33c;
   padding: 100px 5%;
   position: relative;
   overflow: hidden;
 }
 
 .about-container {
-  max-width: 1100px; /* Ancho máximo para mantenerlo centrado y elegante */
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 70px; /* Separación entre la imagen y el texto */
+  justify-content: space-between;
+  gap: 70px;
 }
 
 /* ==========================================================================
-   COLUMNA IZQUIERDA: IMAGEN DEL CIENTÍFICO
+   IMÁGENES (ESCRITORIO VS MÓVIL)
    ========================================================================== */
 .about-image-wrapper {
-  flex: 0.8; /* Ocupa un poco menos de la mitad */
   display: flex;
-  justify-content: center;
+}
+
+.desktop-only {
+  flex: 0.8;
+  justify-content: flex-start;
+}
+
+.mobile-only {
+  display: none; /* Oculta la imagen intercalada en PC */
+  width: 100%;
 }
 
 .about-real-image {
   width: 100%;
-  max-width: 400px; /* Tamaño máximo para que no se vea gigante */
+  max-width: 400px;
   height: auto;
   object-fit: cover;
-  
-  /* Bordes fuertemente redondeados según diseño */
-  border-radius: 30px; 
-  
-  /* Sombra sutil oscura para despegarla del fondo verde */
-  box-shadow: 15px 25px 40px rgba(0, 0, 0, 0.2); 
+  border-radius: 30px;
+  box-shadow: 15px 25px 40px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
 
 /* ==========================================================================
-   COLUMNA DERECHA: TEXTO BLANCO Y BOTÓN
+   COLUMNA DERECHA: TEXTO Y BOTÓN
    ========================================================================== */
 .about-text-content {
-  flex: 1.2; /* Ocupa el resto del espacio */
-  color: #ffffff; /* Todo el texto es blanco */
+  flex: 1.2;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .about-subtitle {
-  display: block;
   color: #ffffff;
   font-size: 14px;
   font-weight: 700;
@@ -66,18 +72,24 @@
   color: #ffffff;
   font-size: 38px;
   line-height: 1.2;
-  font-weight: 600; /* Letra un poco más gruesa */
-  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+/* En PC le damos un margen inferior al título. En móvil lo maneja la imagen */
+@media (min-width: 961px) {
+  .about-title {
+    margin-bottom: 30px;
+  }
 }
 
 .about-description {
   color: #ffffff;
   font-size: 15px;
   line-height: 1.6;
-  font-weight: 300; /* Letra ligera para la descripción */
-  text-align: justify;
-  opacity: 0.95; /* Le da un toque suave */
-  margin-bottom: 0; /* Quitamos el margen por defecto para controlarlo con el contenedor del botón */
+  font-weight: 300;
+  text-align: left;
+  opacity: 0.95;
+  margin-bottom: 35px;
 }
 
 .about-description strong {
@@ -85,16 +97,16 @@
   color: #ffffff;
 }
 
-/* === ESTILOS DEL NUEVO BOTÓN === */
+/* === BOTÓN === */
 .about-btn-container {
-  margin-top: 35px; /* Espaciado entre la descripción y el botón */
+  display: flex;
 }
 
 .btn-outline-white {
   display: inline-block;
   padding: 12px 28px;
   border: 1px solid #ffffff;
-  border-radius: 50px; /* Borde redondeado estilo píldora */
+  border-radius: 50px;
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -103,45 +115,59 @@
   transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el mouse */
 .btn-outline-white:hover {
   background-color: #ffffff;
-  color: #00b33c; /* El texto se vuelve verde para contrastar con el fondo blanco */
+  color: #00b33c;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* ==========================================================================
-   DISEÑO RESPONSIVO
+   DISEÑO RESPONSIVO (NUEVA ESTRUCTURA INTERCALADA)
    ========================================================================== */
-@media (max-width: 1024px) {
-  .about-container {
-    flex-direction: column-reverse; /* Pone la imagen arriba en móviles */
-    text-align: center;
-    gap: 40px;
+@media (max-width: 960px) {
+  .desktop-only {
+    display: none !important; /* Desaparece la columna izquierda de PC */
   }
   
+  .mobile-only {
+    display: flex !important; /* Aparece la imagen en medio del texto */
+    margin: 25px 0; /* Separa la imagen del título y la descripción */
+    justify-content: flex-start;
+  }
+
+  .about-container {
+    flex-direction: column;
+    gap: 0;
+  }
+
   .about-text-content {
-    max-width: 100%;
-  }
-
-  .about-description {
-    text-align: center;
-  }
-
-  .about-title {
-    font-size: 32px;
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .about-section {
-    padding: 60px 5%;
+    /* Mantenemos el margen izquierdo (70px) para que tus logos de redes sociales no estorben */
+    padding: 60px 20px 60px 70px; 
   }
+  
+  .about-real-image {
+    max-width: 320px;
+    border-radius: 20px;
+  }
+
+  .about-subtitle {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+
   .about-title {
     font-size: 26px;
   }
-  .about-real-image {
-    max-width: 320px;
+
+  .about-description {
+    font-size: 15px;
+    margin-bottom: 25px;
   }
 }
