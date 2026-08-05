@@ -29,7 +29,7 @@
 .breadcrumb-container {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap; /* Evita que baje a otra línea */
+  flex-wrap: nowrap;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -56,8 +56,8 @@
 }
 
 .breadcrumb-current {
-  color: #777; /* Mismo gris que el resto */
-  font-weight: 400; /* Sin negrita */
+  color: #777; 
+  font-weight: 400; 
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -176,7 +176,6 @@
   margin-bottom: 5px;
 }
 
-/* Fila 1: Marca pequeña y en gris */
 .producto-marca {
   color: #888888;
   font-size: 13px;
@@ -190,7 +189,6 @@
   text-decoration: underline;
 }
 
-/* Fila 2: Título en azul claro (estilo h1) */
 .producto-titulo {
   font-size: 32px;
   line-height: 1.2;
@@ -199,7 +197,6 @@
   margin: 0 0 10px 0;
 }
 
-/* Fila 3: SKU y Stock en gris */
 .buybox-meta {
   display: flex;
   align-items: center;
@@ -217,7 +214,6 @@
   font-weight: 400;
 }
 
-/* Líneas grises de separación */
 .separador {
   border: none;
   border-top: 1px solid #eaeaea;
@@ -225,7 +221,6 @@
   width: 100%;
 }
 
-/* Fila 4: Precio azul y el inc. IGV */
 .precio-grande-buybox {
   font-size: 38px;
   font-weight: 700;
@@ -250,7 +245,6 @@
   margin-top: 20px;
 }
 
-/* Contenedores para las Fila 5 y 6 (Botones de compra) */
 .bloque-compras {
   display: flex;
   flex-direction: column;
@@ -258,15 +252,13 @@
   margin-top: 10px;
 }
 
-/* Fila 5: Selector de cantidad y Agregar al carro */
 .acciones-fila-1 {
   display: flex;
   align-items: center;
   gap: 20px;
-  justify-content: flex-start; /* Asegura que se alineen a la izquierda */
+  justify-content: flex-start;
 }
 
-/* Selector de cantidad: fondo blanco, borde azul, iconos azules */
 .selector-cantidad-btn {
   display: flex;
   align-items: center;
@@ -302,7 +294,6 @@
   color: #0056b3; 
 }
 
-/* Botón Agregar al carro */
 .btn-certimet-cart {
   background-color: #0056b3;
   color: #ffffff;
@@ -317,19 +308,17 @@
   gap: 10px;
   transition: background 0.2s;
   height: 48px;
-  padding: 0 40px; /* Le damos un buen margen interno a los lados */
-  /* flex: 1; <-- ESTA ES LA LÍNEA QUE SE ELIMINÓ */
+  padding: 0 40px; 
 }
 
 .btn-certimet-cart:hover {
   background-color: #004494;
 }
 
-/* Fila 6: Botón WhatsApp debajo */
 .acciones-fila-2 {
   display: flex;
-  justify-content: flex-start; /* Alinea el botón a la izquierda */
-  margin-top: 15px; /* Separación con la fila de arriba */
+  justify-content: flex-start; 
+  margin-top: 15px; 
 }
 
 .btn-whatsapp {
@@ -337,9 +326,8 @@
   color: #ffffff;
   border: none;
   border-radius: 30px;
-  padding: 0 40px; /* Tamaño definido por el espacio interior */
+  padding: 0 40px; 
   height: 48px;
-  /* width: 100%; <-- ESTA ES LA LÍNEA QUE SE ELIMINÓ */
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -364,7 +352,6 @@
   margin-bottom: 25px;
 }
 
-/* Fila 7: Logos de Pago grandes y limpios */
 .metodos-pago-container {
   display: flex;
   justify-content: space-between; 
@@ -377,13 +364,12 @@
 }
 
 .metodos-pago-container img {
-  height: 35px; /* Más grandes */
+  height: 35px; 
   width: auto;
   object-fit: contain;
-  max-width: 18%; /* Asegura que todos entren parejos */
+  max-width: 18%; 
 }
 
-/* Fila 8: Logística */
 .info-logistica-grid {
   display: flex;
   flex-direction: row;
@@ -424,42 +410,33 @@
   line-height: 1.4;
 }
 
-/* =========================================
-   SECCIONES DE DESCRIPCIÓN (ESTILO LIMPIO)
-   ========================================= */
-
-/* Títulos de las secciones (Descripción, Especificaciones) */
 .seccion-header {
   border-bottom: 1px solid #eaeaea;
   margin-bottom: 20px;
   padding-bottom: 10px;
   display: flex;
-  justify-content: space-between; /* Para separar el título de un posible icono */
+  justify-content: space-between; 
   align-items: center;
 }
 
 .seccion-header h2 {
   font-size: 18px;
-  color: #0056b3; /* Azul de tu referencia */
+  color: #0056b3; 
   margin: 0;
   font-weight: 500;
 }
 
-/* Estilo general de los textos que vienen del Admin */
 .descripcion-html {
   font-size: 14px;
   line-height: 1.6;
-  color: #555; /* Gris oscuro para el texto normal */
+  color: #555; 
 }
 
 .descripcion-html p {
   margin-bottom: 15px;
-  text-align: justify; /* Da ese aspecto de bloque cuadrado de texto */
+  text-align: justify; 
 }
 
-/* =========================================
-   SECCIONES INFERIORES (ACORDEÓN)
-   ========================================= */
 .secciones-inferiores {
   margin-top: 60px;
   display: flex;
@@ -475,7 +452,6 @@
   border-top: 1px solid #eaeaea; 
 }
 
-/* Cabecera del acordeón */
 .acordeon-header {
   display: flex;
   justify-content: space-between;
@@ -487,25 +463,22 @@
 }
 
 .acordeon-header:hover {
-  background-color: #fcfcfc; /* Un fondo súper sutil al pasar el mouse */
+  background-color: #fcfcfc; 
 }
 
-/* Títulos del acordeón en AZUL */
 .acordeon-header h2 {
-  font-size: 18px; /* Un poco más grande para que destaque */
-  color: #0056b3; /* Azul CERTIMET */
+  font-size: 18px; 
+  color: #0056b3; 
   margin: 0;
   font-weight: 500;
 }
 
-/* Iconos + y - en AZUL */
 .acordeon-header svg {
   color: #0056b3; 
 }
 
-/* Contenedor animado */
 .acordeon-contenido {
-  padding: 10px 0 40px 0; /* Más espacio al final para respirar */
+  padding: 10px 0 40px 0; 
   animation: deslizarAbajo 0.4s ease-out forwards;
 }
 
@@ -520,18 +493,15 @@
   }
 }
 
-/* =========================================
-   ESTILOS DE TEXTO INTERNO (Párrafos)
-   ========================================= */
 .descripcion-html {
   font-size: 15px;
   line-height: 1.8;
-  color: #444; /* Un gris oscuro muy elegante, casi negro */
+  color: #444; 
 }
 
 .descripcion-html p {
   margin-bottom: 15px;
-  text-align: justify; /* Hace que los textos se vean cuadrados y ordenados */
+  text-align: justify; 
 }
 
 .descripcion-html ul, 
@@ -544,34 +514,29 @@
   margin-bottom: 8px;
 }
 
-/* =========================================
-   ESTILO DE LA TABLA DE ESPECIFICACIONES
-   ========================================= */
 .descripcion-html table {
   width: 100% !important;
   border-collapse: collapse !important;
   margin: 20px 0 !important;
-  border: none !important; /* Quita el borde exterior feo del editor */
+  border: none !important; 
 }
 
-/* Cabeceras de la tabla (Primera fila) */
 .descripcion-html table tr:first-child td,
 .descripcion-html table th {
-  color: #0056b3 !important; /* Letras azules */
+  color: #0056b3 !important; 
   font-weight: 500 !important;
   text-align: left !important;
   padding: 12px 0 !important;
   background-color: transparent !important; 
   border-top: 1px solid #eaeaea !important; 
-  border-bottom: 1px solid #ccc !important; /* Línea separadora de la cabecera */
+  border-bottom: 1px solid #ccc !important; 
   border-left: none !important; 
   border-right: none !important; 
 }
 
-/* Celdas normales de la tabla */
 .descripcion-html table td {
   padding: 14px 0 !important;
-  border-bottom: 1px solid #eaeaea !important; /* Líneas grises horizontales */
+  border-bottom: 1px solid #eaeaea !important; 
   border-top: none !important;
   border-left: none !important; 
   border-right: none !important; 
@@ -580,53 +545,158 @@
   background-color: transparent !important;
 }
 
-/* Primera columna de la tabla (Nombres de parámetros) */
 .descripcion-html table tr td:first-child {
   width: 35% !important;
   color: #555 !important; 
-  font-weight: normal !important; /* Quita la negrita forzada */
+  font-weight: normal !important; 
 }
 
-/* Asegurar que la palabra "Parámetro" (columna 1, fila 1) sí sea azul */
 .descripcion-html table tr:first-child td:first-child,
 .descripcion-html table th:first-child {
   color: #0056b3 !important;
   font-weight: 500 !important;
 }
 
-/* Quita la línea inferior de la última fila para que quede limpio */
 .descripcion-html table tr:last-child td {
   border-bottom: none !important;
 }
 
+
 /* =========================================
-   DISEÑO RESPONSIVE
+   DISEÑO RESPONSIVE MEJORADO
    ========================================= */
+
+/* Laptops normales */
 @media (max-width: 1200px) {
-  .two-column-layout { grid-template-columns: 1fr 400px; gap: 30px; }
+  .detalle-container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .two-column-layout { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px; 
+  }
 }
 
+/* Tablets (iPad) */
 @media (max-width: 992px) {
-  .detalle-container { padding-top: 120px; }
-  .two-column-layout { grid-template-columns: 1fr; gap: 40px; }
-  .col-derecha { max-width: 100%; }
+  .detalle-container { 
+    padding-top: 130px; 
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .two-column-layout { 
+    grid-template-columns: 1fr; 
+    gap: 40px; 
+  }
+  .col-derecha { 
+    max-width: 100%; 
+  }
+  .imagen-principal-container {
+    height: 400px;
+  }
 }
 
+/* Celulares (Móviles) */
 @media (max-width: 768px) {
-  .col-imagenes { grid-template-columns: 1fr; }
-  .galeria-miniaturas { flex-direction: row; justify-content: center; overflow-x: auto; }
-  .miniatura { width: 60px; height: 60px; }
-  .imagen-principal-container { height: 350px; }
-  .precio-grande-buybox { font-size: 32px; }
-  .acciones-fila-1 { flex-direction: column; align-items: stretch; }
-  .acciones-fila-1 .btn-certimet-cart { flex: none; }
-  .info-logistica-grid { flex-direction: column; }
-  .metodos-pago-container { justify-content: center; padding: 0 2%; }
+  .detalle-container { 
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-top: 110px; 
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Invertimos el orden: Imagen principal arriba, miniaturas abajo */
+  .col-imagenes { 
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 15px;
+  }
+
+  .galeria-miniaturas { 
+    flex-direction: row; 
+    justify-content: flex-start; 
+    overflow-x: auto; 
+    padding-bottom: 5px;
+  }
+
+  .miniatura { 
+    width: 60px; 
+    height: 60px; 
+    flex-shrink: 0; 
+  }
+
+  /* La imagen principal se adapta al alto necesario */
+  .imagen-principal-container { 
+    height: auto; 
+    aspect-ratio: 1 / 1;
+    max-height: 350px;
+    padding: 10px;
+  }
+
+  .breadcrumb-container {
+    flex-wrap: wrap;
+    white-space: normal;
+    gap: 5px;
+    line-height: 1.5;
+  }
+
+  .producto-titulo { 
+    font-size: 24px; 
+  }
+
+  .precio-grande-buybox { 
+    font-size: 28px; 
+  }
+
+  .acciones-fila-1 { 
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 12px; 
+  }
+
+  .selector-cantidad-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .btn-certimet-cart { 
+    width: 100%; 
+    padding: 0 20px; 
+  }
+
+  .acciones-fila-2 {
+    width: 100%;
+    margin-top: 0; /* Ya tiene el gap de bloque-compras */
+  }
+
+  .btn-whatsapp {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .info-logistica-grid { 
+    flex-direction: column; 
+    gap: 20px;
+  }
+
+  .metodos-pago-container { 
+    justify-content: space-between; 
+    padding: 10px 0; 
+  }
+
+  .metodos-pago-container img { 
+    max-width: 18%; 
+    height: 24px; 
+  }
 }
+
 /* =========================================
    FORZADO DE CAPA PARA SWEETALERT2 TOAST
    ========================================= */
-/* Asegurar que el modal de SweetAlert2 centrado siempre flote sobre el Header */
 .swal2-container.swal2-modal-centrado {
   z-index: 999999 !important;
 }

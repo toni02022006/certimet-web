@@ -28,7 +28,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative; /* Clave para que los megamenús caigan bien */
+  position: relative;
 }
 
 .ht-sub-left {
@@ -299,10 +299,20 @@
   gap: 30px;
 }
 
+.ht-left {
+  display: flex;
+  align-items: center;
+}
+
 .ht-logo {
   height: 50px;
   object-fit: contain;
   transition: all 0.4s;
+}
+
+/* Ocultar el botón de menú móvil en PC */
+.ht-mobile-menu-btn {
+  display: none;
 }
 
 .ht-center {
@@ -490,6 +500,11 @@
   color: white; font-size: 10px; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--certimet-blue-dark, #00234a); transition: border-color 0.4s;
 }
 
+/* Ocultamos los modales móviles en la computadora por defecto */
+.ht-mobile-overlay, .ht-mobile-sidebar {
+  display: none;
+}
+
 /* =======================================================
    ESTADOS AL HACER SCROLL (SE VUELVE BLANCO)
    ======================================================= */
@@ -517,7 +532,6 @@
   color: var(--certimet-blue, #1c74d4);
 }
 
-/* Modificar el color de los enlaces activos del menú cuando hay scroll */
 .header-tienda-container.scrolled .menu-active-bg > a {
   color: #ffffff !important; 
 }
@@ -531,19 +545,228 @@
   filter: brightness(0) saturate(100%) invert(14%) sepia(50%) saturate(3025%) hue-rotate(195deg) brightness(90%) contrast(105%);
 }
 
-.ht-usuario-dropdown { position: relative; display: inline-block; cursor: pointer; }
-.ht-usuario-nombre {
-  display: flex; align-items: center; gap: 6px; color: white; padding: 6px 10px; border-radius: 20px; transition: background 0.2s;
-}
-.ht-usuario-nombre:hover { background: rgba(255, 255, 255, 0.15); }
-.scrolled .ht-usuario-nombre { color: #1a2b3c; }
-.scrolled .ht-usuario-nombre:hover { background: rgba(0, 0, 0, 0.05); }
+/* ==========================================================================
+   DISEÑO RESPONSIVE PARA TABLETS Y CELULARES
+   ========================================================================== */
 
-.ht-user-menu { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.ht-logout-btn {
-  background: none; border: 1px solid rgba(255, 255, 255, 0.4); color: #ff6b6b; padding: 4px 12px; border-radius: 15px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: inherit;
+/* TABLETS Y PANTALLAS MEDIANAS */
+@media (max-width: 1024px) {
+  .ht-sub-left { display: none; }
+  .ht-top-nav-menu { width: 100%; }
+  .ht-nav-links { width: 100%; justify-content: flex-start; overflow-x: auto; gap: 20px; padding-bottom: 5px; }
+  .ht-nav-links::-webkit-scrollbar { height: 0px; background: transparent; } 
+  .ht-asesor { display: none; }
 }
-.ht-logout-btn:hover { background-color: #ff4d4d; color: white; border-color: #ff4d4d; box-shadow: 0 2px 8px rgba(255, 77, 77, 0.3); }
 
-.header-tienda-container.scrolled .ht-logout-btn { border-color: rgba(211, 47, 47, 0.4); color: #d32f2f; }
-.header-tienda-container.scrolled .ht-logout-btn:hover { background-color: #d32f2f; color: white; border-color: #d32f2f; box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3); }
+/* CELULARES (MÓVILES) */
+@media (max-width: 768px) {
+  
+  /* Escondemos lo innecesario de PC */
+  .ht-top-bar { display: none; } 
+  .ht-desktop-only { display: none !important; } /* Oculta el mega buscador central de PC */
+
+  /* Botón hamburguesa visible */
+  .ht-mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 15px;
+    padding: 0;
+  }
+  .header-tienda-container.scrolled .ht-mobile-menu-btn {
+    color: var(--certimet-blue-dark, #00234a);
+  }
+
+  .ht-main-bar { padding: 15px 0; }
+  
+  .ht-main-bar .ht-content {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .ht-logo { height: 35px; }
+  
+  /* Iconos derecha - Ocultar los textos "Iniciar sesión", "Carrito" */
+  .ht-right { gap: 18px; }
+  .ht-icon-link span { display: none; }
+  
+  /* ================= SIDEBAR MÓVIL (DRAWER) ================= */
+  .ht-mobile-overlay, .ht-mobile-sidebar {
+    display: block; /* Habilitamos los elementos en el DOM para móvil */
+  }
+
+  .ht-mobile-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 4000;
+    opacity: 0; visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .ht-mobile-overlay.active {
+    opacity: 1; visibility: visible;
+  }
+
+  .ht-mobile-sidebar {
+    position: fixed;
+    top: 0; left: -100%;
+    width: 85%; max-width: 320px; height: 100vh;
+    background-color: #03182f; /* Azul muy oscuro */
+    z-index: 5000;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .ht-mobile-sidebar.active {
+    left: 0;
+  }
+
+  /* Cabecera del sidebar con el buscador */
+  .ht-mobile-sidebar-header {
+    padding: 20px 20px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: #00234a; /* un tono ligeramente más claro */
+  }
+
+  .ht-mobile-search {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 0 10px 0 15px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .ht-mobile-search:focus-within {
+    border-color: #1cff57;
+  }
+  .ht-mobile-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #1a2b3c;
+    padding: 10px 5px;
+    background: transparent;
+  }
+  .ht-mobile-search input::placeholder {
+    color: #888;
+  }
+  .ht-mobile-search button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 5px;
+    color: #666;
+  }
+  .ht-mobile-search button:hover {
+    color: #1c74d4;
+  }
+
+  /* Contenido del sidebar (lista de navegación) */
+  .ht-mobile-sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 0;
+  }
+
+  .ht-mobile-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ht-mobile-nav > li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .ht-mobile-nav > li:last-child {
+    border-bottom: none;
+  }
+
+  /* Enlaces principales y encabezados de acordeón */
+  .ht-mobile-nav a,
+  .ht-mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .ht-mobile-nav a:hover {
+    background-color: rgba(28, 255, 87, 0.08);
+    color: #1cff57;
+  }
+
+  .ht-mobile-nav-header {
+    cursor: pointer;
+  }
+  .ht-mobile-nav-header:hover {
+    background-color: rgba(28, 255, 87, 0.05);
+    color: #1cff57;
+  }
+
+  .ht-mobile-nav-header .arrow {
+    font-size: 18px;
+    font-weight: 300;
+    color: #8aa3c9;
+    transition: transform 0.3s, color 0.3s;
+  }
+  .ht-mobile-nav-header .arrow.open {
+    transform: rotate(90deg);
+    color: #1cff57;
+  }
+
+  /* Submenús (acordeón abierto) */
+  .ht-mobile-subnav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 35, 74, 0.6); /* fondo azul oscuro con transparencia */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .ht-mobile-subnav li a {
+    padding: 12px 24px 12px 40px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-transform: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.2s;
+  }
+  .ht-mobile-subnav li:last-child a {
+    border-bottom: none;
+  }
+
+  .ht-mobile-subnav li a:hover {
+    background-color: rgba(28, 255, 87, 0.12);
+    color: #1cff57;
+    padding-left: 48px; /* pequeño desplazamiento al hacer hover */
+  }
+
+  /* Personalización del scroll para el sidebar */
+  .ht-mobile-sidebar-content::-webkit-scrollbar {
+    width: 4px;
+  }
+  .ht-mobile-sidebar-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .ht-mobile-sidebar-content::-webkit-scrollbar-thumb {
+    background: #1cff57;
+    border-radius: 4px;
+  }
+  .ht-mobile-sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: #14cc47;
+  }
+}

@@ -42,7 +42,7 @@ import '../layout/Header.css';
 import './HeaderTienda.css';
 
 // ===============================================================
-// DATOS ESTRUCTURADOS: MEGA MENÚS (Desde Header Principal)
+// DATOS ESTRUCTURADOS: MEGA MENÚS
 // ===============================================================
 const laboratoriosData = {
   metrologia: {
@@ -172,25 +172,14 @@ const ingenieriaMegaData = {
   }
 };
 
-// ================= MEGA MENÚ DE PRODUCTOS (Estilo Falabella) =================
 const menuProductosMega = [
   {
     id: "aut",
     name: "Automatización y Control",
     path: "/tienda/categoria/2",
     secciones: [
-      {
-        title: "Control y Autómatas",
-        links: [{ name: "PLCs", path: "#" }, { name: "Pantallas HMI", path: "#" }, { name: "Módulos de E/S", path: "#" }, { name: "Fuentes de poder", path: "#" }]
-      },
-      {
-        title: "Accionamientos",
-        links: [{ name: "Variadores de frecuencia", path: "#" }, { name: "Arrancadores Suaves", path: "#" }, { name: "Servomotores", path: "#" }]
-      },
-      {
-        title: "Maniobra y Protección",
-        links: [{ name: "Contactores", path: "#" }, { name: "Relés Térmicos", path: "#" }, { name: "Interruptores", path: "#" }, { name: "Guardamotores", path: "#" }]
-      }
+      { title: "Control y Autómatas", links: [{ name: "PLCs", path: "#" }, { name: "Pantallas HMI", path: "#" }] },
+      { title: "Accionamientos", links: [{ name: "Variadores de frecuencia", path: "#" }, { name: "Servomotores", path: "#" }] }
     ]
   },
   {
@@ -198,84 +187,13 @@ const menuProductosMega = [
     name: "Analítica",
     path: "/tienda/categoria/3",
     secciones: [
-      {
-        title: "Análisis de Gases",
-        links: [{ name: "Analizadores de combustión", path: "#" }, { name: "Detectores de gases portátiles", path: "#" }]
-      },
-      {
-        title: "Análisis de Líquidos",
-        links: [{ name: "Medidores de pH", path: "#" }, { name: "Conductividad", path: "#" }, { name: "Turbidez", path: "#" }]
-      }
-    ]
-  },
-  {
-    id: "var",
-    name: "Variables de Procesos",
-    path: "/tienda/categoria/4",
-    secciones: [
-      {
-        title: "Temperatura",
-        links: [{ name: "Transmisores", path: "#" }, { name: "Termocuplas", path: "#" }, { name: "RTD (PT100)", path: "#" }]
-      },
-      {
-        title: "Presión y Nivel",
-        links: [{ name: "Transmisores de presión", path: "#" }, { name: "Manómetros", path: "#" }, { name: "Sensores ultrasónicos", path: "#" }]
-      },
-      {
-        title: "Caudal",
-        links: [{ name: "Caudalímetros magnéticos", path: "#" }, { name: "Flujómetros másicos", path: "#" }]
-      }
-    ]
-  },
-  {
-    id: "lab",
-    name: "Laboratorio",
-    path: "/tienda/categoria/5",
-    secciones: [
-      {
-        title: "Equipos Generales",
-        links: [{ name: "Balanzas Analíticas", path: "#" }, { name: "Agitadores", path: "#" }, { name: "Incubadoras", path: "#" }]
-      },
-      {
-        title: "Calibración",
-        links: [{ name: "Calibradores de lazo", path: "#" }, { name: "Hornos secos", path: "#" }]
-      }
-    ]
-  },
-  {
-    id: "sso",
-    name: "SSOMA",
-    path: "/tienda/categoria/6",
-    secciones: [
-      {
-        title: "Seguridad Industrial",
-        links: [{ name: "Bloqueo y Etiquetado (LOTO)", path: "#" }, { name: "EPP Especializado", path: "#" }]
-      },
-      {
-        title: "Monitoreo Ambiental",
-        links: [{ name: "Sonómetros", path: "#" }, { name: "Dosímetros", path: "#" }]
-      }
-    ]
-  },
-  {
-    id: "cal",
-    name: "Calidad de ambiente",
-    path: "/tienda/categoria/7",
-    secciones: [
-      {
-        title: "Climatización",
-        links: [{ name: "Termohigrómetros", path: "#" }, { name: "Anemómetros", path: "#" }]
-      },
-      {
-        title: "Calidad del Aire",
-        links: [{ name: "Medidores de CO2", path: "#" }, { name: "Contadores de partículas", path: "#" }]
-      }
+      { title: "Análisis de Gases", links: [{ name: "Analizadores de combustión", path: "#" }] },
+      { title: "Análisis de Líquidos", links: [{ name: "Medidores de pH", path: "#" }] }
     ]
   }
 ];
 
 const HeaderTienda = () => {
-  // ✅ EXTRAEMOS EL CONTADOR DE PRODUCTOS DEL CONTEXTO
   const { cartCount } = useCarrito();
 
   const [busqueda, setBusqueda] = useState('');
@@ -283,13 +201,11 @@ const HeaderTienda = () => {
   const [mostrarSugerencias, setMostrarSugerencias] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   
-  // Estado de autenticación
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [usuario, setUsuario] = useState(null);
 
   const searchRef = useRef(null);
   
-  // ================= ESTADOS NUEVOS PARA MEGA MENÚS =================
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const [isMouseInside, setIsMouseInside] = useState(false);
   const [isFormFocused, setIsFormFocused] = useState(false);
@@ -298,9 +214,7 @@ const HeaderTienda = () => {
 
   const [isIngenieriaMenuOpen, setIsIngenieriaMenuOpen] = useState(false);
   const [activeIngenieriaCategory, setActiveIngenieriaCategory] = useState('mantenimiento');
-  // ==================================================================
 
-  // Estados para el Mega Menú de Productos y Certilab Login
   const [isProductosOpen, setIsProductosOpen] = useState(false); 
   const [activeProductCat, setActiveProductCat] = useState(menuProductosMega[0].id);
   
@@ -308,6 +222,10 @@ const HeaderTienda = () => {
   const [password, setPassword] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
+
+  // ✅ ESTADOS PARA EL MENÚ MÓVIL (SIDEBAR)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileExpandedCat, setMobileExpandedCat] = useState(null);
 
   const location = useLocation();
   const navigate = useNavigate(); 
@@ -338,16 +256,7 @@ const HeaderTienda = () => {
         setUsuario(null);
       }
     };
-
     checkAuth();
-
-    const handleStorageChange = (e) => {
-      if (e.key === 'token' || e.key === 'usuario') {
-        checkAuth();
-      }
-    };
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
   useEffect(() => {
@@ -356,7 +265,6 @@ const HeaderTienda = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lógica de cierre inteligente (Metrología)
   useEffect(() => {
     if (!isFormFocused && !isMouseInside) {
       setIsMenuOpen(false);
@@ -389,17 +297,14 @@ const HeaderTienda = () => {
         console.error("Error buscando sugerencias:", error);
       }
     };
-
-    const timeoutId = setTimeout(() => {
-      fetchSugerencias();
-    }, 300);
-
+    const timeoutId = setTimeout(() => fetchSugerencias(), 300);
     return () => clearTimeout(timeoutId);
   }, [busqueda]);
 
   const handleBuscar = (e) => {
     e.preventDefault();
     setMostrarSugerencias(false);
+    setIsMobileMenuOpen(false);
     if (busqueda.trim() !== '') {
       navigate(`/tienda/catalogo?buscar=${encodeURIComponent(busqueda.trim())}`);
     } else {
@@ -409,6 +314,7 @@ const HeaderTienda = () => {
 
   const handleCategoriaClick = () => {
     setIsProductosOpen(false);
+    setIsMobileMenuOpen(false);
   };
 
   const handleLogout = () => {
@@ -419,7 +325,6 @@ const HeaderTienda = () => {
     navigate('/tienda');
   };
 
-  // Login rápido Certilab
   const handleCertilabLogin = async (e) => {
     e.preventDefault();
     setLoginError('');
@@ -451,434 +356,476 @@ const HeaderTienda = () => {
     }
   };
 
+  const toggleMobileCat = (catName) => {
+    setMobileExpandedCat(prev => prev === catName ? null : catName);
+  };
+
   return (
-    <header className={`header-tienda-container ${isScrolled ? 'scrolled' : ''}`}>
-      
-      {/* ================= BARRA SUPERIOR NAV ================= */}
-      <div className="ht-top-bar">
-        <div className="ht-content wrapper">
-          
-          <div className="ht-sub-left">
-            <span className="ht-top-link">
-              <img src={iconUbicacion} alt="Ubicación" className="ht-icon" /> 
-              Av. Canadá 3263, San Luis 15021
-            </span>
-            <a href="mailto:ventas@certimet.pe" className="ht-top-link">
-              <img src={iconCorreo} alt="Correo" className="ht-icon" /> 
-              ventas@certimet.pe
-            </a>
-          </div>
+    <>
+      <header className={`header-tienda-container ${isScrolled ? 'scrolled' : ''}`}>
+        
+        {/* ================= BARRA SUPERIOR NAV (PC) ================= */}
+        <div className="ht-top-bar">
+          <div className="ht-content wrapper">
+            
+            <div className="ht-sub-left">
+              <span className="ht-top-link">
+                <img src={iconUbicacion} alt="Ubicación" className="ht-icon" /> 
+                Av. Canadá 3263, San Luis 15021
+              </span>
+              <a href="mailto:ventas@certimet.pe" className="ht-top-link">
+                <img src={iconCorreo} alt="Correo" className="ht-icon" /> 
+                ventas@certimet.pe
+              </a>
+            </div>
 
-          <nav className="ht-top-nav-menu">
-            <ul className="ht-nav-links">
-              <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Inicio</Link></li>
-              <li><Link to="/nosotros" className={location.pathname === '/nosotros' ? 'active' : ''}>Nosotros</Link></li>
-              
-              {/* =========================================================
-                  BOTÓN MEGA-MENÚ: METROLOGÍA 
-                  ========================================================= */}
-              <li 
-                className={`nav-item-dropdown-mega ${isMenuOpen ? 'menu-active-bg' : ''}`}
-                onMouseEnter={() => {
-                  setIsMenuOpen(true);
-                  setIsMouseInside(true);
-                }}
-                onMouseLeave={() => {
-                  setIsMouseInside(false);
-                  if (!isFormFocused) {
-                    setIsMenuOpen(false);
-                    setHoveredItem(null);
-                  }
-                }}
-              >
-                <Link to="/laboratorio" className={location.pathname.startsWith('/laboratorio') ? 'active' : ''}>
-                  Metrología <span className="arrow-down">▾</span>
-                </Link>
+            <nav className="ht-top-nav-menu">
+              <ul className="ht-nav-links">
+                <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Inicio</Link></li>
+                <li><Link to="/nosotros" className={location.pathname === '/nosotros' ? 'active' : ''}>Nosotros</Link></li>
+                
+                {/* MEGA-MENÚ: METROLOGÍA */}
+                <li 
+                  className={`nav-item-dropdown-mega ${isMenuOpen ? 'menu-active-bg' : ''}`}
+                  onMouseEnter={() => { setIsMenuOpen(true); setIsMouseInside(true); }}
+                  onMouseLeave={() => { setIsMouseInside(false); if (!isFormFocused) { setIsMenuOpen(false); setHoveredItem(null); } }}
+                >
+                  <Link to="/laboratorio" className={location.pathname.startsWith('/laboratorio') ? 'active' : ''}>
+                    Metrología <span className="arrow-down">▾</span>
+                  </Link>
 
-                <AnimatePresence>
-                  {isMenuOpen && (
-                    <motion.div 
-                      className="mega-dropdown-wrapper"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    >
-                      <div className="mega-tabs-container">
-                        {Object.keys(laboratoriosData).map((key) => (
-                          <div 
-                            key={key}
-                            className={`mega-tab ${activeCategory === key ? 'active' : ''}`}
-                            onMouseEnter={() => setActiveCategory(key)}
-                          >
-                            {laboratoriosData[key].tabName}
+                  <AnimatePresence>
+                    {isMenuOpen && (
+                      <motion.div 
+                        className="mega-dropdown-wrapper"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 15 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      >
+                        <div className="mega-tabs-container">
+                          {Object.keys(laboratoriosData).map((key) => (
+                            <div key={key} className={`mega-tab ${activeCategory === key ? 'active' : ''}`} onMouseEnter={() => setActiveCategory(key)}>
+                              {laboratoriosData[key].tabName}
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mega-content-panel">
+                          <div className="mega-items-list">
+                            <ul>
+                              {laboratoriosData[activeCategory].items.map((item, index) => (
+                                <li key={index} onMouseEnter={() => setHoveredItem(index)} onMouseLeave={() => setHoveredItem(null)}>
+                                  <Link to={item.path} className={`mega-link-item ${hoveredItem === index ? 'hovered' : ''}`}>
+                                    <div className="menu-icon-wrapper">
+                                      <img src={item.icBase} alt="" className={`menu-ic ic-base ${hoveredItem === index ? 'hidden' : ''}`} />
+                                      <img src={item.icHover} alt="" className={`menu-ic ic-hover ${hoveredItem === index ? 'visible' : ''}`} />
+                                    </div>
+                                    <span className="link-text-label">{item.name}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
-                        ))}
-                      </div>
-
-                      <div className="mega-content-panel">
-                        <div className="mega-items-list">
-                          <ul>
-                            {laboratoriosData[activeCategory].items.map((item, index) => (
-                              <li key={index} 
-                                  onMouseEnter={() => setHoveredItem(index)}
-                                  onMouseLeave={() => setHoveredItem(null)}
-                              >
-                                <Link to={item.path} className={`mega-link-item ${hoveredItem === index ? 'hovered' : ''}`}>
-                                  <div className="menu-icon-wrapper">
-                                    <img src={item.icBase} alt="" className={`menu-ic ic-base ${hoveredItem === index ? 'hidden' : ''}`} />
-                                    <img src={item.icHover} alt="" className={`menu-ic ic-hover ${hoveredItem === index ? 'visible' : ''}`} />
+                          <div className={`mega-info-card ${laboratoriosData[activeCategory].isLoginForm ? 'certilab-mode' : ''}`}>
+                            {laboratoriosData[activeCategory].isLoginForm ? (
+                              <div className="mega-certilab-login">
+                                <img src={logoBlanco} alt="Certimet Logo" className="login-logo-mega" />
+                                <h4 className="login-mega-title">¡Hola! Qué bueno verte</h4>
+                                <p className="login-mega-sub">Inicia sesión para continuar con tu compra</p>
+                                
+                                {loginError && <div className="login-mega-error">{loginError}</div>}
+                                
+                                <form onSubmit={handleCertilabLogin} className="login-mega-form">
+                                  <div className="mega-form-group">
+                                    <label>Correo electrónico *</label>
+                                    <input 
+                                      type="email" 
+                                      placeholder="ejemplo@certimet.pe" 
+                                      value={correo}
+                                      onChange={(e) => setCorreo(e.target.value)}
+                                      onFocus={() => setIsFormFocused(true)}
+                                      onBlur={() => setIsFormFocused(false)}
+                                      required 
+                                    />
                                   </div>
-                                  <span className="link-text-label">{item.name}</span>
+                                  <div className="mega-form-group">
+                                    <label>Contraseña *</label>
+                                    <input 
+                                      type="password" 
+                                      placeholder="••••••••••••••" 
+                                      value={password}
+                                      onChange={(e) => setPassword(e.target.value)}
+                                      onFocus={() => setIsFormFocused(true)}
+                                      onBlur={() => setIsFormFocused(false)}
+                                      required 
+                                    />
+                                  </div>
+                                  
+                                  <div className="mega-login-options">
+                                    <label className="mega-remember-me">
+                                      <input type="checkbox" /> Recordarme
+                                    </label>
+                                    <Link to="/tienda/recuperar" className="mega-forgot-link">¿Olvidaste tu contraseña?</Link>
+                                  </div>
+                                  
+                                  <button type="submit" className="btn-mega-login" disabled={loginLoading}>
+                                    {loginLoading ? 'Validando...' : 'Ingresar a mi cuenta'}
+                                  </button>
+                                </form>
+                                
+                                <div className="mega-login-footer">
+                                  <p>¿Eres nuevo en CERTIMET?</p>
+                                  <Link to="/tienda/registro" className="btn-mega-registro">Crea una cuenta</Link>
+                                </div>
+                              </div>
+                            ) : (
+                              <>
+                                {laboratoriosData[activeCategory].infoTitle && (
+                                  <h3>{laboratoriosData[activeCategory].infoTitle}</h3>
+                                )}
+                                {laboratoriosData[activeCategory].infoDesc && (
+                                  <p className="mega-info-desc">{laboratoriosData[activeCategory].infoDesc}</p>
+                                )}
+                                {laboratoriosData[activeCategory].infoBullets && laboratoriosData[activeCategory].infoBullets.length > 0 && (
+                                  <ul>
+                                    {laboratoriosData[activeCategory].infoBullets.map((bullet, idx) => (
+                                      <li key={idx}>{bullet}</li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+
+                {/* MEGA-MENÚ: INGENIERÍA */}
+                <li 
+                  className={`nav-item-dropdown-mega ${isIngenieriaMenuOpen ? 'menu-active-bg' : ''}`}
+                  onMouseEnter={() => setIsIngenieriaMenuOpen(true)}
+                  onMouseLeave={() => setIsIngenieriaMenuOpen(false)}
+                >
+                  <Link to="/ingenieria" className={location.pathname.startsWith('/ingenieria') ? 'active' : ''}>
+                    Ingeniería y Automatización <span className="arrow-down">▾</span>
+                  </Link>
+
+                  <AnimatePresence>
+                    {isIngenieriaMenuOpen && (
+                      <motion.div 
+                        className="mega-dropdown-wrapper"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 15 }}
+                      >
+                         <div className="ingenieria-tabs-container">
+                          {Object.keys(ingenieriaMegaData).map((key) => (
+                            <div key={key} className={`ingenieria-tab ${activeIngenieriaCategory === key ? 'active' : ''}`} onMouseEnter={() => setActiveIngenieriaCategory(key)}>
+                              {ingenieriaMegaData[key].tabName}
+                            </div>
+                          ))}
+                        </div>
+                        <div className="ingenieria-content-panel">
+                          <div className="ingenieria-info-box">
+                            <h3>{ingenieriaMegaData[activeIngenieriaCategory].title}</h3>
+                            <p>{ingenieriaMegaData[activeIngenieriaCategory].desc}</p>
+                            <ul className="ingenieria-bullet-list">
+                              {ingenieriaMegaData[activeIngenieriaCategory].bullets.map((bullet, idx) => (
+                                <li key={idx}>{bullet}</li>
+                              ))}
+                            </ul>
+                            <Link to={ingenieriaMegaData[activeIngenieriaCategory].btnLink} className="btn-ingenieria-outline">
+                              {ingenieriaMegaData[activeIngenieriaCategory].btnText}
+                            </Link>
+                          </div>
+                          <div className="ingenieria-image-box">
+                            <img 
+                              src={ingenieriaMegaData[activeIngenieriaCategory].img} 
+                              alt={ingenieriaMegaData[activeIngenieriaCategory].title} 
+                            />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+
+                <li><Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link></li>
+                <li><Link to="/contacto" className={location.pathname === '/contacto' ? 'active' : ''}>Contacto</Link></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        {/* ================= BARRA PRINCIPAL SEARCH/CART ================= */}
+        <div className="ht-main-bar">
+          <div className="ht-content wrapper">
+            
+            <div className="ht-left">
+              <button className="ht-mobile-menu-btn" onClick={() => setIsMobileMenuOpen(true)}>
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" strokeWidth="2" fill="none">
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+              </button>
+              
+              <Link to="/">
+                <img src={isScrolled ? logoColor : logoBlanco} alt="CERTIMET" className="ht-logo" />
+              </Link>
+            </div>
+
+            {/* BUSCADOR Y MEGA MENÚ TIENDA (SÓLO PC) */}
+            <div className="ht-center ht-desktop-only" ref={searchRef}>
+              <form onSubmit={handleBuscar} className="ht-search-form">
+                <div 
+                  className="ht-btn-productos-wrapper"
+                  onMouseEnter={() => setIsProductosOpen(true)}
+                  onMouseLeave={() => { setIsProductosOpen(false); setActiveProductCat(menuProductosMega[0].id); }}
+                >
+                  <div className="ht-btn-productos">
+                    <span className="ht-hamburguer">≡</span> Productos
+                  </div>
+                  
+                  <AnimatePresence>
+                    {isProductosOpen && (
+                      <motion.div 
+                        className="ht-mega-productos"
+                        initial={{ opacity: 0, y: 10 }} 
+                        animate={{ opacity: 1, y: 0 }} 
+                        exit={{ opacity: 0, y: 10 }}
+                      >
+                        <div className="ht-mega-prod-left">
+                          <ul>
+                            {menuProductosMega.map((cat) => (
+                              <li key={cat.id} className={activeProductCat === cat.id ? 'active' : ''} onMouseEnter={() => setActiveProductCat(cat.id)}>
+                                <Link to={cat.path} onClick={handleCategoriaClick}>
+                                  {cat.name} <span className="arrow">›</span>
                                 </Link>
                               </li>
                             ))}
                           </ul>
-                        </div>
-
-                        <div className={`mega-info-card ${laboratoriosData[activeCategory].isLoginForm ? 'certilab-mode' : ''}`}>
-                          {laboratoriosData[activeCategory].isLoginForm ? (
-                            <div className="mega-certilab-login">
-                              <img src={logoBlanco} alt="Certimet Logo" className="login-logo-mega" />
-                              <h4 className="login-mega-title">¡Hola! Qué bueno verte</h4>
-                              <p className="login-mega-sub">Inicia sesión para continuar con tu compra</p>
-                              
-                              {loginError && <div className="login-mega-error">{loginError}</div>}
-                              
-                              <form onSubmit={handleCertilabLogin} className="login-mega-form">
-                                <div className="mega-form-group">
-                                  <label>Correo electrónico *</label>
-                                  <input 
-                                    type="email" 
-                                    placeholder="ejemplo@certimet.pe" 
-                                    value={correo}
-                                    onChange={(e) => setCorreo(e.target.value)}
-                                    onFocus={() => setIsFormFocused(true)}
-                                    onBlur={() => setIsFormFocused(false)}
-                                    required 
-                                  />
-                                </div>
-                                <div className="mega-form-group">
-                                  <label>Contraseña *</label>
-                                  <input 
-                                    type="password" 
-                                    placeholder="••••••••••••••" 
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    onFocus={() => setIsFormFocused(true)}
-                                    onBlur={() => setIsFormFocused(false)}
-                                    required 
-                                  />
-                                </div>
-                                
-                                <div className="mega-login-options">
-                                  <label className="mega-remember-me">
-                                    <input type="checkbox" /> Recordarme
-                                  </label>
-                                  <Link to="/tienda/recuperar" className="mega-forgot-link">¿Olvidaste tu contraseña?</Link>
-                                </div>
-                                
-                                <button type="submit" className="btn-mega-login" disabled={loginLoading}>
-                                  {loginLoading ? 'Validando...' : 'Ingresar a mi cuenta'}
-                                </button>
-                              </form>
-                              
-                              <div className="mega-login-footer">
-                                <p>¿Eres nuevo en CERTIMET?</p>
-                                <Link to="/tienda/registro" className="btn-mega-registro">Crea una cuenta</Link>
-                              </div>
-                            </div>
-                          ) : (
-                            <>
-                              {laboratoriosData[activeCategory].infoTitle && (
-                                <h3>{laboratoriosData[activeCategory].infoTitle}</h3>
-                              )}
-                              {laboratoriosData[activeCategory].infoDesc && (
-                                <p className="mega-info-desc">{laboratoriosData[activeCategory].infoDesc}</p>
-                              )}
-                              {laboratoriosData[activeCategory].infoBullets && laboratoriosData[activeCategory].infoBullets.length > 0 && (
-                                <ul>
-                                  {laboratoriosData[activeCategory].infoBullets.map((bullet, idx) => (
-                                    <li key={idx}>{bullet}</li>
-                                  ))}
-                                </ul>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </li>
-
-              {/* =========================================================
-                  BOTÓN MEGA-MENÚ: INGENIERÍA Y AUTOMATIZACIÓN 
-                  ========================================================= */}
-              <li 
-                className={`nav-item-dropdown-mega ${isIngenieriaMenuOpen ? 'menu-active-bg' : ''}`}
-                onMouseEnter={() => setIsIngenieriaMenuOpen(true)}
-                onMouseLeave={() => setIsIngenieriaMenuOpen(false)}
-              >
-                <Link to="/ingenieria" className={location.pathname.startsWith('/ingenieria') ? 'active' : ''}>
-                  Ingeniería y Automatización <span className="arrow-down">▾</span>
-                </Link>
-
-                <AnimatePresence>
-                  {isIngenieriaMenuOpen && (
-                    <motion.div 
-                      className="mega-dropdown-wrapper"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    >
-                      <div className="ingenieria-tabs-container">
-                        {Object.keys(ingenieriaMegaData).map((key) => (
-                          <div 
-                            key={key}
-                            className={`ingenieria-tab ${activeIngenieriaCategory === key ? 'active' : ''}`}
-                            onMouseEnter={() => setActiveIngenieriaCategory(key)}
-                          >
-                            {ingenieriaMegaData[key].tabName}
+                          <div className="ht-ver-todo-mega">
+                            <Link to="/tienda/catalogo" onClick={handleCategoriaClick}>
+                              Ver todo el catálogo →
+                            </Link>
                           </div>
-                        ))}
-                      </div>
-
-                      <div className="ingenieria-content-panel">
-                        <div className="ingenieria-info-box">
-                          <h3>{ingenieriaMegaData[activeIngenieriaCategory].title}</h3>
-                          <p>{ingenieriaMegaData[activeIngenieriaCategory].desc}</p>
-                          
-                          <ul className="ingenieria-bullet-list">
-                            {ingenieriaMegaData[activeIngenieriaCategory].bullets.map((bullet, idx) => (
-                              <li key={idx}>{bullet}</li>
-                            ))}
-                          </ul>
-                          
-                          <Link to={ingenieriaMegaData[activeIngenieriaCategory].btnLink} className="btn-ingenieria-outline">
-                            {ingenieriaMegaData[activeIngenieriaCategory].btnText}
-                          </Link>
                         </div>
-                        <div className="ingenieria-image-box">
-                          <img 
-                            src={ingenieriaMegaData[activeIngenieriaCategory].img} 
-                            alt={ingenieriaMegaData[activeIngenieriaCategory].title} 
-                          />
+                        <div className="ht-mega-prod-right">
+                          {(() => {
+                            const activeData = menuProductosMega.find(c => c.id === activeProductCat);
+                            if (!activeData) return null;
+                            return (
+                              <>
+                                <div className="ht-mega-prod-header">
+                                  <div className="ht-header-title">
+                                    <h3>{activeData.name}</h3>
+                                  </div>
+                                  <Link to={activeData.path} onClick={handleCategoriaClick}>Ver todo</Link>
+                                </div>
+                                <div className="ht-mega-prod-grid">
+                                  {activeData.secciones.map((sec, idx) => (
+                                    <div key={idx} className="ht-mega-prod-column">
+                                      <h4>{sec.title}</h4>
+                                      <ul>
+                                        {sec.links.map((link, lidx) => (
+                                          <li key={lidx}>
+                                            <Link to={link.path} onClick={handleCategoriaClick}>{link.name}</Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  ))}
+                                </div>
+                              </>
+                            );
+                          })()}
                         </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </li>
-
-              {/* Otros enlaces simples */}
-              <li><Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link></li>
-              <li><Link to="/contacto" className={location.pathname === '/contacto' ? 'active' : ''}>Contacto</Link></li>
-              <li><Link to="/servicio-cliente">Servicio al cliente</Link></li>
-            </ul>
-          </nav>
-
-        </div>
-      </div>
-
-      {/* ================= BARRA PRINCIPAL SEARCH/CART ================= */}
-      <div className="ht-main-bar">
-        <div className="ht-content wrapper">
-          
-          <div className="ht-left">
-            <Link to="/">
-              <img src={isScrolled ? logoColor : logoBlanco} alt="CERTIMET" className="ht-logo" />
-            </Link>
-          </div>
-
-          <div className="ht-center" ref={searchRef}>
-            <form onSubmit={handleBuscar} className="ht-search-form">
-              
-              {/* ========================================================
-                  BOTÓN Y MEGA MENÚ DE PRODUCTOS (Estilo Falabella)
-                  ======================================================== */}
-              <div 
-                className="ht-btn-productos-wrapper"
-                onMouseEnter={() => setIsProductosOpen(true)}
-                onMouseLeave={() => { setIsProductosOpen(false); setActiveProductCat(menuProductosMega[0].id); }}
-              >
-                <div className="ht-btn-productos">
-                  <span className="ht-hamburguer">≡</span> Productos
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-                
-                <AnimatePresence>
-                  {isProductosOpen && (
-                    <motion.div 
-                      className="ht-mega-productos"
-                      initial={{ opacity: 0, y: 10 }} 
-                      animate={{ opacity: 1, y: 0 }} 
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {/* COLUMNA IZQUIERDA: CATEGORÍAS */}
-                      <div className="ht-mega-prod-left">
+
+                <div className="ht-input-container">
+                  <input 
+                    type="text" 
+                    placeholder="Busca equipo, modelo, calibración..." 
+                    value={busqueda}
+                    onChange={(e) => { setBusqueda(e.target.value); setMostrarSugerencias(true); }}
+                    onFocus={() => setMostrarSugerencias(true)}
+                    className="ht-search-input"
+                  />
+
+                  <AnimatePresence>
+                    {mostrarSugerencias && sugerencias.length > 0 && (
+                      <motion.div 
+                        className="ht-search-suggestions"
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         <ul>
-                          {menuProductosMega.map((cat) => (
-                            <li 
-                              key={cat.id} 
-                              className={activeProductCat === cat.id ? 'active' : ''}
-                              onMouseEnter={() => setActiveProductCat(cat.id)}
-                            >
-                              <Link to={cat.path} onClick={handleCategoriaClick}>
-                                {cat.name} <span className="arrow">›</span>
+                          {sugerencias.map(prod => (
+                            <li key={prod.id}>
+                              <Link 
+                                to={`/producto/${prod.id}`} 
+                                onClick={() => setMostrarSugerencias(false)}
+                              >
+                                <img 
+                                  src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : 'https://via.placeholder.com/50'} 
+                                  alt={prod.nombre} 
+                                />
+                                <span className="sug-text">{prod.nombre}</span>
                               </Link>
                             </li>
                           ))}
                         </ul>
-                        <div className="ht-ver-todo-mega">
-                          <Link to="/tienda/catalogo" onClick={handleCategoriaClick}>
-                            Ver todo el catálogo →
-                          </Link>
-                        </div>
-                      </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-                      {/* COLUMNA DERECHA: SUBCATEGORÍAS DINÁMICAS */}
-                      <div className="ht-mega-prod-right">
-                        {(() => {
-                          const activeData = menuProductosMega.find(c => c.id === activeProductCat);
-                          if (!activeData) return null;
-                          return (
-                            <>
-                              <div className="ht-mega-prod-header">
-                                <div className="ht-header-title">
-                                  <h3>{activeData.name}</h3>
-                                </div>
-                                <Link to={activeData.path} onClick={handleCategoriaClick}>Ver todo</Link>
-                              </div>
-                              
-                              <div className="ht-mega-prod-grid">
-                                {activeData.secciones.map((sec, idx) => (
-                                  <div key={idx} className="ht-mega-prod-column">
-                                    <h4>{sec.title}</h4>
-                                    <ul>
-                                      {sec.links.map((link, lidx) => (
-                                        <li key={lidx}>
-                                          <Link to={link.path} onClick={handleCategoriaClick}>{link.name}</Link>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                ))}
-                              </div>
-                            </>
-                          );
-                        })()}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <div className="ht-input-container">
-                <input 
-                  type="text" 
-                  placeholder="Busca equipo, modelo, calibración..." 
-                  value={busqueda}
-                  onChange={(e) => {
-                    setBusqueda(e.target.value);
-                    setMostrarSugerencias(true);
-                  }}
-                  onFocus={() => setMostrarSugerencias(true)}
-                  className="ht-search-input"
-                />
-
-                <AnimatePresence>
-                  {mostrarSugerencias && sugerencias.length > 0 && (
-                    <motion.div 
-                      className="ht-search-suggestions"
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ul>
-                        {sugerencias.map(prod => (
-                          <li key={prod.id}>
-                            <Link 
-                              to={`/producto/${prod.id}`} 
-                              onClick={() => setMostrarSugerencias(false)}
-                            >
-                              <img 
-                                src={prod.imagen_principal_url ? `http://localhost:3000${prod.imagen_principal_url}` : 'https://via.placeholder.com/50'} 
-                                alt={prod.nombre} 
-                              />
-                              <span className="sug-text">{prod.nombre}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-              </div>
-
-              <button type="submit" className="ht-search-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-              </button>
-            </form>
-          </div>
-
-          <div className="ht-right">
-            <div className="ht-asesor">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="30" height="30" className="ht-icon-svg">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              <div className="ht-asesor-text">
-                <span className="ht-asesor-title">Asesores Comerciales</span>
-                <span className="ht-asesor-wsp">✆ 941 101 546</span>
-              </div>
+                <button type="submit" className="ht-search-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </button>
+              </form>
             </div>
 
-            {!isAuthenticated ? (
-              <Link className="ht-icon-link" to="/tienda/login">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
+            {/* BOTONES DERECHA (ASIGNAR, LOGIN, CART) */}
+            <div className="ht-right">
+              <div className="ht-asesor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="30" height="30" className="ht-icon-svg">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
-                <span>Iniciar sesión</span>
-              </Link>
-            ) : (
-              <div className="ht-user-menu">
-                <Link to="/tienda/cuenta" className="ht-icon-link">
+                <div className="ht-asesor-text">
+                  <span className="ht-asesor-title">Asesores Comerciales</span>
+                  <span className="ht-asesor-wsp">✆ 941 101 546</span>
+                </div>
+              </div>
+
+              {!isAuthenticated ? (
+                <Link className="ht-icon-link" to="/tienda/login">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
-                  <span>{usuario?.nombre || 'Mi cuenta'}</span>
+                  <span>Iniciar sesión</span>
                 </Link>
-                <button onClick={handleLogout} className="ht-logout-btn">
-                  Cerrar sesión
-                </button>
-              </div>
-            )}
+              ) : (
+                <div className="ht-user-menu">
+                  <Link to="/tienda/cuenta" className="ht-icon-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>{usuario?.nombre || 'Mi cuenta'}</span>
+                  </Link>
+                </div>
+              )}
 
-            <Link className="ht-icon-link ht-carrito" to="/tienda/carrito">
-              <div className="ht-carrito-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <span className="ht-cart-badge">{cartCount}</span>
-              </div>
-              <span>Carrito</span>
-            </Link>
+              <Link className="ht-icon-link ht-carrito" to="/tienda/carrito">
+                <div className="ht-carrito-icon-wrapper">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="26" height="26" className="ht-icon-svg">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  <span className="ht-cart-badge">{cartCount}</span>
+                </div>
+                <span>Carrito</span>
+              </Link>
+            </div>
+
           </div>
+        </div>
+      </header>
 
+      {/* ===================================================================
+          ✅ SIDEBAR MÓVIL (VISIBLE SÓLO EN PANTALLAS PEQUEÑAS)
+          =================================================================== */}
+      <div className={`ht-mobile-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+      
+      <div className={`ht-mobile-sidebar ${isMobileMenuOpen ? 'active' : ''}`}>
+        
+        <div className="ht-mobile-sidebar-header">
+          <form onSubmit={handleBuscar} className="ht-mobile-search">
+            <input 
+              type="text" 
+              placeholder="Busca por equipo o marca..." 
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+            />
+            <button type="submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2" width="20" height="20">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <div className="ht-mobile-sidebar-content">
+          <ul className="ht-mobile-nav">
+            <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)}>INICIO</Link></li>
+            <li><Link to="/nosotros" onClick={() => setIsMobileMenuOpen(false)}>NOSOTROS</Link></li>
+
+            <li>
+              <div className="ht-mobile-nav-header" onClick={() => toggleMobileCat('metrologia')}>
+                <span>METROLOGÍA Y CALIBRACIÓN</span>
+                <span className={`arrow ${mobileExpandedCat === 'metrologia' ? 'open' : ''}`}>›</span>
+              </div>
+              {mobileExpandedCat === 'metrologia' && (
+                <ul className="ht-mobile-subnav">
+                  {laboratoriosData.metrologia.items.map((item, i) => (
+                    <li key={i}><Link to={item.path} onClick={() => setIsMobileMenuOpen(false)}>{item.name}</Link></li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            <li>
+              <div className="ht-mobile-nav-header" onClick={() => toggleMobileCat('ingenieria')}>
+                <span>AUTOMATIZACIÓN INDUSTRIAL</span>
+                <span className={`arrow ${mobileExpandedCat === 'ingenieria' ? 'open' : ''}`}>›</span>
+              </div>
+              {mobileExpandedCat === 'ingenieria' && (
+                <ul className="ht-mobile-subnav">
+                  {Object.values(ingenieriaMegaData).map((ing, i) => (
+                    <li key={i}><Link to={ing.btnLink} onClick={() => setIsMobileMenuOpen(false)}>{ing.title}</Link></li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            <li>
+              <div className="ht-mobile-nav-header" onClick={() => toggleMobileCat('tienda')}>
+                <span>TIENDA</span>
+                <span className={`arrow ${mobileExpandedCat === 'tienda' ? 'open' : ''}`}>›</span>
+              </div>
+              {mobileExpandedCat === 'tienda' && (
+                <ul className="ht-mobile-subnav">
+                  <li><Link to="/tienda/catalogo" onClick={() => setIsMobileMenuOpen(false)}>Ver todo el catálogo</Link></li>
+                  {menuProductosMega.map((cat, i) => (
+                    <li key={i}><Link to={cat.path} onClick={() => setIsMobileMenuOpen(false)}>{cat.name}</Link></li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            <li><Link to="/servicios" onClick={() => setIsMobileMenuOpen(false)}>SERVICIOS</Link></li>
+            <li><Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>BLOG</Link></li>
+            <li><Link to="/contacto" onClick={() => setIsMobileMenuOpen(false)}>CONTACTO</Link></li>
+          </ul>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 
