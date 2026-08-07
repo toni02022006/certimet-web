@@ -1,0 +1,219 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+.dif-section {
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  padding: 50px 5% 100px 5%; /* Espacio superior para el banner flotante */
+  display: flex;
+  justify-content: center;
+}
+
+.dif-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   BANNER DE DESCARGA
+   ========================================================================== */
+.dif-banner-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 120px;
+  padding-top: 30px; /* Espacio para que sobresalga la imagen arriba */
+}
+
+.dif-banner {
+  background-color: #002e66; /* Azul oscuro del fondo */
+  width: 100%;
+  max-width: 950px;
+  border-radius: 30px;
+  padding: 30px 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.dif-banner-text {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0;
+  flex: 1; /* Toma el espacio disponible */
+}
+
+.dif-text-green {
+  color: #00e676; /* Verde Certimet */
+  font-weight: 600;
+}
+
+/* Imagen flotante del brochure */
+.dif-banner-img {
+  position: absolute;
+  right: 50px;
+  top: -60px; /* Hace que sobresalga por arriba */
+  width: 360px; /* Tamaño del brochure */
+  height: auto;
+  z-index: 2;
+}
+
+.dif-banner-img:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* ==========================================================================
+   SECCIÓN: EL DIFERENCIAL
+   ========================================================================== */
+.dif-content {
+  width: 100%;
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* --- COLUMNA DE TEXTO --- */
+.dif-text-col {
+  flex: 1;
+  max-width: 500px;
+  padding-top: 20px;
+}
+
+.dif-title {
+  font-size: 42px;
+  line-height: 1.15;
+  margin: 0 0 40px 0;
+  letter-spacing: -0.5px;
+}
+
+.dif-title-light {
+  color: #0056b3; /* Azul estándar */
+  font-weight: 300;
+}
+
+.dif-title-dark {
+  color: #0056b3;
+  font-weight: 600; /* Letra gruesa */
+}
+
+/* --- LISTA DE ITEMS --- */
+.dif-list {
+  list-style: none; /* Quitamos las viñetas por defecto, el diseño muestra solo texto */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Separación amplia entre cada punto */
+}
+
+.dif-list li {
+  color: #0056b3;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* --- COLUMNA DE IMAGEN --- */
+.dif-img-col {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dif-img {
+  width: 100%;
+  max-width: 450px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 25px; /* Bordes redondeados idénticos */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .dif-banner-text {
+    font-size: 22px;
+  }
+  .dif-banner-img {
+    right: 40px;
+    width: 140px;
+  }
+  .dif-content {
+    gap: 40px;
+  }
+  .dif-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 850px) {
+  /* Cambio a columna para el banner */
+  .dif-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px 100px 20px; /* Más padding abajo para la imagen */
+  }
+  
+  .dif-banner-img {
+    right: auto;
+    top: auto;
+    bottom: -30px; /* Sale por debajo en móviles */
+    transform: rotate(0deg);
+  }
+  
+  .dif-banner-img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Cambio a columna para el contenido */
+  .dif-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dif-text-col {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .dif-list {
+    align-items: center;
+  }
+  
+  .dif-list li {
+    text-align: center;
+  }
+
+  .dif-img-col {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dif-img {
+    height: auto;
+    aspect-ratio: 4/5;
+  }
+}
+
+@media (max-width: 480px) {
+  .dif-banner-text {
+    font-size: 18px;
+  }
+  .dif-title {
+    font-size: 32px;
+  }
+  .dif-banner-img {
+    width: 120px;
+  }
+}

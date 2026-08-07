@@ -87,6 +87,13 @@
   max-width: 500px;
 }
 
+/* --- ESTILO PARA EL NUEVO ÍCONO DE ADVERTENCIA --- */
+.hm-icon-advertencia {
+  width: 90px;
+  height: auto;
+  margin-bottom: 25px;
+}
+
 .hm-intro-title {
   color: #0056b3;
   font-size: 42px;
@@ -97,7 +104,7 @@
 }
 
 .hm-text-blue-bold {
-  font-weight: 500; /* "detener toda su operación" en negrita */
+  font-weight: 600; /* "detener toda su operación" en negrita */
 }
 
 .hm-description {

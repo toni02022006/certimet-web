@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import HeroMantenimiento from '../../components/ingenieria/MantenimientoPredictivo/HeroMantenimiento';
 import DefinicionMantenimiento from '../../components/ingenieria/MantenimientoPredictivo/DefinicionMantenimiento';
+import BeneficiosMantenimiento from '../../components/ingenieria/MantenimientoPredictivo/BeneficiosMantenimiento';
+import SolucionesMonitoreo from '../../components/ingenieria/MantenimientoPredictivo/SolucionesMonitoreo';
+import DiferencialCertimet from '../../components/ingenieria/MantenimientoPredictivo/DiferencialCertimet';
+import SolucionesRelacionadas from '../../components/ingenieria/MantenimientoPredictivo/SolucionesRelacionadas';
+import FaqMantenimiento from '../../components/ingenieria/MantenimientoPredictivo/FaqMantenimiento';
 
 const MantenimientoPredictivo = () => {
   // Asegurarnos de que la página cargue desde arriba al entrar
@@ -13,10 +18,11 @@ const MantenimientoPredictivo = () => {
       {/* Componente principal (Banner e Introducción) */}
       <HeroMantenimiento />
       <DefinicionMantenimiento />
-      
-      {/* Aquí podrás ir agregando los demás componentes de esta subpágina luego */}
-      {/* <SolucionesMantenimiento /> */}
-      {/* <BeneficiosMantenimiento /> */}
+      <BeneficiosMantenimiento />
+      <SolucionesMonitoreo />
+      <DiferencialCertimet />
+      <SolucionesRelacionadas />
+      <FaqMantenimiento />
     </div>
   );
 };

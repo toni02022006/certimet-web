@@ -1,0 +1,189 @@
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.sm-section {
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  padding: 80px 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.sm-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   TÍTULO PRINCIPAL
+   ========================================================================== */
+.sm-main-title {
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 90px;
+  letter-spacing: -0.5px;
+}
+
+.sm-title-light {
+  color: #0056b3; /* Azul más claro */
+  font-weight: 300;
+}
+
+.sm-title-dark {
+  color: #004085; /* Azul más oscuro para resaltar */
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   FILAS (ROWS) DE CONTENIDO
+   ========================================================================== */
+.sm-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 60px;
+  margin-bottom: 100px;
+}
+
+.sm-row:last-child {
+  margin-bottom: 0;
+}
+
+/* --- COLUMNAS DE IMAGEN --- */
+.sm-col-img {
+  flex: 1;
+  display: flex;
+}
+
+.sm-img-left {
+  justify-content: flex-start;
+}
+
+.sm-img-right {
+  justify-content: flex-end;
+}
+
+.sm-img {
+  width: 100%;
+  max-width: 480px;
+  height: 480px; /* Hace que ambas imágenes mantengan proporción cuadrada/rectangular uniforme */
+  object-fit: cover;
+  border-radius: 25px; /* Bordes redondeados idénticos al diseño */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* --- COLUMNAS DE TEXTO --- */
+.sm-col-text {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sm-title {
+  color: #0056b3;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 25px 0;
+  letter-spacing: -0.5px;
+}
+
+.sm-description {
+  color: #59575a;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 35px 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- LISTAS (Viñetas con flecha verde) --- */
+.sm-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaciado entre cada ítem */
+}
+
+.sm-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #59575a;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.sm-arrow {
+  color: #00e676; /* Verde exacto */
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .sm-main-title {
+    font-size: 34px;
+  }
+  .sm-row {
+    gap: 40px;
+  }
+  .sm-title {
+    font-size: 32px;
+  }
+  .sm-img {
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+}
+
+@media (max-width: 950px) {
+  .sm-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+  }
+  
+  /* Invierte el orden en móvil para que siempre se vea primero el texto (o la imagen) */
+  .sm-row-reverse {
+    flex-direction: column;
+  }
+  
+  .sm-col-img, .sm-col-text {
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sm-list {
+    text-align: left; /* Mantener la lista alineada a la izquierda aunque el bloque esté centrado */
+    align-items: flex-start;
+    display: inline-flex;
+  }
+  
+  .sm-description {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .sm-main-title {
+    font-size: 28px;
+    margin-bottom: 50px;
+  }
+  .sm-title {
+    font-size: 28px;
+  }
+}

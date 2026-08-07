@@ -1,0 +1,145 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+.bm-section {
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  padding: 80px 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.bm-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   ENCABEZADO (TÍTULO Y SUBTÍTULO)
+   ========================================================================== */
+.bm-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.bm-main-title {
+  font-size: 42px;
+  line-height: 1.2;
+  margin: 0 0 25px 0;
+  letter-spacing: -0.5px;
+}
+
+.bm-title-light {
+  color: #0056b3;
+  font-weight: 300;
+}
+
+.bm-title-dark {
+  color: #002e66;
+  font-weight: 600;
+}
+
+.bm-subtitle {
+  color: #59575a;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   GRILLA DE TARJETAS
+   ========================================================================== */
+.bm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+
+/* --- TARJETA Y SUS TRANSICIONES --- */
+.bm-card {
+  background-color: #ffffff;
+  border: 1px solid #0056b3;
+  border-radius: 25px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Añadimos transiciones suaves para el fondo, borde y sombra */
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.bm-card-icon {
+  width: 45px;
+  height: auto;
+  margin-bottom: 25px;
+}
+
+.bm-card-title {
+  color: #0056b3;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  transition: color 0.3s ease; /* Transición suave para el color del texto */
+}
+
+.bm-card-text {
+  color: #0056b3;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.9;
+  transition: color 0.3s ease; /* Transición suave para el color del texto */
+}
+
+/* ==========================================================================
+   EFECTO HOVER (Al pasar el mouse)
+   ========================================================================== */
+.bm-card:hover {
+  background-color: #002e66; /* Cambia a azul oscuro */
+  border-color: #002e66; /* Oculta el borde azul claro igualándolo al fondo */
+  transform: translateY(-5px); /* Pequeño salto hacia arriba */
+  box-shadow: 0 15px 30px rgba(0, 46, 102, 0.25);
+}
+
+.bm-card:hover .bm-card-title,
+.bm-card:hover .bm-card-text {
+  color: #ffffff; /* Los textos pasan a color blanco */
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 950px) {
+  .bm-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .bm-main-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 650px) {
+  .bm-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .bm-main-title {
+    font-size: 30px;
+  }
+  
+  .bm-subtitle {
+    font-size: 15px;
+    padding: 0 15px;
+  }
+}

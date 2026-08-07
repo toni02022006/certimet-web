@@ -1,0 +1,142 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL Y CONTENEDOR
+   ========================================================================== */
+.faq-section {
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #eff5fc; /* Celeste muy claro del fondo de la imagen */
+  padding: 80px 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.faq-container {
+  width: 100%;
+  max-width: 1000px; /* Ancho ajustado según proporción de la imagen */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   TÍTULO
+   ========================================================================== */
+.faq-title {
+  color: #0056b3; /* Azul primario */
+  font-size: 38px;
+  font-weight: 600;
+  margin: 0 0 50px 0;
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   LISTA DE ACORDEÓN
+   ========================================================================== */
+.faq-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   ITEMS (Pregunta + Respuesta)
+   ========================================================================== */
+.faq-item {
+  width: 100%;
+  border-bottom: 1px solid #c9d6e4; /* Línea separadora tenue */
+}
+
+/* Evitar línea doble al final si se desea, aunque la imagen muestra líneas */
+.faq-item:last-child {
+  border-bottom: 1px solid #c9d6e4;
+}
+
+/* --- BOTÓN DE LA PREGUNTA --- */
+.faq-question-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s ease;
+}
+
+.faq-question-btn:hover {
+  opacity: 0.8;
+}
+
+.faq-question-text {
+  color: #59575a; /* Gris oscuro del texto */
+  font-size: 15px;
+  font-weight: 400;
+  padding-right: 20px;
+}
+
+/* --- ICONO (+ y -) --- */
+.faq-icon {
+  color: #59575a;
+  font-size: 24px;
+  font-weight: 300;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+/* Rotación sutil del icono al abrir (opcional, le da buen toque) */
+.faq-item-open .faq-icon {
+  transform: rotate(90deg);
+}
+
+/* --- RESPUESTA (Oculta por defecto) --- */
+.faq-answer-wrapper {
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.faq-answer-text {
+  color: #59575a;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  padding-bottom: 20px;
+  padding-left: 15px; /* Pequeña sangría para diferenciar la respuesta */
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 60px 5%;
+  }
+  
+  .faq-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  
+  .faq-question-text {
+    font-size: 14px;
+  }
+  
+  .faq-answer-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-title {
+    font-size: 28px;
+  }
+  
+  .faq-question-btn {
+    padding: 15px 0;
+  }
+}

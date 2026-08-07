@@ -1,0 +1,301 @@
+/* ==========================================================================
+   SECCIÓN PRINCIPAL Y ELEMENTOS BASE
+   ========================================================================== */
+.sr-section {
+  background-color: #ffffff;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sr-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   BANNER SUPERIOR Y TITULOS
+   ========================================================================== */
+.sr-banner-wrapper { 
+  display: flex; 
+  justify-content: center; 
+  margin-bottom: 80px; 
+  width: 100%; 
+}
+.sr-banner { 
+  background: linear-gradient(135deg, #004b93 0%, #001a3b 100%); 
+  border-radius: 40px; 
+  padding: 45px 30px; 
+  width: 100%; 
+  max-width: 950px; 
+  text-align: center; 
+  box-shadow: 0 15px 35px rgba(0, 40, 85, 0.2); 
+}
+.sr-banner-quote { 
+  color: #ffffff; 
+  font-size: 24px; 
+  font-weight: 600; 
+  font-style: italic; 
+  margin: 0 0 10px 0; 
+}
+.sr-banner-subtext { 
+  color: #ffffff; 
+  font-size: 20px; 
+  font-weight: 300; 
+  margin: 0; 
+  line-height: 1.4; 
+  -webkit-font-smoothing: antialiased; 
+}
+.sr-banner-subtext .text-green { 
+  color: #00d859; 
+  font-weight: 400; 
+}
+.sr-header { 
+  margin-bottom: 40px; 
+  text-align: left; 
+}
+.sr-title { 
+  color: #0056b3; 
+  font-size: 38px; 
+  font-weight: 500; 
+  line-height: 1.2; 
+  letter-spacing: -0.5px; 
+  margin: 0; 
+}
+.sr-title .text-green { 
+  color: #00d859; 
+  font-weight: 600; 
+}
+
+/* ==========================================================================
+   CARRUSEL Y TARJETAS
+   ========================================================================== */
+.sr-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.sr-arrow-btn {
+  background: none;
+  border: none;
+  color: #0056b3;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.sr-arrow-btn:hover { 
+  transform: scale(1.1); 
+  color: #003b7a; 
+}
+.sr-arrow-btn svg { 
+  width: 40px; 
+  height: 40px; 
+}
+
+.sr-cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  flex: 1;
+}
+
+/* Tarjeta Individual */
+.sr-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.15; /* Ligeramente más alta para adaptarse a los textos de ingeniería */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transform: scale(0.95); /* Un poco más pequeña para dar profundidad */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* EFECTO DE DESVANECIMIENTO EN LOS BORDES EXTERNOS (MÁSCARA GRADIENTE) */
+.sr-cards-wrapper .sr-card:nth-child(1) {
+  mask-image: linear-gradient(to right, transparent 0%, #000 70%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 70%);
+}
+
+.sr-cards-wrapper .sr-card:nth-child(3) {
+  mask-image: linear-gradient(to left, transparent 0%, #000 70%);
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 70%);
+}
+
+/* ESTADO EN EL CENTRO (SIEMPRE DESTACADO Y SIN RECORTE) */
+.sr-card.is-center {
+  transform: scale(1.05); /* Sobresale un poco */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+/* Fondos y Capas */
+.sr-image-container {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.sr-img-default,
+.sr-img-hover {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.sr-light-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(31,118,199,0.85) 100%);
+  transition: opacity 0.4s ease-in-out;
+  z-index: 2;
+}
+
+.sr-img-hover { 
+  opacity: 0; 
+  z-index: 3; 
+}
+
+/* Forzar estados oscuros si es la del centro */
+.sr-card.is-center .sr-img-hover { 
+  opacity: 1; 
+}
+.sr-card.is-center .sr-light-overlay { 
+  opacity: 0; 
+}
+
+/* Textos y Botones */
+.sr-content {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%; padding: 30px 25px;
+  z-index: 4; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start;
+}
+
+.sr-card-title {
+  color: #ffffff; 
+  margin: 0 0 15px 0; 
+  font-size: 24px; 
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.sr-card-title strong { 
+  font-weight: 600; 
+}
+
+/* El texto del título cambia a verde en el centro */
+.sr-card.is-center .sr-card-title {
+  color: #00d859;
+}
+
+/* Botón de la tarjeta del centro */
+.sr-link-btn {
+  display: inline-block;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sr-card.is-center .sr-link-btn {
+  background-color: #00d859;
+  border-color: #00d859;
+  color: #001a33;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   BOTÓN INFERIOR Y RESPONSIVO
+   ========================================================================== */
+.sr-footer-action { 
+  display: flex; 
+  justify-content: center; 
+}
+.btn-todas-soluciones { 
+  display: inline-block; 
+  color: #0056b3; 
+  background-color: transparent; 
+  text-decoration: none; 
+  font-size: 15px; 
+  font-weight: 600; 
+  border: 1.5px solid #0056b3; 
+  border-radius: 30px; 
+  padding: 10px 30px; 
+  transition: all 0.3s ease; 
+}
+.btn-todas-soluciones:hover { 
+  background-color: #0056b3; 
+  color: #ffffff; 
+  box-shadow: 0 8px 20px rgba(0, 86, 179, 0.25); 
+}
+
+@media (max-width: 950px) {
+  .sr-cards-wrapper { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  .sr-card:nth-child(3) { 
+    display: none; 
+  }
+  .sr-cards-wrapper .sr-card:nth-child(1), 
+  .sr-cards-wrapper .sr-card:nth-child(3) { 
+    mask-image: none; 
+    -webkit-mask-image: none; 
+  }
+}
+
+@media (max-width: 650px) {
+  .sr-banner { 
+    padding: 30px 20px; 
+  }
+  .sr-banner-quote { 
+    font-size: 20px; 
+  }
+  .sr-banner-subtext { 
+    font-size: 16px; 
+  }
+  .sr-carousel-container { 
+    position: relative; 
+    padding: 0 10px; 
+  }
+  .sr-cards-wrapper { 
+    grid-template-columns: 1fr; 
+  }
+  .sr-card:nth-child(2) { 
+    display: none; 
+  }
+  .sr-arrow-btn { 
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    z-index: 10; 
+    background: rgba(255,255,255,0.8); 
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px; 
+  }
+  .sr-arrow-btn:first-child { 
+    left: 0; 
+  }
+  .sr-arrow-btn:last-child { 
+    right: 0; 
+  }
+}

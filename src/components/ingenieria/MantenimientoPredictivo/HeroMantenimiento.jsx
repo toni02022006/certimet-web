@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import './HeroMantenimiento.css';
 
 // --- IMPORTACIÓN DE IMÁGENES EXACTAS ---
-import imgFondo from '../../../image/laboratorio/FuerzapresiónMS.webp';
-import imgPersona from '../../../image/ingenieria/img1.webp';
+import imgFondo from '../../../image/ingenieria/mantenimientopredictivo/banner mtto.webp';
+import imgAdvertencia from '../../../image/ingenieria/mantenimientopredictivo/advertenc.webp';
+import imgPersona from '../../../image/ingenieria/mantenimientopredictivo/componente1.webp';
 
 const HeroMantenimiento = () => {
   return (
@@ -14,8 +15,8 @@ const HeroMantenimiento = () => {
       <section 
         className="hm-hero-banner" 
         style={{ 
-          // Degradado azul elegante de izquierda a derecha sobre la imagen
-          backgroundImage: `linear-gradient(90deg, rgba(0, 45, 94, 0.27) 0%, rgba(0, 76, 147, 0.24) 50%, rgba(0, 102, 204, 0.2) 100%), url(${imgFondo})` 
+          // Degradado azul sobre la imagen (opacidad ajustada para parecerse a la referencia)
+          backgroundImage: `linear-gradient(90deg, rgba(0, 45, 94, 0.8) 0%, rgba(0, 76, 147, 0.7) 50%, rgba(0, 102, 204, 0.6) 100%), url(${imgFondo})` 
         }}
       >
         <div className="hm-hero-content">
@@ -41,6 +42,13 @@ const HeroMantenimiento = () => {
 
           {/* Columna Derecha: Textos y Botón */}
           <div className="hm-text-col">
+            {/* Nuevo icono de advertencia añadido según la imagen */}
+            <img 
+              src={imgAdvertencia} 
+              alt="Ícono de Advertencia" 
+              className="hm-icon-advertencia" 
+            />
+            
             <h2 className="hm-intro-title">
               Una falla inesperada<br />
               puede <span className="hm-text-blue-bold">detener<br />toda su operación</span>

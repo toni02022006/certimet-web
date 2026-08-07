@@ -1,8 +1,8 @@
 import React from 'react';
 import './DefinicionMantenimiento.css';
 
-// Reutilizamos la imagen del ingeniero de la sección "Quiénes Somos / Soluciones Integrales"
-import imgDefinicion from '../../../image/ingenieria/img1.webp';
+// Importación exacta con la ruta que indicaste
+import imgDefinicion from '../../../image/ingenieria/mantenimientopredictivo/componente2.webp';
 
 const DefinicionMantenimiento = () => {
   return (
@@ -41,13 +41,31 @@ const DefinicionMantenimiento = () => {
               que de «reparar cuando se rompa» a «prevenir antes de
               que ocurra».
             </p>
+
+            {/* SECCIÓN AÑADIDA: Parámetros Monitoreados (Acordeón) */}
+            <div className="dm-parametros-container">
+              <div className="dm-parametros-header">
+                <span className="dm-parametros-title">Parámetros Monitoreados</span>
+                <span className="dm-icon-plus">+</span>
+              </div>
+              <ol className="dm-parametros-list">
+                <li>Vibración</li>
+                <li>Corriente</li>
+                <li>Resistencia de aislamiento</li>
+                <li>Desempeño operativo</li>
+                <li>Temperatura</li>
+                <li>Voltaje</li>
+                <li>Condiciones eléctricas</li>
+                <li>Humedad</li>
+              </ol>
+            </div>
           </div>
 
           {/* Columna Derecha: Imagen */}
           <div className="dm-img-col">
             <img 
               src={imgDefinicion} 
-              alt="Ingeniero realizando mantenimiento predictivo" 
+              alt="Planta industrial de noche" 
               className="dm-img" 
             />
           </div>

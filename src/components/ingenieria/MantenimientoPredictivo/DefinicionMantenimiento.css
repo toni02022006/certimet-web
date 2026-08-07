@@ -1,33 +1,39 @@
 /* ==========================================================================
-   SECCIÓN PRINCIPAL Y FONDO CORTADO
+   SECCIÓN PRINCIPAL Y CONTENEDOR
    ========================================================================== */
 .dm-section {
   width: 100%;
-  /* El truco del fondo: Blanco de 0 a 100px, luego celeste claro (#f0f8ff) hasta el final. 
-     Esto hace que el banner flote justo en el medio de ambos colores. */
-  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 100px, #f2f8fc 100px, #f2f8fc 100%);
-  padding-bottom: 100px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Fondo dividido: blanco arriba para que flote el banner, celeste abajo */
+  background: linear-gradient(to bottom, #ffffff 100px, #eff5fc 100px);
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
 }
 
 .dm-container {
+  width: 100%;
   max-width: 1100px;
-  margin: 0 auto;
   padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ==========================================================================
-   BANNER SUPERIOR
+   BANNER FLOTANTE
    ========================================================================== */
 .dm-banner {
-  background: linear-gradient(90deg, #004b9a 0%, #002855 100%);
-  border-radius: 30px;
-  padding: 40px 50px;
+  background-color: #002e66; /* Azul oscuro del diseño */
+  width: 100%;
+  max-width: 900px;
+  border-radius: 25px;
+  padding: 40px 30px;
   text-align: center;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-  margin-bottom: 100px;
-  position: relative;
-  z-index: 2;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  margin-top: 30px;
+  margin-bottom: 80px;
+  z-index: 2; /* Asegura que flote sobre el fondo */
 }
 
 .dm-banner-text {
@@ -40,43 +46,43 @@
 }
 
 .dm-banner-text i {
-  font-weight: 500;
-  display: inline-block;
-  margin-bottom: 5px;
+  font-style: italic;
+  font-weight: 300;
 }
 
 .dm-text-green {
-  color: #00e676; /* Verde Certimet */
-  font-weight: 500;
+  color: #00e676; /* Verde exacto */
+  font-weight: 600;
 }
 
 .dm-mobile-break {
-  display: none;
+  display: none; /* Se activa en responsivo si es necesario */
 }
 
 /* ==========================================================================
-   CONTENEDOR DE DOS COLUMNAS
+   CONTENIDO PRINCIPAL (Texto e Imagen)
    ========================================================================== */
 .dm-content {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 80px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 /* --- COLUMNA IZQUIERDA (TEXTOS) --- */
 .dm-text-col {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  max-width: 450px;
+  padding-top: 20px;
 }
 
 .dm-title {
   color: #0056b3;
-  font-size: 40px;
-  font-weight: 400; /* Tipografía más delgada y elegante */
+  font-size: 42px;
+  font-weight: 300;
   line-height: 1.15;
-  margin: 0 0 35px 0;
+  margin: 0 0 25px 0;
   letter-spacing: -0.5px;
 }
 
@@ -84,8 +90,49 @@
   color: #59575a;
   font-size: 15px;
   line-height: 1.7;
+  margin-bottom: 40px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- PARÁMETROS MONITOREADOS (ACORDEÓN/LISTA) --- */
+.dm-parametros-container {
+  width: 100%;
+}
+
+.dm-parametros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #c9d6e4;
+  border-bottom: 1px solid #c9d6e4;
+  padding: 12px 5px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.dm-parametros-title {
+  color: #59575a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dm-icon-plus {
+  color: #59575a;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.dm-parametros-list {
+  padding-left: 20px;
   margin: 0;
-  max-width: 480px;
+  color: #0056b3; /* Color azul para los números y texto */
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 2.2; /* Espaciado entre elementos de la lista */
+}
+
+.dm-parametros-list li {
+  padding-left: 5px;
 }
 
 /* --- COLUMNA DERECHA (IMAGEN) --- */
@@ -98,78 +145,70 @@
 .dm-img {
   width: 100%;
   max-width: 420px;
-  height: auto;
-  aspect-ratio: 4/5;
+  height: 600px;
   object-fit: cover;
   border-radius: 25px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 /* ==========================================================================
    RESPONSIVO
    ========================================================================== */
 @media (max-width: 1024px) {
-  .dm-content {
-    gap: 40px;
-  }
-  
   .dm-banner-text {
     font-size: 20px;
+  }
+  .dm-content {
+    gap: 50px;
+  }
+  .dm-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 950px) {
+  .dm-section {
+    background: linear-gradient(to bottom, #ffffff 120px, #eff5fc 120px);
+  }
+  .dm-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dm-text-col {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .dm-description {
+    text-align: center;
+  }
+  .dm-parametros-container {
+    text-align: left;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  .dm-img-col {
+    justify-content: center;
+    margin-top: 40px;
+    width: 100%;
+  }
+  .dm-img {
+    height: auto;
+    aspect-ratio: 4/5;
   }
 }
 
 @media (max-width: 768px) {
-  /* Ajustar el corte de color en móvil porque el banner será más alto */
-  .dm-section {
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 130px, #f2f8fc 130px, #f2f8fc 100%);
-  }
-
   .dm-banner {
     padding: 30px 20px;
-    margin-bottom: 60px;
   }
-
   .dm-banner-text {
     font-size: 18px;
   }
-  
+  .dm-title {
+    font-size: 32px;
+  }
   .dm-mobile-break {
-    display: block; /* Forzar salto de línea en el texto verde para móviles */
-  }
-
-  .dm-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .dm-text-col {
-    align-items: center;
-  }
-
-  .dm-title {
-    font-size: 34px;
-    br {
-      display: none; /* Quitar saltos de línea del título en móvil */
-    }
-  }
-
-  .dm-img-col {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .dm-img {
-    max-width: 100%;
-    aspect-ratio: 16/9; /* Imagen más horizontal en móviles */
-  }
-}
-
-@media (max-width: 480px) {
-  .dm-section {
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 140px, #f2f8fc 140px, #f2f8fc 100%);
-  }
-  
-  .dm-title {
-    font-size: 30px;
+    display: block;
   }
 }
