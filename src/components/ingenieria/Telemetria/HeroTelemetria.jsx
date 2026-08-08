@@ -10,7 +10,7 @@ const HeroTelemetria = () => {
   return (
     <div className="ht-container-main">
       
-      {/* ================= SECCIÓN BANNER HERO ================= */}
+      {/* ================= SECCIÓN BANNER HERO ================== */}
       <section 
         className="ht-hero-banner" 
         style={{ 
