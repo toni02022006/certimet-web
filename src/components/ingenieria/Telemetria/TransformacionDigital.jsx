@@ -1,6 +1,9 @@
 import React from 'react';
 import './TransformacionDigital.css';
 
+// --- IMPORTACIÓN DE LA IMAGEN EXACTA ---
+import imgTransformacion from '../../../image/ingenieria/telemetria/componente3.webp';
+
 const TransformacionDigital = () => {
   const listaItems = [
     "Internet de las Cosas (IoT) y sensorización avanzada",
@@ -15,15 +18,13 @@ const TransformacionDigital = () => {
     <section className="td-section">
       <div className="td-container">
         
-        {/* ================= COLUMNA IZQUIERDA (Bloque o Imagen) ================= */}
+        {/* ================= COLUMNA IZQUIERDA (Imagen) ================= */}
         <div className="td-media-col">
-          {/* Este es el bloque azul sólido de tu diseño */}
-          <div className="td-blue-block"></div>
-          
-          {/* NOTA: Si más adelante quieres poner una imagen en lugar del cuadro azul, 
-              borra el div de arriba y usa esto:
-              <img src={tuImagen} alt="Transformación Digital" className="td-img" /> 
-          */}
+          <img 
+            src={imgTransformacion} 
+            alt="Ingeniero en centro de monitoreo de telemetría" 
+            className="td-img" 
+          />
         </div>
 
         {/* ================= COLUMNA DERECHA (Textos y Lista) ================= */}
@@ -44,6 +45,7 @@ const TransformacionDigital = () => {
           <ul className="td-list">
             {listaItems.map((item, index) => (
               <li key={index} className="td-list-item">
+                <span className="td-arrow">→</span>
                 {item}
               </li>
             ))}

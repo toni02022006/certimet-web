@@ -37,7 +37,7 @@
 
 .bt-title-dark {
   color: #002855; /* Azul muy oscuro para el texto en negrita */
-  font-weight: 500;
+  font-weight: 600; /* Un poco más de peso según tu imagen */
 }
 
 .bt-subtitle {
@@ -70,22 +70,18 @@
   align-items: flex-start; /* Alineado a la izquierda */
 }
 
-.bt-icon-circle {
-  width: 45px;
-  height: 45px;
-  background-color: #0056b3; /* Círculo azul por defecto */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Contenedor adaptado a las imágenes WebP circulares */
+.bt-icon-wrapper {
+  width: 50px;
+  height: 50px;
   margin-bottom: 25px;
-  transition: all 0.4s ease;
-  color: #ffffff; /* Color del icono (blanco por defecto) */
+  transition: transform 0.4s ease;
 }
 
-.bt-svg-icon {
-  width: 22px;
-  height: 22px;
+.bt-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .bt-card-title {
@@ -98,7 +94,7 @@
 }
 
 .bt-card-desc {
-  color: #0056b3; /* En la imagen el texto descriptivo parece un azul muy claro/grisáceo, ajustamos para que se lea bien */
+  color: #0056b3; 
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
@@ -116,9 +112,8 @@
   transform: translateY(-5px);
 }
 
-.bt-card.active .bt-icon-circle {
-  background-color: #00e676; /* Círculo verde Certimet */
-  color: #002855; /* El icono adentro se vuelve azul oscuro */
+.bt-card.active .bt-icon-wrapper {
+  transform: scale(1.1); /* Ligero zoom al icono cuando está activo */
 }
 
 .bt-card.active .bt-card-title {

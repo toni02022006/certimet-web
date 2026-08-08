@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './HeroTelemetria.css';
 
 // --- IMPORTACIÓN DE IMÁGENES EXACTAS ---
-import imgFondo from '../../../image/laboratorio/FuerzapresiónMS.webp';
-import imgPersona from '../../../image/ingenieria/img1.webp';
+import imgFondo from '../../../image/ingenieria/telemetria/telemetria.webp';
+import imgPersona from '../../../image/ingenieria/telemetria/componente1.webp';
 
 const HeroTelemetria = () => {
   return (

@@ -59,12 +59,12 @@
   position: relative;
   width: 100%;
   max-width: 900px;
-  height: 480px; /* Altura suficiente para la tarjeta activa (la más grande) */
+  height: 480px; /* Altura suficiente para la tarjeta activa */
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px; /* Opcional: Da un leve efecto 3D si se desea */
+  perspective: 1000px; 
 }
 
 /* ==========================================================================
@@ -77,7 +77,7 @@
   border-radius: 20px;
   background-color: #ffffff;
   border: 1px solid #c2dcf6;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición súper suave */
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   
@@ -92,7 +92,7 @@
 .cs-card-img-wrapper {
   width: 100%;
   height: 200px;
-  padding: 15px; /* Margen interior según el diseño */
+  padding: 15px; 
 }
 
 .cs-card-img {
@@ -117,7 +117,7 @@
 
 .cs-card-desc {
   color: #59575a;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
   margin: 0;
   transition: color 0.4s ease;
@@ -140,7 +140,7 @@
 
 .cs-card.active .cs-card-desc {
   color: #ffffff; /* Texto Blanco */
-  font-size: 12px; /* Ligeramente más grande al estar activo */
+  font-size: 13px; /* Ligeramente más grande al estar activo */
 }
 
 /* --- ESTADOS: ANTERIOR Y SIGUIENTE (LADOS) --- */
@@ -239,7 +239,6 @@
     height: 360px;
   }
 
-  /* En móviles encogemos un poco más las tarjetas laterales o las juntamos */
   .cs-card.prev { transform: translateX(-65%) scale(0.8); opacity: 0.5; }
   .cs-card.next { transform: translateX(65%) scale(0.8); opacity: 0.5; }
   .cs-card.active { transform: translateX(0) scale(1.05); }
@@ -254,7 +253,6 @@
     font-size: 28px;
   }
 
-  /* En celulares muy pequeños ocultamos los lados para que no se vea amontonado */
   .cs-card.prev { opacity: 0; pointer-events: none; }
   .cs-card.next { opacity: 0; pointer-events: none; }
   .cs-card.active { transform: translateX(0) scale(1); }

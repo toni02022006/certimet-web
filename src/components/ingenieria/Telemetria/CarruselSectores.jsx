@@ -1,48 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CarruselSectores.css';
 
-// Imagen provisional solicitada
-import imgFondo from '../../../image/ingenieria/imgfondobaner.webp';
+// ===============================================================
+// IMPORTACIÓN DE IMÁGENES EXACTAS
+// ===============================================================
+import imgMineria from '../../../image/ingenieria/telemetria/Mineria.webp';
+import imgEnergia from '../../../image/ingenieria/telemetria/Energia.webp';
+import imgAgro from '../../../image/ingenieria/telemetria/Agroindustria.webp';
+import imgOilGas from '../../../image/ingenieria/telemetria/Oil-Gas.webp';
+import imgAlimentos from '../../../image/ingenieria/telemetria/Alimentos-y-Farmaceutica.webp';
+import imgAguas from '../../../image/ingenieria/telemetria/Tratamiento-de-Aguas.webp';
 
 const CarruselSectores = () => {
-  // Estado para controlar qué tarjeta está en el centro
-  const [activeIndex, setActiveIndex] = useState(2);
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [isHovered, setIsHovered] = useState(false); // Para pausar al pasar el mouse
 
-  // Array con los datos de las 6 tarjetas (basado en los 6 puntos de tu diseño)
   const sectores = [
     {
       id: 0,
-      titulo: "Energía",
-      desc: "CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad"
+      titulo: "Minería",
+      desc: "Monitoreo de equipos pesados y control de procesos en tiempo real para operaciones en ubicaciones remotas y extremas.",
+      img: imgMineria
     },
     {
       id: 1,
-      titulo: "Minería",
-      desc: "CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad"
+      titulo: "Energía",
+      desc: "Supervisión de subestaciones, líneas de transmisión y plantas generadoras para garantizar la continuidad del suministro.",
+      img: imgEnergia
     },
     {
       id: 2,
-      titulo: "Energía",
-      desc: "CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad"
+      titulo: "Agroindustria",
+      desc: "Control de variables ambientales y sistemas de riego para maximizar el rendimiento y calidad de los cultivos.",
+      img: imgAgro
     },
     {
       id: 3,
-      titulo: "Manufactura",
-      desc: "CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad"
+      titulo: "Oil & Gas",
+      desc: "Telemetría para tuberías y refinerías, previniendo fugas y optimizando la extracción con máxima seguridad.",
+      img: imgOilGas
     },
     {
       id: 4,
-      titulo: "Petróleo y Gas",
-      desc: "CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad"
+      titulo: "Alimentos y Farmacéutica",
+      desc: "Trazabilidad de cadena de frío y variables críticas para cumplir con las normativas de calidad y sanidad más estrictas.",
+      img: imgAlimentos
     },
     {
       id: 5,
-      titulo: "Agroindustria",
-      desc: "CERTIMET cuenta con triple certificación ISO, resultado de su compromiso con la mejora continua y la calidad"
+      titulo: "Tratamiento de Aguas",
+      desc: "Control de niveles, caudales y calidad de agua en plantas potabilizadoras y redes de distribución urbana.",
+      img: imgAguas
     }
   ];
 
-  // Funciones para navegar en el carrusel
   const nextSlide = () => {
     setActiveIndex((prev) => (prev === sectores.length - 1 ? 0 : prev + 1));
   };
@@ -54,6 +65,18 @@ const CarruselSectores = () => {
   const goToSlide = (index) => {
     setActiveIndex(index);
   };
+
+  // Efecto para el movimiento continuo (Autoplay)
+  useEffect(() => {
+    let interval;
+    // Si el usuario no tiene el mouse encima, el carrusel se mueve solo
+    if (!isHovered) {
+      interval = setInterval(() => {
+        nextSlide();
+      }, 3500); // Cambia de tarjeta cada 3.5 segundos
+    }
+    return () => clearInterval(interval); // Limpia el intervalo al desmontar o pausar
+  }, [isHovered, activeIndex]);
 
   return (
     <section className="cs-section">
@@ -70,7 +93,11 @@ const CarruselSectores = () => {
         </div>
 
         {/* ================= CONTENEDOR DEL CARRUSEL ================= */}
-        <div className="cs-carousel-area">
+        <div 
+          className="cs-carousel-area"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           
           {/* Botón Anterior */}
           <button className="cs-arrow cs-arrow-left" onClick={prevSlide}>
@@ -82,7 +109,7 @@ const CarruselSectores = () => {
           {/* Wrapper de las tarjetas */}
           <div className="cs-cards-wrapper">
             {sectores.map((sector, index) => {
-              // Lógica para determinar la posición de cada tarjeta
+              // Lógica de posiciones
               let positionClass = 'hidden';
               if (index === activeIndex) {
                 positionClass = 'active';
@@ -97,7 +124,7 @@ const CarruselSectores = () => {
                   
                   {/* Imagen de la tarjeta */}
                   <div className="cs-card-img-wrapper">
-                    <img src={imgFondo} alt={sector.titulo} className="cs-card-img" />
+                    <img src={sector.img} alt={sector.titulo} className="cs-card-img" />
                   </div>
 
                   {/* Contenido de la tarjeta */}

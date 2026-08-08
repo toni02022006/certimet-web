@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './ProblemasTelemetria.css';
 
-// Si deseas usar img6.webp como fondo o en una sección contigua, puedes importarla así:
-// import img6 from '../../../image/ingenieria/img6.webp';
+// Importación de la imagen de advertencia según la ruta proporcionada
+import imgAdvertencia from '../../../image/ingenieria/mantenimientopredictivo/advertenc.webp';
 
 const ProblemasTelemetria = () => {
   // Estado para controlar qué tarjeta está activa (iluminada en azul)
-  // Inicia en 0 para que la primera tarjeta esté activa por defecto, igual que en tu diseño.
+  // Inicia en 0 para que la primera tarjeta esté activa por defecto.
   const [activeCard, setActiveCard] = useState(0);
 
   const problemas = [
@@ -45,12 +45,12 @@ const ProblemasTelemetria = () => {
               onMouseEnter={() => setActiveCard(index)}
             >
               <div className="pt-icon-wrapper">
-                {/* Icono de Advertencia (SVG optimizado) */}
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="pt-warning-icon">
-                  <path d="M12 3L23 20H1L12 3Z" fill="#FFC107" stroke="#2c2c2c" strokeWidth="2" strokeLinejoin="round"/>
-                  <path d="M12 9V14" stroke="#2c2c2c" strokeWidth="2.5" strokeLinecap="round"/>
-                  <circle cx="12" cy="17.5" r="1.5" fill="#2c2c2c"/>
-                </svg>
+                {/* Imagen de Advertencia en lugar del SVG */}
+                <img 
+                  src={imgAdvertencia} 
+                  alt="Icono de advertencia" 
+                  className="pt-warning-icon" 
+                />
               </div>
               
               <h3 className="pt-card-title">
