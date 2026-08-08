@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './HeroTelemetria.css';
 
 // --- IMPORTACIÓN DE IMÁGENES EXACTAS ---
-import imgFondo from '../../../image/ingenieria/telemetria/telemetria.webp';
+import imgFondo from '../../../image/ingenieria/telemetria/telemetria.jpg';
 import imgPersona from '../../../image/ingenieria/telemetria/componente1.png';
 
 const HeroTelemetria = () => {
