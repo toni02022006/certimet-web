@@ -4,22 +4,22 @@ import './BeneficiosTelemetria.css';
 // ===============================================================
 // IMPORTACIÓN DE ÍCONOS (AZULES - INACTIVOS)
 // ===============================================================
-import iconTiemposBlue from '../../../image/ingenieria/telemetria/Recurso 37.webp'; // Reloj
-import iconFallasBlue from '../../../image/ingenieria/telemetria/Recurso 45.webp';   // Wifi / Señal
-import iconTrazaBlue from '../../../image/ingenieria/telemetria/Recurso 46.webp';    // Nube
-import iconOptBlue from '../../../image/ingenieria/telemetria/Recurso 44.webp';      // Chip
-import iconEfiBlue from '../../../image/ingenieria/telemetria/Recurso 39.webp';      // Gráfico
-import iconCumpBlue from '../../../image/ingenieria/telemetria/Recurso 40.webp';     // Check
+import iconTiemposBlue from '../../../image/ingenieria/telemetria/Recurso 37.jpg'; // Reloj
+import iconFallasBlue from '../../../image/ingenieria/telemetria/Recurso 45.jpg';   // Wifi / Señal
+import iconTrazaBlue from '../../../image/ingenieria/telemetria/Recurso 46.jpg';    // Nube
+import iconOptBlue from '../../../image/ingenieria/telemetria/Recurso 44.jpg';      // Chip
+import iconEfiBlue from '../../../image/ingenieria/telemetria/Recurso 39.jpg';      // Gráfico
+import iconCumpBlue from '../../../image/ingenieria/telemetria/Recurso 40.jpg';     // Check
 
 // ===============================================================
 // IMPORTACIÓN DE ÍCONOS (VERDES - ACTIVOS)
 // ===============================================================
-import iconTiemposGreen from '../../../image/ingenieria/telemetria/Recurso 35.webp'; 
-import iconFallasGreen from '../../../image/ingenieria/telemetria/Recurso 42.webp';
-import iconTrazaGreen from '../../../image/ingenieria/telemetria/Recurso 43.webp';
-import iconOptGreen from '../../../image/ingenieria/telemetria/Recurso 41.webp';
-import iconEfiGreen from '../../../image/ingenieria/telemetria/Recurso 38.webp';
-import iconCumpGreen from '../../../image/ingenieria/telemetria/Recurso 36 (1).webp';
+import iconTiemposGreen from '../../../image/ingenieria/telemetria/Recurso 35.jpg'; 
+import iconFallasGreen from '../../../image/ingenieria/telemetria/Recurso 42.jpg';
+import iconTrazaGreen from '../../../image/ingenieria/telemetria/Recurso 43.jpg';
+import iconOptGreen from '../../../image/ingenieria/telemetria/Recurso 41.jpg';
+import iconEfiGreen from '../../../image/ingenieria/telemetria/Recurso 38.jpg';
+import iconCumpGreen from '../../../image/ingenieria/telemetria/Recurso 36 (1).jpg';
 
 const BeneficiosTelemetria = () => {
   // Inicia en 5 para que "Cumplimiento normativo" esté activo por defecto (como en tu imagen)

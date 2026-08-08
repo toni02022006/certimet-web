@@ -2,7 +2,7 @@ import React from 'react';
 import './DefinicionTelemetria.css';
 
 // --- IMPORTACIÓN DE IMÁGENES ---
-import imgPersona from '../../../image/ingenieria/telemetria/componente2.webp';
+import imgPersona from '../../../image/ingenieria/telemetria/componente2.jpg';
 import imgBrochure from '../../../image/descarga3.webp';
 
 const DefinicionTelemetria = () => {

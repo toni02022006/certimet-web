@@ -4,12 +4,12 @@ import './CarruselSectores.css';
 // ===============================================================
 // IMPORTACIÓN DE IMÁGENES EXACTAS
 // ===============================================================
-import imgMineria from '../../../image/ingenieria/telemetria/Mineria.webp';
-import imgEnergia from '../../../image/ingenieria/telemetria/Energia.webp';
-import imgAgro from '../../../image/ingenieria/telemetria/Agroindustria.webp';
-import imgOilGas from '../../../image/ingenieria/telemetria/Oil-Gas.webp';
-import imgAlimentos from '../../../image/ingenieria/telemetria/Alimentos-y-Farmaceutica.webp';
-import imgAguas from '../../../image/ingenieria/telemetria/Tratamiento-de-Aguas.webp';
+import imgMineria from '../../../image/ingenieria/telemetria/Mineria.jpg';
+import imgEnergia from '../../../image/ingenieria/telemetria/Energia.jpg';
+import imgAgro from '../../../image/ingenieria/telemetria/Agroindustria.jpg';
+import imgOilGas from '../../../image/ingenieria/telemetria/Oil-Gas.jpg';
+import imgAlimentos from '../../../image/ingenieria/telemetria/Alimentos-y-Farmaceutica.jpg';
+import imgAguas from '../../../image/ingenieria/telemetria/Tratamiento-de-Aguas.jpg';
 
 const CarruselSectores = () => {
   const [activeIndex, setActiveIndex] = useState(1);

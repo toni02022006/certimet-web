@@ -2,7 +2,7 @@ import React from 'react';
 import './TransformacionDigital.css';
 
 // --- IMPORTACIÓN DE LA IMAGEN EXACTA ---
-import imgTransformacion from '../../../image/ingenieria/telemetria/componente3.webp';
+import imgTransformacion from '../../../image/ingenieria/telemetria/componente3.jpg';
 
 const TransformacionDigital = () => {
   const listaItems = [

@@ -4,7 +4,7 @@ import './HeroTelemetria.css';
 
 // --- IMPORTACIÓN DE IMÁGENES EXACTAS ---
 import imgFondo from '../../../image/ingenieria/telemetria/telemetria.jpg';
-import imgPersona from '../../../image/ingenieria/telemetria/componente1.png';
+import imgPersona from '../../../image/ingenieria/telemetria/componente1.jpg';
 
 const HeroTelemetria = () => {
   return (
