@@ -53,6 +53,9 @@ import WhatsAppBot from './components/layout/WhatsAppBot';
 import Servicios from './views/Servicios';
 import Comparar from './views/Comparar'; 
 
+// ✅ NUEVO: Importación del CookieBanner
+import CookieBanner from './components/CookieBanner';
+
 function App() {
   // ==========================================================================
   // EFECTO: Cambia el título de la pestaña cuando el usuario sale de la web
@@ -85,9 +88,10 @@ function App() {
         <ComparacionProvider>
           <BrowserRouter basename="/">
             
-            {/* ✅ AQUÍ VA EL COMPONENTE: Escucha los cambios de ruta y sube el scroll */}
+            {/* ✅ AQUÍ VAN LOS COMPONENTES GLOBALES */}
             <ScrollToTop />
             <PagoListener />
+            <CookieBanner /> {/* <-- Integrado para que funcione en toda la web */}
 
             <Routes>
               
